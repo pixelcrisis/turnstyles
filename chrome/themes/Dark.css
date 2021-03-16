@@ -19,12 +19,6 @@
   background: #343434 !important;
 }
 
-/* Main Board Button Colorwash */
-.room-view-board .lame-button:not(.selected),
-.room-view-board .awesome-button:not(.selected) {
-  filter: grayscale(1) !important;
-}
-
 /* Border Color Resets */
 .flat-button, .message-view,
 .chat .message, .striped-list, 
