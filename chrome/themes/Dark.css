@@ -1,6 +1,6 @@
 /* Main Background */
 .tab-pane, #songs,
-.room-info-intro,
+.room-info-intro, .message-history,
 .chat .message:nth-child(even),
 .striped-list>:nth-child(even):not(.separator), 
 .song-list>ul>:nth-child(even):not(.separator),
@@ -28,6 +28,12 @@
 }
 .conversation-view {
   border-top: 1px solid #545454 !important;
+}
+
+/* Mention Styling */
+.chat .message.mention {
+  background: rgb(0 134 181 / 39%) !important;
+  border-right: 5px solid #0086b5 !important;
 }
 
 /* Text Color Overrides */
@@ -59,8 +65,9 @@
 
 /* Playlist / Filters */
 .panel-button {
-  box-shadow: inset 0 1px #909090, 0 1px #000000 !important;
-  background: linear-gradient(to bottom, #7d7d7d 0, #6f6f6f 100%) !important;
+  box-shadow: none !important;
+  border: 1px solid #7b7b7b !important;
+  background: linear-gradient(to bottom, #4a4a4a 0, #3a3a3a 100%) !important;
 }
 .panel-button:not(:hover) { 
   opacity: 0.8 !important; 

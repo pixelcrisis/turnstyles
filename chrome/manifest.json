@@ -1,12 +1,13 @@
 {
-  "name": "Turntable Tweaks",
-  "version": "4.0.3",
-  "description": "Applies tweaks to turntable.fm - autobop (auto-awesome) and dark chat, with more coming soon!",
+  "name": "Turnstyles for turntable.fm",
+  "version": "4.1",
+  "description": "Applies styles and tweaks to turntable.fm - autobop (auto-awesome) and dark chat, with more coming soon!",
   "manifest_version": 3,
   "icons": {
     "48": "images/icon48.png",
     "128": "images/icon128.png"
   },
+  "permissions": [ "storage" ],
   "content_scripts": [
     {
       "exclude_globs": [
@@ -20,9 +21,9 @@
         "*://turntable.fm/static/*"
       ],
       "js": [
+        "tweaks/Options.js",
         "tweaks/AutoBop.js",
-        "tweaks/Theming.js",
-        "index.js"
+        "tweaks/Theming.js"
       ],
       "matches": [ "*://turntable.fm/*" ],
       "run_at": "document_end"
