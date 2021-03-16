@@ -1,6 +1,6 @@
 {
   "name": "Turntable Tweaks",
-  "version": "4.0.0",
+  "version": "4.0.2",
   "description": "Applies tweaks to turntable.fm - autobop (auto-awesome) and dark chat, with more coming soon!",
   "manifest_version": 3,
   "icons": {
@@ -20,9 +20,9 @@
         "*://turntable.fm/static/*"
       ],
       "js": [
-        "js/AutoBop.js",
-        "js/DarkMode.js",
-        "js/Tweaks.js"
+        "tweaks/AutoBop.js",
+        "tweaks/DarkCSS.js",
+        "index.js"
       ],
       "matches": [ "*://turntable.fm/*" ],
       "run_at": "document_end"

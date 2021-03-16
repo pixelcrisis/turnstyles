@@ -1,4 +1,4 @@
-const DarkMode = () => {
+const DarkCSS = () => {
   let styles = document.createElement('style')
   styles.textContent = DarkTheme
   document.head.append(styles)
@@ -12,7 +12,9 @@ const DarkTheme = `
   .room-info-wrap,
   .panel-button .text,
   .tabbed-panel .separator,
-  .room-tab .room-info-link h3 {
+  .room-tab .room-info-link h3,
+  .message-view .message-fragment,
+  .message-view .message-username {
     color: #dddddd !important;
   }
 
@@ -22,9 +24,11 @@ const DarkTheme = `
 
   #songs,
   .tab-pane,
+  .message-history,
   .chat .message:nth-child(odd),
   .striped-list>:nth-child(odd):not(.separator), 
-  .song-list>ul>:nth-child(odd):not(.separator) {
+  .song-list>ul>:nth-child(odd):not(.separator),
+  .message-history>:nth-child(odd):not(.separator) {
     background: #222222 !important;
   }
 
@@ -32,10 +36,12 @@ const DarkTheme = `
   .room-info-wrap,
   .chat .message:nth-child(even),
   .striped-list>:nth-child(even):not(.separator), 
-  .song-list>ul>:nth-child(even):not(.separator) { 
+  .song-list>ul>:nth-child(even):not(.separator),
+  .message-history>:nth-child(even):not(.separator) { 
     background: #333333 !important;
   }
 
+  .message-input-view,
   .floating-panel-bar,
   .floating-panel-header, 
   .tabbed-panel .separator {
@@ -54,7 +60,8 @@ const DarkTheme = `
   .room-info-wrap,
   .striped-list>*, 
   .song-list>ul>*,
-  .room-info-intro {
+  .room-info-intro,
+  .message-history > * {
     border-color: #444444 !important;
   }
 
@@ -63,6 +70,7 @@ const DarkTheme = `
   .room-info-wrap,
   .default-message,
   .panel-button .text,
+  .message-input-view,
   .floating-panel-bar,
   .floating-panel-header, 
   .tabbed-panel .separator {
