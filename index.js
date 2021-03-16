@@ -1,8 +1,6 @@
 (() => {
 
-  AutoBop() // bop to start cause why not?
-  BopLoop() // set loop to bop automatically
-
-  DarkCSS() // apply our dark mode
+  Theming() // apply our theme engine
+  AutoBop() // start our auto-bopping
 
 })()

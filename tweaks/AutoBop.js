@@ -1,4 +1,4 @@
-const AutoBop = () => {
+const Bop = () => {
   let options = { bubbles: true, cancelable: true, view: window }
 
   // make sure the button exists and isn't already pressed
@@ -13,6 +13,7 @@ const AutoBop = () => {
   return !awesome.dispatchEvent(clicked)
 }
 
-const BopLoop = () => {
-  window.booper = setInterval(AutoBop, 5000)
+const AutoBop = () => {
+  window.booper = setInterval(Bop, 5000)
+  console.info(`Turntable Tweaks: Started AutoBop.`)
 }
