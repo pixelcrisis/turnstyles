@@ -15,7 +15,9 @@ tS.prototype.__ = {
 		theme: "dark",
 		style: "",
 		notify: {
-			song: false
+			song: true,
+			ping: true,
+			user: true
 		}
 	},
 	options: {
@@ -63,7 +65,7 @@ tS.prototype.attachRoom = function() {
 	if (!this.ttbl) return again()
 
 	// record any currently playing song
-	if (this.room.currentSong.metadata) {
+	if (this.room.currentSong) {
 		this.now_playing = {
 			snag: 0, hate: 0,
 			love: this.room.upvoters.length,
@@ -191,9 +193,13 @@ tS.prototype.handleBool = function(data) {
 // event handlers
 tS.prototype.runEvents = function(e) {
 	if (!e.command) return
+	if (e.command == "speak") this.onNewChat(e)
 	if (e.command == "newsong") this.onNewSong(e)
 	if (e.command == "snagged") this.onNewSnag(e)
 	if (e.command == "update_votes") this.onNewVote(e)
+}
+tS.prototype.onNewChat = function(e) {
+	console.log(e)
 }
 tS.prototype.onNewSong = function(e) {
 	this.runAutobop()
@@ -222,14 +228,14 @@ tS.prototype.onNewSong = function(e) {
 		this.notifyUser({ head, text })
 	}
 }
+tS.prototype.onNewSnag = function(e) {
+	if (!this.now_playing) return
+	this.now_playing.snag += 1
+}
 tS.prototype.onNewVote = function(e) {
 	if (!this.now_playing) return
 	this.now_playing.love = e.room.metadata.upvotes
 	this.now_playing.hate = e.room.metadata.downvotes
-}
-tS.prototype.onNewSnag = function(e) {
-	if (!this.now_playing) return
-	this.now_playing.snag += 1
 }
 
 const $tS = window.$tS = new tS()
