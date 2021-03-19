@@ -1,8 +1,8 @@
 {
-  "name": "Turnstyles for turntable.fm",
-  "version": "4.1",
-  "description": "Applies styles and tweaks to turntable.fm - autobop (auto-awesome) and dark chat, with more coming soon!",
-  "manifest_version": 3,
+  "name": "turnStyles for turntable.fm",
+  "version": "4.2",
+  "description": "Apply tweaks to turntable.fm - autobop, themes, styles, with more coming soon!",
+  "manifest_version": 2,
   "icons": {
     "48": "images/icon48.png",
     "128": "images/icon128.png"
@@ -20,14 +20,13 @@
         "*://turntable.fm/terms",
         "*://turntable.fm/static/*"
       ],
-      "js": [
-        "tweaks/Options.js",
-        "tweaks/AutoBop.js",
-        "tweaks/Theming.js"
-      ],
+      "js": [ "inject.js" ],
+      "css": [ "turnStyles.css" ],
       "matches": [ "*://turntable.fm/*" ],
       "run_at": "document_end"
     }
   ],
-  "web_accessible_resources": [ "themes/*" ]
+  "web_accessible_resources": [ 
+    "turnStyles.js", "themes/*", "styles/*"
+  ]
 }

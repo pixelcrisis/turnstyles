@@ -7,7 +7,7 @@
 .song-list>ul>:nth-child(even):not(.separator),
 .message-history>:nth-child(even):not(.separator) {
   color: #eaeaea !important;
-  background: #3a3a3a !important;
+  background: #1a1a1a !important;
 }
 
 /* Alt Background */
@@ -17,7 +17,7 @@
 .song-list>ul>:nth-child(odd):not(.separator),
 .message-history>:nth-child(odd):not(.separator)  {
   color: #eaeaea !important;
-  background: #343434 !important;
+  background: #141414 !important;
 }
 
 /* Border Color Resets */
@@ -25,10 +25,10 @@
 .chat .message, .striped-list, 
 .song-list .song,
 .room-info-intro, .room-info-wrap {
-  border-color: #545454 !important;
+  border-color: #343434 !important;
 }
 .conversation-view {
-  border-top: 1px solid #545454 !important;
+  border-top: 1px solid #343434 !important;
 }
 
 /* Mention Styling */
@@ -89,9 +89,9 @@
 .floating-panel-header, 
 .tabbed-panel .separator {
   box-shadow: none !important;
-  border-top: 1px solid #545454 !important;
-  border-bottom: 1px solid #353535 !important;
-  background: linear-gradient(to bottom, #3a3a3a, #353535) !important;
+  border-top: 1px solid #343434 !important;
+  border-bottom: 1px solid #151515 !important;
+  background: linear-gradient(to bottom, #1a1a1a, #151515) !important;
 }
 
 /* PM Options Menu */
@@ -131,5 +131,5 @@
   border: none !important;
   color: #ffffff !important;
   background: #252525 !important;
-  box-shadow: inset 0 0 0 1px #545454, 0 1px 0 0 #545454 !important;
+  box-shadow: inset 0 0 0 1px #343434, 0 1px 0 0 #343434 !important;
 }

@@ -1,0 +1,44 @@
+#ts_pane {
+  width: 250px;
+  z-index: 100;
+  padding: 25px;
+  border-radius: 5px;
+  border: 3px solid #676767;
+  position: absolute;
+  margin-left: -150px;
+  top: 80px; left: 50%;
+  background: #2f2f2f;
+  color: #eaeaea;
+}
+#ts_pane:not(.active) {
+  display: none;
+}
+#ts_pane label { 
+  display: block;
+  margin: 10px 0 5px; 
+  font-weight: bold;
+}
+#ts_pane label input {
+  margin-right: 5px;
+}
+#ts_pane select {
+  color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background: transparent;
+  border: 1px solid #666666;
+}
+#ts_pane button {
+  margin-top: 15px;
+  margin-right: 5px;
+  border: 1px solid;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background: transparent;
+}
+#ts_open { 
+  font-weight: bold;
+  font-style: italic;
+}
+#ts_close { color: #aaaaaa; }
+#ts_save { color: gold; }
