@@ -1,8 +1,9 @@
 /* Main Background */
-.tab-pane, #songs,
+.tab-pane, #songs, .song-list, .guest-list,
 #buddyList, .conversations-list,
 .room-info-intro, .message-history,
 .chat .message:nth-child(even),
+.guest-list>:nth-child(even):not(.separator),
 .striped-list>:nth-child(even):not(.separator), 
 .song-list>ul>:nth-child(even):not(.separator),
 .message-history>:nth-child(even):not(.separator) {
@@ -13,6 +14,7 @@
 /* Alt Background */
 .room-info-wrap, .flat-button,
 .chat .message:nth-child(odd),
+.guest-list>:nth-child(odd):not(.separator),
 .striped-list>:nth-child(odd):not(.separator), 
 .song-list>ul>:nth-child(odd):not(.separator),
 .message-history>:nth-child(odd):not(.separator)  {
@@ -23,7 +25,7 @@
 /* Border Color Resets */
 .flat-button, .message-view,
 .chat .message, .striped-list, 
-.song-list .song,
+.song-list .song, .guest-list .guest,
 .room-info-intro, .room-info-wrap {
   border-color: #343434 !important;
 }
@@ -53,6 +55,7 @@
 .room-tab .room-name, .song .title,
 .queue-message, .default-message,
 .tabbed-panel .separator .text,
+.sliding-nav-pane-title,
 .message-view a, .tabbed-panel a, .tabbed-panel a:visited {
   color: #fff !important;
   text-shadow: 0 1px 1px #000 !important;
@@ -78,6 +81,7 @@
 #buddyListNipple,
 .chatsound.mention,
 #upload-button button,
+.tabbed-panel button.back,
 .room-info-wrap .options-menu .nib,
 #playlist-display .playlist-queue-inset,
 .playlist-go-top, .playlist-open-options {
@@ -88,7 +92,9 @@
 .message-input-view,
 .floating-panel-bar,
 .floating-panel-header, 
-.tabbed-panel .separator {
+.tabbed-panel .separator,
+.sliding-nav-pane-header,
+.sliding-nav-pane .separator {
   box-shadow: none !important;
   border-top: 1px solid #343434 !important;
   border-bottom: 1px solid #151515 !important;

@@ -159,7 +159,7 @@ tS.prototype.handleOpts = function(list) {
 	let data = this.__.options[list]
 	let opts = `<option value="">None</option>`
 	for (let key in data) {
-		let curr = this.__.config[list] == key ? 'selected' : ''
+		let curr = this.config[list] == key ? 'selected' : ''
 		opts += `<option value="${key}" ${curr}>${data[key]}</option>`
 	}
 	return `<select id="ts_${list}">${opts}</select>`
