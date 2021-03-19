@@ -1,3 +1,8 @@
+.chat .message.mention {
+  background: #00a70052 !important;
+  border-right: 5px solid #00a700 !important;
+}
+
 .lame-button {
   filter: grayscale(1) !important;
 }
