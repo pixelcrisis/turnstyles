@@ -172,11 +172,9 @@ tS.prototype.handleBool = function(data) {
 // event handlers
 tS.prototype.runEvents = function(e) {
 		if (!e.command) return
-		console.log(e)
 		if (e.command == "newsong") this.onNewSong(e)
 }
 tS.prototype.onNewSong = function(e) {
-	this.__.log('new song')
 	this.runAutobop(e)
 }
 

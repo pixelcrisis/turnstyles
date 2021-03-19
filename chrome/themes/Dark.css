@@ -79,7 +79,8 @@
 .chatsound.mention,
 #upload-button button,
 .room-info-wrap .options-menu .nib,
-#playlist-display .playlist-queue-inset {
+#playlist-display .playlist-queue-inset,
+.playlist-go-top, .playlist-open-options {
   filter: invert(1) !important;
 }
 
