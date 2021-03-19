@@ -15,9 +15,9 @@ tS.prototype.__ = {
 		theme: "dark",
 		style: "",
 
+		pm_ping: true,
 		song_ping: true,
-		chat_ping: true,
-		user_ping: true
+		chat_ping: true
 	},
 	options: {
 		theme: {
@@ -192,10 +192,16 @@ tS.prototype.handleBool = function(data) {
 // event handlers
 tS.prototype.runEvents = function(e) {
 	if (!e.command) return
+	if (e.command == "pmmed") this.onNewPM(e)
 	if (e.command == "speak") this.onNewChat(e)
 	if (e.command == "newsong") this.onNewSong(e)
 	if (e.command == "snagged") this.onNewSnag(e)
 	if (e.command == "update_votes") this.onNewVote(e)
+}
+tS.prototype.onNewPM = function(e) {
+	if (this.config.pm_ping) this.notifyUser({
+		head: `New PM`, text: e.text
+	})
 }
 tS.prototype.onNewChat = function(e) {
 	if (this.config.chat_ping) {
