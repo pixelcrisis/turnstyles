@@ -62,6 +62,15 @@ tS.prototype.attachRoom = function() {
 	// try again if we can't find it
 	if (!this.ttbl) return again()
 
+	// record any currently playing song
+	if (this.room.currentSong.metadata) {
+		this.now_playing = {
+			snag: 0, hate: 0,
+			love: this.room.upvoters.length,
+			...this.room.currentSong.metadata
+		}
+	}
+
 	this.core.addEventListener('message', this.runEvents.bind(this))
 
 	this.__.log(`loaded room: ${this.room.roomId}`)
@@ -129,20 +138,10 @@ tS.prototype.runAutobop = function() {
 }
 
 // handle our notifications
-tS.prototype.notifyUser = function(e) {
-	let notification = false
-
-	if (e.command == 'newsong' && this.config.notify.song) {
-		let song = e.room.metadata.current_song.metadata
-		notification = {
-			head: `Now Playing: ${song.song}`,
-			text: `By: ${song.artist}`
-		}
-	}
-
-	if (!notification) return
-	this.__.log(`sent notification`)
-	return window.postMessage({ type: "tsNotify", notification })
+tS.prototype.notifyUser = function(data) {
+	return window.postMessage({
+		type: "tsNotify", notification: data
+	})
 }
 
 // build our options menu
@@ -193,10 +192,44 @@ tS.prototype.handleBool = function(data) {
 tS.prototype.runEvents = function(e) {
 	if (!e.command) return
 	if (e.command == "newsong") this.onNewSong(e)
-	this.notifyUser(e)
+	if (e.command == "snagged") this.onNewSnag(e)
+	if (e.command == "update_votes") this.onNewVote(e)
 }
 tS.prototype.onNewSong = function(e) {
-	this.runAutobop(e)
+	this.runAutobop()
+
+	// save the current as the last played
+	if (!this.now_playing) this.last_played = {}
+	else this.last_played = { ...this.now_playing }
+	// set the current song to the new one
+	this.now_playing = {
+		love: 0, hate: 0, snag: 0,
+		...e.room.metadata.current_song.metadata
+	}
+
+	if (this.config.notify.song) {
+		let head = `Now Playing: ${this.now_playing.song}`
+		let text = `By: ${this.now_playing.artist}`
+
+		if (this.last_played.song) text = [
+			`Last:`,
+			`${this.last_played.love}🔺`,
+			`${this.last_played.hate}🔻`,
+			`${this.last_played.snag}❤️`,
+			`${this.last_played.song}`
+		].join(' ')
+
+		this.notifyUser({ head, text })
+	}
+}
+tS.prototype.onNewVote = function(e) {
+	if (!this.now_playing) return
+	this.now_playing.love = e.room.metadata.upvotes
+	this.now_playing.hate = e.room.metadata.downvotes
+}
+tS.prototype.onNewSnag = function(e) {
+	if (!this.now_playing) return
+	this.now_playing.snag += 1
 }
 
 const $tS = window.$tS = new tS()
