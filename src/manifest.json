@@ -7,7 +7,7 @@
     "48": "images/icon48.png",
     "128": "images/icon128.png"
   },
-  "permissions": [ "storage" ],
+  "permissions": [ "notifications" ],
   "content_scripts": [
     {
       "exclude_globs": [
@@ -20,12 +20,16 @@
         "*://turntable.fm/terms",
         "*://turntable.fm/static/*"
       ],
-      "js": [ "inject.js" ],
       "css": [ "turnStyles.css" ],
+      "js": [ "plugins/inject.js" ],
       "matches": [ "*://turntable.fm/*" ],
       "run_at": "document_end"
     }
   ],
+  "background": {
+    "scripts": [ "plugins/notify.js" ],
+    "persistent": false
+  },
   "web_accessible_resources": [ 
     "turnStyles.js", "themes/*", "styles/*"
   ]

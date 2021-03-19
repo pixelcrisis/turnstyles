@@ -11,3 +11,9 @@ turnStyles.type = "text/javascript"
 turnStyles.src = chrome.runtime.getURL('turnStyles.js')
 document.body.append(turnStyles)
 console.info(`turnStyles :: injected`)
+
+// pass a notification message to notify.js
+window.addEventListener("message", msg => {
+  if (event.data.type != "tsNotify") return
+  chrome.runtime.sendMessage('', event.data)
+})

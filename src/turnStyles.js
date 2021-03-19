@@ -14,6 +14,9 @@ tS.prototype.__ = {
 		autobop: true,
 		theme: "dark",
 		style: "",
+		notify: {
+			song: false
+		}
 	},
 	options: {
 		theme: {
@@ -125,6 +128,23 @@ tS.prototype.runAutobop = function() {
 	}, (Math.random() * 7) * 1000)
 }
 
+// handle our notifications
+tS.prototype.notifyUser = function(e) {
+	let notification = false
+
+	if (e.command == 'newsong' && this.config.notify.song) {
+		let song = e.room.metadata.current_song.metadata
+		notification = {
+			head: `Now Playing: ${song.song}`,
+			text: `By: ${song.artist}`
+		}
+	}
+
+	if (!notification) return
+	this.__.log(`sent notification`)
+	return window.postMessage({ type: "tsNotify", notification })
+}
+
 // build our options menu
 tS.prototype.buildPanel = function() {
 	// the options window
@@ -171,8 +191,9 @@ tS.prototype.handleBool = function(data) {
 
 // event handlers
 tS.prototype.runEvents = function(e) {
-		if (!e.command) return
-		if (e.command == "newsong") this.onNewSong(e)
+	if (!e.command) return
+	if (e.command == "newsong") this.onNewSong(e)
+	this.notifyUser(e)
 }
 tS.prototype.onNewSong = function(e) {
 	this.runAutobop(e)
