@@ -33,10 +33,14 @@
   border-top: 1px solid #343434 !important;
 }
 
-/* Mention Styling */
+/* Chat Styling */
 .chat .message.mention {
-  background: rgb(0 134 181 / 39%) !important;
-  border-right: 5px solid #0086b5 !important;
+  background: #e1bb2252 !important;
+  border-right: 5px solid #e1bb22 !important;
+}
+.chat .message.action {
+  background: #ff000040 !important;
+  border-right: 5px solid #ff000055 !important;
 }
 
 /* Text Color Overrides */

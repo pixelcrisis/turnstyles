@@ -36,8 +36,12 @@
 
 /* Mention Styling */
 .chat .message.mention {
-  background: rgb(0 134 181 / 39%) !important;
-  border-right: 5px solid #0086b5 !important;
+  background: rgb(225 187 34 / 32%) !important;
+  border-right: 5px solid #e1bb22 !important;
+}
+.chat .message.action {
+  background: #ff000020 !important;
+  border-right: 5px solid #ff000055 !important;
 }
 
 /* Text Color Overrides */
