@@ -78,7 +78,7 @@ tS.prototype.loadConfig = function() {
 	// apply our defaults for any config upgrades
 	this.config = { ...this.__.config, ...this.config }
 
-	this.base = window.tsBase || 'https://ts.pixelcrisis.co/chrome/'
+	this.base = window.tsBase || 'https://ts.pixelcrisis.co/src/'
 	this.__.log("loaded config")
 }
 tS.prototype.saveConfig = function() {
