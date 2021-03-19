@@ -14,11 +14,10 @@ tS.prototype.__ = {
 		autobop: true,
 		theme: "dark",
 		style: "",
-		notify: {
-			song: true,
-			ping: true,
-			user: true
-		}
+
+		song_ping: true,
+		chat_ping: true,
+		user_ping: true
 	},
 	options: {
 		theme: {
@@ -199,7 +198,12 @@ tS.prototype.runEvents = function(e) {
 	if (e.command == "update_votes") this.onNewVote(e)
 }
 tS.prototype.onNewChat = function(e) {
-	console.log(e)
+	if (this.config.chat_ping) {
+		let ping = `@${this.core.user.attributes.name}`
+		if (e.text.indexOf(ping) > -1) this.notifyUser({
+			head: `[${this.room.roomData.name}] ${e.name}`, text: e.text
+		})
+	}
 }
 tS.prototype.onNewSong = function(e) {
 	this.runAutobop()
@@ -213,7 +217,7 @@ tS.prototype.onNewSong = function(e) {
 		...e.room.metadata.current_song.metadata
 	}
 
-	if (this.config.notify.song) {
+	if (this.config.song_ping) {
 		let head = `Now Playing: ${this.now_playing.song}`
 		let text = `By: ${this.now_playing.artist}`
 
