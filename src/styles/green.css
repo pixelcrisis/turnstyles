@@ -3,7 +3,7 @@
   border-right: 5px solid #00a700 !important;
 }
 
-.song .progress {
+.song .progress, #ts_slider {
   background: #00a700 !important;
 }
 

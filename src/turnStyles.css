@@ -50,12 +50,40 @@
 #ts_save { color: gold; }
 #ts_volume {
   width: 150px;
-  top: 0; 
+  top: 38px; 
   left: 50%;
   z-index: 6000;
   margin-left: -75px;
   position: absolute;
 }
-#ts_vol_control {
+#ts_slider {
   width: 150px;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 5px;
+  border-radius: 5px;  
+  background: gold;
+  outline: none;
+  opacity: 0.5;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+#ts_slider:hover {
+  opacity: 1;
+}
+#ts_slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%; 
+  background: #ffffff;
+  cursor: pointer;
+}
+#ts_slider::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #ffffff;
+  cursor: pointer;
 }

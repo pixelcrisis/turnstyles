@@ -178,11 +178,15 @@ tS.prototype.addOpenBtn = function() {
 }
 tS.prototype.volControl = function() {
 	// add our slider
-	// $('.header-content').append(`
-	// 	<div id="ts_volume">
-	// 		<input id="ts_vol_control" type="range" min="0" max="100">
-	// 	</div>
-	// `)
+	$('.header-content').append(`
+		<div id="ts_volume">
+			<input id="ts_slider" type="range" min="0" max="100" value="100" />
+		</div>
+	`)
+	// set up our connection to youtube
+	$('#ts_slider').on('input', e => {
+		window.youtube.setVolume(e.target.value)
+	})
 }
 tS.prototype.handleOpts = function(list) {
 	let data = this.__.options[list]
