@@ -20,7 +20,6 @@
         "*://turntable.fm/terms",
         "*://turntable.fm/static/*"
       ],
-      "css": [ "turnStyles.css" ],
       "js": [ "plugins/inject.js" ],
       "matches": [ "*://turntable.fm/*" ],
       "run_at": "document_end"
@@ -31,6 +30,9 @@
     "persistent": false
   },
   "web_accessible_resources": [ 
-    "turnStyles.js", "themes/*", "styles/*"
+    "turnStyles.css",
+    "turnStyles.js",
+    "themes/*",
+    "styles/*"
   ]
 }

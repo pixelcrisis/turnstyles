@@ -115,61 +115,13 @@ tS.prototype.saveConfig = function() {
 	this.loadThemes()
 }
 
-// load our styles and themes
-tS.prototype.loadThemes = function() {
-	this.refreshCSS("themes", this.config.theme)
-	this.refreshCSS("styles", this.config.style)
-}
-tS.prototype.refreshCSS = function(type, name) {
-	let curr = $(`link.tS-${type}`)
-	let path = `${this.base}/${type}/${name}.css`
-	if (!name) return curr.length ? curr.remove() : false
-	this.__.log(`loading ${type}/${name}.css`)
-
-	if (curr.length) curr.attr("href", path)
-	else {
-		let link = document.createElement('link')
-		link.classList.add(`tS-${type}`)
-		link.rel = "stylesheet"
-		link.type = "text/css"
-		link.href = path
-		document.head.append(link)
-	} 
-}
-
-// run our autobop (awesome)
-tS.prototype.runAutobop = function() {
-	if (this.autobop) clearTimeout(this.autobop)
-	if (!this.config.autobop) return
-	let roomId = this.room.roomId
-	this.autobop = setTimeout(() => {
-		$(window).focus()
-		let options = { bubbles: true, cancelable: true, view: window }
-		let awesome = document.querySelectorAll('.awesome-button')[0]
-		let clicked = new MouseEvent('click', options)
-		return !awesome.dispatchEvent(clicked)
-	}, (Math.random() * 7) * 1000)
-}
-
-// handle our notifications
-tS.prototype.notifyUser = function(data) {
-	return window.postMessage({
-		type: "tsNotify", notification: data
-	})
-}
-tS.prototype.sendToChat = function(text, bold) {
-	$('.chat .messages').append(`
-		<div class="message">
-			<em>
-				${ bold ? `<span class="subject">${bold}</span>` : '' }
-				<span class="text">${text}</span>
-			</em>
-		</div>
-	`)
-}
-
 // build our options menu
 tS.prototype.buildPanel = function() {
+	// inject our CSS
+	let link = document.createElement('link')
+	link.rel = "stylesheet"; link.type = "text/css"
+	link.href = `${this.base}/turnStyles.css`
+	document.head.append(link)
 	// the options window
 	$('body').append(`
 		<div id="ts_pane">
@@ -227,6 +179,59 @@ tS.prototype.handleOpts = function(list) {
 tS.prototype.handleBool = function(data) {
 	let checked = this.config[data] ? 'checked' : ''
 	return `<input id="ts_${data}" type="checkbox" ${checked} />`
+}
+
+// load our styles and themes
+tS.prototype.loadThemes = function() {
+	this.refreshCSS("themes", this.config.theme)
+	this.refreshCSS("styles", this.config.style)
+}
+tS.prototype.refreshCSS = function(type, name) {
+	let curr = $(`link.tS-${type}`)
+	let path = `${this.base}/${type}/${name}.css`
+	if (!name) return curr.length ? curr.remove() : false
+	this.__.log(`loading ${type}/${name}.css`)
+
+	if (curr.length) curr.attr("href", path)
+	else {
+		let link = document.createElement('link')
+		link.classList.add(`tS-${type}`)
+		link.rel = "stylesheet"
+		link.type = "text/css"
+		link.href = path
+		document.head.append(link)
+	} 
+}
+
+// run our autobop (awesome)
+tS.prototype.runAutobop = function() {
+	if (this.autobop) clearTimeout(this.autobop)
+	if (!this.config.autobop) return
+	let roomId = this.room.roomId
+	this.autobop = setTimeout(() => {
+		$(window).focus()
+		let options = { bubbles: true, cancelable: true, view: window }
+		let awesome = document.querySelectorAll('.awesome-button')[0]
+		let clicked = new MouseEvent('click', options)
+		return !awesome.dispatchEvent(clicked)
+	}, (Math.random() * 7) * 1000)
+}
+
+// handle our notifications
+tS.prototype.notifyUser = function(data) {
+	return window.postMessage({
+		type: "tsNotify", notification: data
+	})
+}
+tS.prototype.sendToChat = function(text, bold) {
+	$('.chat .messages').append(`
+		<div class="message">
+			<em>
+				${ bold ? `<span class="subject">${bold}</span>` : '' }
+				<span class="text">${text}</span>
+			</em>
+		</div>
+	`)
 }
 
 // event handlers
