@@ -19,10 +19,10 @@ tS.prototype.__ = {
 		ping_song: false,
 		ping_chat: false,
 
-		chat_stat: true,
-		chat_snag: true,
-		chat_join: true,
-		chat_gone: true
+		chat_stat: false,
+		chat_snag: false,
+		chat_join: false,
+		chat_gone: false
 	},
 	options: {
 		theme: {
