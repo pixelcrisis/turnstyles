@@ -1,17 +1,23 @@
 #ts_pane {
-  width: 250px;
+  width: 300px;
   z-index: 100;
   padding: 25px;
   border-radius: 5px;
   border: 3px solid #676767;
   position: absolute;
-  margin-left: -150px;
+  margin-left: -175px;
   top: 80px; left: 50%;
   background: #2f2f2f;
   color: #eaeaea;
 }
 #ts_pane:not(.active) {
   display: none;
+}
+#ts_pane .col {
+  width: 48%;
+  margin: 10px 0;
+  vertical-align: top;
+  display: inline-block;
 }
 #ts_pane label { 
   display: block;
