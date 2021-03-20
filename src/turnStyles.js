@@ -13,6 +13,7 @@ tS.prototype.__ = {
 		autobop: true,
 
 		volume: 100,
+		has_vol: false,
 
 		theme: "dark",
 		style: "",
@@ -106,6 +107,7 @@ tS.prototype.saveConfig = function() {
 	this.config.style     = $("#ts_style").val()
 
 	this.config.autobop   = $("#ts_autobop").is(':checked')
+	this.config.has_vol   = $('#ts_has_vol').is(':checked')
 	this.config.ping_pm   = $('#ts_ping_pm').is(':checked')
 	this.config.ping_chat = $('#ts_ping_chat').is(':checked')
 	this.config.ping_song = $('#ts_ping_song').is(':checked')
@@ -143,8 +145,11 @@ tS.prototype.buildPanel = function() {
 		<div id="ts_pane">
 			<h2>turnStyles options</h2>
 
-			<div class="full">
+			<div class="half">
 				<label>${this.handleBool('autobop')} Autobop</label>
+			</div>
+			<div class="half">
+				<label>${this.handleBool('has_vol')} Control Volume</label>
 			</div>
 			<div class="half">
 				<label>Theme</label>
@@ -177,7 +182,6 @@ tS.prototype.buildPanel = function() {
 	$('#ts_close').on('click', () => $('#ts_pane').removeClass('active'))
 
 	this.addOpenBtn() // add the menu toggle
-	this.addVolCtrl() // add our volume control
 }
 tS.prototype.addOpenBtn = function() {
 	// add the button
@@ -191,30 +195,14 @@ tS.prototype.addOpenBtn = function() {
 		$('#ts_pane').toggleClass('active')
 	})
 }
-tS.prototype.addVolCtrl = function() {
-	// add our slider
-	$('.header-content').append(`
-		<div id="ts_volume">
-			<input id="ts_slider" type="range" 
-				min="0" max="100" value="${this.config.volume}">
-			</input>
-		</div>
-	`)
-	// set up our connection to youtube
-	$('#ts_slider').on('input', this.onVolInput.bind(this))
-	window.youtube.setVolume(this.config.volume)
-}
-tS.prototype.onVolInput = function(e) {
-	this.config.volume = e.target.value
-	window.youtube.setVolume(this.config.volume)
-	if (this.vol_setting) clearTimeout(this.vol_setting)
-	this.vol_setting = setTimeout(this.saveConfig.bind(this), 5 * 1000)
-}
 
 // load our styles and themes
 tS.prototype.loadThemes = function() {
 	this.refreshCSS("themes", this.config.theme)
 	this.refreshCSS("styles", this.config.style)
+	// inject our volume slider if visible
+	if (this.config.has_vol) this.addVolCtrl()
+	else this.remVolCtrl()
 }
 tS.prototype.refreshCSS = function(type, name) {
 	let curr = $(`link.tS-${type}`)
@@ -231,6 +219,42 @@ tS.prototype.refreshCSS = function(type, name) {
 		link.href = path
 		document.head.append(link)
 	} 
+}
+
+// volume controls
+tS.prototype.addVolCtrl = function() {
+	// add our slider
+	$('body').addClass('has-volume')
+	$('.header-content').append(`
+		<div id="ts_volume">
+			<span id="ts_mute"></span>
+			<input id="ts_slider" type="range" 
+				min="0" max="100" value="${this.config.volume}">
+			</input>
+			<em id="ts_muted">Muted For One Song</em>
+		</div>
+	`)
+	// set up our connection to youtube
+	$('#ts_mute').on('click', this.toggleMute.bind(this))
+	$('#ts_slider').on('input', this.onVolInput.bind(this))
+	window.youtube.setVolume(this.config.volume)
+}
+tS.prototype.remVolCtrl = function() {
+	$('body').removeClass('has-volume')
+	$('#ts_volume').remove()
+}
+tS.prototype.toggleMute = function() {
+	if (!this.mute) $('#ts_volume').addClass('muted')
+	else $('#ts_volume').removeClass('muted')
+	window.youtube.setVolume(this.mute ? this.config.volume : 0)
+	this.mute = !this.mute
+	this.__.log(`turned mute ${ this.mute ? 'on' : 'off'}`)
+}
+tS.prototype.onVolInput = function(e) {
+	this.config.volume = e.target.value
+	window.youtube.setVolume(this.config.volume)
+	if (this.vol_setting) clearTimeout(this.vol_setting)
+	this.vol_setting = setTimeout(this.saveConfig.bind(this), 5 * 1000)
 }
 
 // run our autobop (awesome)
@@ -299,6 +323,7 @@ tS.prototype.onChat = function(e) {
 }
 tS.prototype.onSong = function(e) {
 	this.runAutobop()
+	if (this.mute) this.toggleMute()
 
 	// save the current as the last played
 	if (!this.now_playing) this.last_played = {}
