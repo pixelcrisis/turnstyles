@@ -183,10 +183,32 @@ tS.prototype.volControl = function() {
 			<input id="ts_slider" type="range" min="0" max="100" value="100" />
 		</div>
 	`)
+	const tsSlider = $('#ts_slider')
+	let currentVolume = ~~window.youtube.futureVolume
+	// set the slider to match the current volume on load
+	tsSlider[0].value = currentVolume
 	// set up our connection to youtube
-	$('#ts_slider').on('input', e => {
+	tsSlider.on('input', e => {
 		window.youtube.setVolume(e.target.value)
 	})
+	// add scrollwheel support
+	tsSlider.on('DOMMouseScroll mousewheel', function (e) {
+		currentVolume = ~~window.youtube.futureVolume
+		let multiplier = e.originalEvent.shiftKey ? 1 : 5;
+
+		if (e.originalEvent.deltaY > 0) {
+			let newVolume = currentVolume - multiplier;
+			if (newVolume <= 0) newVolume = 0;
+			window.youtube.setVolume(newVolume);
+			tsSlider[0].value = newVolume;
+		} else {
+			let newVolume = currentVolume + multiplier;
+			if (newVolume >= 100) newVolume = 100;
+			window.youtube.setVolume(newVolume);
+			tsSlider[0].value = newVolume
+		}
+		return false;
+	});
 }
 tS.prototype.handleOpts = function(list) {
 	let data = this.__.options[list]
