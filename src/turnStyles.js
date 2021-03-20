@@ -122,6 +122,7 @@ tS.prototype.buildPanel = function() {
 	link.rel = "stylesheet"; link.type = "text/css"
 	link.href = `${this.base}/turnStyles.css`
 	document.head.append(link)
+
 	// the options window
 	$('body').append(`
 		<div id="ts_pane">
@@ -156,16 +157,32 @@ tS.prototype.buildPanel = function() {
 			<button id="ts_save">Save</button>
 		</div>
 	`)
-	// the menu toggle
+	// bind up the events
+	$('#ts_save').on('click', this.saveConfig.bind(this))
+	$('#ts_close').on('click', () => $('#ts_pane').removeClass('active'))
+
+	this.addOpenBtn() // add the menu toggle
+	this.volControl() // add our volume control
+}
+tS.prototype.addOpenBtn = function() {
+	// add the button
 	$('#layout-option').before(`
 		<li class="ts link option">
 			<a id="ts_open" href="#">turnStyles</a>
 		</li>
 	`)
-	// bind up the events
-	$('#ts_save').on('click', this.saveConfig.bind(this))
-	$('#ts_open').on('click', () => $('#ts_pane').toggleClass('active'))
-	$('#ts_close').on('click', () => $('#ts_pane').removeClass('active'))
+	// clicking toggles the menu
+	$('#ts_open').on('click', () => {
+		$('#ts_pane').toggleClass('active')
+	})
+}
+tS.prototype.volControl = function() {
+	// add our slider
+	// $('.header-content').append(`
+	// 	<div id="ts_volume">
+	// 		<input id="ts_vol_control" type="range" min="0" max="100">
+	// 	</div>
+	// `)
 }
 tS.prototype.handleOpts = function(list) {
 	let data = this.__.options[list]
@@ -295,7 +312,7 @@ tS.prototype.onNewSnag = function(e) {
 	this.now_playing.snag += 1
 	if (this.config.chat_snag) {
 		let name = this.room.userMap[e.userid].attributes.name
-		this.sendToChat(name, `has snagged this track!`)
+		this.sendToChat(`has snagged this track!`, name)
 	}
 }
 tS.prototype.onNewVote = function(e) {

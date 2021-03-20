@@ -48,3 +48,14 @@
 }
 #ts_close { color: #aaaaaa; }
 #ts_save { color: gold; }
+#ts_volume {
+  width: 150px;
+  top: 0; 
+  left: 50%;
+  z-index: 6000;
+  margin-left: -75px;
+  position: absolute;
+}
+#ts_vol_control {
+  width: 150px;
+}
