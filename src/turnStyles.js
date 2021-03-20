@@ -82,10 +82,10 @@ tS.prototype.attachRoom = function() {
 		}
 	}
 
-	this.core.addEventListener('message', this.runEvents.bind(this))
+	// handle our events
+	this.core.addEventListener('message', this.handle.bind(this))
 
 	this.__.log(`loaded room: ${this.room.roomId}`)
-
 	this.runAutobop()
 	this.buildPanel()
 }
@@ -204,8 +204,6 @@ tS.prototype.addVolCtrl = function() {
 	$('#ts_slider').on('input', this.onVolInput.bind(this))
 	window.youtube.setVolume(this.config.volume)
 }
-
-// handle volume changes
 tS.prototype.onVolInput = function(e) {
 	this.config.volume = e.target.value
 	window.youtube.setVolume(this.config.volume)
@@ -268,17 +266,17 @@ tS.prototype.sendToChat = function(text, bold) {
 }
 
 // event handlers
-tS.prototype.runEvents = function(e) {
+tS.prototype.handle = function(e) {
 	if (!e.command) return
-	if (e.command == "pmmed") this.onNewPM(e)
-	if (e.command == "speak") this.onNewChat(e)
-	if (e.command == "newsong") this.onNewSong(e)
-	if (e.command == "snagged") this.onNewSnag(e)
-	if (e.command == "registered") this.onNewUser(e)
-	if (e.command == "deregistered") this.onOldUser(e)
-	if (e.command == "update_votes") this.onNewVote(e)
+	if (e.command == "pmmed") this.onPing(e)
+	if (e.command == "speak") this.onChat(e)
+	if (e.command == "newsong") this.onSong(e)
+	if (e.command == "snagged") this.onSnag(e)
+	if (e.command == "registered") this.onJoin(e)
+	if (e.command == "deregistered") this.onLeft(e)
+	if (e.command == "update_votes") this.onVote(e)
 }
-tS.prototype.onNewPM = function(e) {
+tS.prototype.onPing = function(e) {
 	if (this.config.ping_pm && !window.tsPmPing) {
 		this.notifyUser({ head: `New PM`, text: e.text })
 		// only send one notification per ten seconds
@@ -287,7 +285,7 @@ tS.prototype.onNewPM = function(e) {
 		}, 10 * 1000)
 	}
 }
-tS.prototype.onNewChat = function(e) {
+tS.prototype.onChat = function(e) {
 	if (this.config.ping_chat && !window.tsChatPing) {
 		let ping = `@${this.core.user.attributes.name}`
 		if (e.text.indexOf(ping) > -1) this.notifyUser({
@@ -299,7 +297,7 @@ tS.prototype.onNewChat = function(e) {
 		}, 10 * 1000)
 	}
 }
-tS.prototype.onNewSong = function(e) {
+tS.prototype.onSong = function(e) {
 	this.runAutobop()
 
 	// save the current as the last played
@@ -324,23 +322,23 @@ tS.prototype.onNewSong = function(e) {
 	if (this.config.chat_stat && stat) this.sendToChat(stat)
 	if (this.config.ping_song) this.notifyUser({ head, text: stat || text })
 }
-tS.prototype.onNewSnag = function(e) {
+tS.prototype.onSnag = function(e) {
 	this.now_playing.snag += 1
 	if (this.config.chat_snag) {
 		let name = this.room.userMap[e.userid].attributes.name
 		this.sendToChat(`has snagged this track!`, name)
 	}
 }
-tS.prototype.onNewVote = function(e) {
+tS.prototype.onVote = function(e) {
 	this.now_playing.love = e.room.metadata.upvotes
 	this.now_playing.hate = e.room.metadata.downvotes
 }
-tS.prototype.onNewUser = function(e) {
+tS.prototype.onJoin = function(e) {
 	if (this.config.chat_join) {
 		this.sendToChat(`joined.`, e.user[0].name)
 	}
 }
-tS.prototype.onOldUser = function(e) {
+tS.prototype.onLeft = function(e) {
 	if (this.config.chat_gone) {
 		this.sendToChat(`left.`, e.user[0].name)
 	}
