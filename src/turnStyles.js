@@ -253,6 +253,7 @@ tS.prototype.sendToChat = function(text, bold) {
 			</em>
 		</div>
 	`)
+	this.core.topViewController.updateChatScroll()
 }
 
 // event handlers
