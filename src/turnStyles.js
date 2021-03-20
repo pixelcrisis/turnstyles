@@ -15,9 +15,14 @@ tS.prototype.__ = {
 		theme: "dark",
 		style: "",
 
-		pm_ping: true,
-		song_ping: true,
-		chat_ping: true
+		ping_pm: false,
+		ping_song: false,
+		ping_chat: false,
+
+		chat_stat: true,
+		chat_snag: true,
+		chat_join: true,
+		chat_gone: true
 	},
 	options: {
 		theme: {
@@ -92,9 +97,13 @@ tS.prototype.loadConfig = function() {
 	this.__.log("loaded config")
 }
 tS.prototype.saveConfig = function() {
-	this.config.theme   = $("#ts_theme").val()
-	this.config.style   = $("#ts_style").val()
-	this.config.autobop = $("#ts_autobop").val()
+	this.config.theme     = $("#ts_theme").val()
+	this.config.style     = $("#ts_style").val()
+	this.config.autobop   = $("#ts_autobop").val()
+	this.config.ping_pm   = $('#ts_ping_pm').val()
+	this.config.ping_chat = $('#ts_ping_chat').val()
+	this.config.ping_song = $('#ts_ping_song').val()
+	this.config.chat_snag = $('#ts_chat_snag').val()
 
 	window.localStorage.setItem("tsdb", JSON.stringify(this.config))
 	$('#ts_pane').removeClass('active')
@@ -144,6 +153,16 @@ tS.prototype.notifyUser = function(data) {
 		type: "tsNotify", notification: data
 	})
 }
+tS.prototype.sendToChat = function(text, bold) {
+	$('.chat .messages').append(`
+		<div class="message">
+			<em>
+				${ bold ? `<span class="subject">${bold}</span>` : '' }
+				<span class="text">${text}</span>
+			</em>
+		</div>
+	`)
+}
 
 // build our options menu
 tS.prototype.buildPanel = function() {
@@ -151,14 +170,29 @@ tS.prototype.buildPanel = function() {
 	$('body').append(`
 		<div id="ts_pane">
 			<h2>turnStyles options</h2>
-			
-			<label>Theme</label>
-			${this.handleOpts('theme')}
-			
-			<label>Style</label>
-			${this.handleOpts('style')}
 
-			<label>${this.handleBool('autobop')} Autobop</label>
+			<div class="col">
+				<label>Theme</label>
+				${this.handleOpts('theme')}
+			</div>
+			<div class="col">
+				<label>Style</label>
+				${this.handleOpts('style')}
+			</div>
+			<div class="col">
+				<h3>Options</h3>
+				<label>${this.handleBool('autobop')} Autobop</label>
+				<label>${this.handleBool('chat_stat')} Stats In Chat</label>
+				<label>${this.handleBool('chat_snag')} Snags In Chat</label>
+				<label>${this.handleBool('chat_join')} Joins In Chat</label>
+				<label>${this.handleBool('chat_gone')} Leaves In Chat</label>
+			</div>
+			<div class="col">
+				<h3>Notifications</h3>
+				<label>${this.handleBool('ping_pm')} On DMs</label>
+				<label>${this.handleBool('ping_chat')} On Mentions</label>
+				<label>${this.handleBool('ping_song')} On New Songs</label>
+			</div>
 
 			<button id="ts_close">Cancel</button>
 			<button id="ts_save">Save</button>
@@ -196,19 +230,29 @@ tS.prototype.runEvents = function(e) {
 	if (e.command == "speak") this.onNewChat(e)
 	if (e.command == "newsong") this.onNewSong(e)
 	if (e.command == "snagged") this.onNewSnag(e)
+	if (e.command == "registered") this.onNewUser(e)
+	if (e.command == "deregistered") this.onOldUser(e)
 	if (e.command == "update_votes") this.onNewVote(e)
 }
 tS.prototype.onNewPM = function(e) {
-	if (this.config.pm_ping) this.notifyUser({
-		head: `New PM`, text: e.text
-	})
+	if (this.config.ping_pm && !window.tsPmPing) {
+		this.notifyUser({ head: `New PM`, text: e.text })
+		// only send one notification per ten seconds
+		window.tsPmPing = setTimeout(() => {
+			window.tsPmPing = null
+		}, 10 * 1000)
+	}
 }
 tS.prototype.onNewChat = function(e) {
-	if (this.config.chat_ping) {
+	if (this.config.ping_chat && !window.tsChatPing) {
 		let ping = `@${this.core.user.attributes.name}`
 		if (e.text.indexOf(ping) > -1) this.notifyUser({
-			head: `[${this.room.roomData.name}] ${e.name}`, text: e.text
+			head: `[${this.room.roomData.name}] @${e.name}`, text: e.text
 		})
+		// only send one notification every ten seconds
+		window.tsChatPing = setTimeout(() => {
+			window.tsChatPing = null
+		}, 10 * 1000)
 	}
 }
 tS.prototype.onNewSong = function(e) {
@@ -222,12 +266,10 @@ tS.prototype.onNewSong = function(e) {
 		love: 0, hate: 0, snag: 0,
 		...e.room.metadata.current_song.metadata
 	}
-
-	if (this.config.song_ping) {
-		let head = `Now Playing: ${this.now_playing.song}`
-		let text = `By: ${this.now_playing.artist}`
-
-		if (this.last_played.song) text = [
+	
+	let head = `Now Playing: ${this.now_playing.song}`
+	let text = `By: ${this.now_playing.artist}`
+	let stat = !this.last_played.song ? false : [
 			`Last:`,
 			`${this.last_played.love}🔺`,
 			`${this.last_played.hate}🔻`,
@@ -235,17 +277,29 @@ tS.prototype.onNewSong = function(e) {
 			`${this.last_played.song}`
 		].join(' ')
 
-		this.notifyUser({ head, text })
-	}
+	if (this.config.chat_stat && stat) this.sendToChat(stat)
+	if (this.config.ping_song) this.notifyUser({ head, text: stat || text })
 }
 tS.prototype.onNewSnag = function(e) {
-	if (!this.now_playing) return
 	this.now_playing.snag += 1
+	if (this.config.chat_snag) {
+		let name = this.room.userMap[e.userid].attributes.name
+		this.sendToChat(name, `has snagged this track!`)
+	}
 }
 tS.prototype.onNewVote = function(e) {
-	if (!this.now_playing) return
 	this.now_playing.love = e.room.metadata.upvotes
 	this.now_playing.hate = e.room.metadata.downvotes
+}
+tS.prototype.onNewUser = function(e) {
+	if (this.config.chat_join) {
+		this.sendToChat(`joined.`, e.user[0].name)
+	}
+}
+tS.prototype.onOldUser = function(e) {
+	if (this.config.chat_gone) {
+		this.sendToChat(`left.`, e.user[0].name)
+	}
 }
 
 const $tS = window.$tS = new tS()
