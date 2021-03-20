@@ -3,6 +3,14 @@
   border-right: 5px solid #00a1c0 !important;
 }
 
+.song .progress {
+  background: #00a1c0 !important;
+}
+
+.current-song .details {
+  color: #ffffff !important;
+}
+
 .lame-button {
   filter: grayscale(1) !important;
 }
