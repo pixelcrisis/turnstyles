@@ -12,6 +12,8 @@ tS.prototype.__ = {
 	config: {
 		autobop: true,
 
+		volume: 100,
+
 		theme: "dark",
 		style: "",
 
@@ -116,6 +118,19 @@ tS.prototype.saveConfig = function() {
 }
 
 // build our options menu
+tS.prototype.handleOpts = function(list) {
+	let data = this.__.options[list]
+	let opts = `<option value="">None</option>`
+	for (let key in data) {
+		let curr = this.config[list] == key ? 'selected' : ''
+		opts += `<option value="${key}" ${curr}>${data[key]}</option>`
+	}
+	return `<select id="ts_${list}">${opts}</select>`
+}
+tS.prototype.handleBool = function(data) {
+	let checked = this.config[data] ? 'checked' : ''
+	return `<input id="ts_${data}" type="checkbox" ${checked} />`
+}
 tS.prototype.buildPanel = function() {
 	// inject our CSS
 	let link = document.createElement('link')
@@ -162,7 +177,7 @@ tS.prototype.buildPanel = function() {
 	$('#ts_close').on('click', () => $('#ts_pane').removeClass('active'))
 
 	this.addOpenBtn() // add the menu toggle
-	this.volControl() // add our volume control
+	this.addVolCtrl() // add our volume control
 }
 tS.prototype.addOpenBtn = function() {
 	// add the button
@@ -176,30 +191,26 @@ tS.prototype.addOpenBtn = function() {
 		$('#ts_pane').toggleClass('active')
 	})
 }
-tS.prototype.volControl = function() {
+tS.prototype.addVolCtrl = function() {
 	// add our slider
 	$('.header-content').append(`
 		<div id="ts_volume">
-			<input id="ts_slider" type="range" min="0" max="100" value="100" />
+			<input id="ts_slider" type="range" 
+				min="0" max="100" value="${this.config.volume}">
+			</input>
 		</div>
 	`)
 	// set up our connection to youtube
-	$('#ts_slider').on('input', e => {
-		window.youtube.setVolume(e.target.value)
-	})
+	$('#ts_slider').on('input', this.onVolInput.bind(this))
+	window.youtube.setVolume(this.config.volume)
 }
-tS.prototype.handleOpts = function(list) {
-	let data = this.__.options[list]
-	let opts = `<option value="">None</option>`
-	for (let key in data) {
-		let curr = this.config[list] == key ? 'selected' : ''
-		opts += `<option value="${key}" ${curr}>${data[key]}</option>`
-	}
-	return `<select id="ts_${list}">${opts}</select>`
-}
-tS.prototype.handleBool = function(data) {
-	let checked = this.config[data] ? 'checked' : ''
-	return `<input id="ts_${data}" type="checkbox" ${checked} />`
+
+// handle volume changes
+tS.prototype.onVolInput = function(e) {
+	this.config.volume = e.target.value
+	window.youtube.setVolume(this.config.volume)
+	if (this.vol_setting) clearTimeout(this.vol_setting)
+	this.vol_setting = setTimeout(this.saveConfig.bind(this), 5 * 1000)
 }
 
 // load our styles and themes
