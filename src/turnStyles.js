@@ -37,7 +37,10 @@ tS.prototype.__ = {
 		},
 	},
 
-	log: (str) => console.info(`turnStyles :: ${str}`),
+	log: (str, obj) => {
+		obj = obj ? JSON.stringify(obj, 0, 2) : ''
+		console.info(`turnStyles :: ${str}`, obj)
+	},
 	// check if obj exists and has a key
 	has: (obj, key) => obj !== null && typeof obj != "undefined" && obj[key]
 }
@@ -99,11 +102,12 @@ tS.prototype.loadConfig = function() {
 tS.prototype.saveConfig = function() {
 	this.config.theme     = $("#ts_theme").val()
 	this.config.style     = $("#ts_style").val()
-	this.config.autobop   = $("#ts_autobop").val()
-	this.config.ping_pm   = $('#ts_ping_pm').val()
-	this.config.ping_chat = $('#ts_ping_chat').val()
-	this.config.ping_song = $('#ts_ping_song').val()
-	this.config.chat_snag = $('#ts_chat_snag').val()
+
+	this.config.autobop   = $("#ts_autobop").is(':checked')
+	this.config.ping_pm   = $('#ts_ping_pm').is(':checked')
+	this.config.ping_chat = $('#ts_ping_chat').is(':checked')
+	this.config.ping_song = $('#ts_ping_song').is(':checked')
+	this.config.chat_snag = $('#ts_chat_snag').is(':checked')
 
 	window.localStorage.setItem("tsdb", JSON.stringify(this.config))
 	$('#ts_pane').removeClass('active')
@@ -221,7 +225,7 @@ tS.prototype.handleOpts = function(list) {
 	return `<select id="ts_${list}">${opts}</select>`
 }
 tS.prototype.handleBool = function(data) {
-	let checked = this.__.config[data] ? 'checked' : ''
+	let checked = this.config[data] ? 'checked' : ''
 	return `<input id="ts_${data}" type="checkbox" ${checked} />`
 }
 
