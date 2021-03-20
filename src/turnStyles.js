@@ -10,8 +10,8 @@ const tS = function() {
 // defaults & utilities
 tS.prototype.__ = {
 	config: {
-		saved: true,
 		autobop: true,
+
 		theme: "dark",
 		style: "",
 
@@ -171,23 +171,25 @@ tS.prototype.buildPanel = function() {
 		<div id="ts_pane">
 			<h2>turnStyles options</h2>
 
-			<div class="col">
+			<div class="full">
+				<label>${this.handleBool('autobop')} Autobop</label>
+			</div>
+			<div class="half">
 				<label>Theme</label>
 				${this.handleOpts('theme')}
 			</div>
-			<div class="col">
+			<div class="half">
 				<label>Style</label>
 				${this.handleOpts('style')}
 			</div>
-			<div class="col">
-				<h3>Options</h3>
-				<label>${this.handleBool('autobop')} Autobop</label>
+			<div class="half">
+				<h3>Chat Info</h3>
 				<label>${this.handleBool('chat_stat')} Stats In Chat</label>
 				<label>${this.handleBool('chat_snag')} Snags In Chat</label>
 				<label>${this.handleBool('chat_join')} Joins In Chat</label>
 				<label>${this.handleBool('chat_gone')} Leaves In Chat</label>
 			</div>
-			<div class="col">
+			<div class="half">
 				<h3>Notifications</h3>
 				<label>${this.handleBool('ping_pm')} On DMs</label>
 				<label>${this.handleBool('ping_chat')} On Mentions</label>

@@ -13,7 +13,7 @@
 #ts_pane:not(.active) {
   display: none;
 }
-#ts_pane .col {
+#ts_pane .half {
   width: 48%;
   margin: 10px 0;
   vertical-align: top;
