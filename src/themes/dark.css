@@ -10,7 +10,7 @@
 */
 
 /* Main Background */
-.tab-pane, #songs, .header-bar, .tab-item:not(.selected),
+#ts_pane, .tab-pane, #songs, .header-bar, .tab-item:not(.selected),
 .room-info-intro, .message-history, .song-list, .guest-list,
 #buddyList, .sliding-nav-pane, .conversations-list,
 .guestOptionsContainer, .guestOptionsContainer .options,
@@ -35,7 +35,7 @@
 }
 
 /* Border Color Resets */
-.flat-button, .message-view, .chat .message, .striped-list, 
+#ts_pane, .flat-button, .message-view, .chat .message, .striped-list, 
 .song-list .song, .guest-list .guest, .room-info-intro, 
 .room-info-wrap { border-color: #545454 !important; }
 .conversation-view { border-top: 1px solid #545454 !important; }
