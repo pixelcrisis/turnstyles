@@ -8,7 +8,7 @@
 .striped-list>:nth-child(even):not(.separator), 
 .song-list>ul>:nth-child(even):not(.separator),
 .message-history>:nth-child(even):not(.separator) {
-  color: #eaeaea !important;
+  color: #e8e8e8 !important;
   background: #1a1a1a !important;
 }
 
@@ -19,7 +19,7 @@
 .striped-list>:nth-child(odd):not(.separator), 
 .song-list>ul>:nth-child(odd):not(.separator),
 .message-history>:nth-child(odd):not(.separator)  {
-  color: #eaeaea !important;
+  color: #e8e8e8 !important;
   background: #141414 !important;
 }
 
@@ -42,19 +42,19 @@
 
 /* Text Color Overrides */
 .room-tab .description-wrap,
-.room-tab .room-info-link h3 { color: #eaeaea !important; }
+.room-tab .room-info-link h3 { color: #e8e8e8 !important; }
 
 /* Transparent Overrides */
 .avatar-head { background-color: transparent !important; }
 
-/* Popped White Text */
+/* Popped Text */
 .sliding-nav-pane-title,
 .tabbed-panel .separator .text,
 .queue-message, .default-message,
 .room-tab .room-name, .song .title,
 #playlist-display .text, .filter.btn,
 .message-view a, .tabbed-panel a, .tabbed-panel a:visited {
-  color: #fff !important;
+  color: #e8e8e8 !important;
   text-shadow: 0 1px 1px #000 !important;
 }
 

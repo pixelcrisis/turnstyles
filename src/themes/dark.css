@@ -8,7 +8,7 @@
 .striped-list>:nth-child(even):not(.separator), 
 .song-list>ul>:nth-child(even):not(.separator),
 .message-history>:nth-child(even):not(.separator) {
-  color: #eaeaea !important;
+  color: #ffffff !important;
   background: #3a3a3a !important;
 }
 
@@ -19,7 +19,7 @@
 .striped-list>:nth-child(odd):not(.separator), 
 .song-list>ul>:nth-child(odd):not(.separator),
 .message-history>:nth-child(odd):not(.separator)  {
-  color: #eaeaea !important;
+  color: #ffffff !important;
   background: #343434 !important;
 }
 
@@ -42,7 +42,7 @@
 
 /* Text Color Overrides */
 .room-tab .description-wrap,
-.room-tab .room-info-link h3 { color: #eaeaea !important; }
+.room-tab .room-info-link h3 { color: #ffffff !important; }
 
 /* Transparent Overrides */
 .avatar-head { background-color: transparent !important; }
@@ -54,7 +54,7 @@
 .room-tab .room-name, .song .title,
 #playlist-display .text, .filter.btn,
 .message-view a, .tabbed-panel a, .tabbed-panel a:visited {
-  color: #fff !important;
+  color: #ffffff !important;
   text-shadow: 0 1px 1px #000 !important;
 }
 
