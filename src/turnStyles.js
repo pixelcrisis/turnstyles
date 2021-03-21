@@ -222,7 +222,8 @@ tS.prototype.refreshCSS = function(type, name) {
 
 // volume controls
 tS.prototype.loadVolume = function() {
-	if (this.config.has_vol) {
+	let hasVolume = $('body').hasClass('has-volume')
+	if (this.config.has_vol && !hasVolume) {
 		$('body').addClass('has-volume')
 		$('.header-content').append(`
 			<div id="ts_volume">
@@ -240,7 +241,7 @@ tS.prototype.loadVolume = function() {
 			.on('DOMMouseScroll mousewheel', this.onVolWheel.bind(this))
 		window.youtube.setVolume(this.config.volume)
 	}
-	else {
+	else if (!this.config.has_vol && hasVolume) {
 		$('body').removeClass('has-volume')
 		$('#ts_volume').remove()
 	}
