@@ -86,7 +86,7 @@ tS.prototype.attachRoom = function() {
 	// handle our events
 	this.core.addEventListener('message', this.handle.bind(this))
 	// we need a copy of this to for the volume function
-	this.__realVolume = window.turntablePlayer.realVolume
+	this.realVolume = window.turntablePlayer.realVolume
 	this.__.log(`loaded room: ${this.room.roomId}`)
 	this.runAutobop()
 	this.buildPanel()
@@ -183,10 +183,12 @@ tS.prototype.buildPanel = function() {
 	$('#ts_save').on('click', this.saveConfig.bind(this))
 	$('#ts_close').on('click', () => $('#ts_pane').removeClass('active'))
 
-	this.addOpenBtn() // add the menu toggle
+	this.
+
+	this.attachMenu() // add the menu toggle
 	this.loadVolume() // add the volume control
 }
-tS.prototype.addOpenBtn = function() {
+tS.prototype.attachMenu = function() {
 	// add the button
 	$('#layout-option').before(`
 		<li class="ts link option">
@@ -230,7 +232,7 @@ tS.prototype.loadVolume = function() {
 			<div id="ts_volume">
 				<span id="ts_mute"></span>
 				<input id="ts_slider" type="range" 
-					min="0" max="100" value="${this.getCurrentVolume()}">
+					min="0" max="100" value="${this.currVolume()}">
 				</input>
 				<em id="ts_muted">Muted For One Song</em>
 			</div>
@@ -238,68 +240,59 @@ tS.prototype.loadVolume = function() {
 		// set up our connection to youtube
 		$('#ts_mute').on('click', this.toggleMute.bind(this))
 		$('#ts_slider')
-			.on('input', this.onVolInput.bind(this))
+			.on('input', this.saveVolume.bind(this))
 			.on('DOMMouseScroll mousewheel', this.onVolWheel.bind(this))
 	}
 	else if (!this.config.has_vol && hasVolume) {
 		$('body').removeClass('has-volume')
 		$('#ts_volume').remove()
-		window.turntablePlayer.realVolume = this.__realVolume;
+		window.turntablePlayer.realVolume = this.realVolume;
 	}
 }
-tS.prototype.getCurrentVolume = function() {
-	return 100 * Math.pow(2, window.util.getSetting("volume") - 4)
+tS.prototype.currVolume = function() {
+	// fetch TT's volume setting and convert to 100 scale
+	let curr = window.util.getSetting('volume')
+	return 100 * Math.pow(2, curr - 4)
 }
-tS.prototype.setVolume = function(vol) {
-	let newVolume;
-	if (vol > 0) {
-		newVolume = Math.log(vol / 100) / Math.LN2 + 4
-	} else if (vol <= 0) {
-		// -3 is muted.
-		newVolume = -3
-	}
+tS.prototype.saveVolume = function(vol) {
+	vol = vol.target ? vol.target.value : vol
+	// convert volume to a scale of 100
+	let scaled = x => Math.log(x / 100) / Math.LN2 + 4
+	let volume = vol > 0 ? scaled(vol) : -3
 
-	// we need to rewrite this function to allow volumes below 7
-	if (vol < 7) {
-		window.turntablePlayer.realVolume = function (e) {
-			return 100 * Math.pow(2, e - 4)
-		}
-	} else {
-		// return the function back to normal.
-		window.turntablePlayer.realVolume = this.__realVolume
-	}
-	
-	window.turntablePlayer.setVolume(newVolume)
-	if (this.vol_setting) clearTimeout(this.vol_setting)
-	this.vol_setting = setTimeout(function () {
-		window.util.setSetting("volume", newVolume)
-	}, 1000)
+	// rewrite tt function to allow values below 7
+	if (volume > 6) window.turntablePlayer.realVolume = this.realVolume
+	else window.turntablePlayer.realVolume = x => 100 * Math.pow(2, x - 4)
+
+	// set volume immediately, but delay saving
+	window.turntablePlayer.saveVolume(volume)
+	// only actually *save* the volume once every second
+	let saving_vol = () => window.util.setSetting('volume', volume)
+	if (this.vol_saving) clearTimeout(this.vol_saving)
+	this.vol_saving = setTimeout(saving_vol, 1* 1000)
 }
 tS.prototype.toggleMute = function() {
 	if (!this.mute) $('#ts_volume').addClass('muted')
 	else $('#ts_volume').removeClass('muted')
-	window.youtube.setVolume(this.mute ? this.getCurrentVolume() : 0)
+	this.saveVolume(this.mute ? this.currVolume() : 0)
 	this.mute = !this.mute
 	this.__.log(`turned mute ${ this.mute ? 'on' : 'off'}`)
-}
-tS.prototype.onVolInput = function(e) {
-	this.setVolume(e.target.value)
 }
 tS.prototype.onVolWheel = function(e) {
 	const slider = $('#ts_slider')
 	let currentVolume = window.youtube.futureVolume
-	if (currentVolume < 0 ) currentVolume = this.getCurrentVolume()
+	if (currentVolume < 0 ) currentVolume = this.currVolume()
 	let multiplier = e.originalEvent.shiftKey ? 1 : 5;
 
 	if (e.originalEvent.deltaY > 0) {
 		let newVolume = currentVolume - multiplier;
 		if (newVolume <= 0) newVolume = 0;
-		this.setVolume(newVolume)
+		this.saveVolume(newVolume)
 		slider[0].value = newVolume;
 	} else {
 		let newVolume = currentVolume + multiplier;
 		if (newVolume >= 100) newVolume = 100;
-		this.setVolume(newVolume)
+		this.saveVolume(newVolume)
 		slider[0].value = newVolume
 	}
 	return false;
