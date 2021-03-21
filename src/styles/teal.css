@@ -20,7 +20,8 @@
 .tab-item:active, 
 .tab-item.selected,
 .favorite-star.favorited,
-#privateChatIcon.open .chatIcon {
+#privateChatIcon.open .chatIcon,
+button.tt-button.primary.small.inset {
   filter: hue-rotate(130deg) brightness(0.6) saturate(2) !important;
 }
 
