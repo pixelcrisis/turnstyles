@@ -284,7 +284,7 @@ tS.prototype.onVolInput = function(e) {
 tS.prototype.onVolWheel = function(e) {
 	const slider = $('#ts_slider')
 	let currentVolume = window.youtube.futureVolume
-	if (currentVolume < 0 ) currentVolume = 0
+	if (currentVolume < 0 ) currentVolume = this.getCurrentVolume()
 	let multiplier = e.originalEvent.shiftKey ? 1 : 5;
 
 	if (e.originalEvent.deltaY > 0) {
