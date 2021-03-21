@@ -263,7 +263,7 @@ tS.prototype.saveVolume = function(vol) {
 	else window.turntablePlayer.realVolume = x => 100 * Math.pow(2, x - 4)
 
 	// set volume immediately, but delay saving
-	window.turntablePlayer.saveVolume(volume)
+	window.turntablePlayer.setVolume(volume)
 	// only actually *save* the volume once every second
 	let saving_vol = () => window.util.setSetting('volume', volume)
 	if (this.vol_saving) clearTimeout(this.vol_saving)
