@@ -117,6 +117,7 @@ tS.prototype.saveConfig = function() {
 	$('#ts_pane').removeClass('active')
 	this.__.log("saved config")
 	this.loadThemes()
+	this.loadVolume()
 }
 
 // build our options menu
@@ -182,6 +183,7 @@ tS.prototype.buildPanel = function() {
 	$('#ts_close').on('click', () => $('#ts_pane').removeClass('active'))
 
 	this.addOpenBtn() // add the menu toggle
+	this.loadVolume() // add the volume control
 }
 tS.prototype.addOpenBtn = function() {
 	// add the button
@@ -200,9 +202,6 @@ tS.prototype.addOpenBtn = function() {
 tS.prototype.loadThemes = function() {
 	this.refreshCSS("themes", this.config.theme)
 	this.refreshCSS("styles", this.config.style)
-	// inject our volume slider if visible
-	if (this.config.has_vol) this.addVolCtrl()
-	else this.remVolCtrl()
 }
 tS.prototype.refreshCSS = function(type, name) {
 	let curr = $(`link.tS-${type}`)
@@ -222,26 +221,27 @@ tS.prototype.refreshCSS = function(type, name) {
 }
 
 // volume controls
-tS.prototype.addVolCtrl = function() {
-	// add our slider
-	$('body').addClass('has-volume')
-	$('.header-content').append(`
-		<div id="ts_volume">
-			<span id="ts_mute"></span>
-			<input id="ts_slider" type="range" 
-				min="0" max="100" value="${this.config.volume}">
-			</input>
-			<em id="ts_muted">Muted For One Song</em>
-		</div>
-	`)
-	// set up our connection to youtube
-	$('#ts_mute').on('click', this.toggleMute.bind(this))
-	$('#ts_slider').on('input', this.onVolInput.bind(this))
-	window.youtube.setVolume(this.config.volume)
-}
-tS.prototype.remVolCtrl = function() {
-	$('body').removeClass('has-volume')
-	$('#ts_volume').remove()
+tS.prototype.loadVolume = function() {
+	if (this.config.has_vol) {
+		$('body').addClass('has-volume')
+		$('.header-content').append(`
+			<div id="ts_volume">
+				<span id="ts_mute"></span>
+				<input id="ts_slider" type="range" 
+					min="0" max="100" value="${this.config.volume}">
+				</input>
+				<em id="ts_muted">Muted For One Song</em>
+			</div>
+		`)
+		// set up our connection to youtube
+		$('#ts_mute').on('click', this.toggleMute.bind(this))
+		$('#ts_slider').on('input', this.onVolInput.bind(this))
+		window.youtube.setVolume(this.config.volume)
+	}
+	else {
+		$('body').removeClass('has-volume')
+		$('#ts_volume').remove()
+	}
 }
 tS.prototype.toggleMute = function() {
 	if (!this.mute) $('#ts_volume').addClass('muted')
