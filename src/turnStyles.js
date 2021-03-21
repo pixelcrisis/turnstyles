@@ -85,7 +85,8 @@ tS.prototype.attachRoom = function() {
 
 	// handle our events
 	this.core.addEventListener('message', this.handle.bind(this))
-
+	// we need a copy of this to for the volume function
+	this.__realVolume = window.turntablePlayer.realVolume
 	this.__.log(`loaded room: ${this.room.roomId}`)
 	this.runAutobop()
 	this.buildPanel()
@@ -256,16 +257,18 @@ tS.prototype.setVolume = function(vol) {
 		// -3 is muted.
 		newVolume = -3
 	}
+
 	// we need to rewrite this function to allow volumes below 7
-	const oldRealVolume = window.turntablePlayer.realVolume;
-	window.turntablePlayer.realVolume = function (e) {
-		return 100 * Math.pow(2, e - 4)
+	if (vol < 7) {
+		window.turntablePlayer.realVolume = function (e) {
+			return 100 * Math.pow(2, e - 4)
+		}
+	} else {
+		// return the function back to normal.
+		window.turntablePlayer.realVolume = this.__realVolume
 	}
-
+	
 	window.turntablePlayer.setVolume(newVolume)
-
-	// return the function back to normal.
-	window.turntablePlayer.realVolume = oldRealVolume
 	if (this.vol_setting) clearTimeout(this.vol_setting)
 	this.vol_setting = setTimeout(function () {
 		window.util.setSetting("volume", newVolume)
