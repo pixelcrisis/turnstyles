@@ -3,6 +3,8 @@
 .room-info-intro, .message-history,
 .song-list, .guest-list, #buddyList, 
 .sliding-nav-pane, .conversations-list,
+.guestOptionsContainer, 
+.guestOptionsContainer .options,
 .chat .message:nth-child(even),
 .guest-list>:nth-child(even):not(.separator),
 .striped-list>:nth-child(even):not(.separator), 
@@ -35,9 +37,15 @@
   background: #e1bb2252 !important;
   border-right: 5px solid #e1bb22 !important;
 }
+.chat .message.snag,
+.chat .message.leave, 
 .chat .message.action {
   background: #ff000040 !important;
   border-right: 5px solid #ff000055 !important;
+}
+.chat .message.join {
+  background: #00ff0040 !important;
+  border-right: 5px solid #00ff0055 !important;
 }
 
 /* Text Color Overrides */
@@ -63,6 +71,7 @@
   text-decoration: none !important;
   border-bottom: 1px dotted !important;
 }
+.guestOptionsContainer a { border-bottom: none !important; } 
 
 /* Playlist / Filters */
 .panel-button {
