@@ -15,18 +15,18 @@
 }
 #ts_pane .half {
   width: 48%;
-  margin: 10px 0;
+  margin: 0 0 10px;
   vertical-align: top;
   display: inline-block;
 }
-#ts_pane label { 
-  display: block;
-  margin: 10px 0 5px; 
+#ts_pane label {
+  margin: 5px 0;
+  display: block; 
   font-weight: bold;
 }
-#ts_pane label input {
-  margin-right: 5px;
-}
+#ts_pane label input { margin-right: 5px; }
+#ts_pane h2 { margin-bottom: 5px; }
+#ts_pane h3 { margin-top: 5px; }
 #ts_pane select {
   color: #ffffff;
   padding: 5px 10px;
