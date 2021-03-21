@@ -3,7 +3,8 @@
   border-right: 5px solid #d546d5 !important;
 }
 
-.song .progress, #ts_slider {
+.song .progress, #ts_slider,
+::-webkit-scrollbar-thumb:hover {
   background: #d546d5 !important;
 }
 
