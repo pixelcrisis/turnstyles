@@ -195,8 +195,6 @@ tS.prototype.buildPanel = function() {
 	$('#ts_save').on('click', this.saveConfig.bind(this))
 	$('#ts_close').on('click', () => $('#ts_pane').removeClass('active'))
 
-	this.
-
 	this.attachMenu() // add the menu toggle
 	this.loadVolume() // add the volume control
 }
