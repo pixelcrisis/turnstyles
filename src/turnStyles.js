@@ -235,7 +235,9 @@ tS.prototype.loadVolume = function() {
 		`)
 		// set up our connection to youtube
 		$('#ts_mute').on('click', this.toggleMute.bind(this))
-		$('#ts_slider').on('input', this.onVolInput.bind(this))
+		$('#ts_slider')
+			.on('input', this.onVolInput.bind(this))
+			.on('DOMMouseScroll mousewheel', this.onVolWheel.bind(this))
 		window.youtube.setVolume(this.config.volume)
 	}
 	else {
@@ -243,6 +245,7 @@ tS.prototype.loadVolume = function() {
 		$('#ts_volume').remove()
 	}
 }
+
 tS.prototype.toggleMute = function() {
 	if (!this.mute) $('#ts_volume').addClass('muted')
 	else $('#ts_volume').removeClass('muted')
@@ -250,11 +253,30 @@ tS.prototype.toggleMute = function() {
 	this.mute = !this.mute
 	this.__.log(`turned mute ${ this.mute ? 'on' : 'off'}`)
 }
-tS.prototype.onVolInput = function(e) {
-	this.config.volume = e.target.value
+tS.prototype.onVolInput = function(e, scroll) {
+	this.config.volume = scroll ? e : e.target.value
 	window.youtube.setVolume(this.config.volume)
 	if (this.vol_setting) clearTimeout(this.vol_setting)
 	this.vol_setting = setTimeout(this.saveConfig.bind(this), 5 * 1000)
+}
+tS.prototype.onVolWheel = function(e) {
+	console.log(e)
+	const slider = $('#ts_slider')
+	const currentVolume = ~~window.youtube.futureVolume
+	let multiplier = e.originalEvent.shiftKey ? 1 : 5;
+
+	if (e.originalEvent.deltaY > 0) {
+		let newVolume = currentVolume - multiplier;
+		if (newVolume <= 0) newVolume = 0;
+		this.onVolInput(newVolume, true)
+		slider[0].value = newVolume;
+	} else {
+		let newVolume = currentVolume + multiplier;
+		if (newVolume >= 100) newVolume = 100;
+		this.onVolInput(newVolume, true)
+		slider[0].value = newVolume
+	}
+	return false;
 }
 
 // run our autobop (awesome)
