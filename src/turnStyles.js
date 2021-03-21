@@ -122,7 +122,7 @@ tS.prototype.saveConfig = function() {
 }
 
 // build our options menu
-tS.prototype.handleOpts = function(list) {
+tS.prototype.attachOpts = function(list) {
 	let data = this.__.options[list]
 	let opts = `<option value="">None</option>`
 	for (let key in data) {
@@ -131,9 +131,21 @@ tS.prototype.handleOpts = function(list) {
 	}
 	return `<select id="ts_${list}">${opts}</select>`
 }
-tS.prototype.handleBool = function(data) {
+tS.prototype.attachBool = function(data) {
 	let checked = this.config[data] ? 'checked' : ''
 	return `<input id="ts_${data}" type="checkbox" ${checked} />`
+}
+tS.prototype.attachMenu = function() {
+	// add the button
+	$('#layout-option').before(`
+		<li class="ts link option">
+			<a id="ts_open" href="#">turnStyles</a>
+		</li>
+	`)
+	// clicking toggles the menu
+	$('#ts_open').on('click', () => {
+		$('#ts_pane').toggleClass('active')
+	})
 }
 tS.prototype.buildPanel = function() {
 	// inject our CSS
@@ -148,31 +160,31 @@ tS.prototype.buildPanel = function() {
 			<h2>turnStyles options</h2>
 
 			<div class="half">
-				<label>${this.handleBool('autobop')} Autobop</label>
+				<label>${this.attachBool('autobop')} Autobop</label>
 			</div>
 			<div class="half">
-				<label>${this.handleBool('has_vol')} Control Volume</label>
+				<label>${this.attachBool('has_vol')} Control Volume</label>
 			</div>
 			<div class="half">
 				<label>Theme</label>
-				${this.handleOpts('theme')}
+				${this.attachOpts('theme')}
 			</div>
 			<div class="half">
 				<label>Style</label>
-				${this.handleOpts('style')}
+				${this.attachOpts('style')}
 			</div>
 			<div class="half">
 				<h3>Chat Info</h3>
-				<label>${this.handleBool('chat_stat')} Stats In Chat</label>
-				<label>${this.handleBool('chat_snag')} Snags In Chat</label>
-				<label>${this.handleBool('chat_join')} Joins In Chat</label>
-				<label>${this.handleBool('chat_gone')} Leaves In Chat</label>
+				<label>${this.attachBool('chat_stat')} Stats In Chat</label>
+				<label>${this.attachBool('chat_snag')} Snags In Chat</label>
+				<label>${this.attachBool('chat_join')} Joins In Chat</label>
+				<label>${this.attachBool('chat_gone')} Leaves In Chat</label>
 			</div>
 			<div class="half">
 				<h3>Notifications</h3>
-				<label>${this.handleBool('ping_pm')} On DMs</label>
-				<label>${this.handleBool('ping_chat')} On Mentions</label>
-				<label>${this.handleBool('ping_song')} On New Songs</label>
+				<label>${this.attachBool('ping_pm')} On DMs</label>
+				<label>${this.attachBool('ping_chat')} On Mentions</label>
+				<label>${this.attachBool('ping_song')} On New Songs</label>
 			</div>
 
 			<button id="ts_close">Cancel</button>
@@ -187,18 +199,6 @@ tS.prototype.buildPanel = function() {
 
 	this.attachMenu() // add the menu toggle
 	this.loadVolume() // add the volume control
-}
-tS.prototype.attachMenu = function() {
-	// add the button
-	$('#layout-option').before(`
-		<li class="ts link option">
-			<a id="ts_open" href="#">turnStyles</a>
-		</li>
-	`)
-	// clicking toggles the menu
-	$('#ts_open').on('click', () => {
-		$('#ts_pane').toggleClass('active')
-	})
 }
 
 // load our styles and themes
