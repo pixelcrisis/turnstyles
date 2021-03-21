@@ -239,7 +239,6 @@ tS.prototype.loadVolume = function() {
 		$('#ts_slider')
 			.on('input', this.onVolInput.bind(this))
 			.on('DOMMouseScroll mousewheel', this.onVolWheel.bind(this))
-		window.youtube.setVolume(currentVolume)
 	}
 	else if (!this.config.has_vol && hasVolume) {
 		$('body').removeClass('has-volume')
