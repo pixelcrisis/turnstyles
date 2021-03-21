@@ -277,11 +277,11 @@ tS.prototype.notifyUser = function(data) {
 		type: "tsNotify", notification: data
 	})
 }
-tS.prototype.sendToChat = function(text, bold) {
+tS.prototype.sendToChat = function(bold, text, type) {
 	$('.chat .messages').append(`
-		<div class="message">
+		<div class="message ${type}">
 			<em>
-				${ bold ? `<span class="subject">${bold}</span>` : '' }
+				<span class="subject">${bold}</span>
 				<span class="text">${text}</span>
 			</em>
 		</div>
@@ -336,22 +336,23 @@ tS.prototype.onSong = function(e) {
 	
 	let head = `Now Playing: ${this.now_playing.song}`
 	let text = `By: ${this.now_playing.artist}`
-	let stat = !this.last_played.song ? false : [
-			`Last:`,
-			`${this.last_played.love}🔺`,
-			`${this.last_played.hate}🔻`,
-			`${this.last_played.snag}❤️`,
-			`${this.last_played.song}`
-		].join(' ')
 
-	if (this.config.chat_stat && stat) this.sendToChat(stat)
-	if (this.config.ping_song) this.notifyUser({ head, text: stat || text })
+	if (this.last_played.song) {
+		let last = this.last_played
+		let stat = `[${last.love}🔺|${last.hate}🔻|${last.snag}❤️]`
+		text = `${stat} - ${last.song}`
+
+		if (this.config.chat_stat) this.sendToChat(`Last:`, text)
+		if (this.last_played.song) text = `Last: ${text}`
+	}
+
+	if (this.config.ping_song) this.notifyUser({ head, text })
 }
 tS.prototype.onSnag = function(e) {
 	this.now_playing.snag += 1
 	if (this.config.chat_snag) {
 		let name = this.room.userMap[e.userid].attributes.name
-		this.sendToChat(`has snagged this track!`, name)
+		this.sendToChat(name, `has snagged this track!`, 'snag')
 	}
 }
 tS.prototype.onVote = function(e) {
@@ -360,12 +361,12 @@ tS.prototype.onVote = function(e) {
 }
 tS.prototype.onJoin = function(e) {
 	if (this.config.chat_join) {
-		this.sendToChat(`joined.`, e.user[0].name)
+		this.sendToChat(e.user[0].name, `joined.`, 'join')
 	}
 }
 tS.prototype.onLeft = function(e) {
 	if (this.config.chat_gone) {
-		this.sendToChat(`left.`, e.user[0].name)
+		this.sendToChat(e.user[0].name, `left.`, 'leave')
 	}
 }
 
