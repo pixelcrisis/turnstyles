@@ -12,6 +12,9 @@ tS.prototype.__ = {
 	config: {
 		autobop: true,
 
+		volume: 100,
+		has_vol: false,
+
 		theme: "dark",
 		style: "",
 
@@ -80,10 +83,10 @@ tS.prototype.attachRoom = function() {
 		}
 	}
 
-	this.core.addEventListener('message', this.runEvents.bind(this))
+	// handle our events
+	this.core.addEventListener('message', this.handle.bind(this))
 
 	this.__.log(`loaded room: ${this.room.roomId}`)
-
 	this.runAutobop()
 	this.buildPanel()
 }
@@ -104,6 +107,7 @@ tS.prototype.saveConfig = function() {
 	this.config.style     = $("#ts_style").val()
 
 	this.config.autobop   = $("#ts_autobop").is(':checked')
+	this.config.has_vol   = $('#ts_has_vol').is(':checked')
 	this.config.ping_pm   = $('#ts_ping_pm').is(':checked')
 	this.config.ping_chat = $('#ts_ping_chat').is(':checked')
 	this.config.ping_song = $('#ts_ping_song').is(':checked')
@@ -113,9 +117,23 @@ tS.prototype.saveConfig = function() {
 	$('#ts_pane').removeClass('active')
 	this.__.log("saved config")
 	this.loadThemes()
+	this.loadVolume()
 }
 
 // build our options menu
+tS.prototype.handleOpts = function(list) {
+	let data = this.__.options[list]
+	let opts = `<option value="">None</option>`
+	for (let key in data) {
+		let curr = this.config[list] == key ? 'selected' : ''
+		opts += `<option value="${key}" ${curr}>${data[key]}</option>`
+	}
+	return `<select id="ts_${list}">${opts}</select>`
+}
+tS.prototype.handleBool = function(data) {
+	let checked = this.config[data] ? 'checked' : ''
+	return `<input id="ts_${data}" type="checkbox" ${checked} />`
+}
 tS.prototype.buildPanel = function() {
 	// inject our CSS
 	let link = document.createElement('link')
@@ -128,8 +146,11 @@ tS.prototype.buildPanel = function() {
 		<div id="ts_pane">
 			<h2>turnStyles options</h2>
 
-			<div class="full">
+			<div class="half">
 				<label>${this.handleBool('autobop')} Autobop</label>
+			</div>
+			<div class="half">
+				<label>${this.handleBool('has_vol')} Control Volume</label>
 			</div>
 			<div class="half">
 				<label>Theme</label>
@@ -162,7 +183,7 @@ tS.prototype.buildPanel = function() {
 	$('#ts_close').on('click', () => $('#ts_pane').removeClass('active'))
 
 	this.addOpenBtn() // add the menu toggle
-	this.volControl() // add our volume control
+	this.loadVolume() // add the volume control
 }
 tS.prototype.addOpenBtn = function() {
 	// add the button
@@ -175,53 +196,6 @@ tS.prototype.addOpenBtn = function() {
 	$('#ts_open').on('click', () => {
 		$('#ts_pane').toggleClass('active')
 	})
-}
-tS.prototype.volControl = function() {
-	// add our slider
-	$('.header-content').append(`
-		<div id="ts_volume">
-			<input id="ts_slider" type="range" min="0" max="100" value="100" />
-		</div>
-	`)
-	const tsSlider = $('#ts_slider')
-	let currentVolume = ~~window.youtube.futureVolume
-	// set the slider to match the current volume on load
-	tsSlider[0].value = currentVolume
-	// set up our connection to youtube
-	tsSlider.on('input', e => {
-		window.youtube.setVolume(e.target.value)
-	})
-	// add scrollwheel support
-	tsSlider.on('DOMMouseScroll mousewheel', function (e) {
-		currentVolume = ~~window.youtube.futureVolume
-		let multiplier = e.originalEvent.shiftKey ? 1 : 5;
-
-		if (e.originalEvent.deltaY > 0) {
-			let newVolume = currentVolume - multiplier;
-			if (newVolume <= 0) newVolume = 0;
-			window.youtube.setVolume(newVolume);
-			tsSlider[0].value = newVolume;
-		} else {
-			let newVolume = currentVolume + multiplier;
-			if (newVolume >= 100) newVolume = 100;
-			window.youtube.setVolume(newVolume);
-			tsSlider[0].value = newVolume
-		}
-		return false;
-	});
-}
-tS.prototype.handleOpts = function(list) {
-	let data = this.__.options[list]
-	let opts = `<option value="">None</option>`
-	for (let key in data) {
-		let curr = this.config[list] == key ? 'selected' : ''
-		opts += `<option value="${key}" ${curr}>${data[key]}</option>`
-	}
-	return `<select id="ts_${list}">${opts}</select>`
-}
-tS.prototype.handleBool = function(data) {
-	let checked = this.config[data] ? 'checked' : ''
-	return `<input id="ts_${data}" type="checkbox" ${checked} />`
 }
 
 // load our styles and themes
@@ -246,6 +220,43 @@ tS.prototype.refreshCSS = function(type, name) {
 	} 
 }
 
+// volume controls
+tS.prototype.loadVolume = function() {
+	if (this.config.has_vol) {
+		$('body').addClass('has-volume')
+		$('.header-content').append(`
+			<div id="ts_volume">
+				<span id="ts_mute"></span>
+				<input id="ts_slider" type="range" 
+					min="0" max="100" value="${this.config.volume}">
+				</input>
+				<em id="ts_muted">Muted For One Song</em>
+			</div>
+		`)
+		// set up our connection to youtube
+		$('#ts_mute').on('click', this.toggleMute.bind(this))
+		$('#ts_slider').on('input', this.onVolInput.bind(this))
+		window.youtube.setVolume(this.config.volume)
+	}
+	else {
+		$('body').removeClass('has-volume')
+		$('#ts_volume').remove()
+	}
+}
+tS.prototype.toggleMute = function() {
+	if (!this.mute) $('#ts_volume').addClass('muted')
+	else $('#ts_volume').removeClass('muted')
+	window.youtube.setVolume(this.mute ? this.config.volume : 0)
+	this.mute = !this.mute
+	this.__.log(`turned mute ${ this.mute ? 'on' : 'off'}`)
+}
+tS.prototype.onVolInput = function(e) {
+	this.config.volume = e.target.value
+	window.youtube.setVolume(this.config.volume)
+	if (this.vol_setting) clearTimeout(this.vol_setting)
+	this.vol_setting = setTimeout(this.saveConfig.bind(this), 5 * 1000)
+}
+
 // run our autobop (awesome)
 tS.prototype.runAutobop = function() {
 	if (this.autobop) clearTimeout(this.autobop)
@@ -266,11 +277,11 @@ tS.prototype.notifyUser = function(data) {
 		type: "tsNotify", notification: data
 	})
 }
-tS.prototype.sendToChat = function(text, bold) {
+tS.prototype.sendToChat = function(bold, text, type) {
 	$('.chat .messages').append(`
-		<div class="message">
+		<div class="message ${type}">
 			<em>
-				${ bold ? `<span class="subject">${bold}</span>` : '' }
+				<span class="subject">${bold}</span>
 				<span class="text">${text}</span>
 			</em>
 		</div>
@@ -279,17 +290,17 @@ tS.prototype.sendToChat = function(text, bold) {
 }
 
 // event handlers
-tS.prototype.runEvents = function(e) {
+tS.prototype.handle = function(e) {
 	if (!e.command) return
-	if (e.command == "pmmed") this.onNewPM(e)
-	if (e.command == "speak") this.onNewChat(e)
-	if (e.command == "newsong") this.onNewSong(e)
-	if (e.command == "snagged") this.onNewSnag(e)
-	if (e.command == "registered") this.onNewUser(e)
-	if (e.command == "deregistered") this.onOldUser(e)
-	if (e.command == "update_votes") this.onNewVote(e)
+	if (e.command == "pmmed") this.onPing(e)
+	if (e.command == "speak") this.onChat(e)
+	if (e.command == "newsong") this.onSong(e)
+	if (e.command == "snagged") this.onSnag(e)
+	if (e.command == "registered") this.onJoin(e)
+	if (e.command == "deregistered") this.onLeft(e)
+	if (e.command == "update_votes") this.onVote(e)
 }
-tS.prototype.onNewPM = function(e) {
+tS.prototype.onPing = function(e) {
 	if (this.config.ping_pm && !window.tsPmPing) {
 		this.notifyUser({ head: `New PM`, text: e.text })
 		// only send one notification per ten seconds
@@ -298,7 +309,7 @@ tS.prototype.onNewPM = function(e) {
 		}, 10 * 1000)
 	}
 }
-tS.prototype.onNewChat = function(e) {
+tS.prototype.onChat = function(e) {
 	if (this.config.ping_chat && !window.tsChatPing) {
 		let ping = `@${this.core.user.attributes.name}`
 		if (e.text.indexOf(ping) > -1) this.notifyUser({
@@ -310,8 +321,9 @@ tS.prototype.onNewChat = function(e) {
 		}, 10 * 1000)
 	}
 }
-tS.prototype.onNewSong = function(e) {
+tS.prototype.onSong = function(e) {
 	this.runAutobop()
+	if (this.mute) this.toggleMute()
 
 	// save the current as the last played
 	if (!this.now_playing) this.last_played = {}
@@ -324,36 +336,37 @@ tS.prototype.onNewSong = function(e) {
 	
 	let head = `Now Playing: ${this.now_playing.song}`
 	let text = `By: ${this.now_playing.artist}`
-	let stat = !this.last_played.song ? false : [
-			`Last:`,
-			`${this.last_played.love}🔺`,
-			`${this.last_played.hate}🔻`,
-			`${this.last_played.snag}❤️`,
-			`${this.last_played.song}`
-		].join(' ')
 
-	if (this.config.chat_stat && stat) this.sendToChat(stat)
-	if (this.config.ping_song) this.notifyUser({ head, text: stat || text })
+	if (this.last_played.song) {
+		let last = this.last_played
+		let stat = `[${last.love}🔺|${last.hate}🔻|${last.snag}❤️]`
+		text = `${stat} - ${last.song}`
+
+		if (this.config.chat_stat) this.sendToChat(`Last:`, text)
+		if (this.last_played.song) text = `Last: ${text}`
+	}
+
+	if (this.config.ping_song) this.notifyUser({ head, text })
 }
-tS.prototype.onNewSnag = function(e) {
+tS.prototype.onSnag = function(e) {
 	this.now_playing.snag += 1
 	if (this.config.chat_snag) {
 		let name = this.room.userMap[e.userid].attributes.name
-		this.sendToChat(`has snagged this track!`, name)
+		this.sendToChat(name, `has snagged this track!`, 'snag')
 	}
 }
-tS.prototype.onNewVote = function(e) {
+tS.prototype.onVote = function(e) {
 	this.now_playing.love = e.room.metadata.upvotes
 	this.now_playing.hate = e.room.metadata.downvotes
 }
-tS.prototype.onNewUser = function(e) {
+tS.prototype.onJoin = function(e) {
 	if (this.config.chat_join) {
-		this.sendToChat(`joined.`, e.user[0].name)
+		this.sendToChat(e.user[0].name, `joined.`, 'join')
 	}
 }
-tS.prototype.onOldUser = function(e) {
+tS.prototype.onLeft = function(e) {
 	if (this.config.chat_gone) {
-		this.sendToChat(`left.`, e.user[0].name)
+		this.sendToChat(e.user[0].name, `left.`, 'leave')
 	}
 }
 

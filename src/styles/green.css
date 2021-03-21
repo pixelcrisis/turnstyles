@@ -3,39 +3,30 @@
   border-right: 5px solid #00a700 !important;
 }
 
-.song .progress, #ts_slider {
-  background: #00a700 !important;
-}
+.song .progress, #ts_slider,
+::-webkit-scrollbar-thumb:hover { background: #00a700 !important; }
 
-.current-song .details {
-  color: #ffffff !important;
-}
+.current-song .details { color: #ffffff !important; }
 
-.lame-button {
-  filter: grayscale(1) !important;
-}
+.lame-button { filter: grayscale(1) !important; }
 .awesome-button {
   filter: hue-rotate(0deg) brightness(0.8) saturate(2) !important;
 }
 
-.become-dj,
-.song-details {
-  filter: hue-rotate(50deg) !important;
-}
+.become-dj, .invite-dj, .song-details { filter: hue-rotate(50deg) !important; }
 
 .header-logo,
 #buddyListHeader,
 .tab-item:active, 
 .tab-item.selected,
 .favorite-star.favorited,
-#privateChatIcon.open .chatIcon {
+#privateChatIcon.open .chatIcon,
+button.tt-button.primary.small.inset {
   filter: hue-rotate(50deg) brightness(0.6) saturate(2) !important;
 }
 
 .tab-item:active .tab-icon, 
-.tab-item.selected .tab-icon {
-  filter: invert(1);
-}
+.tab-item.selected .tab-icon { filter: invert(1); }
 
 .become-dj,
 .tab-item:active .tab-title, 

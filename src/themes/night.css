@@ -1,14 +1,26 @@
+/*
+  Night Mode
+  Text Color: #e8e8e8;
+  Main BG:    #141414;
+  Light BG:   #1a1a1a;
+  Border:     #343434;
+  Accent:     #e1bb22;
+  Red:        #ff0000;
+  Green:      #00ff00;
+*/
+
 /* Main Background */
-.tab-pane, #songs, .song-list, .guest-list,
-#buddyList, .conversations-list,
-.room-info-intro, .message-history,
+.tab-pane, #songs, .header-bar, .tab-item:not(.selected),
+.room-info-intro, .message-history, .song-list, .guest-list,
+#buddyList, .sliding-nav-pane, .conversations-list,
+.guestOptionsContainer, .guestOptionsContainer .options,
 .chat .message:nth-child(even),
 .guest-list>:nth-child(even):not(.separator),
 .striped-list>:nth-child(even):not(.separator), 
 .song-list>ul>:nth-child(even):not(.separator),
 .message-history>:nth-child(even):not(.separator) {
-  color: #eaeaea !important;
-  background: #1a1a1a !important;
+  color: #e8e8e8 !important;
+  background: #141414 !important;
 }
 
 /* Alt Background */
@@ -18,98 +30,85 @@
 .striped-list>:nth-child(odd):not(.separator), 
 .song-list>ul>:nth-child(odd):not(.separator),
 .message-history>:nth-child(odd):not(.separator)  {
-  color: #eaeaea !important;
-  background: #141414 !important;
+  color: #e8e8e8 !important;
+  background: #1a1a1a !important;
 }
 
 /* Border Color Resets */
-.flat-button, .message-view,
-.chat .message, .striped-list, 
-.song-list .song, .guest-list .guest,
-.room-info-intro, .room-info-wrap {
-  border-color: #343434 !important;
-}
-.conversation-view {
-  border-top: 1px solid #343434 !important;
-}
+.flat-button, .message-view, .chat .message, .striped-list, 
+.song-list .song, .guest-list .guest, .room-info-intro, 
+.room-info-wrap { border-color: #343434 !important; }
+.conversation-view { border-top: 1px solid #343434 !important; }
 
 /* Chat Styling */
 .chat .message.mention {
   background: #e1bb2252 !important;
   border-right: 5px solid #e1bb22 !important;
 }
-.chat .message.action {
+.chat .message.snag, .chat .message.leave, .chat .message.action {
   background: #ff000040 !important;
   border-right: 5px solid #ff000055 !important;
+}
+.chat .message.join {
+  background: #00ff0040 !important;
+  border-right: 5px solid #00ff0055 !important;
 }
 
 /* Text Color Overrides */
 .room-tab .description-wrap,
-.room-tab .room-info-link h3 {
-  color: #eaeaea !important;
-}
+.room-tab .room-info-link h3 { color: #e8e8e8 !important; }
 
 /* Transparent Overrides */
-.avatar-head {
-  background-color: transparent !important;
-}
+.avatar-head { background-color: transparent !important; }
 
-/* Popped White Text */
-#playlist-display .text, .filter.btn,
-.room-tab .room-name, .song .title,
-.queue-message, .default-message,
-.tabbed-panel .separator .text,
-.sliding-nav-pane-title,
+/* Popped Text */
+.sliding-nav-pane-title, .tabbed-panel .separator .text,
+.queue-message, .default-message, .room-tab .room-name,
+.song .title, #playlist-display .text, .filter.btn,
 .message-view a, .tabbed-panel a, .tabbed-panel a:visited {
-  color: #fff !important;
+  color: #e8e8e8 !important;
   text-shadow: 0 1px 1px #000 !important;
 }
 
-/* Underline Linkes */ 
+/* Underline Links */ 
 .message-view a, .tabbed-panel a, .tabbed-panel a:visited {
   text-decoration: none !important;
   border-bottom: 1px dotted !important;
 }
+.guestOptionsContainer a { border-bottom: none !important; } 
 
 /* Playlist / Filters */
 .panel-button {
   border: none !important;
   box-shadow: none !important;
+  text-shadow: none !important;
   background: transparent !important;
 }
-.panel-button:not(:hover) { 
-  opacity: 0.8 !important; 
-}
+.panel-button:not(.disabled) { color: #e8e8e8 !important; }
+.panel-button:not(:hover) { opacity: 0.8 !important; }
 
 /* Invert Dark Buttons */
-#buddyListNipple,
-.chatsound.mention,
-#upload-button button,
-.tabbed-panel button.back,
-.room-info-wrap .options-menu .nib,
+#buddyListNipple, .chatsound.mention, #upload-button button,
+.tabbed-panel button.back, .room-info-wrap .options-menu .nib,
 #playlist-display .playlist-queue-inset,
-.playlist-go-top, .playlist-open-options {
-  filter: invert(1) !important;
-}
+.playlist-go-top, .playlist-open-options { filter: invert(1) !important; }
+/* Flatten Buttons */
+.playlist-go-top { background-position: 0 -326px !important; }
+.playlist-open-options { background-position: 0 -216px !important; }
+#upload-button button { background-position: 0 -30px !important; }
 
 /* Input Bars */
-.message-input-view,
-.floating-panel-bar,
-.floating-panel-header, 
-.tabbed-panel .separator,
-.sliding-nav-pane-header,
-.sliding-nav-pane .separator {
+.message-input-view, .floating-panel-bar, .floating-panel-header, 
+.tabbed-panel .separator, .sliding-nav-pane-header, .sliding-nav-pane .separator {
   box-shadow: none !important;
   border-top: 1px solid #343434 !important;
-  border-bottom: 1px solid #151515 !important;
-  background: linear-gradient(to bottom, #1a1a1a, #151515) !important;
+  border-bottom: 1px solid #141414 !important;
+  background: linear-gradient(to bottom, #1a1a1a, #141414) !important;
 }
 
 /* PM Options Menu */
 #buddyListHeader .options-menu .nib,
-#buddyListHeader .options-menu .options {
-  border-radius: 5px !important;
-}
+#buddyListHeader .options-menu .options { border-radius: 5px !important; }
 #buddyListHeader .options-menu .nib {
   border-color: transparent !important;
   background-color: transparent !important;
@@ -120,27 +119,24 @@
 }
 
 /* Input Buttons */
-.chatsound-container {
-  background: transparent !important;
-}
-#upload-button button,
-.chatsound-container, .chatsound.mention {
+.chatsound-container { background: transparent !important; }
+#upload-button button, .chatsound-container, .chatsound.mention {
   box-shadow: none !important;
   border-color: transparent !important;
 }
-.chat-bar .divider,
-#normal-mode .divider {
-  display: none !important;
-}
+.chat-bar .divider, #normal-mode .divider { display: none !important; }
 
 /* Text Inputs */
-#chat-form {
-  left: 40px;
-}
-.message-input,
-#song-search-input {
+#chat-form { left: 40px; }
+.message-input, #song-search-input {
   border: none !important;
-  color: #ffffff !important;
-  background: #252525 !important;
+  color: #e8e8e8 !important;
+  background: #343434 !important;
   box-shadow: inset 0 0 0 1px #343434, 0 1px 0 0 #343434 !important;
 }
+
+/* Scroll Bars */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #141414; }
+::-webkit-scrollbar-thumb { background: #343434; }
+::-webkit-scrollbar-thumb:hover { background: #e1bb22; }
