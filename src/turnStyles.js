@@ -244,6 +244,7 @@ tS.prototype.loadVolume = function() {
 	else if (!this.config.has_vol && hasVolume) {
 		$('body').removeClass('has-volume')
 		$('#ts_volume').remove()
+		window.turntablePlayer.realVolume = this.__realVolume;
 	}
 }
 tS.prototype.getCurrentVolume = function() {
