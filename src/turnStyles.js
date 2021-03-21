@@ -269,7 +269,7 @@ tS.prototype.saveVolume = function(vol) {
 	// only actually *save* the volume once every second
 	let saving_vol = () => window.util.setSetting('volume', volume)
 	if (this.vol_saving) clearTimeout(this.vol_saving)
-	this.vol_saving = setTimeout(saving_vol, 1* 1000)
+	this.vol_saving = setTimeout(saving_vol, 1 * 1000)
 }
 tS.prototype.toggleMute = function() {
 	if (!this.mute) $('#ts_volume').addClass('muted')
