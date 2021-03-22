@@ -369,7 +369,8 @@ tS.prototype.handle = function(e) {
 	if (!e.command) return
 	if (e.command == "pmmed") this.onPing(e)
 	if (e.command == "speak") this.onChat(e)
-	if (e.command == "remdj") this.onDrop(e)
+	if (e.command == "add_dj") this.onJump(e)
+	if (e.command == "rem_dj") this.onDrop(e)
 	if (e.command == "newsong") this.onSong(e)
 	if (e.command == "snagged") this.onSnag(e)
 	if (e.command == "registered") this.onJoin(e)
@@ -422,6 +423,15 @@ tS.prototype.onSong = function(e) {
 	}
 
 	if (this.config.ping_song) this.notifyUser({ head, text })
+}
+tS.prototype.onJump = function(e) {
+	// remove from auto DJ if manually jump?
+	if (this.user == e.user[0].userid) {
+		this.config.nextdj = false
+		$('#ts_nextdj').prop('checked', false)
+		// delay saving in case we haven't loaded yet
+		setTimeout(this.saveConfig.bind(this), 5 * 1000)
+	}
 }
 tS.prototype.onDrop = function() {
 	if (!this.config.nextdj) return
