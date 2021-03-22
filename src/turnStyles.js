@@ -110,7 +110,6 @@ tS.prototype.saveConfig = function() {
 	this.config.chat_snag = $('#ts_chat_snag').is(':checked')
 
 	window.localStorage.setItem("tsdb", JSON.stringify(this.config))
-	$('#ts_pane').removeClass('active')
 	this.__log("saved config")
 	this.loadThemes()
 	this.loadVolume()
@@ -182,12 +181,12 @@ tS.prototype.buildPanel = function() {
 				<label>${this.attachBool('ping_song')} On New Songs</label>
 			</div>
 
-			<button id="ts_close">Cancel</button>
-			<button id="ts_save">Save</button>
+			<button id="ts_close">Close</button>
 		</div>
 	`)
 	// bind up the events
-	$('#ts_save').on('click', this.saveConfig.bind(this))
+	$('#ts_pane input').on('change', this.saveConfig.bind(this))
+	$('#ts_pane select').on('change', this.saveConfig.bind(this))
 	$('#ts_close').on('click', () => $('#ts_pane').removeClass('active'))
 
 	this.attachMenu() // add the menu toggle
