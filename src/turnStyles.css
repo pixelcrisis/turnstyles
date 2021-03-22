@@ -1,30 +1,23 @@
 #ts_pane {
   width: 300px;
   z-index: 100;
-  padding: 25px;
+  text-align: center;
+  padding: 0 20px 20px;
   border: 2px solid #676767;
   position: absolute;
-  margin-left: -175px;
-  top: 80px; left: 50%;
+  margin-left: -165px;
+  top: 40px; left: 50%;
   background: #2f2f2f;
   color: #eaeaea;
 }
-#ts_pane:not(.active) {
-  display: none;
-}
-#ts_pane .half {
-  width: 48%;
-  margin: 0 0 10px;
-  vertical-align: top;
-  display: inline-block;
-}
+#ts_pane:not(.active) { display: none; }
 #ts_pane label {
   margin: 5px 0;
   display: block; 
   font-weight: bold;
 }
 #ts_pane label input { margin-right: 5px; }
-#ts_pane h2 { margin-bottom: 5px; }
+#ts_pane h2 { margin-bottom: 15px; }
 #ts_pane h3 { margin-top: 5px; }
 #ts_pane select {
   color: #ffffff;
@@ -34,19 +27,24 @@
   border: 1px solid #666666;
 }
 #ts_pane button {
+  color: #cccccc;
   margin-top: 15px;
-  margin-right: 5px;
   border: 1px solid;
-  padding: 5px 10px;
+  padding: 5px 30px;
   border-radius: 5px;
   background: transparent;
+}
+#ts_pane .half {
+  width: 48%;
+  margin: 0 0 10px;
+  text-align: left;
+  vertical-align: top;
+  display: inline-block;
 }
 #ts_open { 
   font-weight: bold;
   font-style: italic;
 }
-#ts_close { color: #aaaaaa; }
-#ts_save { color: gold; }
 /* restructure header for volume bar */
 .has-volume .header-room {
   width: 100% !important;

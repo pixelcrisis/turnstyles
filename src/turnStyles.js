@@ -169,10 +169,10 @@ tS.prototype.buildPanel = function() {
 			</div>
 			<div class="half">
 				<h3>Chat Info</h3>
-				<label>${this.attachBool('chat_stat')} Stats In Chat</label>
-				<label>${this.attachBool('chat_snag')} Snags In Chat</label>
-				<label>${this.attachBool('chat_join')} Joins In Chat</label>
-				<label>${this.attachBool('chat_gone')} Leaves In Chat</label>
+				<label>${this.attachBool('chat_stat')} Song Stats</label>
+				<label>${this.attachBool('chat_snag')} User Snags</label>
+				<label>${this.attachBool('chat_join')} User Joins</label>
+				<label>${this.attachBool('chat_gone')} User Leaves</label>
 			</div>
 			<div class="half">
 				<h3>Notifications</h3>
