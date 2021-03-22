@@ -45,6 +45,7 @@ tS.prototype.__log = function(str, obj) {
 }
 tS.prototype.__has = function(obj, key) {
 	// check if prop in obj exists and has key prop
+	// used to find the room & room manager from the DOM
 	for (let x in obj) {
 		if (obj[x] !== null && typeof obj[x] != "undefined" && obj[x][key]) {
 			return obj[x][key]
