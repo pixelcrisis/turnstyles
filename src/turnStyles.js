@@ -55,13 +55,6 @@ tS.prototype.__has = function(obj, key) {
 		}
 	}
 }
-tS.prototype.click = function(selector) {
-	$(window).focus()
-	let opts = { bubbles: true, cancelable: true, view: window }
-	let elem = document.querySelectorAll(selector)[0]
-	let fire = new MouseEvent('click', opts)
-	return elem.dispatchEvent(fire)
-}
 
 // handle timeout delays
 tS.prototype.hasDelay = function(key) {
@@ -87,8 +80,8 @@ tS.prototype.attachRoom = function() {
 	if (!this.room) return again()
 
 	// find the room manager
-	this.ttbl = this.__has(this.room, "roomData")
-	if (!this.ttbl) return again()
+	this.ttfm = this.__has(this.room, "roomData")
+	if (!this.ttfm) return again()
 
 	// record any currently playing song
 	if (this.room.currentSong) {
@@ -104,9 +97,10 @@ tS.prototype.attachRoom = function() {
 	// we need a copy of this to for the volume function
 	this.realVolume = window.turntablePlayer.realVolume
 	this.__log(`loaded room: ${this.room.roomId}`)
-	if (this.config.nextdj) this.takeDJSpot()
+	
 	this.runAutobop()
 	this.buildPanel()
+	this.onDrop() // fire next dj just in case
 }
 
 // define our "database"
@@ -136,10 +130,9 @@ tS.prototype.saveConfig = function() {
 	window.localStorage.setItem("tsdb", JSON.stringify(this.config))
 	this.__log("saved config")
 
-	// fire next dj just in case
-	if (this.config.nextdj) this.takeDJSpot()
 	this.loadThemes()
 	this.loadVolume()
+	this.onDrop() // fire next dj just in case
 }
 
 // build our options menu
@@ -330,21 +323,27 @@ tS.prototype.onVolWheel = function(e) {
 tS.prototype.runAutobop = function() {
 	if (this.autobop) clearTimeout(this.autobop)
 	if (!this.config.autobop) return
-	let run = () => this.click('.awesome-button')
-	this.autobop = setTimeout(run, (Math.random() * 7) * 1000)
+	this.autobop = setTimeout(() => {
+		$(window).focus()
+		let opts = { bubbles: true, cancelable: true, view: window }
+		let elem = document.querySelectorAll('.awesome-button')[0]
+		let fire = new MouseEvent('click', opts)
+		return !elem.dispatchEvent(fire)
+	}, (Math.random() * 7) * 1000)
 }
 
 // take available DJ spot
 tS.prototype.takeDJSpot = function() {
 	let button = $('.become-dj')
 	if (!button.length) return this.__log(`nextdj: no spot`)
+	this.__log('taking open dj spot')
+	this.room.becomeDj()
 	// hide the panel just in case we fired immediately
 	$('#ts_pane').removeClass('active')
-	this.__log('taking open dj spot')
-	this.click('.become-dj', (a,b,c) => console.log(a,b,c))	
 	// only fire next DJ once
 	$('#ts_nextdj').prop('checked', false)
-	this.saveConfig()
+	// delay saving in case we haven't loaded yet
+	setTimeout(this.saveConfig.bind(this), 5 * 1000)
 }
 
 // handle our notifications
