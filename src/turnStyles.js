@@ -55,6 +55,24 @@ tS.prototype.__has = function(obj, key) {
 		}
 	}
 }
+tS.prototype.click = function(selector) {
+	$(window).focus()
+	let opts = { bubbles: true, cancelable: true, view: window }
+	let elem = document.querySelectorAll(selector)[0]
+	let fire = new MouseEvent('click', opts)
+	return elem.dispatchEvent(fire)
+}
+
+// handle timeout delays
+tS.prototype.hasDelay = function(key) {
+	if (!key) return false
+	return window[key]
+}
+tS.prototype.setDelay = function(key, amt) {
+	window[key] = setTimeout(() => { 
+		window[key] = null 
+	}, amt * 1000)
+}
 
 // attach to the turntable room
 tS.prototype.attachRoom = function() {
@@ -86,6 +104,7 @@ tS.prototype.attachRoom = function() {
 	// we need a copy of this to for the volume function
 	this.realVolume = window.turntablePlayer.realVolume
 	this.__log(`loaded room: ${this.room.roomId}`)
+	if (this.config.nextdj) this.takeDJSpot()
 	this.runAutobop()
 	this.buildPanel()
 }
@@ -107,6 +126,8 @@ tS.prototype.saveConfig = function() {
 
 	this.config.autobop   = $("#ts_autobop").is(':checked')
 	this.config.has_vol   = $('#ts_has_vol').is(':checked')
+	this.config.nextdj    = $('#ts_nextdj').is(':checked')
+	this.config.pingdj    = $('#ts_pingdj').is(':checked')
 	this.config.ping_pm   = $('#ts_ping_pm').is(':checked')
 	this.config.ping_chat = $('#ts_ping_chat').is(':checked')
 	this.config.ping_song = $('#ts_ping_song').is(':checked')
@@ -114,6 +135,9 @@ tS.prototype.saveConfig = function() {
 
 	window.localStorage.setItem("tsdb", JSON.stringify(this.config))
 	this.__log("saved config")
+
+	// fire next dj just in case
+	if (this.config.nextdj) this.takeDJSpot()
 	this.loadThemes()
 	this.loadVolume()
 }
@@ -306,20 +330,28 @@ tS.prototype.onVolWheel = function(e) {
 tS.prototype.runAutobop = function() {
 	if (this.autobop) clearTimeout(this.autobop)
 	if (!this.config.autobop) return
-	this.autobop = setTimeout(() => {
-		$(window).focus()
-		let options = { bubbles: true, cancelable: true, view: window }
-		let awesome = document.querySelectorAll('.awesome-button')[0]
-		let clicked = new MouseEvent('click', options)
-		return !awesome.dispatchEvent(clicked)
-	}, (Math.random() * 7) * 1000)
+	let run = () => this.click('.awesome-button')
+	this.autobop = setTimeout(run, (Math.random() * 7) * 1000)
+}
+
+// take available DJ spot
+tS.prototype.takeDJSpot = function() {
+	let button = $('.become-dj')
+	if (!button.length) return this.__log(`nextdj: no spot`)
+	// hide the panel just in case we fired immediately
+	$('#ts_pane').removeClass('active')
+	this.__log('taking open dj spot')
+	this.click('.become-dj', (a,b,c) => console.log(a,b,c))	
+	// only fire next DJ once
+	$('#ts_nextdj').prop('checked', false)
+	this.saveConfig()
 }
 
 // handle our notifications
-tS.prototype.notifyUser = function(data) {
-	return window.postMessage({
-		type: "tsNotify", notification: data
-	})
+tS.prototype.notifyUser = function(data, delay) {
+	if (this.hasDelay(delay)) return
+	else if (delay) this.setDelay(delay, 10)
+	window.postMessage({ type: "tsNotify", notification: data })
 }
 tS.prototype.sendToChat = function(bold, text, type) {
 	$('.chat .messages').append(`
@@ -338,6 +370,7 @@ tS.prototype.handle = function(e) {
 	if (!e.command) return
 	if (e.command == "pmmed") this.onPing(e)
 	if (e.command == "speak") this.onChat(e)
+	if (e.command == "remdj") this.onDrop(e)
 	if (e.command == "newsong") this.onSong(e)
 	if (e.command == "snagged") this.onSnag(e)
 	if (e.command == "registered") this.onJoin(e)
@@ -345,24 +378,23 @@ tS.prototype.handle = function(e) {
 	if (e.command == "update_votes") this.onVote(e)
 }
 tS.prototype.onPing = function(e) {
-	if (this.config.ping_pm && !window.tsPmPing) {
-		this.notifyUser({ head: `New PM`, text: e.text })
-		// only send one notification per ten seconds
-		window.tsPmPing = setTimeout(() => {
-			window.tsPmPing = null
-		}, 10 * 1000)
+	if (this.config.ping_pm) {
+		this.notifyUser({ head: `New PM`, text: e.text }, 'tsPmPing')
 	}
 }
 tS.prototype.onChat = function(e) {
-	if (this.config.ping_chat && !window.tsChatPing) {
-		let ping = `@${this.core.user.attributes.name}`
-		if (e.text.indexOf(ping) > -1) this.notifyUser({
-			head: `[${this.room.roomData.name}] @${e.name}`, text: e.text
-		})
-		// only send one notification every ten seconds
-		window.tsChatPing = setTimeout(() => {
-			window.tsChatPing = null
-		}, 10 * 1000)
+	let search = `@${this.core.user.attributes.name}`
+	let pinged = e.text.indexOf(search) > -1
+
+	// send out notifications
+	if (this.config.ping_chat && pinged) {
+		let head = `[${this.room.roomData.name}] @${e.name}`
+		this.notifyUser({ head, text: e.text }, 'tsChatPing')
+	}
+	// check for DJ on ping
+	if (this.hasDelay('holdForPing') && pinged) {
+		this.__log(`nextdj: received ping`)
+		this.takeDJSpot()
 	}
 }
 tS.prototype.onSong = function(e) {
@@ -391,6 +423,14 @@ tS.prototype.onSong = function(e) {
 	}
 
 	if (this.config.ping_song) this.notifyUser({ head, text })
+}
+tS.prototype.onDrop = function() {
+	if (!this.config.nextdj) return
+	if (!this.config.pingdj) this.takeDJSpot()
+	else {
+		this.__log('next dj: holding for ping')
+		this.setDelay('holdForPing', 1)
+	}
 }
 tS.prototype.onSnag = function(e) {
 	this.now_playing.snag += 1
