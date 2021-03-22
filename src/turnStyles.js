@@ -272,7 +272,7 @@ tS.prototype.saveVolume = function(vol) {
 tS.prototype.toggleMute = function() {
 	if (!this.mute) $('#ts_volume').addClass('muted')
 	else $('#ts_volume').removeClass('muted')
-	this.saveVolume(this.mute ? this.currVolume() : 0)
+	window.turntable.setVolume(this.mute ? this.currVolume() : 0)
 	this.mute = !this.mute
 	this.__.log(`turned mute ${ this.mute ? 'on' : 'off'}`)
 }
