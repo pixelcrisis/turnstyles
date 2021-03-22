@@ -48,7 +48,7 @@ tS.prototype.__has = function(obj, key) {
 	// used to find the room & room manager from the DOM
 	for (let x in obj) {
 		if (obj[x] !== null && typeof obj[x] != "undefined" && obj[x][key]) {
-			return obj[x][key]
+			return obj[x]
 		}
 	}
 }
