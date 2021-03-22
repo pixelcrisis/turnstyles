@@ -110,7 +110,6 @@ tS.prototype.saveConfig = function() {
 	this.config.chat_snag = $('#ts_chat_snag').is(':checked')
 
 	window.localStorage.setItem("tsdb", JSON.stringify(this.config))
-	$('#ts_pane').removeClass('active')
 	this.__log("saved config")
 	this.loadThemes()
 	this.loadVolume()
@@ -170,10 +169,10 @@ tS.prototype.buildPanel = function() {
 			</div>
 			<div class="half">
 				<h3>Chat Info</h3>
-				<label>${this.attachBool('chat_stat')} Stats In Chat</label>
-				<label>${this.attachBool('chat_snag')} Snags In Chat</label>
-				<label>${this.attachBool('chat_join')} Joins In Chat</label>
-				<label>${this.attachBool('chat_gone')} Leaves In Chat</label>
+				<label>${this.attachBool('chat_stat')} Song Stats</label>
+				<label>${this.attachBool('chat_snag')} User Snags</label>
+				<label>${this.attachBool('chat_join')} User Joins</label>
+				<label>${this.attachBool('chat_gone')} User Leaves</label>
 			</div>
 			<div class="half">
 				<h3>Notifications</h3>
@@ -182,12 +181,12 @@ tS.prototype.buildPanel = function() {
 				<label>${this.attachBool('ping_song')} On New Songs</label>
 			</div>
 
-			<button id="ts_close">Cancel</button>
-			<button id="ts_save">Save</button>
+			<button id="ts_close">Close</button>
 		</div>
 	`)
 	// bind up the events
-	$('#ts_save').on('click', this.saveConfig.bind(this))
+	$('#ts_pane input').on('change', this.saveConfig.bind(this))
+	$('#ts_pane select').on('change', this.saveConfig.bind(this))
 	$('#ts_close').on('click', () => $('#ts_pane').removeClass('active'))
 
 	this.attachMenu() // add the menu toggle
@@ -267,7 +266,7 @@ tS.prototype.saveVolume = function(vol) {
 tS.prototype.toggleMute = function() {
 	if (!this.mute) $('#ts_volume').addClass('muted')
 	else $('#ts_volume').removeClass('muted')
-	window.turntable.setVolume(this.mute ? this.currVolume() : 0)
+	window.turntablePlayer.setVolume(this.mute ? this.currVolume() : 0)
 	this.mute = !this.mute
 	this.__log(`turned mute ${ this.mute ? 'on' : 'off'}`)
 }
