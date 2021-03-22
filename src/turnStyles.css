@@ -1,15 +1,16 @@
 #ts_pane {
-  width: 300px;
+  width: 325px;
   z-index: 100;
   text-align: center;
   padding: 0 20px 20px;
   border: 2px solid #676767;
   position: absolute;
-  margin-left: -165px;
+  margin-left: -178px;
   top: 40px; left: 50%;
   background: #2f2f2f;
   color: #eaeaea;
 }
+#ts_more:not(.active) div,
 #ts_pane:not(.active) { display: none; }
 #ts_pane label {
   margin: 5px 0;
@@ -17,8 +18,10 @@
   font-weight: bold;
 }
 #ts_pane label input { margin-right: 5px; }
-#ts_pane h2 { margin-bottom: 15px; }
+#ts_pane label em { font-size: 0.9em; }
+#ts_pane h2 { margin-bottom: 15px;  }
 #ts_pane h3 { margin-top: 5px; }
+#ts_pane h2, #ts_pane h3, #ts_pane .half { text-align: left; }
 #ts_pane select {
   color: #ffffff;
   padding: 5px 10px;
@@ -37,7 +40,6 @@
 #ts_pane .half {
   width: 48%;
   margin: 0 0 10px;
-  text-align: left;
   vertical-align: top;
   display: inline-block;
 }
@@ -45,6 +47,17 @@
   font-weight: bold;
   font-style: italic;
 }
+#ts_extra {
+  cursor: pointer;
+  padding-left: 18px;
+}
+#ts_extra::before {
+  left: 24px;
+  margin-top: -1px;
+  position: absolute;
+}
+#ts_more.active #ts_extra::before { content: "-"; }
+#ts_more:not(.active) #ts_extra::before { content: "+"; }
 /* restructure header for volume bar */
 .has-volume .header-room {
   width: 100% !important;

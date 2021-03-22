@@ -11,6 +11,9 @@ const tS = function() {
 tS.prototype.__cfg = {
 	autobop: true,
 
+	nextdj: false,
+	pingdj: false,
+
 	volume: 100,
 	has_vol: false,
 
@@ -154,12 +157,6 @@ tS.prototype.buildPanel = function() {
 			<h2>turnStyles options</h2>
 
 			<div class="half">
-				<label>${this.attachBool('autobop')} Autobop</label>
-			</div>
-			<div class="half">
-				<label>${this.attachBool('has_vol')} Control Volume</label>
-			</div>
-			<div class="half">
 				<label>Theme</label>
 				${this.attachOpts('theme')}
 			</div>
@@ -168,17 +165,28 @@ tS.prototype.buildPanel = function() {
 				${this.attachOpts('style')}
 			</div>
 			<div class="half">
-				<h3>Chat Info</h3>
-				<label>${this.attachBool('chat_stat')} Song Stats</label>
-				<label>${this.attachBool('chat_snag')} User Snags</label>
-				<label>${this.attachBool('chat_join')} User Joins</label>
-				<label>${this.attachBool('chat_gone')} User Leaves</label>
+				<label>${this.attachBool('autobop')} Autobop</label>
+				<label>${this.attachBool('has_vol')} Control Volume</label>
 			</div>
 			<div class="half">
-				<h3>Notifications</h3>
-				<label>${this.attachBool('ping_pm')} On DMs</label>
-				<label>${this.attachBool('ping_chat')} On Mentions</label>
-				<label>${this.attachBool('ping_song')} On New Songs</label>
+				<label>${this.attachBool('nextdj')} Next DJ Spot</label>
+				<label>${this.attachBool('pingdj')} Wait For Ping</label>
+			</div>
+			<div id="ts_more">
+				<h3 id="ts_extra">Notifications</h3>
+				<div class="half">
+					<h3>In Chat</h3>
+					<label>${this.attachBool('chat_stat')} Song Stats</label>
+					<label>${this.attachBool('chat_snag')} User Snags</label>
+					<label>${this.attachBool('chat_join')} User Joins</label>
+					<label>${this.attachBool('chat_gone')} User Leaves</label>
+				</div>
+				<div class="half">
+					<h3>Desktop</h3>
+					<label>${this.attachBool('ping_pm')} On DMs</label>
+					<label>${this.attachBool('ping_chat')} On Mentions</label>
+					<label>${this.attachBool('ping_song')} On New Songs</label>
+				</div>
 			</div>
 
 			<button id="ts_close">Close</button>
@@ -187,7 +195,11 @@ tS.prototype.buildPanel = function() {
 	// bind up the events
 	$('#ts_pane input').on('change', this.saveConfig.bind(this))
 	$('#ts_pane select').on('change', this.saveConfig.bind(this))
-	$('#ts_close').on('click', () => $('#ts_pane').removeClass('active'))
+	$('#ts_extra').on('click', () => $('#ts_more').toggleClass('active'))
+	$('#ts_close').on('click', () => {
+		$('#ts_pane').removeClass('active')
+		$('#ts_more').removeClass('active')
+	})
 
 	this.attachMenu() // add the menu toggle
 	this.loadVolume() // add the volume control
