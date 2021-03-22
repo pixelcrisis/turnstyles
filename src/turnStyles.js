@@ -7,71 +7,65 @@ const tS = function() {
 	this.attachRoom()
 }
 
-// defaults & utilities
-tS.prototype.__ = {
-	config: {
-		autobop: true,
+// defaults & data
+tS.prototype.__cfg = {
+	autobop: true,
 
-		volume: 100,
-		has_vol: false,
+	volume: 100,
+	has_vol: false,
 
-		theme: "dark",
-		style: "",
+	theme: "dark",
+	style: "",
 
-		ping_pm: false,
-		ping_song: false,
-		ping_chat: false,
+	ping_pm: false,
+	ping_song: false,
+	ping_chat: false,
 
-		chat_stat: false,
-		chat_snag: false,
-		chat_join: false,
-		chat_gone: false
-	},
-	options: {
-		theme: {
-			dark: "Dark Mode",
-			night: "Night Mode",
-		},
-		style: {
-			pink: "Pink",
-			blue: "Blue",
-			teal: "Teal",
-			green: "Green",
-		},
-	},
-
-	log: (str, obj) => {
-		obj = obj ? JSON.stringify(obj, 0, 2) : ''
-		console.info(`turnStyles :: ${str}`, obj)
-	},
-	// check if obj exists and has a key
-	has: (obj, key) => obj !== null && typeof obj != "undefined" && obj[key]
+	chat_stat: false,
+	chat_snag: false,
+	chat_join: false,
+	chat_gone: false
 }
+tS.prototype.__opt = {
+	theme: {
+		dark: "Dark Mode",
+		night: "Night Mode",
+	},
+	style: {
+		pink: "Pink",
+		blue: "Blue",
+		teal: "Teal",
+		green: "Green",
+	}
+}
+// utilities
+tS.prototype.__log = function(str, obj) {
+	obj = obj ? JSON.stringify(obj, 0, 2) : ''
+	console.info(`turnStyles :: ${str}`, obj)
+}
+tS.prototype.__has = function(obj, key) {
+	// check if prop in obj exists and has key prop
+	for (let x in obj) {
+		if (obj[x] !== null && typeof obj[x] != "undefined" && obj[x][key]) {
+			return obj[x][key]
+		}
+	}
+}
+
 // attach to the turntable room
 tS.prototype.attachRoom = function() {
+	if (!window.turntable) return this.__log("where are we?")
+
 	this.core = window.turntable
-	if (!this.core) return this.__.log("where are we?")
 	this.user = this.core.user.id
 	let again = () => setTimeout(tS.prototype.attachRoom.bind(this), 250)
 
 	// let's find the room
-	for (let x in this.core) {
-		if (this.__.has(this.core[x], "roomId")) {
-			this.room = this.core[x]
-			break
-		}
-	}
-
+	this.room = this.__has(this.core, "roomId")
 	if (!this.room) return again()
 
 	// find the room manager
-	for (let x in this.room) {
-		if (this.__.has(this.room[x], "roomData")) {
-			this.ttbl = this.room[x]
-			break
-		}
-	}
-	// try again if we can't find it
+	this.ttbl = this.__has(this.room, "roomData")
 	if (!this.ttbl) return again()
 
 	// record any currently playing song
@@ -87,7 +81,7 @@ tS.prototype.attachRoom = function() {
 	this.core.addEventListener('message', this.handle.bind(this))
 	// we need a copy of this to for the volume function
 	this.realVolume = window.turntablePlayer.realVolume
-	this.__.log(`loaded room: ${this.room.roomId}`)
+	this.__log(`loaded room: ${this.room.roomId}`)
 	this.runAutobop()
 	this.buildPanel()
 }
@@ -98,10 +92,10 @@ tS.prototype.loadConfig = function() {
 	this.config = store ? JSON.parse(store) : {}
 
 	// apply our defaults for any config upgrades
-	this.config = { ...this.__.config, ...this.config }
+	this.config = { ...this.__cfg, ...this.config }
 
 	this.base = window.tsBase || 'https://ts.pixelcrisis.co/src/'
-	this.__.log("loaded config")
+	this.__log("loaded config")
 }
 tS.prototype.saveConfig = function() {
 	this.config.theme     = $("#ts_theme").val()
@@ -116,14 +110,14 @@ tS.prototype.saveConfig = function() {
 
 	window.localStorage.setItem("tsdb", JSON.stringify(this.config))
 	$('#ts_pane').removeClass('active')
-	this.__.log("saved config")
+	this.__log("saved config")
 	this.loadThemes()
 	this.loadVolume()
 }
 
 // build our options menu
 tS.prototype.attachOpts = function(list) {
-	let data = this.__.options[list]
+	let data = this.__opt[list]
 	let opts = `<option value="">None</option>`
 	for (let key in data) {
 		let curr = this.config[list] == key ? 'selected' : ''
@@ -208,7 +202,7 @@ tS.prototype.refreshCSS = function(type, name) {
 	let curr = $(`link.tS-${type}`)
 	let path = `${this.base}/${type}/${name}.css`
 	if (!name) return curr.length ? curr.remove() : false
-	this.__.log(`loading ${type}/${name}.css`)
+	this.__log(`loading ${type}/${name}.css`)
 
 	if (curr.length) curr.attr("href", path)
 	else {
@@ -274,7 +268,7 @@ tS.prototype.toggleMute = function() {
 	else $('#ts_volume').removeClass('muted')
 	window.turntable.setVolume(this.mute ? this.currVolume() : 0)
 	this.mute = !this.mute
-	this.__.log(`turned mute ${ this.mute ? 'on' : 'off'}`)
+	this.__log(`turned mute ${ this.mute ? 'on' : 'off'}`)
 }
 tS.prototype.onVolWheel = function(e) {
 	const slider = $('#ts_slider')
