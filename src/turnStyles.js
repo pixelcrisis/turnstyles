@@ -300,7 +300,6 @@ tS.prototype.onVolWheel = function(e) {
 tS.prototype.runAutobop = function() {
 	if (this.autobop) clearTimeout(this.autobop)
 	if (!this.config.autobop) return
-	let roomId = this.room.roomId
 	this.autobop = setTimeout(() => {
 		$(window).focus()
 		let options = { bubbles: true, cancelable: true, view: window }
@@ -409,4 +408,4 @@ tS.prototype.onLeft = function(e) {
 	}
 }
 
-const $tS = window.$tS = new tS()
+window.$tS = new tS()

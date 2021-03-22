@@ -1,0 +1,11 @@
+{
+  "name": "turnstyles",
+  "version": "4.5.2",
+  "main": "src/turnStyles.js",
+  "repository": "git@github.com:pixelcrisis/turntable-tweaks.git",
+  "author": "pixelcrisis <pxcrisis@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^7.22.0"
+  }
+}
