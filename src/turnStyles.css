@@ -61,6 +61,7 @@
   right: 120px;
   width: 160px;
   z-index: 6000;
+  user-select: none;
   position: absolute;
 }
 #ts_slider {
