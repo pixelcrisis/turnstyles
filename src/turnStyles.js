@@ -67,6 +67,38 @@ tS.prototype.setDelay = function(key, amt) {
 	}, amt * 1000)
 }
 
+// define our "database"
+tS.prototype.loadConfig = function() {
+	const store = window.localStorage.getItem("tsdb")
+	this.config = store ? JSON.parse(store) : {}
+
+	// apply our defaults for any config upgrades
+	this.config = { ...this.__cfg, ...this.config }
+
+	this.base = window.tsBase || 'https://ts.pixelcrisis.co/src/'
+	this.__log("loaded config")
+}
+tS.prototype.saveConfig = function() {
+	this.config.theme     = $("#ts_theme").val()
+	this.config.style     = $("#ts_style").val()
+
+	this.config.autobop   = $("#ts_autobop").is(':checked')
+	this.config.has_vol   = $('#ts_has_vol').is(':checked')
+	this.config.nextdj    = $('#ts_nextdj').is(':checked')
+	this.config.pingdj    = $('#ts_pingdj').is(':checked')
+	this.config.ping_pm   = $('#ts_ping_pm').is(':checked')
+	this.config.ping_chat = $('#ts_ping_chat').is(':checked')
+	this.config.ping_song = $('#ts_ping_song').is(':checked')
+	this.config.chat_snag = $('#ts_chat_snag').is(':checked')
+
+	window.localStorage.setItem("tsdb", JSON.stringify(this.config))
+	this.__log("saved config")
+
+	this.loadThemes()
+	this.loadVolume()
+	this.onDrop() // fire next dj just in case
+}
+
 // attach to the turntable room
 tS.prototype.attachRoom = function() {
 	if (!window.turntable) return this.__log("where are we?")
@@ -100,38 +132,6 @@ tS.prototype.attachRoom = function() {
 	
 	this.runAutobop()
 	this.buildPanel()
-	this.onDrop() // fire next dj just in case
-}
-
-// define our "database"
-tS.prototype.loadConfig = function() {
-	const store = window.localStorage.getItem("tsdb")
-	this.config = store ? JSON.parse(store) : {}
-
-	// apply our defaults for any config upgrades
-	this.config = { ...this.__cfg, ...this.config }
-
-	this.base = window.tsBase || 'https://ts.pixelcrisis.co/src/'
-	this.__log("loaded config")
-}
-tS.prototype.saveConfig = function() {
-	this.config.theme     = $("#ts_theme").val()
-	this.config.style     = $("#ts_style").val()
-
-	this.config.autobop   = $("#ts_autobop").is(':checked')
-	this.config.has_vol   = $('#ts_has_vol').is(':checked')
-	this.config.nextdj    = $('#ts_nextdj').is(':checked')
-	this.config.pingdj    = $('#ts_pingdj').is(':checked')
-	this.config.ping_pm   = $('#ts_ping_pm').is(':checked')
-	this.config.ping_chat = $('#ts_ping_chat').is(':checked')
-	this.config.ping_song = $('#ts_ping_song').is(':checked')
-	this.config.chat_snag = $('#ts_chat_snag').is(':checked')
-
-	window.localStorage.setItem("tsdb", JSON.stringify(this.config))
-	this.__log("saved config")
-
-	this.loadThemes()
-	this.loadVolume()
 	this.onDrop() // fire next dj just in case
 }
 
@@ -365,16 +365,17 @@ tS.prototype.sendToChat = function(bold, text, type) {
 
 // event handlers
 tS.prototype.handle = function(e) {
-	if (!e.command) return
-	if (e.command == "pmmed") this.onPing(e)
-	if (e.command == "speak") this.onChat(e)
-	if (e.command == "add_dj") this.onJump(e)
-	if (e.command == "rem_dj") this.onDrop(e)
-	if (e.command == "newsong") this.onSong(e)
-	if (e.command == "snagged") this.onSnag(e)
-	if (e.command == "registered") this.onJoin(e)
-	if (e.command == "deregistered") this.onLeft(e)
-	if (e.command == "update_votes") this.onVote(e)
+	switch (e.command) {
+		case "pmmed":        this.onPing(e); break;
+		case "speak":        this.onChat(e); break;
+		case "add_dj":       this.onJump(e); break;
+		case "rem_dj":       this.onDrop(e); break;
+		case "newsong":      this.onSong(e); break;
+		case "snagged":      this.onSnag(e); break;
+		case "registered":   this.onJoin(e); break;
+		case "deregistered": this.onLeft(e); break;
+		case "update_votes": this.onVote(e); break;
+	}
 }
 tS.prototype.onPing = function(e) {
 	if (this.config.ping_pm) {
