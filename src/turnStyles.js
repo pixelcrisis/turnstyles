@@ -189,8 +189,8 @@ tS.prototype.buildPanel = function() {
 				<label>${this.attachBool('nextdj')} Next DJ Spot</label>
 				<label>${this.attachBool('pingdj')} Wait For Ping</label>
 			</div>
-			<div id="ts_more">
-				<h3 id="ts_extra">Notifications</h3>
+			<div class="ts_more">
+				<h3>Notifications</h3>
 				<div class="half">
 					<h3>In Chat</h3>
 					<label>${this.attachBool('chat_stat')} Song Stats</label>
@@ -212,11 +212,8 @@ tS.prototype.buildPanel = function() {
 	// bind up the events
 	$('#ts_pane input').on('change', this.saveConfig.bind(this))
 	$('#ts_pane select').on('change', this.saveConfig.bind(this))
-	$('#ts_extra').on('click', () => $('#ts_more').toggleClass('active'))
-	$('#ts_close').on('click', () => {
-		$('#ts_pane').removeClass('active')
-		$('#ts_more').removeClass('active')
-	})
+	$('.ts_more h3').on('click', (e) => $(e.target).parent().toggleClass('active'))
+	$('#ts_close').on('click', () => $('#ts_pane, .ts_more').removeClass('active'))
 
 	this.attachMenu() // add the menu toggle
 	this.loadVolume() // add the volume control
@@ -344,6 +341,8 @@ tS.prototype.takeDJSpot = function() {
 	$('#ts_nextdj').prop('checked', false)
 	// delay saving in case we haven't loaded yet
 	setTimeout(this.saveConfig.bind(this), 5 * 1000)
+	let text = `You've Hopped On Deck! NextDJ is now disabled.`
+	this.notifyUser({ head: `NextDJ`, text })
 }
 
 // handle our notifications

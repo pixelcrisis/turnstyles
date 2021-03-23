@@ -10,8 +10,8 @@
   background: #2f2f2f;
   color: #eaeaea;
 }
-#ts_more:not(.active) div,
-#ts_pane:not(.active) { display: none; }
+#ts_pane:not(.active),
+#ts_pane .ts_more:not(.active) > div { display: none; }
 #ts_pane label {
   margin: 5px 0;
   display: block; 
@@ -47,17 +47,17 @@
   font-weight: bold;
   font-style: italic;
 }
-#ts_extra {
+.ts_more > h3 {
   cursor: pointer;
   padding-left: 18px;
 }
-#ts_extra::before {
+.ts_more > h3::before {
   left: 24px;
   margin-top: -1px;
   position: absolute;
 }
-#ts_more.active #ts_extra::before { content: "-"; }
-#ts_more:not(.active) #ts_extra::before { content: "+"; }
+.ts_more.active > h3::before { content: "-"; }
+.ts_more:not(.active) > h3::before { content: "+"; }
 /* restructure header for volume bar */
 .has-volume .header-room {
   width: 100% !important;
