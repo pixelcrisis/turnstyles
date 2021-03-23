@@ -11,6 +11,9 @@ const tS = function() {
 tS.prototype.__cfg = {
 	autobop: true,
 
+	nextdj: false,
+	pingdj: false,
+
 	volume: 100,
 	has_vol: false,
 
@@ -53,6 +56,17 @@ tS.prototype.__has = function(obj, key) {
 	}
 }
 
+// handle timeout delays
+tS.prototype.hasDelay = function(key) {
+	if (!key) return false
+	return window[key]
+}
+tS.prototype.setDelay = function(key, amt) {
+	window[key] = setTimeout(() => { 
+		window[key] = null 
+	}, amt * 1000)
+}
+
 // attach to the turntable room
 tS.prototype.attachRoom = function() {
 	if (!window.turntable) return this.__log("where are we?")
@@ -66,8 +80,8 @@ tS.prototype.attachRoom = function() {
 	if (!this.room) return again()
 
 	// find the room manager
-	this.ttbl = this.__has(this.room, "roomData")
-	if (!this.ttbl) return again()
+	this.ttfm = this.__has(this.room, "roomData")
+	if (!this.ttfm) return again()
 
 	// record any currently playing song
 	if (this.room.currentSong) {
@@ -83,8 +97,10 @@ tS.prototype.attachRoom = function() {
 	// we need a copy of this to for the volume function
 	this.realVolume = window.turntablePlayer.realVolume
 	this.__log(`loaded room: ${this.room.roomId}`)
+	
 	this.runAutobop()
 	this.buildPanel()
+	this.onDrop() // fire next dj just in case
 }
 
 // define our "database"
@@ -104,6 +120,8 @@ tS.prototype.saveConfig = function() {
 
 	this.config.autobop   = $("#ts_autobop").is(':checked')
 	this.config.has_vol   = $('#ts_has_vol').is(':checked')
+	this.config.nextdj    = $('#ts_nextdj').is(':checked')
+	this.config.pingdj    = $('#ts_pingdj').is(':checked')
 	this.config.ping_pm   = $('#ts_ping_pm').is(':checked')
 	this.config.ping_chat = $('#ts_ping_chat').is(':checked')
 	this.config.ping_song = $('#ts_ping_song').is(':checked')
@@ -111,8 +129,10 @@ tS.prototype.saveConfig = function() {
 
 	window.localStorage.setItem("tsdb", JSON.stringify(this.config))
 	this.__log("saved config")
+
 	this.loadThemes()
 	this.loadVolume()
+	this.onDrop() // fire next dj just in case
 }
 
 // build our options menu
@@ -154,12 +174,6 @@ tS.prototype.buildPanel = function() {
 			<h2>turnStyles options</h2>
 
 			<div class="half">
-				<label>${this.attachBool('autobop')} Autobop</label>
-			</div>
-			<div class="half">
-				<label>${this.attachBool('has_vol')} Control Volume</label>
-			</div>
-			<div class="half">
 				<label>Theme</label>
 				${this.attachOpts('theme')}
 			</div>
@@ -168,17 +182,28 @@ tS.prototype.buildPanel = function() {
 				${this.attachOpts('style')}
 			</div>
 			<div class="half">
-				<h3>Chat Info</h3>
-				<label>${this.attachBool('chat_stat')} Song Stats</label>
-				<label>${this.attachBool('chat_snag')} User Snags</label>
-				<label>${this.attachBool('chat_join')} User Joins</label>
-				<label>${this.attachBool('chat_gone')} User Leaves</label>
+				<label>${this.attachBool('autobop')} Autobop</label>
+				<label>${this.attachBool('has_vol')} Control Volume</label>
 			</div>
 			<div class="half">
+				<label>${this.attachBool('nextdj')} Next DJ Spot</label>
+				<label>${this.attachBool('pingdj')} Wait For Ping</label>
+			</div>
+			<div class="ts_more">
 				<h3>Notifications</h3>
-				<label>${this.attachBool('ping_pm')} On DMs</label>
-				<label>${this.attachBool('ping_chat')} On Mentions</label>
-				<label>${this.attachBool('ping_song')} On New Songs</label>
+				<div class="half">
+					<h3>In Chat</h3>
+					<label>${this.attachBool('chat_stat')} Song Stats</label>
+					<label>${this.attachBool('chat_snag')} User Snags</label>
+					<label>${this.attachBool('chat_join')} User Joins</label>
+					<label>${this.attachBool('chat_gone')} User Leaves</label>
+				</div>
+				<div class="half">
+					<h3>Desktop</h3>
+					<label>${this.attachBool('ping_pm')} On DMs</label>
+					<label>${this.attachBool('ping_chat')} On Mentions</label>
+					<label>${this.attachBool('ping_song')} On New Songs</label>
+				</div>
 			</div>
 
 			<button id="ts_close">Close</button>
@@ -187,7 +212,8 @@ tS.prototype.buildPanel = function() {
 	// bind up the events
 	$('#ts_pane input').on('change', this.saveConfig.bind(this))
 	$('#ts_pane select').on('change', this.saveConfig.bind(this))
-	$('#ts_close').on('click', () => $('#ts_pane').removeClass('active'))
+	$('.ts_more h3').on('click', (e) => $(e.target).parent().toggleClass('active'))
+	$('#ts_close').on('click', () => $('#ts_pane, .ts_more').removeClass('active'))
 
 	this.attachMenu() // add the menu toggle
 	this.loadVolume() // add the volume control
@@ -296,18 +322,34 @@ tS.prototype.runAutobop = function() {
 	if (!this.config.autobop) return
 	this.autobop = setTimeout(() => {
 		$(window).focus()
-		let options = { bubbles: true, cancelable: true, view: window }
-		let awesome = document.querySelectorAll('.awesome-button')[0]
-		let clicked = new MouseEvent('click', options)
-		return !awesome.dispatchEvent(clicked)
+		let opts = { bubbles: true, cancelable: true, view: window }
+		let elem = document.querySelectorAll('.awesome-button')[0]
+		let fire = new MouseEvent('click', opts)
+		return !elem.dispatchEvent(fire)
 	}, (Math.random() * 7) * 1000)
 }
 
+// take available DJ spot
+tS.prototype.takeDJSpot = function() {
+	let button = $('.become-dj')
+	if (!button.length) return this.__log(`nextdj: no spot`)
+	this.__log('taking open dj spot')
+	this.room.becomeDj()
+	// hide the panel just in case we fired immediately
+	$('#ts_pane').removeClass('active')
+	// only fire next DJ once
+	$('#ts_nextdj').prop('checked', false)
+	// delay saving in case we haven't loaded yet
+	setTimeout(this.saveConfig.bind(this), 5 * 1000)
+	let text = `You've Hopped On Deck! NextDJ is now disabled.`
+	this.notifyUser({ head: `NextDJ`, text })
+}
+
 // handle our notifications
-tS.prototype.notifyUser = function(data) {
-	return window.postMessage({
-		type: "tsNotify", notification: data
-	})
+tS.prototype.notifyUser = function(data, delay) {
+	if (this.hasDelay(delay)) return
+	else if (delay) this.setDelay(delay, 10)
+	window.postMessage({ type: "tsNotify", notification: data })
 }
 tS.prototype.sendToChat = function(bold, text, type) {
 	$('.chat .messages').append(`
@@ -326,6 +368,8 @@ tS.prototype.handle = function(e) {
 	if (!e.command) return
 	if (e.command == "pmmed") this.onPing(e)
 	if (e.command == "speak") this.onChat(e)
+	if (e.command == "add_dj") this.onJump(e)
+	if (e.command == "rem_dj") this.onDrop(e)
 	if (e.command == "newsong") this.onSong(e)
 	if (e.command == "snagged") this.onSnag(e)
 	if (e.command == "registered") this.onJoin(e)
@@ -333,24 +377,23 @@ tS.prototype.handle = function(e) {
 	if (e.command == "update_votes") this.onVote(e)
 }
 tS.prototype.onPing = function(e) {
-	if (this.config.ping_pm && !window.tsPmPing) {
-		this.notifyUser({ head: `New PM`, text: e.text })
-		// only send one notification per ten seconds
-		window.tsPmPing = setTimeout(() => {
-			window.tsPmPing = null
-		}, 10 * 1000)
+	if (this.config.ping_pm) {
+		this.notifyUser({ head: `New PM`, text: e.text }, 'tsPmPing')
 	}
 }
 tS.prototype.onChat = function(e) {
-	if (this.config.ping_chat && !window.tsChatPing) {
-		let ping = `@${this.core.user.attributes.name}`
-		if (e.text.indexOf(ping) > -1) this.notifyUser({
-			head: `[${this.room.roomData.name}] @${e.name}`, text: e.text
-		})
-		// only send one notification every ten seconds
-		window.tsChatPing = setTimeout(() => {
-			window.tsChatPing = null
-		}, 10 * 1000)
+	let search = `@${this.core.user.attributes.name}`
+	let pinged = e.text.indexOf(search) > -1
+
+	// send out notifications
+	if (this.config.ping_chat && pinged) {
+		let head = `[${this.room.roomData.name}] @${e.name}`
+		this.notifyUser({ head, text: e.text }, 'tsChatPing')
+	}
+	// check for DJ on ping
+	if (this.hasDelay('holdForPing') && pinged) {
+		this.__log(`nextdj: received ping`)
+		this.takeDJSpot()
 	}
 }
 tS.prototype.onSong = function(e) {
@@ -379,6 +422,23 @@ tS.prototype.onSong = function(e) {
 	}
 
 	if (this.config.ping_song) this.notifyUser({ head, text })
+}
+tS.prototype.onJump = function(e) {
+	// remove from auto DJ if manually jump?
+	if (this.user == e.user[0].userid) {
+		this.config.nextdj = false
+		$('#ts_nextdj').prop('checked', false)
+		// delay saving in case we haven't loaded yet
+		setTimeout(this.saveConfig.bind(this), 5 * 1000)
+	}
+}
+tS.prototype.onDrop = function() {
+	if (!this.config.nextdj) return
+	if (!this.config.pingdj) this.takeDJSpot()
+	else {
+		this.__log('next dj: holding for ping')
+		this.setDelay('holdForPing', 1)
+	}
 }
 tS.prototype.onSnag = function(e) {
 	this.now_playing.snag += 1
