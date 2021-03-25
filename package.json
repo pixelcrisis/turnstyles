@@ -6,8 +6,12 @@
   "author": "pixelcrisis <pxcrisis@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "watch": "watchify plugins/turnStyles.js -o src/turnStyles.js",
-    "build": "browserify -p tinyify plugins/turnStyles.js -o src/turnStyles.js"
+    "watch": "npm-run-all w:main",
+    "build": "yarn run b:main",
+    "w:main": "watchify src/turnStyles.js -o dist/turnStyles.js",
+    "w:sass": "",
+    "b:main": "browserify -p tinyify src/turnStyles.js -o dist/turnStyles.js",
+    "b:sass": ""
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",

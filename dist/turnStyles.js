@@ -1,0 +1,1 @@
+!function(){let t=document.createElement("script");t.src="https://ts.pixelcrisis.co/dist/turnStyles.js?"+Math.random(),t.type="text/javascript",document.body.appendChild(t),setTimeout(()=>{window.$tS.sendToChat("Alert!",'Your bookmarklet is out of date, please update <a href="https://ts.pixelcrisis.co" target="blank">here</a>.',"action")},5e3)}();
