@@ -10,10 +10,10 @@
     "watch": "concurrently \"yarn w:index\" \"yarn w:theme\" \"yarn w:style\"",
     "w:index": "watchify src/core/turnStyles.js -o dist/turnStyles.js",
     "b:index": "browserify -p tinyify src/core/turnStyles.js -o dist/turnStyles.js",
-    "w:theme": "node-sass -watch src/themes --output dist/themes",
-    "b:theme": "node-sass src/themes --output dist/themes",
-    "w:style": "node-sass -watch src/styles --output dist/styles",
-    "b:style": "node-sass src/styles --output dist/styles"
+    "w:theme": "node-sass src/themes -wo dist/themes",
+    "b:theme": "node-sass src/themes -o dist/themes",
+    "w:style": "node-sass src/styles -wo dist/styles",
+    "b:style": "node-sass src/styles -o dist/styles"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
