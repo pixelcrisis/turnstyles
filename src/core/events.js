@@ -108,7 +108,7 @@ module.exports = tS => {
   tS.prototype.onLeft = function (e) {
     if (this.config.chat_left) {
       let name = e.user[0].name
-      this.sendToChat(name, `left.`, 'join')
+      this.sendToChat(name, `left.`, 'left')
     }
   }
 

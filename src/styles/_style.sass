@@ -1,0 +1,64 @@
+// define our styling blocks
+
+%faded-bg
+  background: rgba($color-main, 40%) !important
+
+%color-bg
+  background: $color-main !important
+
+%color-song
+  color: $color-song !important
+
+%color-icon
+  color: $color-icon !important
+
+%lame-button
+  filter: grayscale(1) !important
+
+%awesome-button
+  filter: hue-rotate($hue-rotate) brightness($brightness) saturate($saturation) !important
+
+%accent-shift
+  filter: hue-rotate($hue-rotate + 50deg) !important
+
+%full-shift
+  filter: hue-rotate($hue-rotate + 50deg) brightness($brightness - 0.2) saturate($saturation)
+
+%text-shift
+  color: $color-icon !important
+  text-shadow: none !important
+
+%tab-icon
+  filter: invert(1)
+
+// apply our definitions
+
+.chat .message-mention
+  @extend %faded-bg
+
+.chat .message-mention,
+.song .progress, #ts_slider
+  @extend %color-bg
+
+.current-song .details
+  @extend %color-song
+
+.lame-button
+  @extend %lame-button
+
+.awesome-button 
+  @extend %awesome-button
+
+.become-dj, .invite-dj, .song-details
+  @extend %accent-shift
+
+.header-logo, #buddyListHeader, .tab-item:active,
+.tab-item.selected, .favorite-star.favorited,
+#privateChatIcon.open .chatIcon, button.tt-button.primary.small.inset 
+  @extend %full-shift
+
+.tab-item:active .tab-icon, .tab-item.selected .tab-icon
+  @extend %text-shift
+
+.become-dj, .tab-item:active .tab-title, .tab-item.selected .tab-title 
+  @extend %text-shift

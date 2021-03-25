@@ -1,0 +1,133 @@
+// main background
+#ts_pane, .header-bar, .sliding-nav-pane,
+.tab-pane, #songs, .tab-item:not(.selected),
+.song-list, .guest-list, #buddy-list, .conversations-list,
+.guestOptionsContainer, .guestOptionsContainer .options,
+.chat .message     :nth-child(even):not(.separator),
+.guest-list      > :nth-child(even):not(.separator),
+.striped-list    > :nth-child(even):not(.separator),
+.song-list > ul  > :nth-child(even):not(.separator),
+.message-history > :nth-child(even):not(.separator)
+  @extend %content-main
+
+// alt background
+.room-info-wrap, .flat-button,
+.chat .message     :nth-child(odd):not(.separator),
+.guest-list      > :nth-child(odd):not(.separator),
+.striped-list    > :nth-child(odd):not(.separator),
+.song-list > ul  > :nth-child(odd):not(.separator),
+.message-history > :nth-child(odd):not(.separator)
+  @extend %content-alt
+
+// extra text color resets
+.room-tab .description-wrap,
+.room-tab .room-info-link h3
+  @extend %text-color
+
+// popped text
+.sliding-nav-pane-title, .tabbed-panel .separator .text,
+.queue-message, .default-message, .room-tab .room-name,
+.song .title, #playlist-display .text, .filter.btn,
+.message-view a, .tabbed-panel a, .tabbed-panel a:visited
+  @extend %text-pop
+
+// link styling
+.message-view a, .tabbed-panel a, .tabbed-panel a:visited
+  @extend %content-link
+
+// transparent overrides
+.avatar-head
+  @extend %transparent
+
+// border resets
+#ts_pane, .room-info-wrap, .room-info-intro, 
+.flat-button, .message-view, .chat .message, 
+.striped-list, .song-list .song, .guest-list .guest
+  @extend %border-color
+
+.conversation-view
+  border-top: 1px solid $color-border !important
+
+// playlist / filter buttons
+.panel-button
+  @extend %panel-button
+
+.panel-button:not(:hover)
+  opacity: 0.8 !important
+
+// dark buttons
+#buddyListNipple, .chatsound.mention, #upload-button button,
+.tabbed-panel button.back, .room-info-wrap .options-menu .nib,
+#playlist-display .playlist-queue-inset, .playlist-go-top,
+.playlist-open-options
+  @extend %dark-button
+
+// flatten buttons
+.playlist-go-top 
+  @extend %button-playlist-top
+
+.playlist-open-options 
+  @extend %button-playlist-opt
+
+#upload-button button 
+  @extend %button-upload
+
+// input bars
+.floating-panel-bar, .floating-panel-header,
+.message-input-view, .tabbed-panel .separator,
+.sliding-nav-pane-header, .sliding-nav-pane .separator
+  @extend %input-bars
+
+// input buttons
+.chatsound-container 
+  @extend %transparent-bg
+
+.chatsound.mention, #upload-button button
+  @extend %transparent
+
+// text inputs
+#chat-form
+  left: 40px !important
+
+.message-input, #song-search-input
+  @extend %text-input
+
+// chat styling
+.chat .message.mention
+  @extend %chat-mention
+
+.chat .message.action
+  @extend %chat-action
+
+.chat .message.join
+  @extend %chat-join
+
+.chat .message.left
+  @extend %chat-left
+
+.chat .message.snag
+  @extend %chat-snag
+
+// pm options menu
+#buddyListHeader .options-menu .nib,
+#buddyListHeader .options-menu .options
+  @extend %border-radius
+
+#buddyListHeader .options-menu .nib
+  @extend %transparent
+
+#buddyListHeader .options-menu .options
+  @extend %pm-options
+
+// scroll bars
+::-webkit-scrollbar 
+  width: 10px
+
+::-webkit-scrollbar-track
+  background: $color-bg
+
+::-webkit-scrollbar-thumb
+  background: $color-border
+
+::-webkit-scrollbar-thumb
+  background: $color-accent

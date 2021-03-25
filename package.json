@@ -6,17 +6,22 @@
   "author": "pixelcrisis <pxcrisis@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "watch": "npm-run-all w:main",
-    "build": "yarn run b:main",
-    "w:main": "watchify src/core/turnStyles.js -o dist/turnStyles.js",
-    "w:sass": "",
-    "b:main": "browserify -p tinyify src/core/turnStyles.js -o dist/turnStyles.js",
-    "b:sass": ""
+    "build": "yarn b:index && yarn b:theme && yarn b:style",
+    "watch": "concurrently \"yarn w:index\" \"yarn w:theme\" \"yarn w:style\"",
+    "w:index": "watchify src/core/turnStyles.js -o dist/turnStyles.js",
+    "b:index": "browserify -p tinyify src/core/turnStyles.js -o dist/turnStyles.js",
+    "w:theme": "node-sass -watch src/themes --output dist/themes",
+    "b:theme": "node-sass src/themes --output dist/themes",
+    "w:style": "node-sass -watch src/styles --output dist/styles",
+    "b:style": "node-sass src/styles --output dist/styles"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "browserify": "^17.0.0",
+    "concurrently": "^6.0.0",
     "eslint": "^7.22.0",
+    "node-sass": "^5.0.0",
+    "sass": "^1.32.8",
     "tinyify": "^3.0.0",
     "watchify": "^4.0.0"
   }
