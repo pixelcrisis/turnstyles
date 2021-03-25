@@ -1,11 +1,19 @@
 {
   "name": "turnstyles",
-  "version": "4.6",
+  "version": "4.6.1",
   "main": "src/turnStyles.js",
   "repository": "git@github.com:pixelcrisis/turntable-tweaks.git",
   "author": "pixelcrisis <pxcrisis@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "watch": "watchify plugins/turnStyles.js -o src/turnStyles.js",
+    "build": "browserify -p tinyify plugins/turnStyles.js -o src/turnStyles.js"
+  },
   "devDependencies": {
-    "eslint": "^7.22.0"
+    "babel-eslint": "^10.1.0",
+    "browserify": "^17.0.0",
+    "eslint": "^7.22.0",
+    "tinyify": "^3.0.0",
+    "watchify": "^4.0.0"
   }
 }

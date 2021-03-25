@@ -2,8 +2,8 @@
   Night Mode
   Text Color: #e8e8e8;
   Main BG:    #141414;
-  Light BG:   #1a1a1a;
-  Border:     #343434;
+  Light BG:   #1f1f1f;
+  Border:     #2f2f2f;
   Accent:     #e1bb22;
   Red:        #ff0000;
   Green:      #00ff00;
@@ -31,14 +31,14 @@
 .song-list>ul>:nth-child(odd):not(.separator),
 .message-history>:nth-child(odd):not(.separator)  {
   color: #e8e8e8 !important;
-  background: #1a1a1a !important;
+  background: #1f1f1f !important;
 }
 
 /* Border Color Resets */
 #ts_pane, .flat-button, .message-view, .chat .message, .striped-list, 
 .song-list .song, .guest-list .guest, .room-info-intro, 
-.room-info-wrap { border-color: #343434 !important; }
-.conversation-view { border-top: 1px solid #343434 !important; }
+.room-info-wrap { border-color: #2f2f2f !important; }
+.conversation-view { border-top: 1px solid #2f2f2f !important; }
 
 /* Chat Styling */
 .chat .message.mention {
@@ -101,9 +101,9 @@
 .message-input-view, .floating-panel-bar, .floating-panel-header, 
 .tabbed-panel .separator, .sliding-nav-pane-header, .sliding-nav-pane .separator {
   box-shadow: none !important;
-  border-top: 1px solid #343434 !important;
+  border-top: 1px solid #2f2f2f !important;
   border-bottom: 1px solid #141414 !important;
-  background: linear-gradient(to bottom, #1a1a1a, #141414) !important;
+  background: linear-gradient(to bottom, #1f1f1f, #141414) !important;
 }
 
 /* PM Options Menu */
@@ -131,12 +131,12 @@
 .message-input, #song-search-input {
   border: none !important;
   color: #e8e8e8 !important;
-  background: #343434 !important;
-  box-shadow: inset 0 0 0 1px #343434, 0 1px 0 0 #343434 !important;
+  background: #2f2f2f !important;
+  box-shadow: inset 0 0 0 1px #2f2f2f, 0 1px 0 0 #2f2f2f !important;
 }
 
 /* Scroll Bars */
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-track { background: #141414; }
-::-webkit-scrollbar-thumb { background: #343434; }
+::-webkit-scrollbar-thumb { background: #2f2f2f; }
 ::-webkit-scrollbar-thumb:hover { background: #e1bb22; }
