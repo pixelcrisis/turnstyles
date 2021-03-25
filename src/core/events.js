@@ -19,9 +19,15 @@ module.exports = tS => {
   // fired when we attach to a room
   tS.prototype.onLoad = function () {  
     this.buildPanel()
-    this.loadVolume()
     this.runAutobop()
-    this.checkDecks() 
+    this.onSave() 
+  }
+
+  // fired when we update our config
+  tS.prototype.onSave = function () {
+    this.loadThemes()
+    this.loadVolume()
+    this.checkDecks()
   }
 
   tS.prototype.onPing = function (e) {

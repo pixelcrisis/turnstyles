@@ -68,6 +68,7 @@ module.exports = tS => {
     let stored = JSON.stringify(this.config)
     window.localStorage.setItem("tsdb", stored)
     this.log('saved config')
+    this.onSave()
   }
 
 }
