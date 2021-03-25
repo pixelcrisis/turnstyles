@@ -15,4 +15,4 @@
 Available via Bookmarklet or the Chrome Store
 
 ## Contributing
-Fork the repo and submit a pull request to the "dev" branch
+Fork the repo, use the `dev` branch and submit a pull request!
