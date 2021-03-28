@@ -1,0 +1,56 @@
+.chat .message:nth-child(even),
+.guest-list      > :nth-child(even):not(.separator),
+.striped-list    > :nth-child(even):not(.separator),
+.song-list > ul  > :nth-child(even):not(.separator),
+.message-history > :nth-child(even):not(.separator),
+.chat .message:nth-child(odd),
+.guest-list      > :nth-child(odd):not(.separator),
+.striped-list    > :nth-child(odd):not(.separator),
+.song-list > ul  > :nth-child(odd):not(.separator),
+.message-history > :nth-child(odd):not(.separator)
+  color: $color-text !important
+  border-color: $color-border !important
+
+.chat .message:nth-child(even),
+.guest-list      > :nth-child(even):not(.separator),
+.striped-list    > :nth-child(even):not(.separator),
+.song-list > ul  > :nth-child(even):not(.separator),
+.message-history > :nth-child(even):not(.separator)
+  background: $color-base !important
+
+.chat .message:nth-child(odd),
+.guest-list      > :nth-child(odd):not(.separator),
+.striped-list    > :nth-child(odd):not(.separator),
+.song-list > ul  > :nth-child(odd):not(.separator),
+.message-history > :nth-child(odd):not(.separator)
+  background: $color-base-alt !important
+
+.chat .message .subject:hover,
+.chat .message .speaker:hover
+  color: $color-main !important
+
+.song-list .song .title
+  color: $color-text !important
+
+.song-list .song .details
+  color: $color-text-dark !important
+
+.playlist-go-top, .playlist-open-options
+  filter: invert(1) !important
+
+.playlist-go-top
+  background-position: 0 -326px !important
+
+.playlist-open-options
+  background-position: 0 -216px !important
+
+.song .progress
+  background: rgba($color-main, 80%) !important
+
+.scoregood
+  color: $color-base !important
+  background: rgba($color-join, 80%) !important
+
+.scorebad
+  color: $color-base !important
+  background: rgba($color-left, 80%) !important

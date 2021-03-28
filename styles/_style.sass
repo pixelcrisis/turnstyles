@@ -1,0 +1,41 @@
+$h: $hue-rotate
+$b: $brightness
+$s: $saturation
+
+.chat .message-mention
+  background: rgba($color-main, 40%) !important
+
+.chat .message-mention,
+.song .progress, #ts_slider
+  background: $color-main !important
+
+.current-song .details
+  color: $color-song !important
+
+.lame-button
+  filter: grayscale(1) !important
+
+.awesome-button
+  filter: hue-rotate($h) brightness($b) saturate($s) !important
+
+.header-logo, .favorite-star.favorited, 
+#privateChatIcon.open .chatIcon, 
+.become-dj, .invite-dj, .song-details
+  filter: hue-rotate($h + 50deg) brightness($b - 0.1) saturate($s) !important
+
+.tab-item:active, .tab-item.selected, #buddyListHeader,
+button.tt-button.primary.small.inset 
+  background-image: linear-gradient(to bottom right, $color-main, $color-dark)
+
+  box-shadow: none !important
+
+#ts_panel > h3, #ts_window > h3, 
+#ts_window button, #ts_window .ts_credits a
+  color: $color-main
+
+#buddyListHeader, #buddyListTitle
+  border-color: $color-main !important
+
+#buddyListTitle, button.tt-button.primary.small.inset 
+  color: $color-icon !important
+  text-shadow: none !important

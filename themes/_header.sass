@@ -1,0 +1,25 @@
+.header-bar, .tab-item:not(.selected),
+#ts_panel, #ts_window, #ts_window select, #ts_window option
+  color: $color-text !important
+  background: $color-base !important
+
+.header-room-name
+  font-weight: bold !important
+
+.tab-item
+  box-shadow: none !important
+
+.tab-item.selected .tab-icon
+  filter: invert(1) !important
+
+.tab-item.selected .tab-title
+  font-weight: bold !important
+  text-shadow: none !important
+  color: $color-base !important
+  margin: -1px 0 0 -1px !important
+
+.tab-item:not(.selected):hover 
+  background: $color-base-alt !important
+
+.tab-item:not(.selected):not(:hover) .tab-title
+  color: $color-text-dark !important

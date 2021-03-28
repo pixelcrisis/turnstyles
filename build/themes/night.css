@@ -1,0 +1,250 @@
+.tabbed-panel .separator, .floating-panel-header, .floating-panel-bar, .sliding-nav-pane-header, .pmGreyTop, .message-input-view {
+  border-color: #282828;
+  box-shadow: none !important;
+  background-image: linear-gradient(to bottom, #333333, #282828) !important; }
+
+#chat-input, #song-search-input, .message-input {
+  box-shadow: none !important;
+  color: #e8e8e8 !important;
+  background: #1e1e1e !important;
+  border: 1px solid #141414 !important; }
+
+.header-bar, .tab-item:not(.selected),
+#ts_panel, #ts_window, #ts_window select, #ts_window option {
+  color: #e8e8e8 !important;
+  background: #141414 !important; }
+
+.header-room-name {
+  font-weight: bold !important; }
+
+.tab-item {
+  box-shadow: none !important; }
+
+.tab-item.selected .tab-icon {
+  filter: invert(1) !important; }
+
+.tab-item.selected .tab-title {
+  font-weight: bold !important;
+  text-shadow: none !important;
+  color: #141414 !important;
+  margin: -1px 0 0 -1px !important; }
+
+.tab-item:not(.selected):hover {
+  background: #1e1e1e !important; }
+
+.tab-item:not(.selected):not(:hover) .tab-title {
+  color: #c2c2c2 !important; }
+
+#ts_pane, .tab-pane, #songs, .song-list, .guest-list {
+  color: #e8e8e8 !important;
+  background: #141414 !important; }
+
+.tab-pane a {
+  color: #e8e8e8 !important;
+  text-decoration: none !important;
+  border-bottom: 1px dotted !important; }
+
+.tab-pane a:hover {
+  color: #e1bb22 !important; }
+
+.room-name {
+  color: #e8e8e8 !important; }
+
+.room-info-intro {
+  color: #e8e8e8 !important;
+  border-bottom: none !important;
+  background: #141414 !important; }
+
+.room-info-wrap {
+  color: #e8e8e8 !important;
+  background: #1e1e1e !important;
+  border-top: 1px solid #2e2e2e !important;
+  border-bottom: 1px solid #2e2e2e !important; }
+  .room-info-wrap .options-menu .nib {
+    filter: invert(1) !important; }
+
+.room-tab .num-listeners, .room-tab .description-wrap {
+  color: #c2c2c2 !important; }
+
+.room-tab .save-description-btn .icon {
+  filter: brightness(10) !important; }
+
+.room-tab .edit-description {
+  color: #e8e8e8 !important;
+  padding-bottom: 25px !important;
+  background: #1e1e1e !important; }
+
+.flat-button {
+  background: #1e1e1e !important;
+  border: 1px solid #2e2e2e !important; }
+
+.flat-button:not(:hover) h3 {
+  color: #c2c2c2 !important; }
+
+.queue-message, .default-message {
+  text-shadow: none !important;
+  color: #e8e8e8 !important; }
+
+.tabbed-panel .separator {
+  color: #e8e8e8 !important;
+  text-shadow: none !important; }
+
+.floating-panel-header .divider, .floating-panel-bar .divider {
+  display: none !important; }
+
+.floating-panel-bar {
+  border-top: 1px solid #3d3d3d !important; }
+
+.floating-panel-header {
+  border-bottom: 1px solid #3d3d3d !important; }
+
+#queue-header {
+  border-top: 1px solid transparent !important; }
+
+.panel-button {
+  border: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  color: #c2c2c2 !important;
+  background: transparent !important; }
+
+#chat-form, .song-search {
+  left: 36px; }
+
+.chat-bar .chatsound-container {
+  width: 23px !important;
+  background: transparent !important; }
+
+.chat-bar .chatsound, #ts_upload {
+  width: 21px !important;
+  height: 21px !important;
+  padding: 0px !important;
+  border: none !important;
+  margin-top: 5px !important;
+  cursor: pointer !important;
+  background-size: 38px !important;
+  filter: brightness(70%) !important;
+  background-position: 0 -563px !important;
+  background-image: url(https://s3.amazonaws.com/assets.turntable.fm/images/sprites/chrome-sprite@2x.png) !important; }
+
+#ts_upload {
+  top: 2px;
+  left: 6px;
+  position: relative; }
+
+#playlist-display .down-arrow,
+#playlist-display .playlist-queue-inset {
+  filter: contrast(0) !important; }
+
+#upload-button {
+  display: none; }
+
+.sliding-nav-pane-title {
+  text-shadow: none !important;
+  color: #e8e8e8 !important; }
+
+.sliding-nav-pane-back {
+  width: 41px !important;
+  background: none !important; }
+  .sliding-nav-pane-back::after {
+    left: 0px;
+    top: -10px;
+    content: "x";
+    display: block;
+    text-indent: 0;
+    font-size: 1.3em;
+    font-weight: bold;
+    position: relative;
+    color: #c2c2c2; }
+
+.become-dj, .invite-dj {
+  color: #141414; }
+
+.chat .message:nth-child(even),
+.guest-list > :nth-child(even):not(.separator),
+.striped-list > :nth-child(even):not(.separator),
+.song-list > ul > :nth-child(even):not(.separator),
+.message-history > :nth-child(even):not(.separator),
+.chat .message:nth-child(odd),
+.guest-list > :nth-child(odd):not(.separator),
+.striped-list > :nth-child(odd):not(.separator),
+.song-list > ul > :nth-child(odd):not(.separator),
+.message-history > :nth-child(odd):not(.separator) {
+  color: #e8e8e8 !important;
+  border-color: #2e2e2e !important; }
+
+.chat .message:nth-child(even),
+.guest-list > :nth-child(even):not(.separator),
+.striped-list > :nth-child(even):not(.separator),
+.song-list > ul > :nth-child(even):not(.separator),
+.message-history > :nth-child(even):not(.separator) {
+  background: #141414 !important; }
+
+.chat .message:nth-child(odd),
+.guest-list > :nth-child(odd):not(.separator),
+.striped-list > :nth-child(odd):not(.separator),
+.song-list > ul > :nth-child(odd):not(.separator),
+.message-history > :nth-child(odd):not(.separator) {
+  background: #1e1e1e !important; }
+
+.chat .message .subject:hover,
+.chat .message .speaker:hover {
+  color: #e1bb22 !important; }
+
+.song-list .song .title {
+  color: #e8e8e8 !important; }
+
+.song-list .song .details {
+  color: #c2c2c2 !important; }
+
+.playlist-go-top, .playlist-open-options {
+  filter: invert(1) !important; }
+
+.playlist-go-top {
+  background-position: 0 -326px !important; }
+
+.playlist-open-options {
+  background-position: 0 -216px !important; }
+
+.song .progress {
+  background: #e1bb22 !important; }
+
+.scoregood {
+  color: #141414 !important;
+  background: lime !important; }
+
+.scorebad {
+  color: #141414 !important;
+  background: red !important; }
+
+.message-history,
+.conversations-list > ul > :nth-child(even):not(.separator),
+.conversations-list > ul > :nth-child(odd):not(.separator) {
+  color: #e8e8e8 !important;
+  border-color: #2e2e2e !important; }
+
+.message-history,
+.conversations-list > ul > :nth-child(even):not(.separator) {
+  background: #141414 !important; }
+
+#buddyList,
+.conversations-list > ul > :nth-child(odd):not(.separator) {
+  background: #1e1e1e !important; }
+
+.pmClose, .pmHeader .nib {
+  filter: invert(1) !important; }
+
+#buddyListNipple {
+  opacity: 0 !important; }
+
+#privateChatIcon:not(.open) .chatIcon {
+  filter: contrast(0) brightness(1.6) !important; }
+
+.avatar-head {
+  background-color: transparent !important; }
+
+.conversation-username {
+  color: #e8e8e8 !important; }
+
+.conversation-user-room {
+  color: #c2c2c2 !important; }

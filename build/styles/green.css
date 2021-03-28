@@ -1,0 +1,36 @@
+.chat .message-mention {
+  background: #00a700 !important; }
+
+.chat .message-mention,
+.song .progress, #ts_slider {
+  background: #00a700 !important; }
+
+.current-song .details {
+  color: #ffffff !important; }
+
+.lame-button {
+  filter: grayscale(1) !important; }
+
+.awesome-button {
+  filter: hue-rotate(0deg) brightness(0.8) saturate(2) !important; }
+
+.header-logo, .favorite-star.favorited,
+#privateChatIcon.open .chatIcon,
+.become-dj, .invite-dj, .song-details {
+  filter: hue-rotate(50deg) brightness(0.7) saturate(2) !important; }
+
+.tab-item:active, .tab-item.selected, #buddyListHeader,
+button.tt-button.primary.small.inset {
+  background-image: linear-gradient(to bottom right, #00a700, #00a700);
+  box-shadow: none !important; }
+
+#ts_panel > h3, #ts_window > h3,
+#ts_window button, #ts_window .ts_credits a {
+  color: #00a700; }
+
+#buddyListHeader, #buddyListTitle {
+  border-color: #00a700 !important; }
+
+#buddyListTitle, button.tt-button.primary.small.inset {
+  color: #000000 !important;
+  text-shadow: none !important; }

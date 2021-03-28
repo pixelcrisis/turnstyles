@@ -1,6 +1,6 @@
 {
   "name": "turnStyles for turntable.fm",
-  "version": "4.6",
+  "version": "5.0.0",
   "description": "Apply tweaks to turntable.fm - autobop, themes, styles, with more coming soon!",
   "manifest_version": 2,
   "icons": {
@@ -20,13 +20,13 @@
         "*://turntable.fm/terms",
         "*://turntable.fm/static/*"
       ],
-      "js": [ "plugins/inject.js" ],
-      "matches": [ "*://turntable.fm/*" ],
-      "run_at": "document_end"
+      "js": [ "chrome/inject.js" ],
+      "run_at": "document_end",
+      "matches": [ "*://turntable.fm/*" ]
     }
   ],
   "background": {
-    "scripts": [ "plugins/notify.js" ],
+    "scripts": [ "chrome/notify.js" ],
     "persistent": false
   },
   "web_accessible_resources": [ 

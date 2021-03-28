@@ -1,0 +1,133 @@
+#ts_pane, .tab-pane, #songs, .song-list, .guest-list
+  color: $color-text !important
+  background: $color-base !important
+
+.tab-pane a
+  color: $color-text !important
+  text-decoration: none !important
+  border-bottom: 1px dotted !important
+
+.tab-pane a:hover
+  color: $color-main !important
+
+.room-name
+  color: $color-text !important
+
+.room-info-intro
+  color: $color-text !important
+  border-bottom: none !important
+  background: $color-base !important
+
+.room-info-wrap
+  color: $color-text !important
+  background: $color-base-alt !important
+  border-top: 1px solid $color-border !important
+  border-bottom: 1px solid $color-border !important
+  .options-menu .nib
+    filter: invert($invert-btn) !important
+
+.room-tab .num-listeners, .room-tab .description-wrap
+  color: $color-text-dark !important
+
+.room-tab .save-description-btn .icon
+    filter: brightness($brightness) !important
+
+.room-tab .edit-description
+  color: $color-text !important
+  padding-bottom: 25px !important
+  background: $color-base-alt !important
+
+.flat-button
+  background: $color-base-alt !important
+  border: 1px solid $color-border !important
+
+.flat-button:not(:hover) h3
+  color: $color-text-dark !important
+
+.queue-message, .default-message
+  text-shadow: none !important
+  color: $color-text !important
+
+.tabbed-panel .separator
+  @extend %bg-gradient
+  color: $color-text !important
+  text-shadow: none !important
+
+.floating-panel-header, .floating-panel-bar
+  @extend %bg-gradient
+  .divider
+    display: none !important
+
+.floating-panel-bar
+  border-top: 1px solid $gradient-3 !important
+
+.floating-panel-header
+  border-bottom: 1px solid $gradient-3 !important
+
+#queue-header
+  border-top: 1px solid transparent !important
+
+.panel-button
+  border: none !important
+  box-shadow: none !important
+  text-shadow: none !important
+  color: $color-text-dark !important
+  background: transparent !important
+
+#chat-form, .song-search
+  left: 36px
+
+#chat-input, #song-search-input
+  @extend %text-input
+
+.chat-bar .chatsound-container
+  width: 23px !important
+  background: transparent !important
+
+.chat-bar .chatsound, #ts_upload
+  width: 21px !important
+  height: 21px !important
+  padding: 0px !important
+  border: none !important
+  margin-top: 5px !important
+  cursor: pointer !important
+  background-size: 38px !important
+  filter: brightness(70%) !important
+  background-position: 0 -563px !important
+  background-image: url(https://s3.amazonaws.com/assets.turntable.fm/images/sprites/chrome-sprite@2x.png) !important
+
+#ts_upload
+  top: 2px
+  left: 6px
+  position: relative
+
+#playlist-display .down-arrow,
+#playlist-display .playlist-queue-inset
+  filter: contrast(0) !important
+
+#upload-button
+  display: none
+
+.sliding-nav-pane-header
+  @extend %bg-gradient
+
+.sliding-nav-pane-title
+  text-shadow: none !important
+  color: $color-text !important
+
+.sliding-nav-pane-back
+  width: 41px !important
+  background: none !important
+  &::after
+    left: 0px
+    top: -10px
+    content: "x"
+    display: block
+    text-indent: 0
+    font-size: 1.3em
+    font-weight: bold
+    position: relative
+    color: $color-text-dark
+
+.become-dj, .invite-dj
+  color: $color-base
