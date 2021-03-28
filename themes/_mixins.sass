@@ -1,0 +1,20 @@
+// generated variables
+$color-base-alt: lighten($color-base, 4%)
+$color-text-dark: darken($color-text, 15%)
+$color-border:   lighten($color-base, 10%)
+
+$gradient-1: lighten($color-base, 12%)
+$gradient-2: lighten($color-base, 8%)
+$gradient-3: lighten($color-base, 16%)
+
+// generated styles
+%bg-gradient
+  border-color: $gradient-2
+  box-shadow: none !important
+  background-image: linear-gradient(to bottom, $gradient-1, $gradient-2) !important
+
+%text-input
+  box-shadow: none !important
+  color: $color-text !important
+  background: $color-base-alt !important
+  border: 1px solid $color-base !important

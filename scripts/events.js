@@ -69,7 +69,7 @@ module.exports = tS => {
 
     // get the stats of last played
     let stat = false, last = this.last_played
-    if (last.song) stat = `Last: [${last.love}🔺${last.hate}🔻${last.snag}❤️]`
+    if (last.song) stat = `[🔺${last.love}🔻${last.hate}❤️${last.snag}]`
 
     if (this.config.ping_song) this.notifyUser({
       head: `Now Playing: ${this.now_playing.song}`,

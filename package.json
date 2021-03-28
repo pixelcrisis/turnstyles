@@ -1,19 +1,21 @@
 {
-  "name": "turnstyles",
-  "version": "4.6.1",
-  "main": "src/turnStyles.js",
+  "name": "turnStyles",
+  "version": "5.0.0",
+  "main": "turnStyles.js",
   "repository": "git@github.com:pixelcrisis/turntable-tweaks.git",
   "author": "pixelcrisis <pxcrisis@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "concurrently \"yarn b:index\" \"yarn b:theme\" \"yarn b:style\"",
-    "watch": "concurrently \"yarn w:index\" \"yarn w:theme\" \"yarn w:style\"",
-    "w:index": "watchify src/core/turnStyles.js -o dist/turnStyles.js",
-    "b:index": "browserify -p tinyify src/core/turnStyles.js -o dist/turnStyles.js",
-    "w:theme": "node-sass src/themes -wo dist/themes",
-    "b:theme": "node-sass src/themes -o dist/themes",
-    "w:style": "node-sass src/styles -wo dist/styles",
-    "b:style": "node-sass src/styles -o dist/styles"
+    "b:1": "browserify -p tinyify turnStyles.js -o build/turnStyles.js",
+    "b:2": "node-sass turnStyles.sass -o build",
+    "b:3": "node-sass themes -o build/themes",
+    "b:4": "node-sass styles -o build/styles",
+    "w:1": "watchify turnStyles.js -o build/turnStyles.js",
+    "w:2": "node-sass turnStyles.sass -wo build",
+    "w:3": "node-sass themes -wo build/themes",
+    "w:4": "node-sass styles -wo build/styles",
+    "build": "concurrently \"yarn b:1\" \"yarn b:2\" \"yarn b:3\" \"yarn b:4\"",
+    "watch": "concurrently \"yarn w:1\" \"yarn w:2\" \"yarn w:3\" \"yarn w:4\""
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",

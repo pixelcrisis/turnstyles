@@ -1,0 +1,37 @@
+.message-history,
+.conversations-list>ul>:nth-child(even):not(.separator),
+.conversations-list>ul>:nth-child(odd):not(.separator)
+  color: $color-text !important
+  border-color: $color-border !important
+
+.message-history,
+.conversations-list>ul>:nth-child(even):not(.separator)
+  background: $color-base !important
+
+#buddyList,
+.conversations-list>ul>:nth-child(odd):not(.separator)
+  background: $color-base-alt !important
+
+.pmGreyTop, .message-input-view
+  @extend %bg-gradient
+
+.pmClose, .pmHeader .nib
+  filter: invert(1) !important
+
+#buddyListNipple
+  opacity: 0 !important
+
+#privateChatIcon:not(.open) .chatIcon
+  filter: contrast(0) brightness(1.6) !important
+
+.avatar-head
+  background-color: transparent !important
+
+.conversation-username
+  color: $color-text !important
+
+.conversation-user-room
+  color: $color-text-dark !important
+
+.message-input
+  @extend %text-input

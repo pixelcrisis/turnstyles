@@ -9,7 +9,25 @@ module.exports = tS => {
     // load the user selected options
     refresh(this.config.theme, 'themes')
     refresh(this.config.style, 'styles')
+    // hide the upload if theme applied
+    this.hideUpload()
     this.log(`refreshed themes`)
+  }
+
+  tS.prototype.hideUpload = function () {
+    let curr = $('#ts_upload')
+    if (this.config.theme && !curr.length) {
+      $('#upload-button').after(`<div id="ts_upload"></div>`)
+      $('#ts_upload').on('click', this.fakeUpload.bind(this))
+    }
+    else if (!this.config.theme && curr.length) curr.remove()
+  }
+
+  tS.prototype.fakeUpload = function () {
+    $("#queue-header").removeClass("normal").addClass("edit")
+    let playlist = this.core.playlist
+    playlist.isFiltering && playlist.clearSearchBar()
+    playlist.queue.batchEditMode()
   }
 
   // convert a local path to a URL
