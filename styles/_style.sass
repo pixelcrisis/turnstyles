@@ -5,7 +5,8 @@ $s: $saturation
 .chat .message.mention
   border-right-color: $color-main !important
 
-.song .progress, .chat .message.mention
+.song .progress, 
+.chat .message.mention
   background: rgba($color-main, 0.2) !important
 
 #ts_slider
@@ -20,26 +21,40 @@ $s: $saturation
 .awesome-button
   filter: hue-rotate($h) brightness($b) saturate($s) !important
 
-.header-logo, .favorite-star.favorited, 
-#privateChatIcon.open .chatIcon, 
-.become-dj, .invite-dj, .song-details
+.become-dj, 
+.invite-dj,
+.header-logo, 
+.song-details,
+.favorite-star.favorited, 
+#privateChatIcon.open .chatIcon
   filter: hue-rotate($h + 50deg) brightness($b - 0.1) saturate($s) !important
 
-.tab-item:active, .tab-item.selected, #buddyListHeader,
-button.tt-button.primary.small.inset 
+#buddyListHeader,
+.tab-item:active, 
+.tab-item.selected,
+button.tt-button.primary.small.inset,
+.floating-menu .option.special:not(.disabled):hover 
   background-image: linear-gradient(to bottom right, $color-main, $color-dark)
   box-shadow: none !important
 
-#ts_panel > h3, #ts_window > h3, 
-#ts_window button, #ts_window .ts_credits a
+#ts_panel > h3, 
+#ts_window > h3, 
+#ts_window button,
+#ts_window .ts_credits a
   color: $color-main
 
-#buddyListHeader, #buddyListTitle
+#buddyListTitle,
+#buddyListHeader
   border-color: $color-main !important
 
-#buddyListTitle, button.tt-button.primary.small.inset 
+#buddyListTitle,
+button.tt-button.primary.small.inset,
+.floating-menu .option.special:not(.disabled):hover 
   color: $color-icon !important
   text-shadow: none !important
+
+.floating-menu .option.special:not(.disabled):hover
+  border: 1px solid $color-icon
 
 .score.scoregood
   color: $color-icon !important
