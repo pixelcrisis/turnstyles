@@ -4,10 +4,10 @@
   background-image: linear-gradient(to bottom, #535353, #484848) !important; }
 
 #chat-input, #song-search-input, .message-input {
+  border: none !important;
   box-shadow: none !important;
   color: #ffffff !important;
-  background: #3e3e3e !important;
-  border: 1px solid #343434 !important; }
+  background: #3e3e3e !important; }
 
 .header-bar, .tab-item:not(.selected),
 #ts_panel, #ts_window, #ts_window select, #ts_window option {
@@ -34,6 +34,18 @@
 
 .tab-item:not(.selected):not(:hover) .tab-title {
   color: #d9d9d9 !important; }
+
+::-webkit-scrollbar {
+  width: 10px; }
+
+::-webkit-scrollbar-track {
+  background: #343434; }
+
+::-webkit-scrollbar-thumb {
+  background: #4e4e4e; }
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d9d9d9; }
 
 #ts_pane, .tab-pane, #songs, .song-list, .guest-list {
   color: #ffffff !important;
@@ -191,6 +203,10 @@
 .chat .message .speaker:hover {
   color: #e1bb22 !important; }
 
+.chat .message.mention {
+  background: rgba(225, 187, 34, 0.2) !important;
+  border-right: 5px solid #e1bb22 !important; }
+
 .song-list .song .title {
   color: #ffffff !important; }
 
@@ -207,15 +223,18 @@
   background-position: 0 -216px !important; }
 
 .song .progress {
-  background: #e1bb22 !important; }
+  background: rgba(225, 187, 34, 0.2) !important; }
+
+.song:not(:hover) .score {
+  opacity: 0.5 !important; }
 
 .scoregood {
   color: #343434 !important;
-  background: lime !important; }
+  background: rgba(0, 255, 0, 0.6) !important; }
 
 .scorebad {
   color: #343434 !important;
-  background: red !important; }
+  background: rgba(255, 0, 0, 0.6) !important; }
 
 .message-history,
 .conversations-list > ul > :nth-child(even):not(.separator),
