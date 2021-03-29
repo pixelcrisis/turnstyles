@@ -29,6 +29,10 @@
 .chat .message .speaker:hover
   color: $color-main !important
 
+.chat .message.mention
+  background: rgba($color-main, 0.2) !important
+  border-right: 5px solid $color-main !important
+
 .song-list .song .title
   color: $color-text !important
 
@@ -45,12 +49,15 @@
   background-position: 0 -216px !important
 
 .song .progress
-  background: rgba($color-main, 80%) !important
+  background: rgba($color-main, 0.2) !important
+
+.song:not(:hover) .score
+  opacity: 0.5 !important
 
 .scoregood
   color: $color-base !important
-  background: rgba($color-join, 80%) !important
+  background: rgba($color-join, 0.6) !important
 
 .scorebad
   color: $color-base !important
-  background: rgba($color-left, 80%) !important
+  background: rgba($color-left, 0.6) !important
