@@ -7,7 +7,8 @@
   background: #2f2f2f; }
   #ts_panel > h3,
   #ts_window > h3 {
-    color: gold; }
+    color: gold;
+    user-select: none; }
   #ts_panel > *,
   #ts_window > * {
     margin: 0 5px;
@@ -26,14 +27,12 @@
   display: block; }
 
 #ts_panel button {
-  float: right;
+  border: none;
   color: #eaeaea;
-  margin-top: 7px;
-  padding: 5px 10px;
+  padding: 2px 5px;
   font-weight: bold;
-  border-radius: 5px;
-  background: transparent;
-  border: 1px solid #676767; }
+  font-style: italic;
+  background: transparent; }
 
 #ts_window div {
   display: block;
@@ -65,7 +64,7 @@
   text-transform: uppercase; }
 
 #ts_window .ts_credits {
-  padding-bottom: 10px; }
+  padding: 5px 0 10px; }
   #ts_window .ts_credits > * {
     margin-right: 5px; }
   #ts_window .ts_credits a {
