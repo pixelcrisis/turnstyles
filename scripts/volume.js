@@ -60,7 +60,7 @@ module.exports = tS => {
   tS.prototype.toggleMute = function () {
     this.mute = !this.mute
     $('#ts_volume').toggleClass('muted', this.mute)
-    window.turntablePlayer.setVolume(this.mute ? 0 : this.currVolume())
+    window.turntablePlayer.setVolume(this.mute ? -3 : this.currVolume())
     this.log(`turned mute ${ this.mute ? 'on' : 'off' }`)
   }
 
