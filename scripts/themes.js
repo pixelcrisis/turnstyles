@@ -32,7 +32,7 @@ module.exports = tS => {
 
   // convert a local path to a URL
   const locate = function (file, folder) {
-    let base = window.tsBase || 'https://ts.pixelcrisis.co/dist'
+    let base = window.tsBase || 'https://ts.pixelcrisis.co/build'
     let path = folder ? `${base}/${folder}` : `${base}`
     return `${path}/${file}.css`
   }

@@ -1,6 +1,6 @@
 // old bookmarklet support
 let s = document.createElement("script")
-s.src = "https://ts.pixelcrisis.co/dist/turnStyles.js?" + Math.random()
+s.src = "https://ts.pixelcrisis.co/build/turnStyles.js?" + Math.random()
 s.type = "text/javascript"
 document.body.appendChild(s)
 
