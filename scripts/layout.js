@@ -37,7 +37,7 @@ module.exports = tS => {
         <label>${toggle(self, 'chat_stat')} Song Stats</label>
         <label>${toggle(self, 'chat_snag')} User Snags</label>
         <label>${toggle(self, 'chat_join')} User Joins</label>
-        <label>${toggle(self, 'chat_gone')} User Leaves</label>
+        <label>${toggle(self, 'chat_left')} User Leaves</label>
       </div>
       <div>
         <h5>Desktop Notifications</h5>
