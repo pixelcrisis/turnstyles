@@ -2,11 +2,13 @@ $h: $hue-rotate
 $b: $brightness
 $s: $saturation
 
-.chat .message-mention
-  background: rgba($color-main, 40%) !important
+.chat .message.mention
+  border-right-color: $color-main !important
 
-.chat .message-mention,
-.song .progress, #ts_slider
+.song .progress, .chat .message.mention
+  background: rgba($color-main, 0.2) !important
+
+#ts_slider
   background: $color-main !important
 
 .current-song .details
@@ -26,7 +28,6 @@ $s: $saturation
 .tab-item:active, .tab-item.selected, #buddyListHeader,
 button.tt-button.primary.small.inset 
   background-image: linear-gradient(to bottom right, $color-main, $color-dark)
-
   box-shadow: none !important
 
 #ts_panel > h3, #ts_window > h3, 
@@ -39,3 +40,7 @@ button.tt-button.primary.small.inset
 #buddyListTitle, button.tt-button.primary.small.inset 
   color: $color-icon !important
   text-shadow: none !important
+
+.score.scoregood
+  color: $color-icon !important
+  background: $color-main !important

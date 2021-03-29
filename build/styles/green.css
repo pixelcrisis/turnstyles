@@ -1,8 +1,10 @@
-.chat .message-mention {
-  background: #00a700 !important; }
+.chat .message.mention {
+  border-right-color: #00a700 !important; }
 
-.chat .message-mention,
-.song .progress, #ts_slider {
+.song .progress, .chat .message.mention {
+  background: rgba(0, 167, 0, 0.2) !important; }
+
+#ts_slider {
   background: #00a700 !important; }
 
 .current-song .details {
@@ -34,3 +36,7 @@ button.tt-button.primary.small.inset {
 #buddyListTitle, button.tt-button.primary.small.inset {
   color: #000000 !important;
   text-shadow: none !important; }
+
+.score.scoregood {
+  color: #000000 !important;
+  background: #00a700 !important; }
