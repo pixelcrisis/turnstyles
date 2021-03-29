@@ -1,7 +1,8 @@
 .chat .message.mention {
   border-right-color: #3e88ff !important; }
 
-.song .progress, .chat .message.mention {
+.song .progress,
+.chat .message.mention {
   background: rgba(62, 136, 255, 0.2) !important; }
 
 #ts_slider {
@@ -16,26 +17,40 @@
 .awesome-button {
   filter: hue-rotate(130deg) brightness(0.8) saturate(2) !important; }
 
-.header-logo, .favorite-star.favorited,
-#privateChatIcon.open .chatIcon,
-.become-dj, .invite-dj, .song-details {
+.become-dj,
+.invite-dj,
+.header-logo,
+.song-details,
+.favorite-star.favorited,
+#privateChatIcon.open .chatIcon {
   filter: hue-rotate(180deg) brightness(0.7) saturate(2) !important; }
 
-.tab-item:active, .tab-item.selected, #buddyListHeader,
-button.tt-button.primary.small.inset {
+#buddyListHeader,
+.tab-item:active,
+.tab-item.selected,
+button.tt-button.primary.small.inset,
+.floating-menu .option.special:not(.disabled):hover {
   background-image: linear-gradient(to bottom right, #3e88ff, #2361de);
   box-shadow: none !important; }
 
-#ts_panel > h3, #ts_window > h3,
-#ts_window button, #ts_window .ts_credits a {
+#ts_panel > h3,
+#ts_window > h3,
+#ts_window button,
+#ts_window .ts_credits a {
   color: #3e88ff; }
 
-#buddyListHeader, #buddyListTitle {
+#buddyListTitle,
+#buddyListHeader {
   border-color: #3e88ff !important; }
 
-#buddyListTitle, button.tt-button.primary.small.inset {
+#buddyListTitle,
+button.tt-button.primary.small.inset,
+.floating-menu .option.special:not(.disabled):hover {
   color: #000000 !important;
   text-shadow: none !important; }
+
+.floating-menu .option.special:not(.disabled):hover {
+  border: 1px solid #000000; }
 
 .score.scoregood {
   color: #000000 !important;

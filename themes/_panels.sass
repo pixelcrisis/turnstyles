@@ -1,0 +1,53 @@
+.floating-panel-bar,
+.floating-panel-header,
+.tabbed-panel .separator,
+.sliding-nav-pane-header
+  @extend %floating-panel
+
+.floating-panel-bar,
+.floating-panel-header
+  border-top: 1px solid lighten($color-panels, 9%) !important
+  border-bottom: 1px solid lighten($color-panels, 9%) !important
+
+.tabbed-panel .separator
+  text-shadow: none !important
+  color: $color-text !important
+
+.panel-button
+  border: none !important
+  box-shadow: none !important
+  text-shadow: none !important
+  color: $color-subtle !important
+  background: transparent !important
+
+#queue-header
+  border-top: 1px solid transparent !important
+
+#queue-header .done
+  border: 1px solid $color-bg !important
+
+.sliding-nav-pane-title
+  text-shadow: none !important
+  color: $color-text !important
+
+.sliding-nav-pane-back
+  width: 41px !important
+  background: none !important
+  &::after
+    left: 0px
+    top: -10px
+    content: "x"
+    display: block
+    text-indent: 0
+    font-size: 1.3em
+    font-weight: bold
+    position: relative
+    color: $color-subtle
+
+#chat-form,
+.song-search
+  left: 36px
+
+#chat-input,
+#song-search-input
+  @extend %text-input

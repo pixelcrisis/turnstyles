@@ -1,0 +1,26 @@
+.song-list
+  .song
+    .title
+      color: $color-text !important
+    .details
+      color: $color-subtle !important
+    .progress
+      background: rgba($color-accent, 0.2) !important
+    .scoregood
+      color: $color-bg !important
+      background: rgba($color-good, 0.6) !important
+    .scorebad
+      color: $color-bg !important
+      background: rgba($color-bad, 0.6) !important
+    &:not(:hover) .score
+      opacity: 0.5 !important
+
+.playlist-go-top,
+.playlist-open-options
+  filter: invert($invert-dark) !important
+
+.playlist-go-top
+  background-position: 0 -326px !important
+
+.playlist-open-options
+  background-position: 0 -216px !important

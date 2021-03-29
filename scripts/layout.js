@@ -15,14 +15,14 @@ module.exports = tS => {
 
   const layout = self => `
     <div id="ts_panel">
-      <h3 class="ts_toggle">tS</h3>
+      <h3 class="ts_toggle">☰ tS</h3>
       <label> ${toggle(self, 'autobop')} Autobop </label>
       <label> ${toggle(self, 'nextdj')} Next DJ Spot </label>
       <label> ${toggle(self, 'pingdj')} Next DJ On Ping </label>
-      <button class="ts_toggle">ts Options</button>
+      <button class="ts_toggle">...more</button>
     </div>
     <div id="ts_window">
-      <h3 class="ts_toggle">turnStyles</h3>
+      <h3 class="ts_toggle">☰ turnStyles</h3>
       <label> ${select(self, 'theme')} </label>
       <label> ${select(self, 'style')} </label>
       <div>
@@ -37,7 +37,7 @@ module.exports = tS => {
         <label>${toggle(self, 'chat_stat')} Song Stats</label>
         <label>${toggle(self, 'chat_snag')} User Snags</label>
         <label>${toggle(self, 'chat_join')} User Joins</label>
-        <label>${toggle(self, 'chat_gone')} User Leaves</label>
+        <label>${toggle(self, 'chat_left')} User Leaves</label>
       </div>
       <div>
         <h5>Desktop Notifications</h5>

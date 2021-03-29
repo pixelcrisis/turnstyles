@@ -1,0 +1,34 @@
+.message-history
+  @extend %content-main
+
+#buddyList
+  @extend %content-alt
+
+#buddyListMain
+  box-shadow: none !important
+
+.pmGreyTop,
+.message-input-view
+  @extend %floating-panel
+
+.pmClose
+.pmHeader .nib,
+  filter: invert($invert-dark) !important
+
+#buddyListNipple
+  opacity: 0 !important
+
+#privateChatIcon:not(.open) .chatIcon
+  filter: contrast(0) brightness(1.6) !important
+
+.avatar-head
+  background-color: transparent !important
+
+.conversation-username
+  color: $color-text !important
+
+.conversation-user-room
+  color: $color-subtle !important
+
+.message-input
+  @extend %text-input
