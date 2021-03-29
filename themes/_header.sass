@@ -1,7 +1,6 @@
-.header-bar, .tab-item:not(.selected),
-#ts_panel, #ts_window, #ts_window select, #ts_window option
-  color: $color-text !important
-  background: $color-base !important
+.header-bar,
+.tab-item:not(.selected)
+  @extend %content-main
 
 .header-room-name
   font-weight: bold !important
@@ -15,23 +14,11 @@
 .tab-item.selected .tab-title
   font-weight: bold !important
   text-shadow: none !important
-  color: $color-base !important
+  color: $color-bg !important
   margin: -1px 0 0 -1px !important
 
 .tab-item:not(.selected):hover 
-  background: $color-base-alt !important
+  background: $color-bg-alt !important
 
 .tab-item:not(.selected):not(:hover) .tab-title
-  color: $color-text-dark !important
-
-
-// scrollbars 
-
-::-webkit-scrollbar
-  width: 10px
-::-webkit-scrollbar-track
-  background: $color-base
-::-webkit-scrollbar-thumb
-  background: $color-border
-::-webkit-scrollbar-thumb:hover
-  background: $color-text-dark
+  color: $color-subtle !important

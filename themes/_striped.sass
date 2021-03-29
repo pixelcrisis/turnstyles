@@ -1,0 +1,29 @@
+.chat .message:nth-child(even),
+.guest-list      > :nth-child(even):not(.separator),
+.striped-list    > :nth-child(even):not(.separator),
+.song-list > ul  > :nth-child(even):not(.separator),
+.message-history > :nth-child(even):not(.separator),
+.conversations-list>ul>:nth-child(even):not(.separator),
+.chat .message:nth-child(odd),
+.guest-list      > :nth-child(odd):not(.separator),
+.striped-list    > :nth-child(odd):not(.separator),
+.song-list > ul  > :nth-child(odd):not(.separator),
+.message-history > :nth-child(odd):not(.separator),
+.conversations-list>ul>:nth-child(odd):not(.separator)
+  border-color: $color-border !important
+
+.chat .message:nth-child(even),
+.guest-list      > :nth-child(even):not(.separator),
+.striped-list    > :nth-child(even):not(.separator),
+.song-list > ul  > :nth-child(even):not(.separator),
+.message-history > :nth-child(even):not(.separator),
+.conversations-list>ul>:nth-child(even):not(.separator)
+  @extend %content-main
+
+.chat .message:nth-child(odd),
+.guest-list      > :nth-child(odd):not(.separator),
+.striped-list    > :nth-child(odd):not(.separator),
+.song-list > ul  > :nth-child(odd):not(.separator),
+.message-history > :nth-child(odd):not(.separator),
+.conversations-list>ul>:nth-child(odd):not(.separator)
+  @extend %content-alt

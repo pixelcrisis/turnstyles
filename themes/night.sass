@@ -1,20 +1,66 @@
-$color-base: #141414 // background color
-$color-text: #cacaca // main font color
+// core colors
+$color-bg:   #141414
+$color-text: #cacaca
 
-$color-main: #e1bb22 // accent color matches gold
+// accent color
+$color-accent: #e1bb22
 
-// chat colors
-$color-snag: #ff0000
-$color-ding: #e1bb22
-$color-join: #00ff00
-$color-left: #ff0000
+$color-good: #00ff00
+$color-bad:  #ff0000
 
-// invert buttons
+// chat message colors
+$color-action: $color-bad // dj removal etc
+$color-onsnag: $color-bad
+$color-onjoin: $color-good
+$color-onleft: $color-bad
+$color-onding: $color-accent
+
+// controls inverting elements
+// set invert to 0 to disable, 1 to enable
+// brighness to 1 to disable, 10 to enable
+$invert-dark: 1 
 $brightness: 10
-$invert-btn: 1
 
-@import "mixins"
+// generated variables
+$color-bg-alt: lighten($color-bg, 3%)   // lighter background
+$color-border: lighten($color-bg, 9%)   // matching border color
+$color-subtle: darken($color-text, 15%) // darker, subtle text
+
+// floating panel colors
+$color-panels: $color-border
+
+// define our main stylings
+%content-main
+  box-shadow: none !important
+  text-shadow: none !important
+  color: $color-text !important
+  background: $color-bg !important
+
+%content-alt
+  box-shadow: none !important
+  text-shadow: none !important
+  color: $color-text !important
+  background: $color-bg-alt !important
+
+%text-input
+  border: none !important
+  box-shadow: none !important
+  color: $color-text !important
+  background: $color-bg !important
+
+// the "bars" in the tabs
+%floating-panel
+  box-shadow: none !important
+  background: $color-panels !important
+
+// end theme variables, import main styles
+
 @import "header"
-@import "rooms"
-@import "lists"
-@import "pms"
+@import "content"
+@import "panels" // inputs
+@import "buttons"
+@import "striped"
+@import "songs"
+@import "chat"
+@import "private"
+@import "options"
