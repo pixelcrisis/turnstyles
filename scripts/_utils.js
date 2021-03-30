@@ -15,8 +15,8 @@ module.exports = tS => {
   tS.prototype.holding = {}
   // use setTimeout to delay actions
   // used to prevent notification and save spam
-  tS.prototype.suspend = function (fire, delay, key) {
-    let returns = fire || () => {}
+  tS.prototype.suspend = function (cb, delay, key) {
+    let returns = cb ? cb : () => {}
     let delayed = () => { returns(); delete this.holding[key] }
 
     if (this.holding[key]) delete this.holding[key]
