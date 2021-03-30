@@ -37,6 +37,9 @@ module.exports = tS => {
   }
 
   tS.prototype.loadConfig = function () {
+    // check to see if we're an extension
+    this.chrome = !!window.tsBase
+    this.__base = window.tsBase || 'https://ts.pixelcrisis.co/build'
     // fetch any saved configs 
     let storage = window.localStorage.getItem("tsdb")
     let configs = storage ? JSON.parse(storage) : {}
