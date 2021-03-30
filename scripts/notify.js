@@ -8,7 +8,7 @@ module.exports = tS => {
     // they have notifications disabled
     if (Notification.permission === 'denied') return false
     if (Notification.permission === 'default') {
-      Notification.requestPermission()
+      if (!this.chrome) Notification.requestPermission()
       return false
     }
 
