@@ -43,9 +43,8 @@ module.exports = tS => {
 
   tS.prototype.saveVolume = function (vol) {
     vol = vol.target ? vol.target.value : vol
-    // convert our volume to 100 scale
-    let scaled = x => Math.log(x / 100) / Math.LN2 + 4
-    let volume = vol > 0 ? scaled(vol) : -3
+
+    let volume = vol > 0 ? this.scaleVol(vol) : -3
 
     // rewrite tt func to allow values below 7
     if (volume > 6) window.turntablePlayer.realVolume = this.realVolume
@@ -53,25 +52,23 @@ module.exports = tS => {
 
     window.turntablePlayer.setVolume(volume)
 
-    let save = () => { window.util.setSetting('volume', volume) }
-    this.suspend(save, 1, 'volume')
+    window.util.setSetting('volume', volume)
   }
 
   tS.prototype.toggleMute = function () {
     this.mute = !this.mute
     $('#ts_volume').toggleClass('muted', this.mute)
-    window.turntablePlayer.setVolume(this.mute ? -3 : this.currVolume())
+    window.turntablePlayer.setVolume(this.mute ? -3 : this.scaleVol(this.currVolume()))
     this.log(`turned mute ${ this.mute ? 'on' : 'off' }`)
   }
 
   tS.prototype.onVolWheel = function (e) {
-    let current = window.youtube.futureVolume
-    if (current < 0) current = this.currVolume()
+    const current = this.currVolume()
     let shifted = e.originalEvent.shiftKey ? 1 : 5
     let descend = e.originalEvent.deltaY > 0
     let updated = descend ? (current - shifted) : (current + shifted)
     
-    updated = updated < 0 ? 0 : updated
+    updated = updated < 0 ? 0 : updated > 100 ? 100 : updated
     $('#ts_slider')[0].value = updated
     this.saveVolume(updated)
     return false
