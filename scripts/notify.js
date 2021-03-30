@@ -4,9 +4,11 @@ module.exports = tS => {
 
   // send a message to chrome/notify
   tS.prototype.notifyUser = function (data, key) {
-    let packed = { type: "tsNotify", notification: data }
-    let notify = () => { window.postMessage(packed) }
-    return key ? this.suspend(notify, 10, key) : notify()
+    if (this.chrome) {
+      let packed = { type: "tsNotify", notification: data }
+      let notify = () => { window.postMessage(packed) }
+      return key ? this.suspend(notify, 10, key) : notify()
+    }
   }
 
   // post messages in chat
