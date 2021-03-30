@@ -28,6 +28,7 @@ module.exports = tS => {
     this.loadThemes()
     this.loadVolume()
     this.checkDecks()
+    if (this.config.ping_chat === true || this.config.ping_pm === true || this.config.ping_song === true) this.checkNotificationsPerms()
   }
 
   tS.prototype.onPing = function (e) {
