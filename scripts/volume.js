@@ -7,7 +7,7 @@ module.exports = tS => {
     
     if (this.config.has_vol && !hasVolume) {
       $('body').addClass('has-volume')
-      $('.header-content').append(this.htmlVolume())
+      $('.header-content').append(layout(this))
 
       let muted = $('#ts_mute')
       let range = $('#ts_slider')
@@ -24,26 +24,15 @@ module.exports = tS => {
     }
   }
 
-  tS.prototype.htmlVolume = function () {
-    return `
-    <div id="ts_volume">
-      <span id="ts_mute"></span>
-      <input id="ts_slider" type="range" 
-        min="0" max="100" value="${this.currVolume()}">
-      </input>
-      <em id="ts_muted">Muted For One Song</em>
-    </div>`
-  }
-
+  // convert TT's volume to 100 scale
   tS.prototype.currVolume = function (e) {
-    // conert TT's volume to 100 scale
     let curr = e || window.util.getSetting('volume')
     return 100 * Math.pow(2, curr - 4)
   }
 
+  // convert value and use turntabe's volume saving 
   tS.prototype.saveVolume = function (vol) {
     vol = vol.target ? vol.target.value : vol
-
     let volume = vol > 0 ? this.scaleVol(vol) : -3
 
     // rewrite tt func to allow values below 7
@@ -51,10 +40,10 @@ module.exports = tS => {
     else window.turntablePlayer.realVolume = this.currVolume
 
     window.turntablePlayer.setVolume(volume)
-
     window.util.setSetting('volume', volume)
   }
 
+  // toggle mute for one song
   tS.prototype.toggleMute = function () {
     this.mute = !this.mute
     $('#ts_volume').toggleClass('muted', this.mute)
@@ -62,6 +51,7 @@ module.exports = tS => {
     this.log(`turned mute ${ this.mute ? 'on' : 'off' }`)
   }
 
+  // handle scrolling on the volume input
   tS.prototype.onVolWheel = function (e) {
     const current = this.currVolume()
     let shifted = e.originalEvent.shiftKey ? 1 : 5
@@ -73,5 +63,16 @@ module.exports = tS => {
     this.saveVolume(updated)
     return false
   }
+
+
+  const layout = self => `
+    <div id="ts_volume">
+      <span id="ts_mute"></span>
+      <input id="ts_slider" type="range" 
+        min="0" max="100" value="${this.currVolume()}">
+      </input>
+      <em id="ts_muted">Muted For One Song</em>
+    </div>
+
 
 }

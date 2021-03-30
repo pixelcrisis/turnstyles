@@ -17,12 +17,15 @@ module.exports = tS => {
   tS.prototype.hideUpload = function () {
     let curr = $('#ts_upload')
     if (this.config.theme && !curr.length) {
+      // replace the upload button with valid theme
       $('#upload-button').after(`<div id="ts_upload"></div>`)
       $('#ts_upload').on('click', this.fakeUpload.bind(this))
     }
+    // remove the upload button if theme removed
     else if (!this.config.theme && curr.length) curr.remove()
   }
 
+  // replace upload with playlist edit functionality
   tS.prototype.fakeUpload = function () {
     $("#queue-header").removeClass("normal").addClass("edit")
     let playlist = this.core.playlist
@@ -31,11 +34,13 @@ module.exports = tS => {
   }
 
   // convert a local path to a URL
+  // used to locate themes in extensions/bookmarklet
   tS.prototype.locatePath = function (file, folder) {
     let path = folder ? `${this.__base}/${folder}` : `${this.__base}`
     return `${path}/${file}.css`
   }
 
+  // update or create a link to a theme/style
   tS.prototype.refreshURL = function (file, folder) {
     let name = folder || 'core'
     let curr = $(`link.tS-${name}`)
@@ -46,6 +51,7 @@ module.exports = tS => {
     else curr.attr("href", this.locatePath(file, folder))
   }
 
+  // create a link to theme/style if none exist
   tS.prototype.createLink = function (file, folder) {
     let name = folder || 'core'
     let link = document.createElement('link')

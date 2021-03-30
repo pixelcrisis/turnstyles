@@ -4,41 +4,41 @@ module.exports = tS => {
 
   tS.prototype.handle = function (e) {
     switch (e.command) {
-      case "pmmed":        this.onPing(e); break;
-      case "speak":        this.onChat(e); break;
-      case "add_dj":       this.onJump(e); break;
-      case "rem_dj":       this.onDrop(e); break;
-      case "newsong":      this.onSong(e); break;
-      case "snagged":      this.onSnag(e); break;
-      case "registered":   this.onJoin(e); break;
-      case "deregistered": this.onLeft(e); break;
-      case "update_votes": this.onVote(e); break;
+      case "pmmed":        this.handlePmmed(e); break;
+      case "speak":        this.handleSpeak(e); break;
+      case "add_dj":       this.handleAddDJ(e); break;
+      case "rem_dj":       this.handleRemDJ(e); break;
+      case "newsong":      this.handleTrack(e); break;
+      case "snagged":      this.handleSteal(e); break;
+      case "registered":   this.handleJoins(e); break;
+      case "deregistered": this.handleLeave(e); break;
+      case "update_votes": this.handleVotes(e); break;
     }
   }
 
   // fired when we attach to a room
-  tS.prototype.onLoad = function () {  
+  tS.prototype.handleLoad = function () {  
     this.buildPanel()
     this.runAutobop()
-    this.onSave() 
+    this.handleSave()
   }
 
   // fired when we update our config
-  tS.prototype.onSave = function () {
+  tS.prototype.handleSave = function () {
     this.loadThemes()
     this.loadVolume()
     this.checkDecks()
     if (this.config.ping_chat === true || this.config.ping_pm === true || this.config.ping_song === true) this.checkNotificationsPerms()
   }
 
-  tS.prototype.onPing = function (e) {
+  tS.prototype.handlePmmed = function (e) {
     if (this.config.ping_pm) this.notifyUser({
       head: `New PM`,
       text: e.text
     }, 'ping_pm')
   }
 
-  tS.prototype.onChat = function (e) {
+  tS.prototype.handleSpeak = function (e) {
     let search = `@${this.core.user.attributes.name.toLowerCase()}`
     let pinged = e.text.toLowerCase().indexOf(search) > -1
     if (!pinged) return 
@@ -55,7 +55,7 @@ module.exports = tS => {
     }
   }
 
-  tS.prototype.onSong = function (e) {
+  tS.prototype.handleTrack = function (e) {
     this.runAutobop()
     // turn off mute after one song
     if (this.mute) this.toggleMute()
@@ -80,18 +80,18 @@ module.exports = tS => {
     if (stat && this.config.chat_stat) this.sendToChat(stat, last.song)
   }
 
-  tS.prototype.onJump = function (e) {
+  tS.prototype.handleAddDJ = function (e) {
     // remove from next DJ if added to decks
     let me = this.user == e.user[0].userid
     if (me && this.config.nextdj) this.isSpinning()
   }
 
-  tS.prototype.onDrop = function () {
+  tS.prototype.handleRemDJ = function () {
     // check and see if we can take the spot
     this.checkDecks()
   }
 
-  tS.prototype.onSnag = function (e) {
+  tS.prototype.handleSteal = function (e) {
     this.now_playing.snag += 1
     if (this.config.chat_snag) {
       let name = this.named(e.user)
@@ -100,19 +100,19 @@ module.exports = tS => {
     }
   }
 
-  tS.prototype.onVote = function (e) {
+  tS.prototype.handleVotes = function (e) {
     this.now_playing.love = e.room.metadata.upvotes
     this.now_playing.hate = e.room.metadata.downvotes
   }
 
-  tS.prototype.onJoin = function (e) {
+  tS.prototype.handleJoins = function (e) {
     if (this.config.chat_join) {
       let name = e.user[0].name
       this.sendToChat(name, `joined.`, 'join')
     }
   }
 
-  tS.prototype.onLeft = function (e) {
+  tS.prototype.handleLeave = function (e) {
     if (this.config.chat_left) {
       let name = e.user[0].name
       this.sendToChat(name, `left.`, 'left')

@@ -30,7 +30,7 @@ module.exports = tS => {
     // bind our event handler
     this.core.addEventListener('message', this.handle.bind(this))
     this.log(`loaded room: ${this.room.roomId}`)
-    this.onLoad()
+    this.handleLoad()
   }
 
   // look for prop with key in obj
