@@ -9,6 +9,9 @@ module.exports = tS => {
   // get a username from the room object
   tS.prototype.named = user => this.room.userMap[user.id].attributes.name
 
+  // convert a value between 0-100 to one recognized by TT's volume system
+  tS.prototype.scaleVol = x => Math.log(x / 100) / Math.LN2 + 4
+
   tS.prototype.holding = {}
   // use setTimeout to delay actions
   // used to prevent notification and save spam
