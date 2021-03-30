@@ -25,8 +25,8 @@ module.exports = tS => {
 
   tS.prototype.options = {
     theme: {
-    dark: "Dark Mode",
-    night: "Night Mode",
+      dark: "Dark Mode",
+      night: "Night Mode",
     },
     style: {
       pink: "Pink",
