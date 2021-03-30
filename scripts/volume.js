@@ -63,7 +63,7 @@ module.exports = tS => {
   }
 
   tS.prototype.onVolWheel = function (e) {
-    let current = this.currVolume()
+    const current = this.currVolume()
     let shifted = e.originalEvent.shiftKey ? 1 : 5
     let descend = e.originalEvent.deltaY > 0
     let updated = descend ? (current - shifted) : (current + shifted)
