@@ -32,9 +32,10 @@ $s: $saturation
 #buddyListHeader,
 .tab-item:active, 
 .tab-item.selected,
+#ts_tabs div.active,
 button.tt-button.primary.small.inset,
 .floating-menu .option.special:not(.disabled):hover 
-  background-image: linear-gradient(to bottom right, $color-main, $color-dark)
+  background-image: linear-gradient(to bottom, $color-main, $color-dark) !important
   box-shadow: none !important
 
 #ts_panel > h3, 
@@ -42,6 +43,9 @@ button.tt-button.primary.small.inset,
 #ts_window button,
 #ts_window .ts_credits a
   color: $color-main
+
+#ts_tabs div.active
+  color: $color-icon !important
 
 #buddyListTitle,
 #buddyListHeader

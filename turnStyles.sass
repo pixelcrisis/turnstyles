@@ -66,6 +66,24 @@
     background: transparent
     text-transform: uppercase
 
+  .opts_tab, .chat_tab, .ding_tab
+    &:not(.active)
+      display: none
+
+  #ts_tabs
+    margin-bottom: 5px
+    div
+      cursor: pointer
+      padding: 3px 5px
+      font-size: 0.8em
+      font-weight: bold
+      display: inline-block
+      text-transform: uppercase
+      &.active 
+        color: #000000
+        background: gold
+
+
   .ts_credits
     padding: 5px 0 10px
     > * 
