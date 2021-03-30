@@ -32,10 +32,10 @@ module.exports = tS => {
   }
 
   tS.prototype.handlePmmed = function (e) {
-    if (this.config.ping_pm) this.notifyUser({
-      head: `New PM`,
-      text: e.text
-    }, 'ping_pm')
+    if (this.config.ping_pm) {
+      let data = { head: `New PM`, text: e.text }
+      this.notifyUser(data, 'ping_pm')
+    }
   }
 
   tS.prototype.handleSpeak = function (e) {
@@ -43,10 +43,10 @@ module.exports = tS => {
     let pinged = e.text.toLowerCase().indexOf(search) > -1
     if (!pinged) return 
 
-    if (this.config.ping_chat) this.notifyUser({
-      head: `[${this.room.roomData.name}] @${e.name}`,
-      text: e.text
-    }, 'ping_chat')
+    if (this.config.ping_chat) {
+      let head = `[${this.room.roomData.name}] @${e.name}`
+      this.notifyUser({ head, text: e.text }, 'ping_chat')
+    }
 
     // take the spot if pinged with nextdj
     if (this.holding['nextdj']) {
@@ -72,10 +72,11 @@ module.exports = tS => {
     let stat = false, last = this.last_played
     if (last.song) stat = `[🔺${last.love}🔻${last.hate}❤️${last.snag}]`
 
-    if (this.config.ping_song) this.notifyUser({
-      head: `Now Playing: ${this.now_playing.song}`,
-      text: stat || `By: ${this.now_playing.artist}`
-    })
+    if (this.config.ping_song) {
+      let head = `Now Playing: ${this.now_playing.song}`
+      let text = stat || `By: ${this.now_playing.artist}`
+      this.notifyUser({ head, text })
+    }
 
     if (stat && this.config.chat_stat) this.sendToChat(stat, last.song)
   }
