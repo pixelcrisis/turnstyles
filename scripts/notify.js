@@ -2,39 +2,38 @@
 
 module.exports = tS => {
 
-  tS.prototype.checkNotificationsPerms = function () {
-    // users browser doesn't support notifications
-    if (!('Notification' in window)) return false // alert('2005 called, they want their browser back') haha jk... unless?
-    // they have notifications disabled
+  // check for browser notification permissions
+  tS.prototype.notifyAuth = function () {
+    let configs = this.configs
+    let running = configs.ping_chat || configs.ping_pmg || configs.ping_song
+    // return if nothing to notify, chrome is available or Notification isn't
+    if (!running || this.chrome || !(!'Notification' in window)) return false
+    // can't do anything with disabled permissions
     if (Notification.permission === 'denied') return false
     if (Notification.permission === 'default') {
-      if (!this.chrome) Notification.requestPermission()
+      Notification.requestPermission()
+      this.log(`requesting notification permission`)
       return false
     }
-
     return true
   }
 
-  // send a message to chrome/notify
+  // send a user notifications
   tS.prototype.notifyUser = function (data, key) {
-    if (document.hasFocus()) return // page focused, don't notify.
-    if (this.chrome) {
-      let packed = { type: "tsNotify", notification: data }
-      let notify = () => { window.postMessage(packed) }
-      return key ? this.suspend(notify, 10, key) : notify()
-    } else {
-      if (!this.checkNotificationsPerms()) return // notifs are disabled, unsupported or haven't been accepted yet.
-      const iconUrl = 'https://ts.pixelcrisis.co/build/images/icon128.png'
-      const notify = () => {
-        const notif = new Notification(data.head, { icon: iconUrl, body: data.text })
-        notif.onclick = () => {
-          window.focus()
-          notif.close()
-        }
-      }
+    if (document.hasFocus()) return // page focused, don't notify
+    let packaged = popup(this, data)
+    let notified = () => { window.postMessage(packaged) }
 
-      return key ? this.suspend(notify, 10, key) : notify()
+    if (!this.chrome) {
+      if (!this.notifyAuth()) return // no browser permissions
+      notified = () => {
+        const sent = new Notification(data.head, packaged)
+        sent.onclick = () => { window.focus(); sent.close() }
+      }
     }
+
+    // only send 1 notification per 10 seconds if suspend key provided
+    return key ? this.suspend(notified, 10, key) : notified()
   }
 
   // post messages in chat
@@ -51,5 +50,11 @@ module.exports = tS => {
       </em>
     </div>
   `
+
+  const popup = (self, data) => {
+    const icon = "https://ts.pixelcrisis.co/build/images/icon128.png"
+    if (!self.chrome) return { icon, body: data.text }
+    else return { type: "tsNotify", notification: data }
+  }
 
 }
