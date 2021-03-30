@@ -1,6 +1,17 @@
 // styling for the options panel
 #ts_panel, 
-#ts_window, 
+#ts_window
+  @extend %content-main
+
 #ts_window select, 
 #ts_window option
-  @extend %content-main
+  @extend %floating-panel
+
+#ts_panel button
+  color: $color-text
+
+#ts_window
+  small, h5
+    color: $color-subtle
+  select
+    border-color: $panel-border !important
