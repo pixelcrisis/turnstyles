@@ -4,10 +4,10 @@ module.exports = tS => {
 
   // check for browser notification permissions
   tS.prototype.notifyAuth = function () {
-    let configs = this.configs
+    let configs = this.config
     let running = configs.ping_chat || configs.ping_pmg || configs.ping_song
     // return if nothing to notify, chrome is available or Notification isn't
-    if (!running || this.chrome || !(!'Notification' in window)) return false
+    if (!running || this.chrome || !('Notification' in window)) return false
     // can't do anything with disabled permissions
     if (Notification.permission === 'denied') return false
     if (Notification.permission === 'default') {

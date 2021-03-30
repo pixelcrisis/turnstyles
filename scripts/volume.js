@@ -69,10 +69,11 @@ module.exports = tS => {
     <div id="ts_volume">
       <span id="ts_mute"></span>
       <input id="ts_slider" type="range" 
-        min="0" max="100" value="${this.currVolume()}">
+        min="0" max="100" value="${self.currVolume()}">
       </input>
       <em id="ts_muted">Muted For One Song</em>
     </div>
+    `
 
 
 }
