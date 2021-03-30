@@ -9,6 +9,12 @@ module.exports = tS => {
   // get a username from the room object
   tS.prototype.named = user => this.room.userMap[user.id].attributes.name
 
+  // get a username from the buddyList
+  tS.prototype.buddy = id => {
+    let buds = window.turntable.buddyList.pmWindows
+    return buds[id] ? buds[id].otherUser.attributes.name : false
+  }
+
   // convert a value from between 0-100
   // to one recognized by TT's volume system
   tS.prototype.scaleVol = x => Math.log(x / 100) / Math.LN2 + 4
