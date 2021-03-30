@@ -33,7 +33,10 @@ module.exports = tS => {
 
   tS.prototype.handlePmmed = function (e) {
     if (this.config.ping_pm) {
-      let data = { head: `New PM`, text: e.text }
+      const pmWindowList = window.turntable.buddyList.pmWindows
+      let user
+      if (e.senderid in pmWindowList) user = pmWindowList[e.senderid].otherUser.attributes.name
+      let data = { head: `New PM${user ? ' from: ' + user : ''}`, text: e.text }
       this.notifyUser(data, 'ping_pm')
     }
   }
