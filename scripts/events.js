@@ -59,18 +59,11 @@ module.exports = tS => {
     this.runAutobop()
     // turn off mute after one song
     if (this.mute) this.toggleMute()
-
-    // save now playing as last played
-    if (!this.now_playing) this.last_played = {}
-    else this.last_played = { ...this.now_playing }
-    // and save the current song now playing
-    this.now_playing = {
-      love: 0, hate: 0, snag: 0, ...e.room.metadata.current_song.metadata
-    }
+    // save the song to the object for stats
+    this.cacheTrack(e.room.metadata.current_song.metadata)
 
     // get the stats of last played
-    let stat = false, last = this.last_played
-    if (last.song) stat = `[🔺${last.love}🔻${last.hate}❤️${last.snag}]`
+    let stat = this.cachedSong()
 
     if (this.config.ping_song) {
       let head = `Now Playing: ${this.now_playing.song}`

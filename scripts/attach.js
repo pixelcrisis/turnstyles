@@ -18,11 +18,7 @@ module.exports = tS => {
     if (!this.ttfm) return again()
 
     // record the current song if any
-    if (this.room.currentSong) this.now_playing = { 
-      snag: 0, hate: 0, 
-      love: this.room.upvoters.length,
-      ...this.room.currentSong.metadata
-    }
+    this.cacheTrack(this.room.currentSong, this.room.upvoters.length)
 
     // duplicate realVolume for our volume overrides
     this.realVolume = window.turntablePlayer.realVolume
