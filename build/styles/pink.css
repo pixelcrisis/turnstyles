@@ -1,12 +1,16 @@
+.chat .message:not(.stat) .subject:hover,
+.chat .message:not(.stat) .speaker:hover {
+  color: #e287e5 !important; }
+
 .chat .message.mention {
-  border-right-color: #d546d5 !important; }
+  border-right-color: #d554da !important; }
 
 .song .progress,
 .chat .message.mention {
-  background: rgba(213, 70, 213, 0.2) !important; }
+  background: rgba(213, 84, 218, 0.2) !important; }
 
 #ts_slider {
-  background: #d546d5 !important; }
+  background: #d554da !important; }
 
 .current-song .details {
   color: #ffffff !important; }
@@ -15,7 +19,7 @@
   filter: grayscale(1) !important; }
 
 .awesome-button {
-  filter: hue-rotate(200deg) brightness(0.8) saturate(2) !important; }
+  filter: hue-rotate(200deg) brightness(0.8) saturate(2); }
 
 .become-dj,
 .invite-dj,
@@ -23,35 +27,50 @@
 .song-details,
 .favorite-star.favorited,
 #privateChatIcon.open .chatIcon {
-  filter: hue-rotate(250deg) brightness(0.7) saturate(2) !important; }
+  filter: hue-rotate(250deg) brightness(0.7) saturate(2); }
 
 #buddyListHeader,
 .tab-item:active,
 .tab-item.selected,
+#ts_tabs div.active,
+.pmGreyTop.new-message,
+#settings .option:hover,
 button.tt-button.primary.small.inset,
-.floating-menu .option.special:not(.disabled):hover {
-  background-image: linear-gradient(to bottom right, #d546d5, #d546d5);
+.options-menu .options .option:hover,
+.floating-menu .option:not(.split-option):not(.disabled):hover {
+  background-image: linear-gradient(to bottom, #d554da, #c82dce) !important;
   box-shadow: none !important; }
+
+#settings .option.selected,
+.floating-menu .option.active,
+.floating-menu .option.selected {
+  color: #ffffff !important;
+  background: #c82dce !important; }
 
 #ts_panel > h3,
 #ts_window > h3,
 #ts_window button,
 #ts_window .ts_credits a {
-  color: #d546d5; }
+  color: #e287e5; }
+
+#ts_tabs div.active {
+  color: #ffffff !important; }
 
 #buddyListTitle,
 #buddyListHeader {
-  border-color: #d546d5 !important; }
+  border-color: #d554da !important; }
 
 #buddyListTitle,
+#settings .option:hover a,
+#settings .option:hover .description,
 button.tt-button.primary.small.inset,
 .floating-menu .option.special:not(.disabled):hover {
-  color: #000000 !important;
+  color: #ffffff !important;
   text-shadow: none !important; }
 
-.floating-menu .option.special:not(.disabled):hover {
-  border: 1px solid #000000; }
-
 .score.scoregood {
-  color: #000000 !important;
-  background: #d546d5 !important; }
+  color: #ffffff !important;
+  background: #d554da !important; }
+
+.overlay .modal {
+  background: #d554da !important; }

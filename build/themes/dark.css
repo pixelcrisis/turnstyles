@@ -9,9 +9,7 @@
 .song-list > ul > :nth-child(even):not(.separator),
 .message-history > :nth-child(even):not(.separator),
 .conversations-list > ul > :nth-child(even):not(.separator), .message-history, #ts_panel,
-#ts_window,
-#ts_window select,
-#ts_window option {
+#ts_window {
   box-shadow: none !important;
   text-shadow: none !important;
   color: #eaeaea !important;
@@ -38,8 +36,10 @@
 .floating-panel-bar,
 .floating-panel-header,
 .tabbed-panel .separator,
-.sliding-nav-pane-header, .pmGreyTop,
-.message-input-view {
+.sliding-nav-pane-header, .message-input-view,
+.pmGreyTop:not(.new-message), #ts_tabs div,
+#ts_window select,
+#ts_window option {
   box-shadow: none !important;
   background: #4b4b4b !important; }
 
@@ -49,13 +49,9 @@
 .tab-item {
   box-shadow: none !important; }
 
-.tab-item.selected .tab-icon {
-  filter: invert(1) !important; }
-
 .tab-item.selected .tab-title {
   font-weight: bold !important;
-  text-shadow: none !important;
-  color: #343434 !important;
+  color: #ffffff !important;
   margin: -1px 0 0 -1px !important; }
 
 .tab-item:not(.selected):hover {
@@ -114,6 +110,73 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: #c4c4c4; }
+
+#settings .option {
+  font-weight: bold;
+  box-shadow: none !important;
+  background: #4b4b4b !important;
+  border-bottom: 1px solid #626262 !important; }
+  #settings .option a,
+  #settings .option .description {
+    color: #eaeaea !important; }
+  #settings .option:hover,
+  #settings .option .selected {
+    background: #e1bb22 !important; }
+    #settings .option:hover a,
+    #settings .option:hover .description,
+    #settings .option .selected a,
+    #settings .option .selected .description {
+      color: #343434 !important; }
+
+.options-menu .nib {
+  filter: invert(1) !important;
+  border-color: #9d9d9d !important;
+  background-color: #b4b4b4 !important; }
+
+.options-menu.closed .nib {
+  border-color: transparent !important;
+  background-color: transparent !important; }
+
+.options-menu .options {
+  box-shadow: none !important;
+  background: #4b4b4b !important;
+  border-color: #626262 !important; }
+  .options-menu .options .option {
+    font-weight: bold;
+    color: #eaeaea !important; }
+    .options-menu .options .option:hover {
+      color: #343434 !important;
+      background: #e1bb22 !important; }
+
+.floating-menu {
+  box-shadow: none !important;
+  background: #343434 !important;
+  border: 1px solid #343434 !important; }
+  .floating-menu .option {
+    box-shadow: none !important;
+    color: #eaeaea !important;
+    border-top: 1px solid #626262 !important; }
+    .floating-menu .option:not(.active), .floating-menu .option:not(.special) {
+      background: #4b4b4b !important; }
+    .floating-menu .option.active, .floating-menu .option.special {
+      background: #3c3c3c !important; }
+    .floating-menu .option.selected, .floating-menu .option:not(.split-option):not(.disabled):hover {
+      color: #ffffff !important;
+      background: #e1bb22 !important; }
+    .floating-menu .option .playlist-queue,
+    .floating-menu .option .playlist-queue-plus {
+      filter: brightness(10) !important; }
+    .floating-menu .option .playlist-queue {
+      background-position: 0 -76px !important; }
+    .floating-menu .option .playlist-queue-plus {
+      background-position: 0 -92px !important; }
+
+.overlay .modal {
+  background: #e1bb22 !important; }
+  .overlay .modal .content-container {
+    background: #343434 !important; }
+    .overlay .modal .content-container .content {
+      color: #eaeaea !important; }
 
 .floating-panel-bar,
 .floating-panel-header {
@@ -213,11 +276,11 @@
 
 .song-list .song .scoregood {
   color: #343434 !important;
-  background: rgba(55, 167, 55, 0.6) !important; }
+  background: rgba(122, 241, 120, 0.6) !important; }
 
 .song-list .song .scorebad {
   color: #343434 !important;
-  background: rgba(175, 31, 31, 0.6) !important; }
+  background: rgba(230, 86, 86, 0.6) !important; }
 
 .song-list .song:not(:hover) .score {
   opacity: 0.5 !important; }
@@ -232,29 +295,33 @@
 .playlist-open-options {
   background-position: 0 -216px !important; }
 
-.chat .message .subject:hover,
-.chat .message .speaker:hover {
-  color: #e1bb22 !important; }
+.chat .message.stat .subject:hover,
+.chat .message.stat .speaker:hover {
+  color: #eaeaea !important; }
 
-.chat .message.action {
-  background: rgba(175, 31, 31, 0.2) !important;
-  border-right: 5px solid #af1f1f !important; }
+.chat .message:not(.stat) .subject:hover,
+.chat .message:not(.stat) .speaker:hover {
+  color: #e1bb22 !important; }
 
 .chat .message.mention {
   background: rgba(225, 187, 34, 0.2) !important;
   border-right: 5px solid #e1bb22 !important; }
 
+.chat .message.action {
+  color: #e65656 !important;
+  border-right: 5px solid #e65656 !important; }
+
 .chat .message.join {
-  background: rgba(55, 167, 55, 0.2) !important;
-  border-right: 5px solid #37a737 !important; }
+  color: #7af178 !important;
+  border-right: 5px solid #7af178 !important; }
 
 .chat .message.snag {
-  background: rgba(167, 55, 117, 0.2) !important;
-  border-right: 5px solid #a73775 !important; }
+  color: #f16e98 !important;
+  border-right: 5px solid #f16e98 !important; }
 
 .chat .message.left {
-  background: rgba(175, 31, 31, 0.2) !important;
-  border-right: 5px solid #af1f1f !important; }
+  color: #e65656 !important;
+  border-right: 5px solid #e65656 !important; }
 
 #buddyListMain {
   box-shadow: none !important; }
@@ -276,3 +343,15 @@
 
 .conversation-user-room {
   color: #c4c4c4 !important; }
+
+#ts_tabs .active {
+  background: #e1bb22 !important; }
+
+#ts_panel button {
+  color: #eaeaea; }
+
+#ts_window small, #ts_window h5 {
+  color: #c4c4c4; }
+
+#ts_window select {
+  border-color: #626262 !important; }
