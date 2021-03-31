@@ -18,19 +18,15 @@ module.exports = tS => {
     if (!this.ttfm) return again()
 
     // record the current song if any
-    if (this.room.currentSong) this.now_playing = { 
-      snag: 0, hate: 0, 
-      love: this.room.upvoters.length,
-      ...this.room.currentSong.metadata
-    }
+    this.cacheTrack(this.room.currentSong, this.room.upvoters.length)
+    for (let id of this.room.djids) this.cacheNewDJ(id)
 
     // duplicate realVolume for our volume overrides
     this.realVolume = window.turntablePlayer.realVolume
 
     // bind our event handler
     this.core.addEventListener('message', this.handle.bind(this))
-    this.log(`loaded room: ${this.room.roomId}`)
-    this.onLoad()
+    this.handleLoad()
   }
 
   // look for prop with key in obj

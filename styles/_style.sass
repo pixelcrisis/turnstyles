@@ -1,9 +1,10 @@
-$h: $hue-rotate
-$b: $brightness
-$s: $saturation
-
-.chat .message.mention
-  border-right-color: $color-main !important
+.chat .message
+  &:not(.stat)
+    .subject:hover,
+    .speaker:hover
+      color: $color-head !important
+  &.mention
+    border-right-color: $color-main !important
 
 .song .progress, 
 .chat .message.mention
@@ -13,13 +14,13 @@ $s: $saturation
   background: $color-main !important
 
 .current-song .details
-  color: $color-song !important
+  color: $color-text !important
 
 .lame-button
   filter: grayscale(1) !important
 
 .awesome-button
-  filter: hue-rotate($h) brightness($b) saturate($s) !important
+  filter: $button
 
 .become-dj, 
 .invite-dj,
@@ -27,35 +28,50 @@ $s: $saturation
 .song-details,
 .favorite-star.favorited, 
 #privateChatIcon.open .chatIcon
-  filter: hue-rotate($h + 50deg) brightness($b - 0.1) saturate($s) !important
+  filter: $accent
 
 #buddyListHeader,
 .tab-item:active, 
 .tab-item.selected,
+#ts_tabs div.active,
+.pmGreyTop.new-message,
+#settings .option:hover,
 button.tt-button.primary.small.inset,
-.floating-menu .option.special:not(.disabled):hover 
-  background-image: linear-gradient(to bottom right, $color-main, $color-dark)
+.options-menu .options .option:hover,
+.floating-menu .option:not(.split-option):not(.disabled):hover
+  background-image: linear-gradient(to bottom, $color-main, $color-dark) !important
   box-shadow: none !important
+
+#settings .option.selected,
+.floating-menu .option.active,
+.floating-menu .option.selected,
+  color: $color-text !important
+  background: $color-dark !important
 
 #ts_panel > h3, 
 #ts_window > h3, 
 #ts_window button,
 #ts_window .ts_credits a
-  color: $color-main
+  color: $color-head
+
+#ts_tabs div.active
+  color: $color-text !important
 
 #buddyListTitle,
 #buddyListHeader
   border-color: $color-main !important
 
 #buddyListTitle,
+#settings .option:hover a,
+#settings .option:hover .description,
 button.tt-button.primary.small.inset,
 .floating-menu .option.special:not(.disabled):hover 
-  color: $color-icon !important
+  color: $color-text !important
   text-shadow: none !important
 
-.floating-menu .option.special:not(.disabled):hover
-  border: 1px solid $color-icon
-
 .score.scoregood
-  color: $color-icon !important
+  color: $color-text !important
+  background: $color-main !important
+
+.overlay .modal
   background: $color-main !important

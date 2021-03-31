@@ -17,16 +17,17 @@ module.exports = tS => {
     ping_song: false,
     ping_chat: false,
 
-    chat_stat: true,
-    chat_snag: true,
-    chat_join: true,
-    chat_left: true
+    chat_song: false,
+    chat_spun: false,
+    chat_snag: false,
+    chat_join: false,
+    chat_left: false
   }
 
   tS.prototype.options = {
     theme: {
-    dark: "Dark Mode",
-    night: "Night Mode",
+      dark: "Dark Mode",
+      night: "Night Mode",
     },
     style: {
       pink: "Pink",
@@ -36,7 +37,10 @@ module.exports = tS => {
     }
   }
 
-  tS.prototype.loadConfig = function () {
+  tS.prototype.loadConfig = function () { 
+    this.buildCache()
+    this.chrome = !!window.tsBase // check if we're an extension
+    this.__base = window.tsBase || 'https://ts.pixelcrisis.co/build'
     // fetch any saved configs 
     let storage = window.localStorage.getItem("tsdb")
     let configs = storage ? JSON.parse(storage) : {}
@@ -45,30 +49,20 @@ module.exports = tS => {
     this.log('loaded config')
   }
 
-  tS.prototype.saveConfig = function () {
-    this.config.theme     = $("#ts_theme").val()
-    this.config.style     = $("#ts_style").val()
+  tS.prototype.saveConfig = function (e) {
+    let toggle = e.target.type == "checkbox"
+    let option = e.target.id.split('ts_').join('')
+    let saving = toggle ? e.target.checked : e.target.value
 
-    this.config.autobop   = $("#ts_autobop").is(':checked')
+    // mirror values between hot bar and main option window
+    let mirror = $(`#ts_panel #${e.target.id}, #ts_window #${e.target.id}`)
+    mirror.prop(toggle ? 'checked' : 'value', saving)
 
-    this.config.nextdj    = $('#ts_nextdj').is(':checked')
-    this.config.pingdj    = $('#ts_pingdj').is(':checked')
-    
-    this.config.has_vol   = $('#ts_has_vol').is(':checked')
-
-    this.config.ping_pm   = $('#ts_ping_pm').is(':checked')
-    this.config.ping_chat = $('#ts_ping_chat').is(':checked')
-    this.config.ping_song = $('#ts_ping_song').is(':checked')
-
-    this.config.chat_stat = $('#ts_chat_stat').is(':checked')
-    this.config.chat_snag = $('#ts_chat_snag').is(':checked')
-    this.config.chat_join = $('#ts_chat_join').is(':checked')
-    this.config.chat_left = $('#ts_chat_left').is(':checked')
-
+    this.config[option] = saving
     let stored = JSON.stringify(this.config)
     window.localStorage.setItem("tsdb", stored)
     this.log('saved config')
-    this.onSave()
+    this.handleSave(option)
   }
 
 }

@@ -1,25 +1,21 @@
 // core colors
 $color-bg:   #343434
 $color-text: #eaeaea
+$color-tabs: #ffffff
+
+$color-good: #7af178
+$color-bad:  #e65656
+$color-love: #f16e98
 
 // accent color
 $color-accent: #e1bb22
 
-$color-good: #37a737
-$color-bad:  #af1f1f
-
 // chat message colors
 $color-action: $color-bad // dj removal etc
-$color-onsnag: #a73775
+$color-onsnag: $color-love
 $color-onjoin: $color-good
 $color-onleft: $color-bad
 $color-onding: $color-accent
-
-// controls inverting elements
-// set invert to 0 to disable, 1 to enable
-// brighness to 1 to disable, 10 to enable
-$invert-dark: 1 
-$brightness: 10
 
 // generated variables
 $color-bg-alt: lighten($color-bg, 3%)   // lighter background
@@ -28,6 +24,16 @@ $color-subtle: darken($color-text, 15%) // darker, subtle text
 
 // floating panel colors
 $color-panels: $color-border
+$panel-border: lighten($color-border, 9%)
+
+// controls inverting elements
+// set invert to 0 to disable, 1 to enable
+// brighness to 1 to disable, 10 to enable
+// remove invert() to disable panels reset
+$invert-dark: 1 
+$brightness: 10
+$inverted-panels: invert($color-panels)
+$inverted-border: invert($panel-border)
 
 // define our main stylings
 %content-main
@@ -57,6 +63,7 @@ $color-panels: $color-border
 
 @import "header"
 @import "content"
+@import "popups"
 @import "panels" // inputs
 @import "buttons"
 @import "striped"

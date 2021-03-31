@@ -1,9 +1,9 @@
-$color-song: #ffffff
-$color-icon: #000000
-$color-main: #3e88ff
-$color-dark: #2361de
-$hue-rotate: 130deg
-$brightness: 0.8
-$saturation: 2
+$color-text: #ffffff
+$color-main: #3a88ff
+$color-dark: darken($color-main, 10%)
+$color-head: mix($color-text, $color-main, 30%)
 
-@import 'style'
+$button: hue-rotate(130deg) brightness(0.8) saturate(2)
+$accent: hue-rotate(180deg) brightness(0.65) saturate(4)
+
+@import "style"
