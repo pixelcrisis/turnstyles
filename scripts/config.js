@@ -68,6 +68,11 @@ module.exports = tS => {
     this.config.chat_join = $('#ts_chat_join').is(':checked')
     this.config.chat_left = $('#ts_chat_left').is(':checked')
 
+    // mirror values for duplicated hot bar options 
+    $('#ts_nextdj').prop('checked', this.config.nextdj)
+    $('#ts_pingdj').prop('checked', this.config.pingdj)
+    $('#ts_autobop').prop('checked', this.config.autobop)
+
     let stored = JSON.stringify(this.config)
     window.localStorage.setItem("tsdb", stored)
     this.log('saved config')
