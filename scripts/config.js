@@ -17,10 +17,11 @@ module.exports = tS => {
     ping_song: false,
     ping_chat: false,
 
-    chat_stat: true,
-    chat_snag: true,
-    chat_join: true,
-    chat_left: true
+    chat_song: false,
+    chat_spun: false,
+    chat_snag: false,
+    chat_join: false,
+    chat_left: false
   }
 
   tS.prototype.options = {
@@ -36,9 +37,9 @@ module.exports = tS => {
     }
   }
 
-  tS.prototype.loadConfig = function () {
-    // check to see if we're an extension
-    this.chrome = !!window.tsBase
+  tS.prototype.loadConfig = function () { 
+    this.buildCache()
+    this.chrome = !!window.tsBase // check if we're an extension
     this.__base = window.tsBase || 'https://ts.pixelcrisis.co/build'
     // fetch any saved configs 
     let storage = window.localStorage.getItem("tsdb")

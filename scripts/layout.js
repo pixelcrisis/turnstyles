@@ -46,7 +46,9 @@ module.exports = tS => {
         <label> ${toggle(self, 'pingdj')} Next DJ On Ping (Queues)</label>
       </div>
       <div class="chat_tab">
-        <label>${toggle(self, 'chat_stat')} Song Stats</label>
+        <label>${toggle(self, 'chat_song')} Last Song Stats</label>
+        <label>${toggle(self, 'chat_spun')} Dropped DJ Stats</label>
+        <br>
         <label>${toggle(self, 'chat_snag')} User Snags</label>
         <label>${toggle(self, 'chat_join')} User Joins</label>
         <label>${toggle(self, 'chat_left')} User Leaves</label>

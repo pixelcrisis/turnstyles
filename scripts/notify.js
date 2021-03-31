@@ -43,7 +43,7 @@ module.exports = tS => {
   }
 
   const msg = (bold, text, type) => `
-    <div class="message ${type}">
+    <div class="message ts ${type}">
       <em>
         <span class="subject">${bold}</span>
         <span class="text">${text}</span>

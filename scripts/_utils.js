@@ -7,12 +7,18 @@ module.exports = tS => {
   }
 
   // get a username from the room object
-  tS.prototype.named = user => this.room.userMap[user.id].attributes.name
+  tS.prototype.named = id => this.room.userMap[id].attributes.name
 
   // get a username from the buddyList
   tS.prototype.buddy = id => {
     let buds = window.turntable.buddyList.pmWindows
     return buds[id] ? buds[id].otherUser.attributes.name : false
+  }
+
+  // check if a user was pinged
+  tS.prototype.pinged = function (str) {
+    let search = `@${this.core.user.attributes.name.toLowerCase()}`
+    return str.toLowerCase().indexOf(search) > -1
   }
 
   // convert a value from between 0-100

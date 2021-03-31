@@ -25,7 +25,6 @@ module.exports = tS => {
 
     // bind our event handler
     this.core.addEventListener('message', this.handle.bind(this))
-    this.log(`loaded room: ${this.room.roomId}`)
     this.handleLoad()
   }
 
