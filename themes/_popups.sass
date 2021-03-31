@@ -1,0 +1,37 @@
+.options-menu 
+  .nib
+    filter: invert($invert-dark) !important
+    border-color: $inverted-border !important
+    background-color: $inverted-panels !important
+  &.closed .nib
+    border-color: transparent !important
+    background-color: transparent !important
+  .options
+    box-shadow: none !important
+    background: $color-panels !important
+    border-color: $panel-border !important
+    .option
+      font-weight: bold
+      color: $color-text !important
+      &:hover
+        color: $color-bg !important
+        background: $color-accent !important
+
+.floating-menu
+  box-shadow: none !important
+  background: $color-bg !important
+  border: 1px solid $color-bg !important
+  .option
+    box-shadow: none !important
+    border-top: 1px solid $panel-border !important
+    &:not(.active), 
+    &:not(.special)
+      color: $color-text !important
+      background: $color-panels !important
+    &.active, 
+    &.special
+      color: $color-bg !important
+      background: darken($color-accent, 10%) !important
+    &:not(.split-option):not(.disabled):hover
+      color: $color-bg !important
+      background: $color-accent !important

@@ -34,9 +34,15 @@ $s: $saturation
 .tab-item.selected,
 #ts_tabs div.active,
 button.tt-button.primary.small.inset,
-.floating-menu .option.special:not(.disabled):hover 
+.options-menu .options .option:hover,
+.floating-menu .option:not(.split-option):not(.disabled):hover
   background-image: linear-gradient(to bottom, $color-main, $color-dark) !important
   box-shadow: none !important
+
+.floating-menu .option.active,
+.floating-menu .option.special
+  color: $color-song !important
+  background: $color-dark !important
 
 #ts_panel > h3, 
 #ts_window > h3, 
