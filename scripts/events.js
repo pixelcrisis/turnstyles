@@ -24,11 +24,11 @@ module.exports = tS => {
   }
 
   // fired when we update our config
-  tS.prototype.handleSave = function () {
-    this.loadThemes()
-    this.loadVolume()
-    this.checkDecks()
-    this.notifyAuth()
+  tS.prototype.handleSave = function (opt) {
+    if (!opt || opt == 'nextdj' )this.checkDecks()
+    if (!opt || opt == 'has_vol') this.loadVolume()
+    if (!opt || opt.indexOf('ping_') === 0) this.notifyAuth()
+    if (!opt || opt == 'theme' || opt == 'style') this.loadThemes()
   }
 
   tS.prototype.handlePmmed = function (e) {

@@ -43,8 +43,7 @@ module.exports = tS => {
         <label> ${toggle(self, 'has_vol')} Control Volume </label>
         <br>
         <label> ${toggle(self, 'nextdj')} Next DJ Spot </label>
-        <h5>For Queues:</h5>
-        <label> ${toggle(self, 'pingdj')} Next DJ On Ping </label>
+        <label> ${toggle(self, 'pingdj')} Next DJ On Ping (Queues)</label>
       </div>
       <div class="chat_tab">
         <label>${toggle(self, 'chat_stat')} Song Stats</label>
