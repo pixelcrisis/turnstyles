@@ -76,7 +76,7 @@ module.exports = tS => {
     }
     if (this.config.chat_song && stat) {
       let last = this.last_played
-      this.sendToChat(stat, `${last.song} by ${last.artist}`)
+      this.sendToChat(stat, `${last.song} by ${last.artist}`, 'stat')
     }
 
     // bop new song
@@ -96,7 +96,7 @@ module.exports = tS => {
       let name = e.user[0].name
       let text = `- is done spinning!`
       let stat = this.clearOldDJ(e.user[0].userid)
-      this.sendToChat(`${name} - ${stat}`, text)
+      this.sendToChat(`${name} - ${stat}`, text, 'stat')
     }
   }
 

@@ -1,5 +1,10 @@
-.chat .message.mention
-  border-right-color: $color-main !important
+.chat .message
+  &:not(.stat)
+    .subject:hover,
+    .speaker:hover
+      color: $color-head !important
+  &.mention
+    border-right-color: $color-main !important
 
 .song .progress, 
 .chat .message.mention
@@ -44,7 +49,7 @@ button.tt-button.primary.small.inset,
 #ts_window > h3, 
 #ts_window button,
 #ts_window .ts_credits a
-  color: $color-main
+  color: $color-head
 
 #ts_tabs div.active
   color: $color-text !important

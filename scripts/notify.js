@@ -42,8 +42,8 @@ module.exports = tS => {
     this.view.updateChatScroll()
   }
 
-  const msg = (bold, text, type) => `
-    <div class="message ts ${type}">
+  const msg = (bold, text, type = "") => `
+    <div class="message ${type}">
       <em>
         <span class="subject">${bold}</span>
         <span class="text">${text}</span>
