@@ -3,6 +3,7 @@
 module.exports = tS => {
 
   tS.prototype.handle = function (e) {
+    if (e.command) console.log(e.command)
     switch (e.command) {
       case "pmmed":        this.handlePmmed(e); break;
       case "speak":        this.handleSpeak(e); break;
@@ -103,7 +104,7 @@ module.exports = tS => {
   tS.prototype.handleSteal = function (e) {
     this.now_playing.snag += 1
     if (this.config.chat_snag) {
-      let name = this.named(e.user.id)
+      let name = this.named(e.userid)
       let text = `has snagged this track!`
       this.sendToChat(name, text, 'snag')
     }

@@ -7,12 +7,15 @@ module.exports = tS => {
   }
 
   // get a username from the room object
-  tS.prototype.named = id => this.room.userMap[id].attributes.name
+  tS.prototype.named = id => {
+    let user = window.turntable.topViewController.userMap[id]
+    return user ? user.attributes.name : 'Someone'
+  }
 
   // get a username from the buddyList
   tS.prototype.buddy = id => {
-    let buds = window.turntable.buddyList.pmWindows
-    return buds[id] ? buds[id].otherUser.attributes.name : false
+    let buds = window.turntable.buddyList.pmWindows[id]
+    return buds ? buds.otherUser.attributes.name : false
   }
 
   // check if a user was pinged
