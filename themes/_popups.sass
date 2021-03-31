@@ -23,15 +23,24 @@
   border: 1px solid $color-bg !important
   .option
     box-shadow: none !important
+    color: $color-text !important
     border-top: 1px solid $panel-border !important
     &:not(.active), 
     &:not(.special)
-      color: $color-text !important
       background: $color-panels !important
     &.active, 
     &.special
-      color: $color-bg !important
-      background: darken($color-accent, 10%) !important
+      background: $color-bg-alt !important
     &:not(.split-option):not(.disabled):hover
-      color: $color-bg !important
+      color: $color-tabs !important
       background: $color-accent !important
+
+    .playlist-queue, 
+    .playlist-queue-plus
+      filter: brightness($brightness) !important
+
+    .playlist-queue
+      background-position: 0 -76px !important
+
+    .playlist-queue-plus
+      background-position: 0 -92px !important

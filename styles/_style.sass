@@ -13,7 +13,7 @@ $s: $saturation
   background: $color-main !important
 
 .current-song .details
-  color: $color-song !important
+  color: $color-text !important
 
 .lame-button
   filter: grayscale(1) !important
@@ -27,7 +27,7 @@ $s: $saturation
 .song-details,
 .favorite-star.favorited, 
 #privateChatIcon.open .chatIcon
-  filter: hue-rotate($h + 50deg) brightness($b - 0.1) saturate($s) !important
+  filter: hue-rotate($h + 50deg) brightness($b - 0.1) saturate($s + 2) !important
 
 #buddyListHeader,
 .tab-item:active, 
@@ -40,9 +40,8 @@ button.tt-button.primary.small.inset,
   background-image: linear-gradient(to bottom, $color-main, $color-dark) !important
   box-shadow: none !important
 
-.floating-menu .option.active,
-.floating-menu .option.special
-  color: $color-song !important
+.floating-menu .option.active
+  color: $color-text !important
   background: $color-dark !important
 
 #ts_panel > h3, 
@@ -52,7 +51,7 @@ button.tt-button.primary.small.inset,
   color: $color-main
 
 #ts_tabs div.active
-  color: $color-icon !important
+  color: $color-text !important
 
 #buddyListTitle,
 #buddyListHeader
@@ -61,12 +60,9 @@ button.tt-button.primary.small.inset,
 #buddyListTitle,
 button.tt-button.primary.small.inset,
 .floating-menu .option.special:not(.disabled):hover 
-  color: $color-icon !important
+  color: $color-text !important
   text-shadow: none !important
 
-.floating-menu .option.special:not(.disabled):hover
-  border: 1px solid $color-icon
-
 .score.scoregood
-  color: $color-icon !important
+  color: $color-text !important
   background: $color-main !important
