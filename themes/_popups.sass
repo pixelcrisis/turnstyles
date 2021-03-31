@@ -1,4 +1,20 @@
-.options-menu 
+#settings .option
+  font-weight: bold
+  box-shadow: none !important
+  background: $color-panels !important
+  border-bottom: 1px solid $panel-border !important
+  a,
+  .description
+    color: $color-text !important
+  &:hover,
+  .selected
+    background: $color-accent !important
+    a,
+    .description
+      color: $color-bg !important
+
+
+.options-menu
   .nib
     filter: invert($invert-dark) !important
     border-color: $inverted-border !important
