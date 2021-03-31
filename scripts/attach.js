@@ -19,6 +19,7 @@ module.exports = tS => {
 
     // record the current song if any
     this.cacheTrack(this.room.currentSong, this.room.upvoters.length)
+    for (let id of this.room.djids) this.cacheNewDJ(id)
 
     // duplicate realVolume for our volume overrides
     this.realVolume = window.turntablePlayer.realVolume
