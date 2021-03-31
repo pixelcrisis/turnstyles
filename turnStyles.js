@@ -8,6 +8,7 @@ require('./scripts/_utils.js')(tS)
 require('./scripts/config.js')(tS)
 require('./scripts/cached.js')(tS)
 require('./scripts/events.js')(tS)
+require('./scripts/counts.js')(tS)
 
 require('./scripts/themes.js')(tS)
 
