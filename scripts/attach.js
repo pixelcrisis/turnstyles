@@ -26,7 +26,7 @@ module.exports = tS => {
 
     // bind our playlist counter
     this.countSongs()
-    $('body').on('DOMSubtreeModified', '#songs', this.countSongs)
+    $('#songs-wrapper').on('DOMSubtreeModified', '#songs', this.countSongs)
 
     // bind our event handler
     this.core.addEventListener('message', this.handle.bind(this))
