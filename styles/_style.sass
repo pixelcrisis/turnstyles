@@ -1,7 +1,3 @@
-$h: $hue-rotate
-$b: $brightness
-$s: $saturation
-
 .chat .message.mention
   border-right-color: $color-main !important
 
@@ -19,7 +15,7 @@ $s: $saturation
   filter: grayscale(1) !important
 
 .awesome-button
-  filter: hue-rotate($h) brightness($b) saturate($s) !important
+  filter: $button
 
 .become-dj, 
 .invite-dj,
@@ -27,7 +23,7 @@ $s: $saturation
 .song-details,
 .favorite-star.favorited, 
 #privateChatIcon.open .chatIcon
-  filter: hue-rotate($h + 50deg) brightness($b - 0.1) saturate($s + 2) !important
+  filter: $accent
 
 #buddyListHeader,
 .tab-item:active, 
