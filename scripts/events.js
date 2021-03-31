@@ -3,7 +3,6 @@
 module.exports = tS => {
 
   tS.prototype.handle = function (e) {
-    if (e.command) console.log(e.command)
     switch (e.command) {
       case "pmmed":        this.handlePmmed(e); break;
       case "speak":        this.handleSpeak(e); break;

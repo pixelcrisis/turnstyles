@@ -6,7 +6,7 @@ module.exports = tS => {
     console.info(`turnStyles :: ${str}`)
   }
 
-  // get a username from the room object
+  // get a username from the userMap
   tS.prototype.named = id => {
     let user = window.turntable.topViewController.userMap[id]
     return user ? user.attributes.name : 'Someone'
