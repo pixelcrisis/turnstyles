@@ -1,18 +1,21 @@
 // styling for the options panel
-#ts_panel, 
+#ts_hotbar, 
 #ts_window
   @extend %content-main
 
+  input:not(:checked):after
+    color: $color-subtle
+
 #ts_tabs div,
+#ts_hotbar label,
+#ts_window label,
 #ts_window select, 
 #ts_window option
-  @extend %floating-panel
+  color: $color-text 
+  background: lighten($color-border, 5%)
 
 #ts_tabs .active
   background: $color-accent !important
-
-#ts_panel button
-  color: $color-text
 
 #ts_window
   small, h5

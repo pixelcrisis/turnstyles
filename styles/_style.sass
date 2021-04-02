@@ -49,13 +49,13 @@ button.tt-button.primary.small.inset,
   background: $color-dark !important
 
 .ts_menu,
-#ts_hotbar input:after,
-#ts_window input:after,
 #ts_window .ts_credits a
   color: $color-head !important
 
-#ts_tabs div.active
-  color: $color-text !important
+#ts_hotbar input,
+#ts_window input,
+  &:checked:after
+    color: $color-main !important
 
 #buddyListTitle,
 #buddyListHeader

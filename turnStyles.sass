@@ -26,12 +26,12 @@
   .ts_credits
     small
       margin-right: 5px
-      &:not(:first-of-type):not(:hover)
-        opacity: 0.5
     a
       color: gold
       text-decoration: none
       text-transform: uppercase
+      &:not(:hover)
+        opacity: 0.5
 
 #ts_window.active,
 .header-bar:hover #ts_hotbar:not(.active)
@@ -42,6 +42,7 @@
 #ts_window select,
 #ts_window option
   border: none
+  outline: none
   color: #ffffff
   cursor: pointer
   font-size: 0.8em

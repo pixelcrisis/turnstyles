@@ -44,7 +44,7 @@ module.exports = tS => {
         ${splitToggle(self, ['nextdj', 'pingdj'], ['Next DJ Spot', 'Wait For Ping'])}
       </div>
       <div class="ts_tab tab_ui">
-        <h4>Visual Improvements</h4>
+        <h4>Visual Options</h4>
         ${select(self, 'theme')}
         ${select(self, 'style')}
       </div>
