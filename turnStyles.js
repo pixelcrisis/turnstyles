@@ -13,7 +13,7 @@ require('./scripts/counts.js')(tS)
 require('./scripts/themes.js')(tS)
 
 require('./scripts/attach.js')(tS)
-require('./scripts/layout.js')(tS)
+require('./scripts/panel.js')(tS)
 require('./scripts/volume.js')(tS)
 
 require('./scripts/autobop.js')(tS)

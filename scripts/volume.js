@@ -4,9 +4,9 @@ module.exports = tS => {
 
   tS.prototype.loadVolume = function () {
     let hasVolume = $('body').hasClass('has-volume')
+    $('body').toggleClass('has-volume', !hasVolume)
     
     if (this.config.has_vol && !hasVolume) {
-      $('body').addClass('has-volume')
       $('.header-content').append(layout(this))
 
       let muted = $('#ts_mute')
@@ -19,7 +19,6 @@ module.exports = tS => {
 
     else if (!this.config.has_vol && hasVolume) {
       $('#ts_volume').remove()
-      $('body').removeClass('has-volume')
       window.turntablePlayer.realVolume = this.realVolume
     }
   }

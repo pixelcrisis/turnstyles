@@ -47,6 +47,9 @@ module.exports = tS => {
         <h4>Visual Options</h4>
         ${select(self, 'theme')}
         ${select(self, 'style')}
+        <br>
+        ${toggle(self, 'no_aud', 'Hide Audience')}
+        ${toggle(self, 'no_vid', 'Hide Player')}
       </div>
       <div class="ts_tab tab_chat">
         <h4>Post Messages In Chat</h4>
