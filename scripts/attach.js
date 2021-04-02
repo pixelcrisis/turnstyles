@@ -8,6 +8,8 @@ module.exports = tS => {
     let again = () => setTimeout(tS.prototype.attachRoom.bind(this), 250)
 
     this.core = window.turntable
+    if (!this.core.user) return again()
+      
     this.user = this.core.user.id
     this.view = this.core.topViewController
 
