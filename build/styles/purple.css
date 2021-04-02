@@ -1,0 +1,76 @@
+.chat .message:not(.stat) .subject:hover,
+.chat .message:not(.stat) .speaker:hover {
+  color: #b19eff !important; }
+
+.chat .message.mention {
+  border-right-color: #9075ff !important; }
+
+.song .progress,
+.chat .message.mention {
+  background: rgba(144, 117, 255, 0.2) !important; }
+
+#ts_slider {
+  background: #9075ff !important; }
+
+.current-song .details {
+  color: #ffffff !important; }
+
+.lame-button {
+  filter: grayscale(1) !important; }
+
+.awesome-button {
+  filter: hue-rotate(160deg) brightness(0.8) saturate(2); }
+
+.become-dj,
+.invite-dj,
+.header-logo,
+.song-details,
+.favorite-star.favorited,
+#privateChatIcon.open .chatIcon {
+  filter: hue-rotate(195deg) brightness(0.7) saturate(2); }
+
+#buddyListHeader,
+.tab-item:active,
+.tab-item.selected,
+#ts_tabs div.active,
+.pmGreyTop.new-message,
+#settings .option:hover,
+button.tt-button.primary.small.inset,
+.options-menu .options .option:hover,
+.floating-menu .option:not(.split-option):not(.disabled):hover {
+  background-image: linear-gradient(to bottom, #9075ff, #6742ff) !important;
+  box-shadow: none !important; }
+
+#settings .option.selected,
+.floating-menu .option.active,
+.floating-menu .option.selected {
+  color: #ffffff !important;
+  background: #6742ff !important; }
+
+#ts_panel > h3,
+#ts_window > h3,
+#ts_window button,
+#ts_window .ts_credits a {
+  color: #b19eff; }
+
+#ts_tabs div.active {
+  color: #ffffff !important; }
+
+#buddyListTitle,
+#buddyListHeader {
+  border-color: #9075ff !important; }
+
+#buddyListTitle,
+#settings .option:hover a,
+#settings .option:hover .description,
+button.tt-button.primary.small.inset,
+.floating-menu .option.special:not(.disabled):hover {
+  color: #ffffff !important;
+  text-shadow: none !important; }
+
+.score.scoregood {
+  color: #ffffff !important;
+  background: #9075ff !important; }
+
+.overlay .modal {
+  background: #9075ff !important; }
