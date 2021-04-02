@@ -6,7 +6,7 @@ module.exports = tS => {
   tS.prototype.checkDecks = function () {
     if (!this.config.nextdj) return
     if (!this.config.pingdj) this.tryJumping()
-    else this.suspend(null, 1, 'nextdj')
+    else this.suspend(null, 2, 'nextdj')
   }
 
   tS.prototype.tryJumping = function () {

@@ -34,6 +34,7 @@ module.exports = tS => {
       blue: "Blue",
       teal: "Teal",
       green: "Green",
+      purple: "Purple"
     }
   }
 

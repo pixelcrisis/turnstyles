@@ -24,6 +24,10 @@ module.exports = tS => {
     // duplicate realVolume for our volume overrides
     this.realVolume = window.turntablePlayer.realVolume
 
+    // bind our playlist counter
+    this.countSongs()
+    $('#songs-wrapper').on('DOMSubtreeModified', '#songs', this.countSongs)
+
     // bind our event handler
     this.core.addEventListener('message', this.handle.bind(this))
     this.handleLoad()
