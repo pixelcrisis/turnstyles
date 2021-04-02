@@ -2,65 +2,69 @@
 
 module.exports = tS => {
 
-  const menu = '.ts_toggle'
-  const pane = '#ts_panel, #ts_window'
-  const tabs = '.opts_tab, .chat_tab, .ding_tab'
-  const opts = '#ts_panel input, #ts_window input, #ts_window select'
+  const open = '.ts_menu'
+  const tabs = '.ts_tab'
+  const menu = '#ts_tabs div'
+  const pane = '#ts_hotbar, #ts_window'
+  const opts = '#ts_hotbar input, #ts_window input, #ts_window select'
   const vers = require('../package.json').version
 
   tS.prototype.buildPanel = function () {
     $('.header-bar').append(layout(this))
 
-    $(tabs).on('click', onTab)
-    $(menu).on('click', () => $(pane).toggleClass('active'))
+    $(menu).on('click', onTab)
+    $(open).on('click', () => $(pane).toggleClass('active'))
     $(opts).on('change', this.saveConfig.bind(this))
   }
 
   const onTab = e => {
-    $(tabs).removeClass('active')
+    $(`${menu}, ${tabs}`).removeClass('active')
     $(`.${e.currentTarget.className}`).addClass('active')
   }
 
   const layout = self => `
-    <div id="ts_panel">
-      <h3 class="ts_toggle">☰ tS</h3>
-      <label> ${toggle(self, 'autobop')} Autobop </label>
-      <label> ${toggle(self, 'nextdj')} Next DJ Spot </label>
-      <label> ${toggle(self, 'pingdj')} Next DJ On Ping </label>
-      <button class="ts_toggle">...more</button>
+    <div id="ts_hotbar">
+      <h3 class="ts_menu">☰ tS</h3>
+      ${toggle(self, 'autobop', 'Autobop')}
+      ${splitToggle(self, ['nextdj','pingdj'], ['Next DJ Spot','On Ping'])}
     </div>
     <div id="ts_window">
-      <h3 class="ts_toggle">☰ turnStyles</h3>
-      <label> ${select(self, 'theme')} </label>
-      <label> ${select(self, 'style')} </label>
+      <h3 class="ts_menu">☰ turnStyles</h3>
       <div id="ts_tabs">
-        <div class="opts_tab active">Options</div>
-        <div class="chat_tab">In Chat</div>
-        <div class="ding_tab">Notifications</div>
+        <div class="tab_opts active">Options</div>
+        <div class="tab_ui">Visual</div>
+        <div class="tab_chat">In Chat</div>
+        <div class="tab_ding">Notify</div>
       </div>
-      <div class="opts_tab active">
-        <label> ${toggle(self, 'autobop')} Autobop </label>
-        <label> ${toggle(self, 'has_vol')} Control Volume </label>
+      <div class="ts_tab tab_opts active">
+        <h4>General Features</h4> 
+        ${toggle(self, 'autobop', 'Autobop')}
+        ${toggle(self, 'has_vol', 'Control Volume')}
         <br>
-        <label> ${toggle(self, 'nextdj')} Next DJ Spot </label>
-        <label> ${toggle(self, 'pingdj')} Next DJ On Ping</label>
-        <br> <h5>Use On Ping For Rooms With Queues</h5>
+        ${splitToggle(self, ['nextdj', 'pingdj'], ['Next DJ Spot', 'Wait For Ping'])}
       </div>
-      <div class="chat_tab">
-        <label>${toggle(self, 'chat_song')} Last Song Stats</label>
-        <label>${toggle(self, 'chat_spun')} Dropped DJ Stats</label>
+      <div class="ts_tab tab_ui">
+        <h4>Visual Improvements</h4>
+        ${select(self, 'theme')}
+        ${select(self, 'style')}
+      </div>
+      <div class="ts_tab tab_chat">
+        <h4>Post Messages In Chat</h4>
+        ${toggle(self, 'chat_song', 'Last Song Stats')}
+        ${toggle(self, 'chat_spun', 'Dropped DJ Stats')}
         <br>
-        <label>${toggle(self, 'chat_snag')} User Snags</label>
-        <label>${toggle(self, 'chat_join')} User Joins</label>
-        <label>${toggle(self, 'chat_left')} User Leaves</label>
+        ${toggle(self, 'chat_snag', 'User Snags')}
+        ${toggle(self, 'chat_join', 'User Joins')}
+        ${toggle(self, 'chat_left', 'User Leaves')}
       </div>
-      <div class="ding_tab">
-        <label>${toggle(self, 'ping_pm')} On DMs</label>
-        <label>${toggle(self, 'ping_chat')} On Mentions</label>
-        <label>${toggle(self, 'ping_song')} On New Songs</label>
+      <div class="ts_tab tab_ding">
+        <h4>Send Desktop Notifications</h4>
+        ${toggle(self, 'ping_pm', 'On DMs')}
+        ${toggle(self, 'ping_chat', 'On Mentions')}
+        ${toggle(self, 'ping_song', 'On New Songs')}
       </div>
       <div class="ts_credits">
-        <button class="ts_toggle">✔︎ Close</button>
+        <small class="ts_menu">✔︎ CLOSE</small>
         <small>v${vers}</small>
         <small>
           <a href="https://discord.gg/jnRs4WnPjM" target="_blank">
@@ -71,6 +75,28 @@ module.exports = tS => {
     </div>
   `
 
+  const toggle = (self, item, name) => `
+    <label class="ts_toggle">
+      <input id="ts_${item}" type="checkbox"
+        ${ self.config[item] ? 'checked' : '' }>
+      </input>
+      ${name}
+    </label>
+  `
+
+  const splitToggle = (self, items, names) => {
+    let html = `<label class="ts_toggle">`
+    for (var i = 0; i < items.length; i++) html += `
+      <input id="ts_${items[i]}" type="checkbox"
+        ${ self.config[items[0]] ? 'checked' : ''}>
+      </input>
+      ${names[i]}
+      ${ i < items.length - 1 ? '<span>|</span>' : ''}
+    `
+    html += `</label>`
+    return html
+  }
+
   const select = (self, list) => `
     <select id="ts_${list}">
       <option value="">No ${list[0].toUpperCase() + list.substring(1)}</option>
@@ -80,12 +106,6 @@ module.exports = tS => {
         </option>
       `).join('') }
     </select>
-  `
-
-  const toggle = (self, item) => `
-    <input id="ts_${item}" type="checkbox"
-      ${ self.config[item] ? 'checked' : '' }>
-    </input>
   `
 
 }
