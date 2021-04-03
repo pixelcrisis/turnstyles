@@ -31,7 +31,7 @@
   border: none !important;
   box-shadow: none !important;
   color: #d8d8d8 !important;
-  background: transparent !important; }
+  background: #393939 !important; }
 
 .floating-panel-bar,
 .floating-panel-header,
@@ -40,7 +40,7 @@
 .pmGreyTop:not(.new-message) {
   box-shadow: none !important;
   color: #d8d8d8 !important;
-  background: linear-gradient(to bottom, #393939, #3e3e3e) !important; }
+  background: #393939 !important; }
 
 .header-room-name {
   font-weight: bold !important; }

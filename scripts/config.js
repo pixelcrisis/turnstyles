@@ -13,8 +13,8 @@ module.exports = tS => {
 
     has_vol: false,
 
-    no_aud: true,
-    no_vid: true,
+    no_aud: false,
+    no_vid: false,
 
     ping_pm: false,
     ping_song: false,
