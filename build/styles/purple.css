@@ -29,6 +29,9 @@
 #privateChatIcon.open .chatIcon {
   filter: hue-rotate(195deg) brightness(0.7) saturate(2); }
 
+#room-view > canvas:nth-child(2) {
+  filter: hue-rotate(255deg) brightness(0.7) saturate(2); }
+
 #buddyListHeader,
 .tab-item:active,
 .tab-item.selected,
@@ -47,14 +50,13 @@ button.tt-button.primary.small.inset,
   color: #ffffff !important;
   background: #6742ff !important; }
 
-#ts_panel > h3,
-#ts_window > h3,
-#ts_window button,
+.ts_menu,
 #ts_window .ts_credits a {
-  color: #b19eff; }
+  color: #b19eff !important; }
 
-#ts_tabs div.active {
-  color: #ffffff !important; }
+#ts_hotbar input:checked:after,
+#ts_window input:checked:after {
+  color: #9075ff !important; }
 
 #buddyListTitle,
 #buddyListHeader {

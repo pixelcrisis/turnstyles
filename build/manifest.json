@@ -1,7 +1,7 @@
 {
   "name": "turnStyles for turntable.fm",
-  "version": "5.2.1",
-  "description": "Apply tweaks to turntable.fm - autobop, themes, styles, with more coming soon!",
+  "version": "5.3.0",
+  "description": "Apply tweaks to turntable.fm - autobop, autodj, themes, styles, and more!",
   "manifest_version": 2,
   "icons": {
     "48": "images/icon48.png",

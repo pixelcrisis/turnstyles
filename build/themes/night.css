@@ -8,11 +8,11 @@
 .striped-list > :nth-child(even):not(.separator),
 .song-list > ul > :nth-child(even):not(.separator),
 .message-history > :nth-child(even):not(.separator),
-.conversations-list > ul > :nth-child(even):not(.separator), .message-history, #ts_panel,
+.conversations-list > ul > :nth-child(even):not(.separator), .message-history, #ts_hotbar,
 #ts_window {
   box-shadow: none !important;
   text-shadow: none !important;
-  color: #cacaca !important;
+  color: #b9b9b9 !important;
   background: #141414 !important; }
 
 .room-tab .room-info-wrap, .room-tab .edit-description, .room-tab .flat-button, .chat .message:nth-child(odd),
@@ -23,25 +23,24 @@
 .conversations-list > ul > :nth-child(odd):not(.separator), #buddyList {
   box-shadow: none !important;
   text-shadow: none !important;
-  color: #cacaca !important;
-  background: #1c1c1c !important; }
+  color: #b9b9b9 !important;
+  background: #171717 !important; }
 
 #chat-input,
 #song-search-input, .message-input {
   border: none !important;
   box-shadow: none !important;
-  color: #cacaca !important;
-  background: #141414 !important; }
+  color: #b9b9b9 !important;
+  background: transparent !important; }
 
 .floating-panel-bar,
 .floating-panel-header,
 .tabbed-panel .separator,
 .sliding-nav-pane-header, .message-input-view,
-.pmGreyTop:not(.new-message), #ts_tabs div,
-#ts_window select,
-#ts_window option {
+.pmGreyTop:not(.new-message) {
   box-shadow: none !important;
-  background: #2b2b2b !important; }
+  color: #b9b9b9 !important;
+  background: #1e1e1e !important; }
 
 .header-room-name {
   font-weight: bold !important; }
@@ -55,29 +54,29 @@
   margin: -1px 0 0 -1px !important; }
 
 .tab-item:not(.selected):hover {
-  background: #1c1c1c !important; }
+  background: #171717 !important; }
 
 .tab-item:not(.selected):not(:hover) .tab-title {
-  color: #a4a4a4 !important; }
+  color: #939393 !important; }
 
 .tab-pane a {
-  color: #cacaca !important;
+  color: #b9b9b9 !important;
   text-decoration: none !important;
   border-bottom: 1px dotted !important; }
 
 .room-tab .room-name {
-  color: #cacaca !important; }
+  color: #b9b9b9 !important; }
 
 .room-tab .num-listeners,
 .room-tab .description-wrap {
-  color: #a4a4a4; }
+  color: #939393; }
 
 .room-tab .room-info-intro {
   border-bottom: none !important; }
 
 .room-tab .room-info-wrap {
-  border-top: 1px solid #2b2b2b !important;
-  border-bottom: 1px solid #2b2b2b !important; }
+  border-top: 1px solid #191919 !important;
+  border-bottom: 1px solid #191919 !important; }
 
 .room-tab .save-description-btn .icon {
   filter: brightness(10) !important; }
@@ -86,14 +85,14 @@
   padding-bottom: 25px !important; }
 
 .room-tab .flat-button {
-  border: 1px solid #2b2b2b !important; }
+  border: 1px solid #191919 !important; }
   .room-tab .flat-button:not(:hover) h3 {
-    color: #a4a4a4 !important; }
+    color: #939393 !important; }
 
 .queue-message,
 .default-message {
   text-shadow: none !important;
-  color: #cacaca !important; }
+  color: #b9b9b9 !important; }
 
 .become-dj,
 .invite-dj {
@@ -106,19 +105,19 @@
   background: #141414; }
 
 ::-webkit-scrollbar-thumb {
-  background: #2b2b2b; }
+  background: #191919; }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #a4a4a4; }
+  background: #939393; }
 
 #settings .option {
   font-weight: bold;
   box-shadow: none !important;
-  background: #2b2b2b !important;
-  border-bottom: 1px solid #424242 !important; }
+  background: #1e1e1e !important;
+  border-bottom: 1px solid #232323 !important; }
   #settings .option a,
   #settings .option .description {
-    color: #cacaca !important; }
+    color: #b9b9b9 !important; }
   #settings .option:hover,
   #settings .option .selected {
     background: #e1bb22 !important; }
@@ -130,8 +129,8 @@
 
 .options-menu .nib {
   filter: invert(1) !important;
-  border-color: #cacaca !important;
-  background-color: #e1e1e1 !important; }
+  border-color: #e9e9e9 !important;
+  background-color: #eeeeee !important; }
 
 .options-menu.closed .nib {
   border-color: transparent !important;
@@ -139,11 +138,11 @@
 
 .options-menu .options {
   box-shadow: none !important;
-  background: #2b2b2b !important;
-  border-color: #424242 !important; }
+  background: #1e1e1e !important;
+  border-color: #232323 !important; }
   .options-menu .options .option {
     font-weight: bold;
-    color: #cacaca !important; }
+    color: #b9b9b9 !important; }
     .options-menu .options .option:hover {
       color: #141414 !important;
       background: #e1bb22 !important; }
@@ -154,12 +153,12 @@
   border: 1px solid #141414 !important; }
   .floating-menu .option {
     box-shadow: none !important;
-    color: #cacaca !important;
-    border-top: 1px solid #424242 !important; }
+    color: #b9b9b9 !important;
+    border-top: 1px solid #232323 !important; }
     .floating-menu .option:not(.active), .floating-menu .option:not(.special) {
-      background: #2b2b2b !important; }
+      background: #1e1e1e !important; }
     .floating-menu .option.active, .floating-menu .option.special {
-      background: #1c1c1c !important; }
+      background: #171717 !important; }
     .floating-menu .option.selected, .floating-menu .option:not(.split-option):not(.disabled):hover {
       color: #ffffff !important;
       background: #e1bb22 !important; }
@@ -176,22 +175,25 @@
   .overlay .modal .content-container {
     background: #141414 !important; }
     .overlay .modal .content-container .content {
-      color: #cacaca !important; }
+      color: #b9b9b9 !important; }
 
 .floating-panel-bar,
 .floating-panel-header {
-  border-top: 1px solid #424242 !important;
-  border-bottom: 1px solid #424242 !important; }
+  border-top: 1px solid #232323 !important;
+  border-bottom: 1px solid #232323 !important; }
+  .floating-panel-bar .divider,
+  .floating-panel-header .divider {
+    display: none; }
 
 .tabbed-panel .separator {
   text-shadow: none !important;
-  color: #cacaca !important; }
+  color: #b9b9b9 !important; }
 
 .panel-button {
   border: none !important;
   box-shadow: none !important;
   text-shadow: none !important;
-  color: #a4a4a4 !important;
+  color: #939393 !important;
   background: transparent !important; }
 
 #queue-header {
@@ -202,7 +204,7 @@
 
 .sliding-nav-pane-title {
   text-shadow: none !important;
-  color: #cacaca !important; }
+  color: #b9b9b9 !important; }
 
 .sliding-nav-pane-back {
   width: 41px !important;
@@ -216,7 +218,7 @@
     font-size: 1.3em;
     font-weight: bold;
     position: relative;
-    color: #a4a4a4; }
+    color: #939393; }
 
 #chat-form,
 .song-search {
@@ -263,13 +265,13 @@
 .song-list > ul > :nth-child(odd):not(.separator),
 .message-history > :nth-child(odd):not(.separator),
 .conversations-list > ul > :nth-child(odd):not(.separator) {
-  border-color: #2b2b2b !important; }
+  border-color: #191919 !important; }
 
 .song-list .song .title {
-  color: #cacaca !important; }
+  color: #b9b9b9 !important; }
 
 .song-list .song .details {
-  color: #a4a4a4 !important; }
+  color: #939393 !important; }
 
 .song-list .song .progress {
   background: rgba(225, 187, 34, 0.2) !important; }
@@ -297,7 +299,7 @@
 
 .chat .message.stat .subject:hover,
 .chat .message.stat .speaker:hover {
-  color: #cacaca !important; }
+  color: #b9b9b9 !important; }
 
 .chat .message:not(.stat) .subject:hover,
 .chat .message:not(.stat) .speaker:hover {
@@ -339,19 +341,28 @@
   background-color: transparent !important; }
 
 .conversation-username {
-  color: #cacaca !important; }
+  color: #b9b9b9 !important; }
 
 .conversation-user-room {
-  color: #a4a4a4 !important; }
+  color: #939393 !important; }
+
+#ts_hotbar input:not(:checked):after,
+#ts_window input:not(:checked):after {
+  color: #939393; }
+
+#ts_tabs div,
+#ts_hotbar label,
+#ts_window label,
+#ts_window select,
+#ts_window option {
+  color: #b9b9b9;
+  background: #262626; }
 
 #ts_tabs .active {
   background: #e1bb22 !important; }
 
-#ts_panel button {
-  color: #cacaca; }
-
 #ts_window small, #ts_window h5 {
-  color: #a4a4a4; }
+  color: #939393; }
 
 #ts_window select {
-  border-color: #424242 !important; }
+  border-color: #232323 !important; }
