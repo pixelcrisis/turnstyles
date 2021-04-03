@@ -30,6 +30,9 @@
 #privateChatIcon.open .chatIcon
   filter: $accent
 
+#room-view > canvas:nth-child(2)
+  filter: $lights
+
 #buddyListHeader,
 .tab-item:active, 
 .tab-item.selected,
@@ -48,14 +51,14 @@ button.tt-button.primary.small.inset,
   color: $color-text !important
   background: $color-dark !important
 
-#ts_panel > h3, 
-#ts_window > h3, 
-#ts_window button,
+.ts_menu,
 #ts_window .ts_credits a
-  color: $color-head
+  color: $color-head !important
 
-#ts_tabs div.active
-  color: $color-text !important
+#ts_hotbar input,
+#ts_window input,
+  &:checked:after
+    color: $color-main !important
 
 #buddyListTitle,
 #buddyListHeader

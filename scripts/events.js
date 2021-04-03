@@ -36,6 +36,9 @@ module.exports = tS => {
     if (!opt || themes) this.loadThemes()
     if (!opt || volume) this.loadVolume()
     if (!opt || notify) this.notifyAuth()
+    // hide the audience/video
+    $('body').toggleClass('ts_hide_audience', this.config.no_aud)
+    $('body').toggleClass('ts_hide_videos', this.config.no_vid)
   }
 
   tS.prototype.handlePmmed = function (e) {

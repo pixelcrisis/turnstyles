@@ -13,6 +13,9 @@ module.exports = tS => {
 
     has_vol: false,
 
+    no_aud: true,
+    no_vid: true,
+
     ping_pm: false,
     ping_song: false,
     ping_chat: false,

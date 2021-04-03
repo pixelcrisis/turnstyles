@@ -8,12 +8,12 @@
 .striped-list > :nth-child(even):not(.separator),
 .song-list > ul > :nth-child(even):not(.separator),
 .message-history > :nth-child(even):not(.separator),
-.conversations-list > ul > :nth-child(even):not(.separator), .message-history, #ts_panel,
+.conversations-list > ul > :nth-child(even):not(.separator), .message-history, #ts_hotbar,
 #ts_window {
   box-shadow: none !important;
   text-shadow: none !important;
-  color: #eaeaea !important;
-  background: #343434 !important; }
+  color: #d8d8d8 !important;
+  background: #2f2f2f !important; }
 
 .room-tab .room-info-wrap, .room-tab .edit-description, .room-tab .flat-button, .chat .message:nth-child(odd),
 .guest-list > :nth-child(odd):not(.separator),
@@ -23,25 +23,24 @@
 .conversations-list > ul > :nth-child(odd):not(.separator), #buddyList {
   box-shadow: none !important;
   text-shadow: none !important;
-  color: #eaeaea !important;
-  background: #3c3c3c !important; }
+  color: #d8d8d8 !important;
+  background: #323232 !important; }
 
 #chat-input,
 #song-search-input, .message-input {
   border: none !important;
   box-shadow: none !important;
-  color: #eaeaea !important;
-  background: #343434 !important; }
+  color: #d8d8d8 !important;
+  background: transparent !important; }
 
 .floating-panel-bar,
 .floating-panel-header,
 .tabbed-panel .separator,
 .sliding-nav-pane-header, .message-input-view,
-.pmGreyTop:not(.new-message), #ts_tabs div,
-#ts_window select,
-#ts_window option {
+.pmGreyTop:not(.new-message) {
   box-shadow: none !important;
-  background: #4b4b4b !important; }
+  color: #d8d8d8 !important;
+  background: linear-gradient(to bottom, #393939, #3e3e3e) !important; }
 
 .header-room-name {
   font-weight: bold !important; }
@@ -55,29 +54,29 @@
   margin: -1px 0 0 -1px !important; }
 
 .tab-item:not(.selected):hover {
-  background: #3c3c3c !important; }
+  background: #323232 !important; }
 
 .tab-item:not(.selected):not(:hover) .tab-title {
-  color: #c4c4c4 !important; }
+  color: #b2b2b2 !important; }
 
 .tab-pane a {
-  color: #eaeaea !important;
+  color: #d8d8d8 !important;
   text-decoration: none !important;
   border-bottom: 1px dotted !important; }
 
 .room-tab .room-name {
-  color: #eaeaea !important; }
+  color: #d8d8d8 !important; }
 
 .room-tab .num-listeners,
 .room-tab .description-wrap {
-  color: #c4c4c4; }
+  color: #b2b2b2; }
 
 .room-tab .room-info-intro {
   border-bottom: none !important; }
 
 .room-tab .room-info-wrap {
-  border-top: 1px solid #4b4b4b !important;
-  border-bottom: 1px solid #4b4b4b !important; }
+  border-top: 1px solid #343434 !important;
+  border-bottom: 1px solid #343434 !important; }
 
 .room-tab .save-description-btn .icon {
   filter: brightness(10) !important; }
@@ -86,39 +85,39 @@
   padding-bottom: 25px !important; }
 
 .room-tab .flat-button {
-  border: 1px solid #4b4b4b !important; }
+  border: 1px solid #343434 !important; }
   .room-tab .flat-button:not(:hover) h3 {
-    color: #c4c4c4 !important; }
+    color: #b2b2b2 !important; }
 
 .queue-message,
 .default-message {
   text-shadow: none !important;
-  color: #eaeaea !important; }
+  color: #d8d8d8 !important; }
 
 .become-dj,
 .invite-dj {
-  color: #343434 !important; }
+  color: #2f2f2f !important; }
 
 ::-webkit-scrollbar {
   width: 7px; }
 
 ::-webkit-scrollbar-track {
-  background: #343434; }
+  background: #2f2f2f; }
 
 ::-webkit-scrollbar-thumb {
-  background: #4b4b4b; }
+  background: #343434; }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #c4c4c4; }
+  background: #b2b2b2; }
 
 #settings .option {
   font-weight: bold;
   box-shadow: none !important;
-  background: #4b4b4b !important;
-  border-bottom: 1px solid #626262 !important; }
+  background: #393939 !important;
+  border-bottom: 1px solid #3e3e3e !important; }
   #settings .option a,
   #settings .option .description {
-    color: #eaeaea !important; }
+    color: #d8d8d8 !important; }
   #settings .option:hover,
   #settings .option .selected {
     background: #e1bb22 !important; }
@@ -126,12 +125,12 @@
     #settings .option:hover .description,
     #settings .option .selected a,
     #settings .option .selected .description {
-      color: #343434 !important; }
+      color: #2f2f2f !important; }
 
 .options-menu .nib {
   filter: invert(1) !important;
-  border-color: #9d9d9d !important;
-  background-color: #b4b4b4 !important; }
+  border-color: #c1c1c1 !important;
+  background-color: #c6c6c6 !important; }
 
 .options-menu.closed .nib {
   border-color: transparent !important;
@@ -139,27 +138,27 @@
 
 .options-menu .options {
   box-shadow: none !important;
-  background: #4b4b4b !important;
-  border-color: #626262 !important; }
+  background: #393939 !important;
+  border-color: #3e3e3e !important; }
   .options-menu .options .option {
     font-weight: bold;
-    color: #eaeaea !important; }
+    color: #d8d8d8 !important; }
     .options-menu .options .option:hover {
-      color: #343434 !important;
+      color: #2f2f2f !important;
       background: #e1bb22 !important; }
 
 .floating-menu {
   box-shadow: none !important;
-  background: #343434 !important;
-  border: 1px solid #343434 !important; }
+  background: #2f2f2f !important;
+  border: 1px solid #2f2f2f !important; }
   .floating-menu .option {
     box-shadow: none !important;
-    color: #eaeaea !important;
-    border-top: 1px solid #626262 !important; }
+    color: #d8d8d8 !important;
+    border-top: 1px solid #3e3e3e !important; }
     .floating-menu .option:not(.active), .floating-menu .option:not(.special) {
-      background: #4b4b4b !important; }
+      background: #393939 !important; }
     .floating-menu .option.active, .floating-menu .option.special {
-      background: #3c3c3c !important; }
+      background: #323232 !important; }
     .floating-menu .option.selected, .floating-menu .option:not(.split-option):not(.disabled):hover {
       color: #ffffff !important;
       background: #e1bb22 !important; }
@@ -174,35 +173,38 @@
 .overlay .modal {
   background: #e1bb22 !important; }
   .overlay .modal .content-container {
-    background: #343434 !important; }
+    background: #2f2f2f !important; }
     .overlay .modal .content-container .content {
-      color: #eaeaea !important; }
+      color: #d8d8d8 !important; }
 
 .floating-panel-bar,
 .floating-panel-header {
-  border-top: 1px solid #626262 !important;
-  border-bottom: 1px solid #626262 !important; }
+  border-top: 1px solid #3e3e3e !important;
+  border-bottom: 1px solid #3e3e3e !important; }
+  .floating-panel-bar .divider,
+  .floating-panel-header .divider {
+    display: none; }
 
 .tabbed-panel .separator {
   text-shadow: none !important;
-  color: #eaeaea !important; }
+  color: #d8d8d8 !important; }
 
 .panel-button {
   border: none !important;
   box-shadow: none !important;
   text-shadow: none !important;
-  color: #c4c4c4 !important;
+  color: #b2b2b2 !important;
   background: transparent !important; }
 
 #queue-header {
   border-top: 1px solid transparent !important; }
 
 #queue-header .done {
-  border: 1px solid #343434 !important; }
+  border: 1px solid #2f2f2f !important; }
 
 .sliding-nav-pane-title {
   text-shadow: none !important;
-  color: #eaeaea !important; }
+  color: #d8d8d8 !important; }
 
 .sliding-nav-pane-back {
   width: 41px !important;
@@ -216,7 +218,7 @@
     font-size: 1.3em;
     font-weight: bold;
     position: relative;
-    color: #c4c4c4; }
+    color: #b2b2b2; }
 
 #chat-form,
 .song-search {
@@ -263,23 +265,23 @@
 .song-list > ul > :nth-child(odd):not(.separator),
 .message-history > :nth-child(odd):not(.separator),
 .conversations-list > ul > :nth-child(odd):not(.separator) {
-  border-color: #4b4b4b !important; }
+  border-color: #343434 !important; }
 
 .song-list .song .title {
-  color: #eaeaea !important; }
+  color: #d8d8d8 !important; }
 
 .song-list .song .details {
-  color: #c4c4c4 !important; }
+  color: #b2b2b2 !important; }
 
 .song-list .song .progress {
   background: rgba(225, 187, 34, 0.2) !important; }
 
 .song-list .song .scoregood {
-  color: #343434 !important;
+  color: #2f2f2f !important;
   background: rgba(122, 241, 120, 0.6) !important; }
 
 .song-list .song .scorebad {
-  color: #343434 !important;
+  color: #2f2f2f !important;
   background: rgba(230, 86, 86, 0.6) !important; }
 
 .song-list .song:not(:hover) .score {
@@ -297,7 +299,7 @@
 
 .chat .message.stat .subject:hover,
 .chat .message.stat .speaker:hover {
-  color: #eaeaea !important; }
+  color: #d8d8d8 !important; }
 
 .chat .message:not(.stat) .subject:hover,
 .chat .message:not(.stat) .speaker:hover {
@@ -339,19 +341,28 @@
   background-color: transparent !important; }
 
 .conversation-username {
-  color: #eaeaea !important; }
+  color: #d8d8d8 !important; }
 
 .conversation-user-room {
-  color: #c4c4c4 !important; }
+  color: #b2b2b2 !important; }
+
+#ts_hotbar input:not(:checked):after,
+#ts_window input:not(:checked):after {
+  color: #b2b2b2; }
+
+#ts_tabs div,
+#ts_hotbar label,
+#ts_window label,
+#ts_window select,
+#ts_window option {
+  color: #d8d8d8;
+  background: #414141; }
 
 #ts_tabs .active {
   background: #e1bb22 !important; }
 
-#ts_panel button {
-  color: #eaeaea; }
-
 #ts_window small, #ts_window h5 {
-  color: #c4c4c4; }
+  color: #b2b2b2; }
 
 #ts_window select {
-  border-color: #626262 !important; }
+  border-color: #3e3e3e !important; }
