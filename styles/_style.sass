@@ -1,20 +1,34 @@
-.chat .message
-  &:not(.stat)
-    .subject:hover,
-    .speaker:hover
-      color: $color-head !important
-  &.mention
-    border-right-color: $color-main !important
+$accent-text: mix(#ffffff, $accent, 40%) !default
+$bg-gradient: linear-gradient(to bottom, $accent, darken($accent, 10%)) !default
 
-.song .progress, 
+#ts_slider,
+.score.scoregood,
+#settings .option.selected,
+.floating-menu .option.active,
+.floating-menu .option.selected
+  background: $accent !important
+
+.song .progress,
 .chat .message.mention
-  background: rgba($color-main, 0.2) !important
+  background: rgba($accent, 0.2) !important
 
-#ts_slider
-  background: $color-main !important
+.ts_menu,
+#ts_window .ts_credits a,
+.current-song .details,
+.chat .message:not(.stat) .subject:hover,
+.chat .message:not(.stat) .speaker:hover
+  color: $accent-text !important
 
-.current-song .details
-  color: $color-text !important
+#ts_hotbar input:checked:after,
+#ts_window input:checked:after
+  color: $accent !important
+
+.chat .message.mention
+  border-right-color: $accent !important
+
+#buddyListTitle,
+#buddyListHeader
+  border-color: $accent !important
 
 .lame-button
   filter: grayscale(1) !important
@@ -22,16 +36,16 @@
 .awesome-button
   filter: $button
 
+#room-view > canvas:nth-child(2)
+  filter: $lights
+
 .become-dj, 
 .invite-dj,
 .header-logo, 
 .song-details,
 .favorite-star.favorited, 
 #privateChatIcon.open .chatIcon
-  filter: $accent
-
-#room-view > canvas:nth-child(2)
-  filter: $lights
+  filter: $others
 
 #buddyListHeader,
 .tab-item:active, 
@@ -42,39 +56,7 @@
 button.tt-button.primary.small.inset,
 .options-menu .options .option:hover,
 .floating-menu .option:not(.split-option):not(.disabled):hover
-  background-image: linear-gradient(to bottom, $color-main, $color-dark) !important
   box-shadow: none !important
+  background-image: $bg-gradient !important
 
-#settings .option.selected,
-.floating-menu .option.active,
-.floating-menu .option.selected,
-  color: $color-text !important
-  background: $color-dark !important
 
-.ts_menu,
-#ts_window .ts_credits a
-  color: $color-head !important
-
-#ts_hotbar input,
-#ts_window input,
-  &:checked:after
-    color: $color-main !important
-
-#buddyListTitle,
-#buddyListHeader
-  border-color: $color-main !important
-
-#buddyListTitle,
-#settings .option:hover a,
-#settings .option:hover .description,
-button.tt-button.primary.small.inset,
-.floating-menu .option.special:not(.disabled):hover 
-  color: $color-text !important
-  text-shadow: none !important
-
-.score.scoregood
-  color: $color-text !important
-  background: $color-main !important
-
-.overlay .modal
-  background: $color-main !important
