@@ -1,23 +1,23 @@
 .song-list
   .song
     .title
-      color: $color-text !important
+      color: $text !important
     .details
-      color: $color-subtle !important
+      color: $subtle !important
     .progress
-      background: rgba($color-accent, 0.2) !important
+      background: rgba($accent, 0.2) !important
     .scoregood
-      color: $color-bg !important
-      background: rgba($color-good, 0.6) !important
+      color: $bg-main !important
+      background: rgba($upvote, 0.6) !important
     .scorebad
-      color: $color-bg !important
-      background: rgba($color-bad, 0.6) !important
+      color: $bg-main !important
+      background: rgba($dnvote, 0.6) !important
     &:not(:hover) .score
       opacity: 0.5 !important
 
 .playlist-go-top,
 .playlist-open-options
-  filter: invert($invert-dark) !important
+  @include inverted
 
 .playlist-go-top
   background-position: 0 -326px !important

@@ -1,60 +1,58 @@
 #settings .option
   font-weight: bold
   box-shadow: none !important
-  background: $color-panels !important
-  border-bottom: 1px solid $panel-border !important
+  background: $bg-panel !important
+  border-bottom: 1px solid $border-p !important
   a,
   .description
-    color: $color-text !important
+    color: $text !important
   &:hover,
   .selected
-    background: $color-accent !important
+    background: $active-tab-bg !important
     a,
     .description
-      color: $color-bg !important
+      color: $active-tab-text !important
 
 
 .options-menu
   .nib
-    filter: invert($invert-dark) !important
-    border-color: $inverted-border !important
-    background-color: $inverted-panels !important
+    @include full-invert
   &.closed .nib
     border-color: transparent !important
     background-color: transparent !important
   .options
     box-shadow: none !important
-    background: $color-panels !important
-    border-color: $panel-border !important
+    background: $bg-panel !important
+    border-color: $border-p !important
     .option
       font-weight: bold
-      color: $color-text !important
+      color: $text !important
       &:hover
-        color: $color-bg !important
-        background: $color-accent !important
+        color: $active-tab-text !important
+        background: $active-tab-bg !important
 
 .floating-menu
   box-shadow: none !important
-  background: $color-bg !important
-  border: 1px solid $color-bg !important
+  background: $bg-main !important
+  border: 1px solid $bg-main !important
   .option
     box-shadow: none !important
-    color: $color-text !important
-    border-top: 1px solid $panel-border !important
+    color: $text !important
+    border-top: 1px solid $border-p !important
     &:not(.active), 
     &:not(.special)
-      background: $color-panels !important
+      background: $bg-panel !important
     &.active, 
     &.special
-      background: $color-bg-alt !important
+      background: $bg-alt !important
     &.selected,
     &:not(.split-option):not(.disabled):hover
-      color: $color-tabs !important
-      background: $color-accent !important
+      color: $active-tab-text !important
+      background: $active-tab-bg !important
 
     .playlist-queue, 
     .playlist-queue-plus
-      filter: brightness($brightness) !important
+      @include dark-buttons
 
     .playlist-queue
       background-position: 0 -76px !important
@@ -63,8 +61,8 @@
       background-position: 0 -92px !important
 
 .overlay .modal
-  background: $color-accent !important
+  background: $active-tab-bg !important
   .content-container
-    background: $color-bg !important
+    background: $bg-main !important
     .content
-      color: $color-text !important
+      color: $text !important

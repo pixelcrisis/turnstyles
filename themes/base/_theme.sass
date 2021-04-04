@@ -1,3 +1,40 @@
+%content-main
+  box-shadow: none !important
+  text-shadow: none !important
+  color: $text !important
+  background: $bg-main !important
+
+%content-alt
+  box-shadow: none !important
+  text-shadow: none !important
+  color: $text !important
+  background: $bg-alt !important
+
+%content-panel
+  box-shadow: none !important
+  color: $text !important
+  background: $bg-panel !important
+
+%text-input
+  border: none !important
+  box-shadow: none !important
+  color: $text-input !important
+  background: $bg-input !important
+
+@mixin dark-buttons
+  @if $dark-theme
+    filter: brightness(10) !important
+
+@mixin inverted
+  @if $dark-theme
+    filter: invert(1) !important
+
+@mixin full-invert
+  @if $dark-theme
+    @include inverted
+    border-color: lighten(invert($border-p, 100%), 5%) !important
+    background-color: lighten(invert($bg-panel, 100%), 5%) !important
+
 @import "header"
 @import "content"
 @import "popups"

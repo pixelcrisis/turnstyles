@@ -9,26 +9,27 @@
 
 .message-input-view,
 .pmGreyTop:not(.new-message)
-  @extend %floating-panel
+  @extend %content-panel
 
 .pmClose
 .pmHeader .nib,
-  filter: invert($invert-dark) !important
+  @include inverted
 
 #buddyListNipple
   opacity: 0 !important
 
 #privateChatIcon:not(.open) .chatIcon
-  filter: contrast(0) brightness(1.6) !important
+  @if $dark-theme
+    filter: contrast(0) brightness(1.6) !important
 
 .avatar-head
   background-color: transparent !important
 
 .conversation-username
-  color: $color-text !important
+  color: $text !important
 
 .conversation-user-room
-  color: $color-subtle !important
+  color: $subtle !important
 
 .message-input
   @extend %text-input
