@@ -7,15 +7,6 @@ module.exports = tS => {
     
     this.updateThemes('theme', config.theme)
     this.updateThemes('style', config.style)
-    
-    // replace upload with organize
-    $('#upload-button').after(`<div id="ts_upload"></div>`)
-    $('#ts_upload').on('click', () => {
-      let playlist = window.turntable.playlist
-      if (playlist.isFiltering) playlist.clearSearchBar()
-      $("#queue-header").removeClass("normal").addClass("edit")
-      playlist.queue.batchEditMode()
-    })
   }
 
   tS.updateThemes = function (key, value) {

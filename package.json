@@ -1,30 +1,35 @@
 {
   "name": "turnStyles",
-  "version": "5.3.1",
+  "version": "5.3.2",
   "main": "turnStyles.js",
   "repository": "git@github.com:pixelcrisis/turntable-tweaks.git",
   "author": "pixelcrisis <pxcrisis@gmail.com>",
   "license": "MIT",
   "scripts": {
     "b:1": "browserify -p tinyify turnStyles.js -o build/turnStyles.js",
-    "b:2": "node-sass turnStyles.sass -o build",
-    "b:3": "node-sass themes -o build/themes",
-    "b:4": "node-sass styles -o build/styles",
+    "b:2": "node-sass turnStyles.sass -o build && postcss build/turnStyles.css --use autoprefixer --no-map -d build/",
+    "b:3": "node-sass themes -o build/themes && postcss build/themes/*.css --use autoprefixer --no-map -d build/themes/",
+    "b:4": "node-sass styles -o build/styles && postcss build/styles/*.css --use autoprefixer --no-map -d build/styles/",
+    "b:5": "cp -R public/. build/",
     "w:1": "watchify turnStyles.js -o build/turnStyles.js",
     "w:2": "node-sass turnStyles.sass -wo build",
     "w:3": "node-sass themes -wo build/themes",
     "w:4": "node-sass styles -wo build/styles",
-    "build": "concurrently \"yarn b:1\" \"yarn b:2\" \"yarn b:3\" \"yarn b:4\"",
+    "build": "yarn b:1 && yarn b:2 && yarn b:3 && yarn b:4 && yarn b:5",
     "watch": "concurrently \"yarn w:1\" \"yarn w:2\" \"yarn w:3\" \"yarn w:4\""
   },
   "devDependencies": {
+    "autoprefixer": "^10.2.5",
     "babel-eslint": "^10.1.0",
     "browserify": "^17.0.0",
     "concurrently": "^6.0.0",
     "eslint": "^7.22.0",
     "node-sass": "^5.0.0",
+    "postcss": "^8.2.9",
+    "postcss-cli": "^8.3.1",
     "sass": "^1.32.8",
     "tinyify": "^3.0.0",
     "watchify": "^4.0.0"
-  }
+  },
+  "dependencies": {}
 }

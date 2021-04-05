@@ -10,6 +10,15 @@ module.exports = tS => {
     // hide the audience/video
     this.toggleClass('ts_hide_videos', this.config.no_vid)
     this.toggleClass('ts_hide_audience', this.config.no_aud)
+    
+    // replace upload with organize
+    $('#upload-button').after(`<div id="ts_upload"></div>`)
+    $('#ts_upload').on('click', () => {
+      let playlist = window.turntable.playlist
+      if (playlist.isFiltering) playlist.clearSearchBar()
+      $("#queue-header").removeClass("normal").addClass("edit")
+      playlist.queue.batchEditMode()
+    })
   }
 
   tS.hidden = function (key, value) {
