@@ -10,7 +10,7 @@
     "b:2": "node-sass turnStyles.sass -o build && postcss build/turnStyles.css --use autoprefixer --no-map -d build/",
     "b:3": "node-sass themes -o build/themes && postcss build/themes/*.css --use autoprefixer --no-map -d build/themes/",
     "b:4": "node-sass styles -o build/styles && postcss build/styles/*.css --use autoprefixer --no-map -d build/styles/",
-    "b:5": "cp -R static/. build/",
+    "b:5": "cp -R public/. build/",
     "w:1": "watchify turnStyles.js -o build/turnStyles.js",
     "w:2": "node-sass turnStyles.sass -wo build",
     "w:3": "node-sass themes -wo build/themes",
