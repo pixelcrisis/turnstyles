@@ -27,7 +27,8 @@
     .option
       font-weight: bold
       color: $text !important
-      &:hover
+      &:hover, 
+      &.active
         color: $active-tab-text !important
         background: $active-tab-bg !important
 
@@ -42,9 +43,9 @@
     &:not(.active), 
     &:not(.special)
       background: $bg-panel !important
-    &.active, 
     &.special
       background: $bg-alt !important
+    &.active, 
     &.selected,
     &:not(.split-option):not(.disabled):hover
       color: $active-tab-text !important

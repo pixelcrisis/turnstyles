@@ -4,7 +4,7 @@
   @extend %content-main
 
   input:not(:checked):after
-    color: $subtle
+    color: lighten($border-p, 20%)
 
 #ts_tabs div,
 #ts_hotbar label,
@@ -16,6 +16,7 @@
 
 #ts_tabs .active
   background: $accent !important
+  color: $active-tab-text !important
 
 #ts_window
   small, h5
