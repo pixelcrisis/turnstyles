@@ -2,41 +2,45 @@
 
 module.exports = tS => {
 
-  tS.prototype.attachRoom = function () {
-    if (!window.turntable) return this.log(`no room`)
-    // repeat until we find everything
-    let again = () => setTimeout(tS.prototype.attachRoom.bind(this), 250)
+  tS.init = function () {
+    this.chrome = !!window.tsBase
+    this.__base = window.tsBase || 'https://ts.pixelcrisis.co/build'
+    // load any saved user configs
+    let storage = window.localStorage.getItem("tsdb")
+    let configs = storage ? JSON.parse(storage) : {}
+    let version = require('../package.json').version
+    // load and apply our defaults
+    this.config = { ...this.default, ...configs, version }
+    this.emit('loaded', this.config)
+    this.attach()
+  }
 
-    this.core = window.turntable
-    if (!this.core.user) return again()
-      
-    this.user = this.core.user.id
-    this.view = this.core.topViewController
+  tS.attach = function () {
+    let core = window.turntable
+    if (!core) return this.Log(`no room`)
 
-    // find the room and the room manager
-    this.room = hasKey(this.core, "roomId")
-    if (!this.room) return again()
-    this.ttfm = hasKey(this.room, "roomData")
-    if (!this.ttfm) return again()
+    // make sure we've attached to everything possible
+    let again = () => setTimeout(tS.attach.bind(this), 150)
 
-    // record the current song if any
-    this.cacheTrack(this.room.currentSong, this.room.upvoters.length)
-    for (let id of this.room.djids) this.cacheNewDJ(id)
+    if (!core.user) return again()
 
-    // duplicate realVolume for our volume overrides
+    let room = findKey(core, "roomId")
+    if (!room) return again()
+    
+    let full = findKey(room, "roomData")
+    if (!full) return again()
+
+    // clone realVolume for volume overrides
     this.realVolume = window.turntablePlayer.realVolume
-
-    // bind our playlist counter
-    this.countSongs()
-    $('#songs-wrapper').on('DOMSubtreeModified', '#songs', this.countSongs)
-
-    // bind our event handler
-    this.core.addEventListener('message', this.handle.bind(this))
-    this.handleLoad()
+    
+    // interpret turntable events as our own
+    core.addEventListener('message', this.handle.bind(this))
+    this.emit('attach', room)
+    this.Log(`loaded room`)
   }
 
   // look for prop with key in obj
-  const hasKey = function (obj, key) {
+  const findKey = function (obj, key) {
     for (let prop in obj) {
       let data = obj[prop]
       if (data !== null && typeof data != "undefined" && data[key]) {

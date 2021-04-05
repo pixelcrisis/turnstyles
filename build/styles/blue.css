@@ -1,25 +1,40 @@
-.chat .message:not(.stat) .subject:hover,
-.chat .message:not(.stat) .speaker:hover {
-  color: #75acff !important; }
-
-.chat .message.mention {
-  border-right-color: #3a88ff !important; }
+#ts_slider,
+.score.scoregood,
+#settings .option.selected,
+.floating-menu .option.active,
+.floating-menu .option.selected {
+  background: #3a88ff !important; }
 
 .song .progress,
 .chat .message.mention {
   background: rgba(58, 136, 255, 0.2) !important; }
 
-#ts_slider {
-  background: #3a88ff !important; }
+.ts_menu,
+#ts_window .ts_credits a,
+.current-song .details,
+.chat .message:not(.stat) .subject:hover,
+.chat .message:not(.stat) .speaker:hover {
+  color: #89b8ff !important; }
 
-.current-song .details {
-  color: #ffffff !important; }
+#ts_hotbar input:checked:after,
+#ts_window input:checked:after {
+  color: #3a88ff !important; }
+
+.chat .message.mention {
+  border-right-color: #3a88ff !important; }
+
+#buddyListTitle,
+#buddyListHeader {
+  border-color: #3a88ff !important; }
 
 .lame-button {
   filter: grayscale(1) !important; }
 
 .awesome-button {
   filter: hue-rotate(130deg) brightness(0.8) saturate(2); }
+
+#room-view > canvas:nth-child(2) {
+  filter: hue-rotate(230deg) brightness(0.65) saturate(4); }
 
 .become-dj,
 .invite-dj,
@@ -28,9 +43,6 @@
 .favorite-star.favorited,
 #privateChatIcon.open .chatIcon {
   filter: hue-rotate(180deg) brightness(0.65) saturate(4); }
-
-#room-view > canvas:nth-child(2) {
-  filter: hue-rotate(230deg) brightness(0.65) saturate(4); }
 
 #buddyListHeader,
 .tab-item:active,
@@ -41,38 +53,5 @@
 button.tt-button.primary.small.inset,
 .options-menu .options .option:hover,
 .floating-menu .option:not(.split-option):not(.disabled):hover {
-  background-image: linear-gradient(to bottom, #3a88ff, #0769ff) !important;
-  box-shadow: none !important; }
-
-#settings .option.selected,
-.floating-menu .option.active,
-.floating-menu .option.selected {
-  color: #ffffff !important;
-  background: #0769ff !important; }
-
-.ts_menu,
-#ts_window .ts_credits a {
-  color: #75acff !important; }
-
-#ts_hotbar input:checked:after,
-#ts_window input:checked:after {
-  color: #3a88ff !important; }
-
-#buddyListTitle,
-#buddyListHeader {
-  border-color: #3a88ff !important; }
-
-#buddyListTitle,
-#settings .option:hover a,
-#settings .option:hover .description,
-button.tt-button.primary.small.inset,
-.floating-menu .option.special:not(.disabled):hover {
-  color: #ffffff !important;
-  text-shadow: none !important; }
-
-.score.scoregood {
-  color: #ffffff !important;
-  background: #3a88ff !important; }
-
-.overlay .modal {
-  background: #3a88ff !important; }
+  box-shadow: none !important;
+  background-image: linear-gradient(to bottom, #3a88ff, #0769ff) !important; }

@@ -26,13 +26,6 @@
   color: #b9b9b9 !important;
   background: #171717 !important; }
 
-#chat-input,
-#song-search-input, .message-input {
-  border: none !important;
-  box-shadow: none !important;
-  color: #b9b9b9 !important;
-  background: #1e1e1e !important; }
-
 .floating-panel-bar,
 .floating-panel-header,
 .tabbed-panel .separator,
@@ -42,22 +35,32 @@
   color: #b9b9b9 !important;
   background: #1e1e1e !important; }
 
+#chat-input,
+#song-search-input, .message-input {
+  border: none !important;
+  box-shadow: none !important;
+  color: #b9b9b9 !important;
+  background: #1e1e1e !important; }
+
 .header-room-name {
   font-weight: bold !important; }
 
 .tab-item {
   box-shadow: none !important; }
-
-.tab-item.selected .tab-title {
-  font-weight: bold !important;
-  color: #ffffff !important;
-  margin: -1px 0 0 -1px !important; }
-
-.tab-item:not(.selected):hover {
-  background: #171717 !important; }
-
-.tab-item:not(.selected):not(:hover) .tab-title {
-  color: #939393 !important; }
+  .tab-item .tab-title {
+    text-shadow: none !important; }
+  .tab-item.selected {
+    background: #e1bb22 !important; }
+    .tab-item.selected .tab-icon {
+      filter: invert(1) !important; }
+    .tab-item.selected .tab-title {
+      font-weight: bold !important;
+      color: #141414 !important;
+      margin: -1px 0 0 -1px !important; }
+  .tab-item:not(.selected):hover {
+    background: #171717 !important; }
+  .tab-item:not(.selected):not(:hover) .tab-title {
+    color: #939393 !important; }
 
 .tab-pane a {
   color: #b9b9b9 !important;
@@ -92,7 +95,7 @@
 .queue-message,
 .default-message {
   text-shadow: none !important;
-  color: #b9b9b9 !important; }
+  color: #939393 !important; }
 
 .become-dj,
 .invite-dj {
@@ -160,7 +163,7 @@
     .floating-menu .option.active, .floating-menu .option.special {
       background: #171717 !important; }
     .floating-menu .option.selected, .floating-menu .option:not(.split-option):not(.disabled):hover {
-      color: #ffffff !important;
+      color: #141414 !important;
       background: #e1bb22 !important; }
     .floating-menu .option .playlist-queue,
     .floating-menu .option .playlist-queue-plus {
@@ -228,7 +231,6 @@
   width: 23px !important;
   background: transparent !important; }
 
-#ts_upload,
 .chat-bar .chatsound {
   width: 21px !important;
   height: 21px !important;
@@ -240,14 +242,6 @@
   background-size: 38px !important;
   background-position: 0 -563px !important;
   background-image: url(https://s3.amazonaws.com/assets.turntable.fm/images/sprites/chrome-sprite@2x.png) !important; }
-
-#ts_upload {
-  top: 2px;
-  left: 6px;
-  position: relative; }
-
-#upload-button {
-  display: none; }
 
 #playlist-display .down-arrow,
 #playlist-display .playlist-queue-inset {
