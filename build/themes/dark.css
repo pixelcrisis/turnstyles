@@ -24,7 +24,7 @@
   box-shadow: none !important;
   text-shadow: none !important;
   color: #d8d8d8 !important;
-  background: #323232 !important; }
+  background: #343434 !important; }
 
 .floating-panel-bar,
 .floating-panel-header,
@@ -33,14 +33,14 @@
 .pmGreyTop:not(.new-message) {
   box-shadow: none !important;
   color: #d8d8d8 !important;
-  background: #393939 !important; }
+  background: #434343 !important; }
 
 #chat-input,
 #song-search-input, .message-input {
   border: none !important;
   box-shadow: none !important;
   color: #d8d8d8 !important;
-  background: #393939 !important; }
+  background: #434343 !important; }
 
 .header-room-name {
   font-weight: bold !important; }
@@ -51,19 +51,18 @@
     text-shadow: none !important; }
   .tab-item.selected {
     background: #e1bb22 !important; }
-    .tab-item.selected .tab-icon {
-      filter: invert(1) !important; }
     .tab-item.selected .tab-title {
       font-weight: bold !important;
-      color: #2f2f2f !important;
+      color: #ffffff !important;
       margin: -1px 0 0 -1px !important; }
   .tab-item:not(.selected):hover {
-    background: #323232 !important; }
+    background: #343434 !important; }
   .tab-item:not(.selected):not(:hover) .tab-title {
     color: #b2b2b2 !important; }
 
-.tab-pane a {
-  color: #d8d8d8 !important;
+.tab-pane a,
+#pmWindows a {
+  color: #e1bb22 !important;
   text-decoration: none !important;
   border-bottom: 1px dotted !important; }
 
@@ -78,8 +77,8 @@
   border-bottom: none !important; }
 
 .room-tab .room-info-wrap {
-  border-top: 1px solid #343434 !important;
-  border-bottom: 1px solid #343434 !important; }
+  border-top: 1px solid #393939 !important;
+  border-bottom: 1px solid #393939 !important; }
 
 .room-tab .save-description-btn .icon {
   filter: brightness(10) !important; }
@@ -88,7 +87,7 @@
   padding-bottom: 25px !important; }
 
 .room-tab .flat-button {
-  border: 1px solid #343434 !important; }
+  border: 1px solid #393939 !important; }
   .room-tab .flat-button:not(:hover) h3 {
     color: #b2b2b2 !important; }
 
@@ -108,7 +107,7 @@
   background: #2f2f2f; }
 
 ::-webkit-scrollbar-thumb {
-  background: #343434; }
+  background: #393939; }
 
 ::-webkit-scrollbar-thumb:hover {
   background: #b2b2b2; }
@@ -116,8 +115,8 @@
 #settings .option {
   font-weight: bold;
   box-shadow: none !important;
-  background: #393939 !important;
-  border-bottom: 1px solid #3e3e3e !important; }
+  background: #434343 !important;
+  border-bottom: 1px solid #4e4e4e !important; }
   #settings .option a,
   #settings .option .description {
     color: #d8d8d8 !important; }
@@ -128,12 +127,12 @@
     #settings .option:hover .description,
     #settings .option .selected a,
     #settings .option .selected .description {
-      color: #2f2f2f !important; }
+      color: #ffffff !important; }
 
 .options-menu .nib {
   filter: invert(1) !important;
-  border-color: #cecece !important;
-  background-color: lightgray !important; }
+  border-color: #bebebe !important;
+  background-color: #c9c9c9 !important; }
 
 .options-menu.closed .nib {
   border-color: transparent !important;
@@ -141,13 +140,13 @@
 
 .options-menu .options {
   box-shadow: none !important;
-  background: #393939 !important;
-  border-color: #3e3e3e !important; }
+  background: #434343 !important;
+  border-color: #4e4e4e !important; }
   .options-menu .options .option {
     font-weight: bold;
     color: #d8d8d8 !important; }
-    .options-menu .options .option:hover {
-      color: #2f2f2f !important;
+    .options-menu .options .option:hover, .options-menu .options .option.active {
+      color: #ffffff !important;
       background: #e1bb22 !important; }
 
 .floating-menu {
@@ -157,13 +156,13 @@
   .floating-menu .option {
     box-shadow: none !important;
     color: #d8d8d8 !important;
-    border-top: 1px solid #3e3e3e !important; }
+    border-top: 1px solid #4e4e4e !important; }
     .floating-menu .option:not(.active), .floating-menu .option:not(.special) {
-      background: #393939 !important; }
-    .floating-menu .option.active, .floating-menu .option.special {
-      background: #323232 !important; }
-    .floating-menu .option.selected, .floating-menu .option:not(.split-option):not(.disabled):hover {
-      color: #2f2f2f !important;
+      background: #434343 !important; }
+    .floating-menu .option.special {
+      background: #343434 !important; }
+    .floating-menu .option.active, .floating-menu .option.selected, .floating-menu .option:not(.split-option):not(.disabled):hover {
+      color: #ffffff !important;
       background: #e1bb22 !important; }
     .floating-menu .option .playlist-queue,
     .floating-menu .option .playlist-queue-plus {
@@ -182,8 +181,8 @@
 
 .floating-panel-bar,
 .floating-panel-header {
-  border-top: 1px solid #3e3e3e !important;
-  border-bottom: 1px solid #3e3e3e !important; }
+  border-top: 1px solid #4e4e4e !important;
+  border-bottom: 1px solid #4e4e4e !important; }
   .floating-panel-bar .divider,
   .floating-panel-header .divider {
     display: none; }
@@ -259,7 +258,7 @@
 .song-list > ul > :nth-child(odd):not(.separator),
 .message-history > :nth-child(odd):not(.separator),
 .conversations-list > ul > :nth-child(odd):not(.separator) {
-  border-color: #343434 !important; }
+  border-color: #393939 !important; }
 
 .song-list .song .title {
   color: #d8d8d8 !important; }
@@ -322,11 +321,17 @@
 #buddyListMain {
   box-shadow: none !important; }
 
+.pmClose,
 .pmHeader .nib {
-  filter: invert(1) !important; }
+  filter: invert(1) !important;
+  opacity: 0.7; }
 
 #buddyListNipple {
   opacity: 0 !important; }
+
+#buddyListTitle {
+  color: #ffffff !important;
+  text-shadow: none !important; }
 
 #privateChatIcon:not(.open) .chatIcon {
   filter: contrast(0) brightness(1.6) !important; }
@@ -342,7 +347,7 @@
 
 #ts_hotbar input:not(:checked):after,
 #ts_window input:not(:checked):after {
-  color: #b2b2b2; }
+  color: #818181; }
 
 #ts_tabs div,
 #ts_hotbar label,
@@ -350,13 +355,14 @@
 #ts_window select,
 #ts_window option {
   color: #d8d8d8;
-  background: #414141; }
+  background: #464646; }
 
 #ts_tabs .active {
-  background: #e1bb22 !important; }
+  background: #e1bb22 !important;
+  color: #ffffff !important; }
 
 #ts_window small, #ts_window h5 {
   color: #b2b2b2; }
 
 #ts_window select {
-  border-color: #3e3e3e !important; }
+  border-color: #4e4e4e !important; }

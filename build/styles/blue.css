@@ -10,6 +10,8 @@
   background: rgba(58, 136, 255, 0.2) !important; }
 
 .ts_menu,
+.tab-pane a,
+#pmWindows a,
 #ts_window .ts_credits a,
 .current-song .details,
 .chat .message:not(.stat) .subject:hover,
@@ -34,7 +36,7 @@
   filter: hue-rotate(130deg) brightness(0.8) saturate(2); }
 
 #room-view > canvas:nth-child(2) {
-  filter: hue-rotate(230deg) brightness(0.65) saturate(4); }
+  filter: sepia(0.5) hue-rotate(180deg) saturate(4); }
 
 .become-dj,
 .invite-dj,
