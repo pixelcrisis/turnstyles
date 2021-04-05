@@ -1,0 +1,27 @@
+$dark-theme: true
+
+$text:   #d8d8d8
+$subtle: darken($text, 15%)
+
+$bg-main: #27162d
+$bg-alt:  lighten($bg-main, 1%)
+$border:  lighten($bg-main, 2%)
+
+$bg-panel: lighten($border, 2%)
+$border-p: lighten($border, 4%)
+
+$bg-input:   $bg-panel
+$text-input: $text
+
+$accent: #e1bb22 // gold - mentions
+$action: #e65656 // red - dj removal, etc
+$onsnag: #f16e98 // pink
+$onjoin: #7af178 // green
+$onleft: $action // red
+$upvote: $onjoin // green
+$dnvote: $action // red
+
+$active-tab-bg:   $accent // chat, queue, room
+$active-tab-text: $bg-main
+
+@import "base/theme"
