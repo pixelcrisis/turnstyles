@@ -10,11 +10,12 @@
     "b:2": "node-sass turnStyles.sass -o build && postcss build/turnStyles.css --use autoprefixer --no-map -d build/",
     "b:3": "node-sass themes -o build/themes && postcss build/themes/*.css --use autoprefixer --no-map -d build/themes/",
     "b:4": "node-sass styles -o build/styles && postcss build/styles/*.css --use autoprefixer --no-map -d build/styles/",
+    "b:5": "cp -R static/. build/",
     "w:1": "watchify turnStyles.js -o build/turnStyles.js",
     "w:2": "node-sass turnStyles.sass -wo build",
     "w:3": "node-sass themes -wo build/themes",
     "w:4": "node-sass styles -wo build/styles",
-    "build": "concurrently \"yarn b:1\" \"yarn b:2\" \"yarn b:3\" \"yarn b:4\"",
+    "build": "yarn b:1 && yarn b:2 && yarn b:3 && yarn b:4 && yarn b:5",
     "watch": "concurrently \"yarn w:1\" \"yarn w:2\" \"yarn w:3\" \"yarn w:4\""
   },
   "devDependencies": {
