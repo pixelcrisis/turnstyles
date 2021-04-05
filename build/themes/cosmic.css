@@ -226,11 +226,22 @@
 .song-search {
   left: 36px; }
 
+#chat-input::-moz-placeholder, #song-search-input::-moz-placeholder {
+  color: #b19cff !important; }
+
+#chat-input:-ms-input-placeholder, #song-search-input:-ms-input-placeholder {
+  color: #b19cff !important; }
+
+#chat-input::placeholder,
+#song-search-input::placeholder {
+  color: #b19cff !important; }
+
 .chat-bar .chatsound-container {
   width: 23px !important;
   background: transparent !important; }
 
 .chat-bar .chatsound {
+  left: 6px !important;
   width: 21px !important;
   height: 21px !important;
   padding: 0px !important;
@@ -366,3 +377,11 @@
 
 #ts_window select {
   border-color: #312558 !important; }
+
+#ts_upload,
+.chat-bar .chatsound,
+#playlist .search .mag-glass,
+#playlist-display .down-arrow,
+.tab-item:not(.selected) .tab-icon,
+#playlist-display .playlist-queue-inset {
+  filter: contrast(0) sepia(1) hue-rotate(210deg) saturate(4) !important; }

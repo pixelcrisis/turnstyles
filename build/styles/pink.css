@@ -12,15 +12,17 @@
 .ts_menu,
 .tab-pane a,
 #pmWindows a,
+#ts_window h4,
 #ts_window .ts_credits a,
 .current-song .details,
+.tab-item:not(.selected):hover .tab-title,
 .chat .message:not(.stat) .subject:hover,
 .chat .message:not(.stat) .speaker:hover {
   color: #e698e9 !important; }
 
 #ts_hotbar input:checked:after,
 #ts_window input:checked:after {
-  color: #d554da !important; }
+  color: #e698e9 !important; }
 
 .chat .message.mention {
   border-right-color: #d554da !important; }
@@ -45,6 +47,9 @@
 .favorite-star.favorited,
 #privateChatIcon.open .chatIcon {
   filter: hue-rotate(250deg) brightness(0.7) saturate(2); }
+
+.tab-item:not(.selected):hover .tab-icon {
+  filter: sepia(1) hue-rotate(250deg) saturate(4); }
 
 #buddyListHeader,
 .tab-item:active,

@@ -11,7 +11,7 @@
   align-items: center; }
   #ts_hotbar h4,
   #ts_window h4 {
-    opacity: 0.5;
+    opacity: 0.75;
     margin-top: -10px;
     font-size: 0.85em;
     text-transform: uppercase; }
@@ -34,7 +34,7 @@
     text-transform: uppercase; }
     #ts_hotbar .ts_credits a:not(:hover),
     #ts_window .ts_credits a:not(:hover) {
-      opacity: 0.5; }
+      opacity: 0.75; }
 
 #ts_window.active,
 .header-bar:hover #ts_hotbar:not(.active) {
@@ -123,7 +123,10 @@
   right: 120px;
   width: 160px;
   z-index: 6000;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   position: absolute; }
   #ts_volume.muted #ts_muted {
     display: inline-block; }
@@ -178,7 +181,7 @@
 
 #ts_upload {
   top: 2px;
-  left: 6px;
+  left: 11px;
   width: 21px;
   height: 21px;
   padding: 0px;
