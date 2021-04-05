@@ -11,8 +11,6 @@
   "content_scripts": [
     {
       "exclude_globs": [
-        "*://turntable.fm/",
-        "*://turntable.fm/lobby",
         "*://turntable.fm/about",
         "*://turntable.fm/jobs",
         "*://turntable.fm/privacy",
