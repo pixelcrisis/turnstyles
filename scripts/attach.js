@@ -20,7 +20,8 @@ module.exports = tS => {
     if (!core) return this.Log(`no room`)
 
     // check for lobby
-    if ($('#turntable #topBG').length) return this.buildWindow()
+    this.lobby = $('#turntable #topBG').length
+    if (this.lobby) return this.buildWindow()
 
     // make sure we've attached to everything possible
     let again = () => setTimeout(tS.attach.bind(this), 150)

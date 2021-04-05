@@ -57,7 +57,7 @@ module.exports = tS => {
     window.localStorage.setItem("tsdb", stored)
 
     this.Log('saved config')
-    this.emit('update', option, saving)
+    if (!this.lobby) this.emit('update', option, saving)
   }
 
 }
