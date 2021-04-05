@@ -4,21 +4,22 @@
   @extend %content-main
 
   input:not(:checked):after
-    color: $color-subtle
+    color: lighten($border-p, 20%)
 
 #ts_tabs div,
 #ts_hotbar label,
 #ts_window label,
 #ts_window select, 
 #ts_window option
-  color: $color-text 
-  background: lighten($color-border, 5%)
+  color: $text 
+  background: lighten($border, 5%)
 
 #ts_tabs .active
-  background: $color-accent !important
+  background: $accent !important
+  color: $active-tab-text !important
 
 #ts_window
   small, h5
-    color: $color-subtle
+    color: $subtle
   select
-    border-color: $panel-border !important
+    border-color: $border-p !important

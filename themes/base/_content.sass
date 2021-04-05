@@ -5,29 +5,30 @@
 .room-info-intro
   @extend %content-main
 
-.tab-pane a
-  color: $color-text !important
+.tab-pane a,
+#pmWindows a,
+  color: $accent !important
   text-decoration: none !important
   border-bottom: 1px dotted !important
 
 .room-tab
   .room-name
-    color: $color-text !important
+    color: $text !important
 
   .num-listeners,
   .description-wrap
-    color: $color-subtle
+    color: $subtle
 
   .room-info-intro
     border-bottom: none !important
 
   .room-info-wrap
     @extend %content-alt
-    border-top: 1px solid $color-border !important
-    border-bottom: 1px solid $color-border !important
+    border-top: 1px solid $border !important
+    border-bottom: 1px solid $border !important
 
   .save-description-btn .icon
-    filter: brightness($brightness) !important
+    @include dark-buttons
 
   .edit-description
     @extend %content-alt
@@ -35,24 +36,24 @@
 
   .flat-button
     @extend %content-alt
-    border: 1px solid $color-border !important
+    border: 1px solid $border !important
     &:not(:hover) h3
-      color: $color-subtle !important
+      color: $subtle !important
 
 .queue-message,
 .default-message
   text-shadow: none !important
-  color: $color-text !important
+  color: $subtle !important
 
 .become-dj, 
 .invite-dj
-  color: $color-bg !important
+  color: $bg-main !important
 
 ::-webkit-scrollbar
   width: 7px
 ::-webkit-scrollbar-track
-  background: $color-bg
+  background: $bg-main
 ::-webkit-scrollbar-thumb
-  background: $color-border
+  background: $border
 ::-webkit-scrollbar-thumb:hover
-  background: $color-subtle
+  background: $subtle

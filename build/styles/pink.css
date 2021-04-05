@@ -1,25 +1,42 @@
-.chat .message:not(.stat) .subject:hover,
-.chat .message:not(.stat) .speaker:hover {
-  color: #e287e5 !important; }
-
-.chat .message.mention {
-  border-right-color: #d554da !important; }
+#ts_slider,
+.score.scoregood,
+#settings .option.selected,
+.floating-menu .option.active,
+.floating-menu .option.selected {
+  background: #d554da !important; }
 
 .song .progress,
 .chat .message.mention {
   background: rgba(213, 84, 218, 0.2) !important; }
 
-#ts_slider {
-  background: #d554da !important; }
+.ts_menu,
+.tab-pane a,
+#pmWindows a,
+#ts_window .ts_credits a,
+.current-song .details,
+.chat .message:not(.stat) .subject:hover,
+.chat .message:not(.stat) .speaker:hover {
+  color: #e698e9 !important; }
 
-.current-song .details {
-  color: #ffffff !important; }
+#ts_hotbar input:checked:after,
+#ts_window input:checked:after {
+  color: #d554da !important; }
+
+.chat .message.mention {
+  border-right-color: #d554da !important; }
+
+#buddyListTitle,
+#buddyListHeader {
+  border-color: #d554da !important; }
 
 .lame-button {
   filter: grayscale(1) !important; }
 
 .awesome-button {
   filter: hue-rotate(200deg) brightness(0.8) saturate(2); }
+
+#room-view > canvas:nth-child(2) {
+  filter: sepia(0.5) hue-rotate(250deg) saturate(3); }
 
 .become-dj,
 .invite-dj,
@@ -28,9 +45,6 @@
 .favorite-star.favorited,
 #privateChatIcon.open .chatIcon {
   filter: hue-rotate(250deg) brightness(0.7) saturate(2); }
-
-#room-view > canvas:nth-child(2) {
-  filter: hue-rotate(300deg) brightness(0.7) saturate(2); }
 
 #buddyListHeader,
 .tab-item:active,
@@ -41,38 +55,5 @@
 button.tt-button.primary.small.inset,
 .options-menu .options .option:hover,
 .floating-menu .option:not(.split-option):not(.disabled):hover {
-  background-image: linear-gradient(to bottom, #d554da, #c82dce) !important;
-  box-shadow: none !important; }
-
-#settings .option.selected,
-.floating-menu .option.active,
-.floating-menu .option.selected {
-  color: #ffffff !important;
-  background: #c82dce !important; }
-
-.ts_menu,
-#ts_window .ts_credits a {
-  color: #e287e5 !important; }
-
-#ts_hotbar input:checked:after,
-#ts_window input:checked:after {
-  color: #d554da !important; }
-
-#buddyListTitle,
-#buddyListHeader {
-  border-color: #d554da !important; }
-
-#buddyListTitle,
-#settings .option:hover a,
-#settings .option:hover .description,
-button.tt-button.primary.small.inset,
-.floating-menu .option.special:not(.disabled):hover {
-  color: #ffffff !important;
-  text-shadow: none !important; }
-
-.score.scoregood {
-  color: #ffffff !important;
-  background: #d554da !important; }
-
-.overlay .modal {
-  background: #d554da !important; }
+  box-shadow: none !important;
+  background-image: linear-gradient(to bottom, #d554da, #c82dce) !important; }

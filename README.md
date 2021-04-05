@@ -1,5 +1,5 @@
 ## turnStyles for turntable.fm
-### A Chrome Extension & Bookmarklet*!
+### A Chrome Extension & Bookmarklet!
 
 **Autobop**: Awesome new songs  
 **Show Volume**: Always visible volume slider  
@@ -9,10 +9,14 @@
 **Desktop Notifications**: New Songs, Dings, PMs!  
 **Chat Notifications**: User leave/join, Snags, Song Stats  
 
-*Bookmarklet cannot do desktop notifications
-
 ## [Get turnStyles](https://ts.pixelcrisis.co)
 Available via Bookmarklet or the Chrome Store
 
 ## Contributing
 Fork the repo, use the `dev` branch and submit a pull request!
+
+```sh
+yarn install
+yarn watch
+yarn build
+```

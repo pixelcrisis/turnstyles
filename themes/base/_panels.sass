@@ -2,35 +2,35 @@
 .floating-panel-header,
 .tabbed-panel .separator,
 .sliding-nav-pane-header
-  @extend %floating-panel
+  @extend %content-panel
 
 .floating-panel-bar,
 .floating-panel-header
-  border-top: 1px solid $panel-border !important
-  border-bottom: 1px solid $panel-border !important
+  border-top: 1px solid $border-p !important
+  border-bottom: 1px solid $border-p !important
   .divider
     display: none
 
 .tabbed-panel .separator
   text-shadow: none !important
-  color: $color-text !important
+  color: $text !important
 
 .panel-button
   border: none !important
   box-shadow: none !important
   text-shadow: none !important
-  color: $color-subtle !important
+  color: $subtle !important
   background: transparent !important
 
 #queue-header
   border-top: 1px solid transparent !important
 
 #queue-header .done
-  border: 1px solid $color-bg !important
+  border: 1px solid $bg-main !important
 
 .sliding-nav-pane-title
   text-shadow: none !important
-  color: $color-text !important
+  color: $text !important
 
 .sliding-nav-pane-back
   width: 41px !important
@@ -44,7 +44,7 @@
     font-size: 1.3em
     font-weight: bold
     position: relative
-    color: $color-subtle
+    color: $subtle
 
 #chat-form,
 .song-search

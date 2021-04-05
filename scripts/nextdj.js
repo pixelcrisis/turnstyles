@@ -2,32 +2,45 @@
 
 module.exports = tS => {
 
-  // called in events onLoad, onDrop 
-  tS.prototype.checkDecks = function () {
+  tS.checkDecks = function () {
     if (!this.config.nextdj) return
     if (!this.config.pingdj) this.tryJumping()
     else this.suspend(null, 2, 'nextdj')
   }
 
-  tS.prototype.tryJumping = function () {
+  tS.tryJumping = function () {
     let button = $('.become-dj').length
-    if (!button) return this.log(`nextdj: no spot`)
-    this.log(`nextdj: taking spot`)
-    this.room.becomeDj()
+    if (!button) return this.Log(`nextdj: no spot`)
+    this.Log(`nextdj: taking spot`)
+    this.view().becomeDj()
   }
 
-  tS.prototype.isSpinning = function () {
-    // in case we fired after set
-    $('#ts_pane').removeClass('active')
-    // reset nextDJ after fire, delay saving for load
+  tS.isSpinning = function (e) {
+    if (!this.config.nextdj) return
+    if (this.user().id != e.user[0].userid) return
+
     this.config.nextdj = false
-    $('#ts_nextdj').prop('checked', false)
-    setTimeout(this.saveConfig.bind(this), 5 * 1000)
+    $('#ts_hotbar #ts_nextdj').prop('checked', false)
+    $('#ts_hotbar #ts_nextdj').trigger('change')
 
-    this.notifyUser({ 
-      head: `You've Hopped On Deck!`,
-      text: `NextDJ is now disabled.`
-    })
+    let head = `You've Hopped On Deck!`
+    let text = `NextDJ is now disabled.`
+
+    this.sendNotify({ head, text })
+    this.postToChat(head, text)
   }
+
+  tS.nextOnPing = function (e) {
+    if (!this.pinged(e.text)) return
+    if (this.holding['nextdj']) this.tryJumping()
+  }
+
+  tS.on('attach', tS.checkDecks)
+  tS.on('update', tS.checkDecks)
+  tS.on('rem_dj', tS.checkDecks)
+  tS.on('add_dj', tS.isSpinning)
+  tS.on('speak',  tS.nextOnPing)
 
 }
+
+const inputs = `#ts_hotbar #ts_nextdj, #ts_window #ts_nextdj`

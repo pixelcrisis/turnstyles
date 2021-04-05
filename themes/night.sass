@@ -1,74 +1,27 @@
-// core colors
-$color-bg:   #141414
-$color-text: #b9b9b9
-$color-tabs: #ffffff
+$dark-theme: true
 
-$color-good: #40c340
-$color-bad:  #e23434
-$color-love: #f16e98
+$text:   #b9b9b9
+$subtle: darken($text, 15%)
 
-// accent color
-$color-accent: #e1bb22
+$bg-main: #141414
+$bg-alt:  lighten($bg-main, 2%)
+$border:  lighten($bg-main, 4%)
 
-// chat message colors
-$color-action: $color-bad // dj removal etc
-$color-onsnag: $color-love
-$color-onjoin: $color-good
-$color-onleft: $color-bad
-$color-onding: $color-accent
+$bg-panel: lighten($border, 4%)
+$border-p: lighten($border, 8%)
 
-// generated variables
-$color-bg-alt: lighten($color-bg, 1%)   // lighter background
-$color-border: lighten($color-bg, 2%)   // matching border color
-$color-subtle: darken($color-text, 15%) // darker, subtle text
+$bg-input:   $bg-panel
+$text-input: $text
 
-// floating panel colors
-$color-panels: lighten($color-border, 2%)
-$panel-border: lighten($color-panels, 2%)
+$accent: #e1bb22 // gold - mentions
+$action: #e23434 // red - dj removal, etc
+$onsnag: #f16e98 // pink
+$onjoin: #40c340 // green
+$onleft: $action // red
+$upvote: $onjoin // green
+$dnvote: $action // red
 
-// controls inverting elements
-// set invert to 0 to disable, 1 to enable
-// brighness to 1 to disable, 10 to enable
-// set inverts to 0% to disable
-$invert-dark: 1 
-$brightness: 10
-$inverted-panels: lighten(invert($color-panels, 100%), 5%)
-$inverted-border: lighten(invert($panel-border, 100%), 5%)
+$active-tab-bg:   $accent // chat, queue, room
+$active-tab-text: #ffffff
 
-// define our main stylings
-%content-main
-  box-shadow: none !important
-  text-shadow: none !important
-  color: $color-text !important
-  background: $color-bg !important
-
-%content-alt
-  box-shadow: none !important
-  text-shadow: none !important
-  color: $color-text !important
-  background: $color-bg-alt !important
-
-%text-input
-  border: none !important
-  box-shadow: none !important
-  color: $color-text !important
-  background: $color-panels !important
-
-// the "bars" in the tabs
-%floating-panel
-  box-shadow: none !important
-  color: $color-text !important
-  background: $color-panels !important
-
-// end theme variables, import main styles
-
-@import "header"
-@import "content"
-@import "popups"
-@import "panels" // inputs
-@import "buttons"
-@import "striped"
-@import "songs"
-@import "chat"
-@import "private"
-@import "options"
+@import "base/theme"

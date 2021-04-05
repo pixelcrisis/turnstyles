@@ -1,0 +1,29 @@
+.chat .message
+  &.stat
+    .subject:hover,
+    .speaker:hover
+      color: $text !important
+  &:not(.stat)
+    .subject:hover,
+    .speaker:hover
+      color: $accent !important
+
+  &.mention
+    background: rgba($accent, 0.2) !important
+    border-right: 5px solid $accent !important
+
+  &.action
+    color: $action !important
+    border-right: 5px solid $action !important
+
+  &.join
+    color: $onjoin !important
+    border-right: 5px solid $onjoin !important
+
+  &.snag
+    color: $onsnag !important
+    border-right: 5px solid $onsnag !important
+
+  &.left
+    color: $onleft !important
+    border-right: 5px solid $onleft !important
