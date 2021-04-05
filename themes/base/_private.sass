@@ -11,12 +11,17 @@
 .pmGreyTop:not(.new-message)
   @extend %content-panel
 
-.pmClose
+.pmClose,
 .pmHeader .nib,
   @include inverted
+  opacity: 0.7
 
 #buddyListNipple
   opacity: 0 !important
+
+#buddyListTitle
+  color: $active-tab-text !important
+  text-shadow: none !important
 
 #privateChatIcon:not(.open) .chatIcon
   @if $dark-theme
