@@ -3,6 +3,8 @@
 module.exports = tS => {
 
   tS.init = function () {
+    if (this.__base) return // don't init if we're here
+      
     this.chrome = !!window.tsBase
     this.__base = window.tsBase || 'https://ts.pixelcrisis.co/build'
     // load any saved user configs
