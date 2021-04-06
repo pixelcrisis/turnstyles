@@ -57,7 +57,11 @@ module.exports = tS => {
     window.localStorage.setItem("tsdb", stored)
 
     this.Log('saved config')
-    this.emit('update', option, saving)
+
+    // emit update for rooms, update themes in lobby
+    let visual = option == "style" || option == "theme"
+    if (!this.lobby) this.emit('update', option, saving)
+    else if (visual) this.updateThemes(option, saving)
   }
 
 }

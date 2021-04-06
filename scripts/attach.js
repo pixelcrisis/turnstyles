@@ -3,6 +3,8 @@
 module.exports = tS => {
 
   tS.init = function () {
+    if (this.__base) return // don't init if we're here
+      
     this.chrome = !!window.tsBase
     this.__base = window.tsBase || 'https://ts.pixelcrisis.co/build'
     // load any saved user configs
@@ -18,6 +20,10 @@ module.exports = tS => {
   tS.attach = function () {
     let core = window.turntable
     if (!core) return this.Log(`no room`)
+
+    // check for lobby
+    this.lobby = $('#turntable #topBG').length
+    if (this.lobby) return this.buildWindow()
 
     // make sure we've attached to everything possible
     let again = () => setTimeout(tS.attach.bind(this), 150)

@@ -31,7 +31,7 @@ const layout = self => `
     ${ hotBar(self) }
   </div>
   <div id="ts_window">
-    <h3 class="ts_menu">☰ turnStyles</h3>
+    <h3 class="ts_menu">✕ tS</h3>
     ${ tabList }
     ${ mainTab(self) }
     ${ visualTab(self) }
