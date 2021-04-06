@@ -4,8 +4,11 @@ module.exports = tS => {
 
   tS.modify = function () {
     // bind song count updates
-    $('#songs-wrapper').on('DOMSubtreeModified', '#songs', countSongs)
+    $('#songs-wrapper').on(event, '#songs', countSongs)
     countSongs()
+
+    // bind profile stat link updates
+    $('#maindiv').on(event, '.overlay', attachStats)
 
     // hide the audience/video
     this.toggleClass('ts_hide_videos', this.config.no_vid)
@@ -31,9 +34,30 @@ module.exports = tS => {
 
 }
 
+const event = 'DOMSubtreeModified'
+
 const countSongs = () => {
   let head = $('#playlist-header .text')[0]
   let data = window.turntable.playlist.fileids.length
   let name = head.innerHTML.split('<em>')[0]
   head.innerHTML = `${name} <em>${data}</em>`
 }
+
+const attachStats = () => {
+  let el = $('.profile.modal .userid')
+  let id = el.length ? el[0].innerHTML : ''
+  if (id.length != 24) return
+
+  if ($('.profile.modal .statslink').length) return
+  $('.profile.modal .section.about').before(layout(id))
+
+  console.log(id)
+}
+
+const layout = id => `
+  <div class="section statslink">
+    <a href="https://ttstats.info/user/${id}" target="_blank">
+      ttStats
+    </a>
+  <div>
+`
