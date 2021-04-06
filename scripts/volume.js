@@ -39,10 +39,10 @@ module.exports = tS => {
 
   // handle scrolling on the volume input
   tS.onVolWheel = function (e) {
-    const current = current()
+    const curr = current()
     let shifted = e.originalEvent.shiftKey ? 1 : 5
     let descend = e.originalEvent.deltaY > 0
-    let updated = descend ? (current - shifted) : (current + shifted)
+    let updated = descend ? (curr - shifted) : (curr + shifted)
     
     updated = updated < 0 ? 0 : updated > 100 ? 100 : updated
     $('#ts_slider')[0].value = updated
