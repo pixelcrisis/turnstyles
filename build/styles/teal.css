@@ -13,15 +13,16 @@
 .tab-pane a,
 #pmWindows a,
 #ts_window h4,
-#ts_window .ts_credits a,
+#topBG #content a,
 .current-song .details,
+#ts_window .ts_credits a,
+.lobby-panel .buddyRoomName,
+.roomListItem .needed .count,
+#ts_hotbar input:checked:after,
+#ts_window input:checked:after,
 .tab-item:not(.selected):hover .tab-title,
 .chat .message:not(.stat) .subject:hover,
 .chat .message:not(.stat) .speaker:hover {
-  color: #66c9d7 !important; }
-
-#ts_hotbar input:checked:after,
-#ts_window input:checked:after {
   color: #66c9d7 !important; }
 
 .chat .message.mention {
@@ -45,18 +46,21 @@
 .header-logo,
 .song-details,
 .favorite-star.favorited,
+.buddyListRoom .joinRoomButton,
 #privateChatIcon.open .chatIcon {
   filter: hue-rotate(140deg) brightness(0.7) saturate(1); }
 
 .tab-item:not(.selected):hover .tab-icon {
   filter: sepia(1) hue-rotate(160deg) saturate(4); }
 
+#create-room,
 #buddyListHeader,
 .tab-item:active,
 .tab-item.selected,
 #ts_tabs div.active,
 .pmGreyTop.new-message,
 #settings .option:hover,
+.roomListItem .listenNow,
 button.tt-button.primary.small.inset,
 .options-menu .options .option:hover,
 .floating-menu .option:not(.split-option):not(.disabled):hover {

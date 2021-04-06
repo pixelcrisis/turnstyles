@@ -1,9 +1,16 @@
 @charset "UTF-8";
+.header-bar {
+  z-index: 1;
+  font-size: 13px;
+  line-height: 42px; }
+
 #ts_hotbar,
 #ts_window {
   display: none;
   color: #eaeaea;
+  margin: 0 auto;
   flex-wrap: wrap;
+  max-width: 960px;
   line-height: 1em;
   font-weight: bold;
   padding: 10px 20px;

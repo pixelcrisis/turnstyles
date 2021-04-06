@@ -1,5 +1,7 @@
 .header-bar,
-.tab-item:not(.selected), #songs,
+.tab-item:not(.selected), body,
+#songs,
+#newsbox,
 .tab-pane,
 .song-list,
 .guest-list,
@@ -26,17 +28,24 @@
   color: #e2eeff !important;
   background: #0a1f3e !important; }
 
+.room-list,
+.roomListItem,
+#mainPanelHeader,
 .floating-panel-bar,
 .floating-panel-header,
 .tabbed-panel .separator,
-.sliding-nav-pane-header, .message-input-view,
+.sliding-nav-pane-header,
+.lobby-panel .buddyListRoom,
+.lobby-panel .buddyListTitle,
+.lobby-panel #buddyListHeader, .message-input-view,
 .pmGreyTop:not(.new-message) {
   box-shadow: none !important;
   color: #e2eeff !important;
   background: #0f2d58 !important; }
 
 #chat-input,
-#song-search-input, .message-input {
+#song-search-input,
+.room-search-input input, .message-input {
   border: none !important;
   box-shadow: none !important;
   color: #e2eeff !important;
@@ -61,10 +70,19 @@
     color: #96c1ff !important; }
 
 .tab-pane a,
-#pmWindows a {
+#pmWindows a,
+#topBG #content a {
   color: #e1bb22 !important;
   text-decoration: none !important;
   border-bottom: 1px dotted !important; }
+
+#mainNav li:not(.selected) .nav-text,
+#subNav li:not(.selected) .subnav-text {
+  color: #96c1ff !important; }
+
+#subNav li.selected,
+#mainNav li.selected {
+  background: #0a1f3e !important; }
 
 .room-tab .room-name {
   color: #e2eeff !important; }
@@ -95,6 +113,9 @@
 .default-message {
   text-shadow: none !important;
   color: #96c1ff !important; }
+
+#create-room span {
+  color: #ffffff !important; }
 
 .become-dj,
 .invite-dj {
@@ -128,6 +149,9 @@
     #settings .option .selected a,
     #settings .option .selected .description {
       color: #ffffff !important; }
+
+.settings-dropdown .dropdown {
+  background: #0a1f3e; }
 
 .options-menu .nib {
   filter: invert(1) !important;
@@ -186,10 +210,38 @@
   .floating-panel-bar .divider,
   .floating-panel-header .divider {
     display: none; }
+  .floating-panel-bar .count,
+  .floating-panel-header .count {
+    color: #96c1ff !important; }
 
-.tabbed-panel .separator {
+.roomListItem {
+  border: none !important; }
+  .roomListItem .stat,
+  .roomListItem .songName {
+    color: #e2eeff !important; }
+  .roomListItem .stat .icon {
+    filter: grayscale(1); }
+  .roomListItem .needed .count {
+    color: #e1bb22 !important; }
+  .roomListItem .listenNow {
+    border: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    color: #ffffff !important;
+    background: #e1bb22 !important; }
+  .roomListItem .roomDJs .icon {
+    background-position: 0 -37px !important;
+    background: url("https://s3.amazonaws.com/assets.turntable.fm/images/sprites/lobby-sprite.png") no-repeat top left !important; }
+
+.room-list .roomName,
+.tabbed-panel .separator,
+.lobby-panel .buddyListTitleText {
   text-shadow: none !important;
   color: #e2eeff !important; }
+
+.roomListBuddyIcon.isAvatar {
+  border: none !important;
+  background: transparent !important; }
 
 .panel-button {
   border: none !important;
@@ -226,14 +278,15 @@
 .song-search {
   left: 36px; }
 
-#chat-input::-moz-placeholder, #song-search-input::-moz-placeholder {
+#chat-input::-moz-placeholder, #song-search-input::-moz-placeholder, .room-search-input input::-moz-placeholder {
   color: #96c1ff !important; }
 
-#chat-input:-ms-input-placeholder, #song-search-input:-ms-input-placeholder {
+#chat-input:-ms-input-placeholder, #song-search-input:-ms-input-placeholder, .room-search-input input:-ms-input-placeholder {
   color: #96c1ff !important; }
 
 #chat-input::placeholder,
-#song-search-input::placeholder {
+#song-search-input::placeholder,
+.room-search-input input::placeholder {
   color: #96c1ff !important; }
 
 .chat-bar .chatsound-container {
@@ -380,8 +433,11 @@
 
 #ts_upload,
 .chat-bar .chatsound,
+#settings .settings-button,
+.roomListItem .needed .icon,
 #playlist .search .mag-glass,
+.room-search-input .mag-glass,
 #playlist-display .down-arrow,
 .tab-item:not(.selected) .tab-icon,
 #playlist-display .playlist-queue-inset {
-  filter: contrast(0) sepia(1) hue-rotate(180deg) saturate(4) !important; }
+  filter: sepia(1) hue-rotate(180deg) saturate(4) !important; }
