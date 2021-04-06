@@ -1,22 +1,74 @@
-## turnStyles for turntable.fm
-### A Chrome Extension & Bookmarklet!
+<h1 align="center">
+  <br>turnStyles
+</h1>
 
-**Autobop**: Awesome new songs  
-**Show Volume**: Always visible volume slider  
-**Temp Mute**: Mute only until next song  
-**Themes**: Dark Mode, Night Mode  
-**Styles**: Replace the Gold!  
-**Desktop Notifications**: New Songs, Dings, PMs!  
-**Chat Notifications**: User leave/join, Snags, Song Stats  
+<p align="center">
+A Chrome Extension & Bookmarklet for turntable.fm
+<br>Apply tweaks to turntable.fm - autobop, autodj, themes, styles, and more!
+</p>
 
-## [Get turnStyles](https://ts.pixelcrisis.co)
-Available via Bookmarklet or the Chrome Store
+## Features
+
+**Autobop**:
+<br>Auto Awesome new songs
+
+**Show Volume**:
+<br>Always visible volume slider
+
+**Temp Mute**:
+<br>Mute only until next song
+
+**Themes**:
+<br>Dark Mode, Night Mode
+
+**Styles**:
+<br>Replace the Gold!
+
+**Desktop Notifications**:
+<br>New Songs, Mentions, PMs!
+
+**Chat Notifications**:
+<br>User leave/join, Snags, Song Stats, Dropped DJ stats
+
+## Install
+
+TurnStyles is currently available via the Chrome Web Store and a Bookmarklet
+
+[link-chrome]: https://chrome.google.com/webstore/detail/turntable-tweaks/pmlkackfnbbnjfejpddpakallilkbdme 'Version published on Chrome Web Store'
+
+[<img src="https://raw.githubusercontent.com/alrra/browser-logos/90fdf03c/src/chrome/chrome.svg" width="25" alt="Chrome" valign="middle">][link-chrome] [<img valign="middle" src="https://img.shields.io/chrome-web-store/v/pmlkackfnbbnjfejpddpakallilkbdme.svg?label=%20">][link-chrome] [Chrome Web Store](https://chrome.google.com/webstore/detail/turntable-tweaks/pmlkackfnbbnjfejpddpakallilkbdme)
+
+[🔖 Bookmarklet](https://ts.pixelcrisis.co)
+
+[🌍 Website](https://ts.pixelcrisis.co/)
+
+## Support
+
+- Join the turntable.fm [Discord](https://discord.gg/jnRs4WnPjM) and ask in `#extensions-discussion`
+- [Open an Issue!](https://github.com/pixelcrisis/turnstyles/issues/new)
 
 ## Contributing
-Fork the repo, use the `dev` branch and submit a pull request!
+
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com)
+
+- Fork the repo
+- Use the `dev` branch for changes
+- Submit a pull request!
+
+## Build
+
+Install dependancies with Yarn
 
 ```sh
 yarn install
 yarn watch
 yarn build
 ```
+
+## Privacy
+
+A full Privacy Statement can be found under [Privacy.md](Privacy.md).
+
+## Changelog
+
+The full changelog of turnStyles can be found under [turnStyles/releases.](https://github.com/pixelcrisis/turnstyles/releases)
