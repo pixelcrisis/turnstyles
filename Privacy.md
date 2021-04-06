@@ -1,4 +1,4 @@
-## Privacy Policy
+# Privacy Policy
 
 **Last updated March 10, 2021**
 
@@ -9,20 +9,20 @@ contact us at pxcrisis@gmail.com.
 
 **Please read this privacy notice carefully as it will help you understand what we do with the information that we collect.**
 
-## TABLE OF CONTENTS
+## Table of Contents
 
 **1. What Information Do We Collect?**
-**2. Will Your Information Be Shared With Anyone?**
-**3. Is Your Information Transferred Internationally?**
-**4. How Long Do we Keep Your Information?**
-**5. How Do We Keep your Information Safe?**
-**6. Do We Collect Information From Minors?**
-**7. What Are Your Privacy Rights?**
-**8. Controls For Do-Not-Track Features**
-**9. Do California Residents Have Specific Privacy Rights?**
-**10. Do We Make Updates To This Notice?**
-**11. How Can You Contact Us About This Notice?**
-**12. How Can You Review, Update, Or Delete The Data We Collect?**
+<br>**2. Will Your Information Be Shared With Anyone?**
+<br>**3. Is Your Information Transferred Internationally?**
+<br>**4. How Long Do we Keep Your Information?**
+<br>**5. How Do We Keep your Information Safe?**
+<br>**6. Do We Collect Information From Minors?**
+<br>**7. What Are Your Privacy Rights?**
+<br>**8. Controls For Do-Not-Track Features**
+<br>**9. Do California Residents Have Specific Privacy Rights?**
+<br>**10. Do We Make Updates To This Notice?**
+<br>**11. How Can You Contact Us About This Notice?**
+<br>**12. How Can You Review, Update, Or Delete The Data We Collect?**
 
 ### 1. What Information Do We Collect?
 
