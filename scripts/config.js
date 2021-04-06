@@ -61,7 +61,7 @@ module.exports = tS => {
     // emit update for rooms, update themes in lobby
     let visual = option == "style" || option == "theme"
     if (!this.lobby) this.emit('update', option, saving)
-    else if (visual) this.loadThemes(option, saving)
+    else if (visual) this.updateThemes(option, saving)
   }
 
 }
