@@ -14,6 +14,14 @@ body,
   text-decoration: none !important
   border-bottom: 1px dotted !important
 
+#mainNav li:not(.selected) .nav-text,
+#subNav li:not(.selected) .subnav-text
+  color: $subtle !important
+
+#subNav li.selected,
+#mainNav li.selected
+  background: $bg-alt !important
+
 .room-tab
   .room-name
     color: $text !important
@@ -47,6 +55,9 @@ body,
 .default-message
   text-shadow: none !important
   color: $subtle !important
+
+#create-room span
+  color: $active-tab-text !important
 
 .become-dj, 
 .invite-dj
