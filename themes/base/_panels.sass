@@ -1,7 +1,13 @@
+.room-list,
+.roomListItem,
+#mainPanelHeader,
 .floating-panel-bar,
 .floating-panel-header,
 .tabbed-panel .separator,
-.sliding-nav-pane-header
+.sliding-nav-pane-header,
+.lobby-panel .buddyListRoom,
+.lobby-panel .buddyListTitle,
+.lobby-panel #buddyListHeader
   @extend %content-panel
 
 .floating-panel-bar,
@@ -10,10 +16,36 @@
   border-bottom: 1px solid $border-p !important
   .divider
     display: none
+  .count
+    color: $subtle !important
 
-.tabbed-panel .separator
+.roomListItem
+  border: none !important
+  .songName
+    color: $subtle !important
+  .stat .icon
+    filter: grayscale(1)
+  .needed .count
+    color: $accent !important
+  .listenNow
+    border: none !important
+    box-shadow: none !important
+    text-shadow: none !important
+    color: $active-tab-text !important
+    background: $active-tab-bg !important
+  .roomDJs .icon
+    background-position: 0 -37px !important
+    background: url('https://s3.amazonaws.com/assets.turntable.fm/images/sprites/lobby-sprite.png') no-repeat top left !important
+
+.room-list .roomName,
+.tabbed-panel .separator,
+.lobby-panel .buddyListTitleText,
   text-shadow: none !important
   color: $text !important
+
+.roomListBuddyIcon.isAvatar
+  border: none !important
+  background: transparent !important
 
 .panel-button
   border: none !important
@@ -51,7 +83,8 @@
   left: 36px
 
 #chat-input,
-#song-search-input
+#song-search-input,
+.room-search-input input
   @extend %text-input
   &::placeholder
     color: $subtle !important
