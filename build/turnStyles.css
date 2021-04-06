@@ -104,6 +104,9 @@
   .ts_toggle input:checked:after {
     color: gold; }
 
+#room-view {
+  background: #000000; }
+
 .chat .message.stat:not(:hover) {
   opacity: 0.5; }
 
