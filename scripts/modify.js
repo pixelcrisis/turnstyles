@@ -44,20 +44,22 @@ const countSongs = () => {
 }
 
 const attachStats = () => {
-  let el = $('.profile.modal .userid')
-  let id = el.length ? el[0].innerHTML : ''
-  if (id.length != 24) return
-
+  // return if we've already attached
   if ($('.profile.modal .statslink').length) return
-  $('.profile.modal .section.about').before(layout(id))
 
-  console.log(id)
+  // find the userid of the user
+  let data = $('.profile.modal .userid')
+  let find = data.length ? data[0].innerHTML : ''
+  if (find.length != 24) return // not a valid id yet
+
+  $('.profile.modal .section.web-links').before(layout(find))
 }
 
 const layout = id => `
   <div class="section statslink">
-    <a href="https://ttstats.info/user/${id}" target="_blank">
-      ttStats
+    <a href="https://ttstats.info/user/${id}" 
+      target="_blank" onclick="$('.modal .close-x')[0].click()">
+      View This Profile On ttStats >>
     </a>
   <div>
 `
