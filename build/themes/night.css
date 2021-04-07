@@ -10,7 +10,9 @@
 .striped-list > :nth-child(even):not(.separator),
 .song-list > ul > :nth-child(even):not(.separator),
 .message-history > :nth-child(even):not(.separator),
-.conversations-list > ul > :nth-child(even):not(.separator), .message-history, #ts_hotbar,
+.conversations-list > ul > :nth-child(even):not(.separator), .message-history,
+.conversations-list,
+.mini-pms-view .bottom-bar, #ts_hotbar,
 #ts_window {
   box-shadow: none !important;
   text-shadow: none !important;
@@ -44,7 +46,9 @@
   background: #282828 !important; }
 
 #chat-input,
+.overlay textarea,
 #song-search-input,
+.overlay input.text,
 .room-search-input input, .message-input {
   border: none !important;
   box-shadow: none !important;
@@ -71,9 +75,11 @@
 
 .tab-pane a,
 #pmWindows a,
-#topBG #content a {
+#topBG #content a,
+.profile .statslink a {
   color: #e1bb22 !important;
   text-decoration: none !important;
+  background: transparent !important;
   border-bottom: 1px dotted !important; }
 
 #mainNav li:not(.selected) .nav-text,
@@ -83,6 +89,17 @@
 #subNav li.selected,
 #mainNav li.selected {
   background: #191919 !important; }
+
+.mini-room-view {
+  background-color: transparent !important; }
+
+.miniplayer .songboard {
+  filter: grayscale(1); }
+
+.song-playing .songboard-time,
+.song-playing .songboard-time-left,
+.song-playing .songboard-progress-bar {
+  bottom: -59px; }
 
 .room-tab .room-name {
   color: #b9b9b9 !important; }
@@ -198,6 +215,8 @@
 
 .overlay .modal {
   background: #e1bb22 !important; }
+  .overlay .modal .title {
+    color: #ffffff !important; }
   .overlay .modal .content-container {
     background: #141414 !important; }
     .overlay .modal .content-container .content {
@@ -278,14 +297,16 @@
 .song-search {
   left: 36px; }
 
-#chat-input::-moz-placeholder, #song-search-input::-moz-placeholder, .room-search-input input::-moz-placeholder {
+#chat-input::-moz-placeholder, .overlay textarea::-moz-placeholder, #song-search-input::-moz-placeholder, .overlay input.text::-moz-placeholder, .room-search-input input::-moz-placeholder {
   color: #939393 !important; }
 
-#chat-input:-ms-input-placeholder, #song-search-input:-ms-input-placeholder, .room-search-input input:-ms-input-placeholder {
+#chat-input:-ms-input-placeholder, .overlay textarea:-ms-input-placeholder, #song-search-input:-ms-input-placeholder, .overlay input.text:-ms-input-placeholder, .room-search-input input:-ms-input-placeholder {
   color: #939393 !important; }
 
 #chat-input::placeholder,
+.overlay textarea::placeholder,
 #song-search-input::placeholder,
+.overlay input.text::placeholder,
 .room-search-input input::placeholder {
   color: #939393 !important; }
 

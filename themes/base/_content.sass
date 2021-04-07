@@ -10,8 +10,10 @@ body,
 .tab-pane a,
 #pmWindows a,
 #topBG #content a,
+.profile .statslink a
   color: $accent !important
   text-decoration: none !important
+  background: transparent !important
   border-bottom: 1px dotted !important
 
 #mainNav li:not(.selected) .nav-text,
@@ -21,6 +23,17 @@ body,
 #subNav li.selected,
 #mainNav li.selected
   background: $bg-alt !important
+
+.mini-room-view
+  background-color: transparent !important
+
+.miniplayer .songboard
+  filter: grayscale(1)
+
+.song-playing .songboard-time,
+.song-playing .songboard-time-left,
+.song-playing .songboard-progress-bar
+  bottom: -59px
 
 .room-tab
   .room-name
