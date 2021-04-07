@@ -9,6 +9,9 @@ $bg-gradient: linear-gradient(to bottom, $accent, darken($accent, 10%)) !default
 .floating-menu .option.selected
   background: $accent !important
 
+.mini-djs .mini-dj.active .avatar-head
+  box-shadow: inset 0 0 0 2px $accent !important
+
 .song .progress,
 .chat .message.mention
   background: rgba($accent, 0.2) !important
@@ -23,6 +26,7 @@ $bg-gradient: linear-gradient(to bottom, $accent, darken($accent, 10%)) !default
 #myInfo .myFans:hover,
 .current-song .details,
 #ts_window .ts_credits a,
+.mini-room-current-dj-name,
 .lobby-panel .buddyRoomName,
 .roomListItem .needed .count,
 #ts_hotbar input:checked:after,
@@ -54,6 +58,9 @@ $bg-gradient: linear-gradient(to bottom, $accent, darken($accent, 10%)) !default
 .invite-dj,
 .header-logo, 
 .song-details,
+.songboard-add,
+.mini-djs .invite-dj-btn,
+.mini-djs .become-dj-btn,
 .favorite-star.favorited, 
 .buddyListRoom .joinRoomButton,
 #privateChatIcon.open .chatIcon
