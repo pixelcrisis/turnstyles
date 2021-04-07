@@ -1,9 +1,13 @@
 #ts_slider,
+.overlay .modal,
 .score.scoregood,
 #settings .option.selected,
 .floating-menu .option.active,
 .floating-menu .option.selected {
   background: #9075ff !important; }
+
+.mini-djs .mini-dj.active .avatar-head {
+  box-shadow: inset 0 0 0 2px #9075ff !important; }
 
 .song .progress,
 .chat .message.mention {
@@ -14,15 +18,21 @@
 #pmWindows a,
 #ts_window h4,
 #topBG #content a,
+.profile .statslink a,
+#myInfo .myName:hover,
+#myInfo .myFans:hover,
 .current-song .details,
 #ts_window .ts_credits a,
+.mini-room-current-dj-name,
 .lobby-panel .buddyRoomName,
 .roomListItem .needed .count,
 #ts_hotbar input:checked:after,
 #ts_window input:checked:after,
 .tab-item:not(.selected):hover .tab-title,
 .chat .message:not(.stat) .subject:hover,
-.chat .message:not(.stat) .speaker:hover {
+.chat .message:not(.stat) .speaker:hover,
+.fans .stat-number:not(.disabled):hover,
+.fanofs .stat-number:not(.disabled):hover {
   color: #bcacff !important; }
 
 .chat .message.mention {
@@ -45,6 +55,9 @@
 .invite-dj,
 .header-logo,
 .song-details,
+.songboard-add,
+.mini-djs .invite-dj-btn,
+.mini-djs .become-dj-btn,
 .favorite-star.favorited,
 .buddyListRoom .joinRoomButton,
 #privateChatIcon.open .chatIcon {
@@ -54,6 +67,7 @@
   filter: sepia(1) hue-rotate(245deg) saturate(4); }
 
 #create-room,
+.modal .title,
 #buddyListHeader,
 .tab-item:active,
 .tab-item.selected,
