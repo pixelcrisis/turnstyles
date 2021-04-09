@@ -55,14 +55,13 @@ const attachStats = () => {
   let data = $('.profile.modal .userid')
   let find = data.length ? data[0].innerHTML : ''
   if (find.length != 24) return // not a valid id yet
-  $('.profile.modal .section.web-links').before(layout(find))
+  $('.profile.modal .section.web-links').show()
+  $('.profile.modal .website').append(layout(find))
 }
 
 const layout = id => `
-  <div class="section statslink">
-    <a href="https://ttstats.info/user/${id}" 
-      target="_blank" onclick="$('.modal .close-x')[0].click()">
-      View This Profile On ttStats >>
-    </a>
-  <div>
+  <a class="statslink" href="https://ttstats.info/user/${id}" 
+    target="_blank" onclick="$('.modal .close-x')[0].click()">
+    ttStats Profile
+  </a>
 `
