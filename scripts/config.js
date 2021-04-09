@@ -31,6 +31,7 @@ module.exports = tS => {
     theme: {
       dark: "Dark Mode",
       night: "Night Mode",
+      forest: "Forest",
       cosmic: "Cosmic",
       midnight: "Midnight"
     },
