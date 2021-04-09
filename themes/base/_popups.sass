@@ -1,73 +1,98 @@
-#settings .option
-  font-weight: bold
-  box-shadow: none !important
-  background: $bg-panel !important
-  border-bottom: 1px solid $border-p !important
-  a,
-  .description
-    color: $text !important
-  &:hover,
-  .selected
-    background: $active-tab-bg !important
-    a,
-    .description
-      color: $active-tab-text !important
+#settings
+  .dropdown
+    background: $color-bg-0
 
-.settings-dropdown .dropdown
-  background: $bg-alt
+  .option
+    font-weight: bold
+    background: $color-bg-1
+    @extend %border-x
+
+    a, .description
+      color: $color-text
+    
+    &:hover,
+    &.selected
+      a, .description
+        color: $color-bg-0
+
+  .logout
+    color: $color-subtle
+
+    &:before
+      @include recolor($color-bg-2)
 
 .options-menu
-  .nib
-    @include full-invert
-  &.closed .nib
-    border-color: transparent !important
-    background-color: transparent !important
+  &:not(.closed) .nib
+    filter: invert(1) brightness(0.6)
+    border-color: invert($color-bg-3)
+    background-color: invert($color-bg-2)
+
   .options
-    box-shadow: none !important
-    background: $bg-panel !important
-    border-color: $border-p !important
+    @extend %border-x
+    background: $color-bg-2
+    border-color: $color-bg-3
+
     .option
       font-weight: bold
-      color: $text !important
-      &:hover, 
+      color: $color-text
+
+      &:hover,
       &.active
-        color: $active-tab-text !important
-        background: $active-tab-bg !important
+        color: $color-bg-0
 
 .floating-menu
-  box-shadow: none !important
-  background: $bg-main !important
-  border: 1px solid $bg-main !important
+  background: $color-bg-0
+  border: 1px solid $color-bg-1
+
   .option
-    box-shadow: none !important
-    color: $text !important
-    border-top: 1px solid $border-p !important
-    &:not(.active), 
-    &:not(.special)
-      background: $bg-panel !important
+    @extend %border-x
+    color: $color-text
+    background: $color-bg
+
     &.special
-      background: $bg-alt !important
-    &.active, 
+      background: $color-bg-0
+
+    &.active,
     &.selected,
     &:not(.split-option):not(.disabled):hover
-      color: $active-tab-text !important
-      background: $active-tab-bg !important
+      color: $color-bg-0
 
-    .playlist-queue, 
-    .playlist-queue-plus
-      @include dark-buttons
+#playlist 
+  .switch-menu.second
+    background: $color-bg-0
 
-    .playlist-queue
-      background-position: 0 -76px !important
+    .left-arrow
+      @include recolor($color-bg-3)
 
-    .playlist-queue-plus
-      background-position: 0 -92px !important
+    &:hover
+      color: $color-subtle
 
-.overlay .modal
-  background: $active-tab-bg !important
-  .title 
-    color: $active-tab-text !important
-  .content-container
-    background: $bg-main !important
-    .content
-      color: $text !important
+  .floating-menu .option
+    @extend %border-x
+    
+    &:not(:hover)
+      color: $color-subtle
+
+    &.site-add
+      background: $color-bg
+
+    .playlist-queue,
+    .playlist-trash,
+    .queue-plus-icon,
+    .playlist-move-bottom,
+    .playlist-right-arrow
+      @include recolor($color-bg-3)
+
+    &:hover
+      .playlist-queue,
+      .playlist-trash,
+      .queue-plus-icon,
+      .playlist-move-bottom,
+      .playlist-right-arrow
+        @include recolor($color-bg-0)
+
+    .playlist-move-bottom
+      background-position: 0 -270px
+      width: 18px
+      height: 18px
+      left: 8px

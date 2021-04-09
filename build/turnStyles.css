@@ -3,9 +3,13 @@
   z-index: 1;
   font-size: 13px;
   line-height: 42px; }
+  .header-bar:hover #turnStyles {
+    display: flex; }
 
-#ts_hotbar,
-#ts_window {
+#ts_wrap {
+  background: #2f2f2f; }
+
+#turnStyles {
   display: none;
   color: #eaeaea;
   margin: 0 auto;
@@ -14,43 +18,47 @@
   line-height: 1em;
   font-weight: bold;
   padding: 10px 20px;
-  background: #2f2f2f;
   align-items: center; }
-  #ts_hotbar h4,
-  #ts_window h4 {
-    opacity: 0.75;
-    margin-top: -10px;
-    font-size: 0.85em;
-    text-transform: uppercase; }
-  #ts_hotbar label,
-  #ts_hotbar .ts_menu,
-  #ts_window label,
-  #ts_window .ts_menu {
-    margin-right: 10px; }
-  #ts_hotbar .ts_menu,
-  #ts_window .ts_menu {
+  #turnStyles:not(.active) .ts_tab,
+  #turnStyles:not(.active) #ts_tabs,
+  #turnStyles:not(.active) .ts_credits {
+    display: none; }
+  #turnStyles.active {
+    display: flex; }
+    #turnStyles.active #ts_quick {
+      display: none; }
+    #turnStyles.active #ts_menu:before {
+      content: "✖";
+      padding-right: 6px; }
+  #turnStyles #ts_menu,
+  #turnStyles #ts_close {
     color: gold;
     cursor: pointer; }
-  #ts_hotbar .ts_credits small,
-  #ts_window .ts_credits small {
+  #turnStyles #ts_menu {
+    margin-right: 10px; }
+    #turnStyles #ts_menu:before {
+      content: "☰";
+      padding-right: 5px; }
+  #turnStyles h4 {
+    color: gold;
+    opacity: 0.6;
+    font-size: 0.8em;
+    text-transform: uppercase; }
+  #turnStyles #ts_apply:hover {
+    opacity: 1;
+    cursor: pointer; }
+  #turnStyles .ts_credits small {
     margin-right: 5px; }
-  #ts_hotbar .ts_credits a,
-  #ts_window .ts_credits a {
+  #turnStyles .ts_credits a {
     color: gold;
     text-decoration: none;
     text-transform: uppercase; }
-    #ts_hotbar .ts_credits a:not(:hover),
-    #ts_window .ts_credits a:not(:hover) {
+    #turnStyles .ts_credits a:not(:hover) {
       opacity: 0.75; }
 
-#ts_window.active,
-.header-bar:hover #ts_hotbar:not(.active) {
-  display: flex; }
-
 .ts_toggle,
-#ts_tabs div,
-#ts_window select,
-#ts_window option {
+.ts_inputs,
+#ts_tabs div {
   border: none;
   outline: none;
   color: #ffffff;
@@ -62,25 +70,20 @@
   background: #444444;
   text-transform: uppercase; }
 
-#ts_window select {
-  margin-bottom: 2px; }
-
-.ts_toggle {
-  padding-left: 20px; }
-
-#ts_tabs div {
-  margin: 0 -2px;
-  cursor: pointer;
-  display: inline-block; }
-  #ts_tabs div.active {
-    color: #2f2f2f;
-    background: gold; }
-  #ts_tabs div:not(:first-of-type) {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0; }
-  #ts_tabs div:not(:last-of-type) {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0; }
+#ts_tabs {
+  margin: -5px 0; }
+  #ts_tabs div {
+    margin: 0 -2px;
+    display: inline-block; }
+    #ts_tabs div.active {
+      color: #2f2f2f;
+      background: gold; }
+    #ts_tabs div:not(:first-of-type) {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0; }
+    #ts_tabs div:not(:last-of-type) {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0; }
 
 .ts_tab {
   flex: 0 0 100%;
@@ -88,21 +91,32 @@
   line-height: 2em; }
   .ts_tab:not(.active) {
     display: none; }
+  .ts_tab h4:not(:first-of-type) {
+    margin-top: 5px; }
+  .ts_tab textarea {
+    font-size: 15px;
+    font-family: monospace;
+    text-transform: none !important; }
 
-.ts_toggle span {
-  opacity: 0.25;
-  margin: 0 17px 0 7px; }
+.ts_toggle,
+.ts_inputs {
+  margin: 0 5px 5px 0; }
 
-.ts_toggle input {
-  width: 0; }
-  .ts_toggle input:after {
-    content: "•";
-    display: block;
-    font-size: 3.2em;
-    margin: -13px 0 0 -13px;
-    color: rgba(0, 0, 0, 0.5); }
-  .ts_toggle input:checked:after {
-    color: gold; }
+.ts_toggle {
+  padding-left: 20px !important; }
+  .ts_toggle span {
+    opacity: 0.25;
+    margin: 0 17px 0 7px; }
+  .ts_toggle input {
+    width: 0; }
+    .ts_toggle input:after {
+      content: "•";
+      display: block;
+      font-size: 3.2em;
+      margin: -13px 0 0 -13px;
+      color: rgba(0, 0, 0, 0.5); }
+    .ts_toggle input:checked:after {
+      color: gold; }
 
 #room-view {
   background: #000000; }
@@ -194,7 +208,7 @@
 
 #ts_upload {
   top: 2px;
-  left: 11px;
+  left: 8px;
   width: 21px;
   height: 21px;
   padding: 0px;
@@ -211,5 +225,6 @@
   display: none; }
 
 .ts_hide_videos .screen-content,
+.ts_hide_bubbles .speech-bubble,
 .ts_hide_audience #room-view > canvas:nth-child(4) {
   display: none !important; }

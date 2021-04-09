@@ -7,16 +7,27 @@ module.exports = tS => {
     
     this.updateThemes('theme', config.theme)
     this.updateThemes('style', config.style)
+    inject(config.user_css)
   }
 
   tS.updateThemes = function (key, value) {
     if (key == 'theme') update(this.__base, value, 'themes')
     if (key == 'style') update(this.__base, value, 'styles')
+    if (key == 'user_css') inject(value)
   }
 
   tS.on('loaded', tS.loadThemes)
   tS.on('update', tS.updateThemes)
 
+}
+
+const inject = style => {
+  let css = document.createElement('style')
+  css.classList.add('tScss')
+  css.type = "text/css"
+  css.innerHTML = style
+  $('style.tScss').remove()
+  document.head.append(css)
 }
 
 const locate = (base, file, folder) => {

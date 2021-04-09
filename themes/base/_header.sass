@@ -3,20 +3,39 @@
   @extend %content-main
 
 .header-room-name
-  font-weight: bold !important
+  font-weight: bold
+  color: $color-text
+
+.header-social div
+  @include recolor($color-subtle)
+
+.header-search,
+#settings .settings-button,
+.room-search-input .mag-glass
+  opacity: 0.5
 
 .tab-item
-  box-shadow: none !important
-  .tab-title
-    text-shadow: none !important
-  &.selected
-    background: $active-tab-bg !important
+  @extend %border-y
+
+  &:active,
+  &.selected 
     .tab-title
-      font-weight: bold !important
-      color: $active-tab-text !important
-      margin: -1px 0 0 -1px !important
-  &:not(.selected)
-    &:hover 
-      background: $bg-alt !important
-    &:not(:hover) .tab-title
-      color: $subtle !important
+      font-weight: bold
+      text-shadow: none
+      color: $color-bg-0
+      margin: -1px 0 0 -1px    
+
+    .tab-icon
+      @include recolor($color-bg-0)
+  
+  &:not(.selected) 
+    border-bottom-color: $color-bg-0
+
+    &:hover
+      background: $color-bg-2
+
+    .tab-icon
+      @include recolor($color-subtle)
+
+    .tab-title
+      color: $color-subtle

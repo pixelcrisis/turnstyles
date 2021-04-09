@@ -2,9 +2,14 @@
   z-index: 1
   font-size: 13px
   line-height: 42px
-  
-#ts_hotbar,
-#ts_window
+
+  &:hover #turnStyles
+    display: flex
+
+#ts_wrap
+  background: #2f2f2f
+
+#turnStyles
   display: none
   color: #eaeaea
   margin: 0 auto
@@ -13,21 +18,44 @@
   line-height: 1em
   font-weight: bold
   padding: 10px 20px
-  background: #2f2f2f
   align-items: center
 
-  h4
-    opacity: 0.75
-    margin-top: -10px
-    font-size: 0.85em
-    text-transform: uppercase
+  &:not(.active)
+    .ts_tab, 
+    #ts_tabs, 
+    .ts_credits
+      display: none
 
-  label,
-  .ts_menu
+  &.active 
+    display: flex
+
+    #ts_quick
+      display: none
+
+    #ts_menu:before
+      content: "✖"
+      padding-right: 6px
+
+  #ts_menu,
+  #ts_close
+    color: gold
+    cursor: pointer
+
+  #ts_menu
     margin-right: 10px
 
-  .ts_menu
+    &:before
+      content: "☰"
+      padding-right: 5px
+
+  h4
     color: gold
+    opacity: 0.6
+    font-size: 0.8em
+    text-transform: uppercase
+
+  #ts_apply:hover
+    opacity: 1
     cursor: pointer
 
   .ts_credits
@@ -37,17 +65,13 @@
       color: gold
       text-decoration: none
       text-transform: uppercase
+
       &:not(:hover)
         opacity: 0.75
 
-#ts_window.active,
-.header-bar:hover #ts_hotbar:not(.active)
-  display: flex
-
 .ts_toggle,
+.ts_inputs,
 #ts_tabs div,
-#ts_window select,
-#ts_window option
   border: none
   outline: none
   color: #ffffff
@@ -59,48 +83,64 @@
   background: #444444
   text-transform: uppercase
 
-#ts_window select
-  margin-bottom: 2px
+#ts_tabs
+  margin: -5px 0
 
-.ts_toggle
-  padding-left: 20px
+  div
+    margin: 0 -2px
+    display: inline-block
 
-#ts_tabs div
-  margin: 0 -2px
-  cursor: pointer
-  display: inline-block
-  &.active
-    color: #2f2f2f
-    background: gold
-  &:not(:first-of-type)
-    border-top-left-radius: 0
-    border-bottom-left-radius: 0
-  &:not(:last-of-type)
-    border-top-right-radius: 0
-    border-bottom-right-radius: 0
+    &.active
+      color: #2f2f2f
+      background: gold
+    
+    &:not(:first-of-type)
+      border-top-left-radius: 0
+      border-bottom-left-radius: 0
+    
+    &:not(:last-of-type)
+      border-top-right-radius: 0
+      border-bottom-right-radius: 0
 
 .ts_tab
   flex: 0 0 100%
   padding: 15px 0
   line-height: 2em
+  
   &:not(.active)
     display: none
 
+  h4:not(:first-of-type)
+    margin-top: 5px
+
+  textarea
+    font-size: 15px
+    font-family: monospace
+    text-transform: none !important
+
+.ts_toggle,
+.ts_inputs
+  margin: 0 5px 5px 0
+
 .ts_toggle 
+  padding-left: 20px !important
+  
   span
     opacity: 0.25
     margin: 0 17px 0 7px
+  
   input
     width: 0
+    
     &:after 
       content: "•"
       display: block
       font-size: 3.2em
       margin: -13px 0 0 -13px
       color: rgba(#000000, 0.5)
+    
     &:checked:after
-      color: gold
-
+      color: gold  
 
 // turntable styling defaults
 #room-view
@@ -199,7 +239,7 @@
 // replace the upload button
 #ts_upload
   top: 2px
-  left: 11px
+  left: 8px
   width: 21px
   height: 21px
   padding: 0px
@@ -217,5 +257,6 @@
 
 // hide the audience/video
 .ts_hide_videos .screen-content,
+.ts_hide_bubbles .speech-bubble,
 .ts_hide_audience #room-view > canvas:nth-child(4)
   display: none !important

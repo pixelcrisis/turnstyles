@@ -1,10 +1,16 @@
 // replace the chat button
+#chat-form
+  left: 36px
+
+#ding-menu
+  margin-left: -71px
+
 .chat-bar .chatsound-container
   width: 23px !important
   background: transparent !important
 
 .chat-bar .chatsound
-  left: 6px !important
+  top: -2px !important
   width: 21px !important
   height: 21px !important
   padding: 0px !important
@@ -16,7 +22,24 @@
   background-position: 0 -563px !important
   background-image: url(https://s3.amazonaws.com/assets.turntable.fm/images/sprites/chrome-sprite@2x.png) !important
 
-// flatten popped buttons
-#playlist-display .down-arrow,
-#playlist-display .playlist-queue-inset
-  filter: contrast(0) !important
+.chat .message
+  &.action
+    color: $color-mods
+    border-right: 5px solid $color-mods
+
+  &.snag
+    color: $color-snag
+    border-right: 5px solid $color-snag
+
+  &.join
+    color: $color-join
+    border-right: 5px solid $color-join
+
+  &.left
+    color: $color-left
+    border-right: 5px solid $color-left
+
+  &.stat
+    .subject:hover,
+    .speaker:hover
+      color: $color-text !important

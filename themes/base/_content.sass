@@ -1,28 +1,120 @@
-body,
 #songs,
-#newsbox,
 .tab-pane,
 .song-list,
-.guest-list,
-.room-info-intro
+.guest-list
   @extend %content-main
 
-.tab-pane a,
-#pmWindows a,
-#topBG #content a,
-.profile .statslink a
-  color: $accent !important
-  text-decoration: none !important
-  background: transparent !important
-  border-bottom: 1px dotted !important
+.queue-message,
+.default-message
+  color: $color-subtle
+  text-shadow: none
 
+#overlay a,
+#pmWindows a,
+.tabbed-panel a,
+#topBG #content a
+  border-bottom: 1px dotted
+  text-decoration: none !important
+
+  &:hover
+    border-bottom-style: solid
+
+.become-dj, .invite-dj
+  color: $color-bg-0
+
+// striped lists
+.chat .message:nth-child(even),
+.guest-list      > :nth-child(even):not(.separator),
+.striped-list    > :nth-child(even):not(.separator),
+.song-list > ul  > :nth-child(even):not(.separator),
+.message-history > :nth-child(even):not(.separator),
+.conversations-list>ul>:nth-child(even):not(.separator)
+  @extend %content-main
+  border-color: $color-bg-1
+
+.chat .message:nth-child(odd),
+.guest-list      > :nth-child(odd):not(.separator),
+.striped-list    > :nth-child(odd):not(.separator),
+.song-list > ul  > :nth-child(odd):not(.separator),
+.message-history > :nth-child(odd):not(.separator),
+.conversations-list>ul>:nth-child(odd):not(.separator)
+  @extend %content-alt
+  border-color: $color-bg-1
+
+.guest-list>:nth-child(odd):not(.separator):not(.no-hover):hover,
+.guest-list>:nth-child(even):not(.separator):not(.no-hover):hover,
+.striped-list>:nth-child(odd):not(.separator):not(.no-hover):hover, 
+.striped-list>:nth-child(even):not(.separator):not(.no-hover):hover, 
+.song-list>ul>:nth-child(odd):not(.separator):not(.no-hover):hover,
+.song-list>ul>:nth-child(even):not(.separator):not(.no-hover):hover,
+.message-history>:nth-child(odd):not(.separator):not(.no-hover):hover,
+.message-history>:nth-child(even):not(.separator):not(.no-hover):hover,
+.conversations-list>ul>:nth-child(odd):not(.separator):not(.no-hover):hover,
+.conversations-list>ul>:nth-child(even):not(.separator):not(.no-hover):hover
+  background-color: $color-bg-3
+
+// popped panels
+.sliding-nav 
+  .sliding-nav-pane-header
+    @extend %bg-gradient
+
+  .sliding-nav-pane-title
+    color: $color-text
+    text-shadow: none
+
+  button.sliding-nav-pane-back.back
+    width: 41px
+    outline: none
+    background: none
+    &::after
+      left: 0px
+      top: -9px
+      content: "✖"
+      display: block
+      text-indent: 0
+      font-size: 1.3em
+      font-weight: bold
+      position: relative
+      color: $color-bg-0
+
+.song-list .separator,
+.sliding-nav .separator
+  text-shadow: none
+  color: $color-text
+  @extend %bg-gradient
+
+
+// input panels
+.floating-panel-bar,
+.floating-panel-header
+  @extend %bg-gradient
+
+  .divider
+    display: none
+
+// text inputs
+#chat-input,
+.message-input,
+#song-search-input,
+.overlay input.text,
+.room-search-input input,
+.overlay textarea.textarea
+  color: $color-text
+  background: $color-bg
+  border-color: transparent
+  box-shadow: inset 0 0 0 1px $color-bg-0, 0 1px 0 0 $color-bg-3
+
+  &::placeholder
+    color: $color-subtle
+
+// miniplayer
 #mainNav li:not(.selected) .nav-text,
 #subNav li:not(.selected) .subnav-text
-  color: $subtle !important
+  color: $color-subtle !important
 
 #subNav li.selected,
 #mainNav li.selected
-  background: $bg-alt !important
+  background: $color-bg-1 !important
 
 .mini-room-view
   background-color: transparent !important
@@ -35,52 +127,11 @@ body,
 .song-playing .songboard-progress-bar
   bottom: -59px
 
-.room-tab
-  .room-name
-    color: $text !important
-
-  .num-listeners,
-  .description-wrap
-    color: $subtle
-
-  .room-info-intro
-    border-bottom: none !important
-
-  .room-info-wrap
-    @extend %content-alt
-    border-top: 1px solid $border !important
-    border-bottom: 1px solid $border !important
-
-  .save-description-btn .icon
-    @include dark-buttons
-
-  .edit-description
-    @extend %content-alt
-    padding-bottom: 25px !important
-
-  .flat-button
-    @extend %content-alt
-    border: 1px solid $border !important
-    &:not(:hover) h3
-      color: $subtle !important
-
-.queue-message,
-.default-message
-  text-shadow: none !important
-  color: $subtle !important
-
-#create-room span
-  color: $active-tab-text !important
-
-.become-dj, 
-.invite-dj
-  color: $bg-main !important
-
 ::-webkit-scrollbar
   width: 7px
 ::-webkit-scrollbar-track
-  background: $bg-main
+  background: $color-bg
 ::-webkit-scrollbar-thumb
-  background: $border
+  background: $color-bg-2
 ::-webkit-scrollbar-thumb:hover
-  background: $subtle
+  background: $color-subtle

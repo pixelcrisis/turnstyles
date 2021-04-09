@@ -1,0 +1,50 @@
+#buddyList
+  @extend %content-alt
+
+.message-history,
+.conversations-list,
+.mini-pms-view .bottom-bar
+  @extend %content-main
+
+#buddyListNipple
+  @include recolor($color-bg)
+
+.message-input-view,
+.pmGreyTop:not(.new-message)
+  @extend %bg-gradient
+
+.pm-unavailable-warning
+  border-bottom: 1px solid $color-bg-4
+
+#pmWindows 
+  .pmClose,
+  .pmHeader .nib
+    opacity: 1
+    @include recolor($color-bg-0)
+
+  .pmWindowIcon:hover
+    background-color: transparent
+
+.pmGreyTop:not(.new-message)
+  .username
+    color: $color-text
+
+.conversation-username
+  color: $color-text !important
+
+.conversation-user-room
+  color: $color-subtle !important
+
+.avatar-head
+  background-color: transparent !important
+
+#buddyListMain
+  box-shadow: none
+
+  #buddyListHeader
+    border: 1px solid $color-bg-0
+
+  #buddyListTitle
+    border: none
+    text-shadow: none
+    color: $color-bg-0

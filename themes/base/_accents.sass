@@ -1,7 +1,4 @@
-@import "../mixins/recolor"
-
-$text: mix(#ffffff, $accent, 40%) !default
-$fade: linear-gradient(to bottom, $accent, darken($accent, 5%)) !default
+$fade: linear-gradient(to bottom, $color-main, darken($color-main, 5%))
 
 #overlay a,
 #pmWindows a,
@@ -20,25 +17,32 @@ $fade: linear-gradient(to bottom, $accent, darken($accent, 5%)) !default
 #buddyList #buddyListHeader .myName:hover,
 #buddyList #buddyListHeader .myFans:hover,
 #topBG .roomListItem .roomDJs.needed 
-  color: $text 
+  color: $color-main 
 
 #topBG .roomListItem .roomDJs.needed .icon
-  @include recolor($accent)
+  @include recolor($color-main)
 
 .chat .message.mention
-  border-right: 5px solid $accent
+  border-right: 5px solid $color-main
 
 .chat .message.mention,
 #songs .song-list .song .progress
-  background: rgba($accent, 0.2)
+  background: rgba($color-main, 0.2)
 
 .overlay .modal,
 .overlay .modal .title,
 #maindiv .song-list .song .scoregood
-  background-color: $accent
+  background-color: $color-main
+
+.become-dj, .invite-dj,
+.header-bar .favorite,
+.header-bar .header-logo,
+#privateChatIcon .chatIcon,
+.buddyListRoom .joinRoomButton
+  filter: brightness(0.75)
 
 #ts_slider
-  background: $accent
+  background: $color-main
 
 #topBG #create-room,
 #ts_tabs div.active,
@@ -57,30 +61,3 @@ $fade: linear-gradient(to bottom, $accent, darken($accent, 5%)) !default
 button.tt-button.primary,
 button.tt-button.primary:hover
   background-image: $fade
-
-.mini-djs .mini-dj.active .avatar-head
-  box-shadow: inset 0 0 0 2px $accent
-
-.lame-button
-  filter: grayscale(1) !important
-
-.awesome-button
-  filter: $button
-
-#room-view > canvas:nth-child(2)
-  filter: $lights
-
-.become-dj, 
-.invite-dj,
-.song-details,
-.songboard-add,
-.header-bar .header-logo, 
-.mini-djs .invite-dj-btn,
-.mini-djs .become-dj-btn,
-.favorite-star.favorited, 
-.buddyListRoom .joinRoomButton,
-#privateChatIcon.open .chatIcon
-  filter: $others
-
-.tab-item:not(.selected):hover .tab-icon
-  filter: $grayed

@@ -17,6 +17,7 @@ module.exports = tS => {
     // hide elements
     this.hidden('no_vid', this.config.no_vid)
     this.hidden('no_aud', this.config.no_aud)
+    this.hidden('no_bub', this.config.no_bub)
     
     // replace upload with organize
     $('#upload-button').after(`<div id="ts_upload"></div>`)
@@ -26,6 +27,7 @@ module.exports = tS => {
   tS.hidden = function (key, value) {
     if (key == "no_vid") this.toggleClass('ts_hide_videos', value)
     if (key == "no_aud") this.toggleClass('ts_hide_audience', value)
+    if (key == "no_bub") this.toggleClass('ts_hide_bubbles', value)
   }
 
   tS.on('attach', tS.modify)
@@ -55,14 +57,13 @@ const attachStats = () => {
   let data = $('.profile.modal .userid')
   let find = data.length ? data[0].innerHTML : ''
   if (find.length != 24) return // not a valid id yet
-  $('.profile.modal .section.web-links').before(layout(find))
+  $('.profile.modal .section.web-links').show()
+  $('.profile.modal .website').append(layout(find))
 }
 
 const layout = id => `
-  <div class="section statslink">
-    <a href="https://ttstats.info/user/${id}" 
-      target="_blank" onclick="$('.modal .close-x')[0].click()">
-      View This Profile On ttStats >>
-    </a>
-  <div>
+  <a class="statslink" href="https://ttstats.info/user/${id}" 
+    target="_blank" onclick="$('.modal .close-x')[0].click()">
+    ttStats Profile
+  </a>
 `
