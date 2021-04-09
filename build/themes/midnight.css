@@ -1,90 +1,182 @@
+@charset "UTF-8";
 .header-bar,
-.tab-item:not(.selected), body,
-#songs,
-#newsbox,
+.tab-item:not(.selected), #songs,
 .tab-pane,
 .song-list,
-.guest-list,
-.room-info-intro, .chat .message:nth-child(even),
+.guest-list, .chat .message:nth-child(even),
 .guest-list > :nth-child(even):not(.separator),
 .striped-list > :nth-child(even):not(.separator),
 .song-list > ul > :nth-child(even):not(.separator),
 .message-history > :nth-child(even):not(.separator),
-.conversations-list > ul > :nth-child(even):not(.separator), .message-history,
+.conversations-list > ul > :nth-child(even):not(.separator), .room-tab .room-info-intro, .message-history,
 .conversations-list,
-.mini-pms-view .bottom-bar, #ts_hotbar,
-#ts_window {
-  box-shadow: none !important;
-  text-shadow: none !important;
-  color: #e2eeff !important;
-  background: #091b35 !important; }
+.mini-pms-view .bottom-bar, #turnStyles {
+  color: #a0afc3;
+  background: #091b35; }
 
-.room-tab .room-info-wrap, .room-tab .edit-description, .room-tab .flat-button, .chat .message:nth-child(odd),
+.chat .message:nth-child(odd),
 .guest-list > :nth-child(odd):not(.separator),
 .striped-list > :nth-child(odd):not(.separator),
 .song-list > ul > :nth-child(odd):not(.separator),
 .message-history > :nth-child(odd):not(.separator),
-.conversations-list > ul > :nth-child(odd):not(.separator), #buddyList {
-  box-shadow: none !important;
-  text-shadow: none !important;
-  color: #e2eeff !important;
-  background: #0a1f3e !important; }
+.conversations-list > ul > :nth-child(odd):not(.separator), .room-tab .room-info-wrap, .room-tab .room-info-wrap .edit-description, .room-tab .flat-button, #buddyList {
+  color: #a0afc3;
+  background: #0a1f3e; }
 
-.room-list,
-.roomListItem,
-#mainPanelHeader,
-.floating-panel-bar,
-.floating-panel-header,
-.tabbed-panel .separator,
-.sliding-nav-pane-header,
-.lobby-panel .buddyListRoom,
-.lobby-panel .buddyListTitle,
-.lobby-panel #buddyListHeader, .message-input-view,
+.sliding-nav .sliding-nav-pane-header, .song-list .separator,
+.sliding-nav .separator, .floating-panel-bar,
+.floating-panel-header, #topBG .lobby-panel .lobby-panel-header, #buddyList .buddyListTitle, .message-input-view,
 .pmGreyTop:not(.new-message) {
-  box-shadow: none !important;
-  color: #e2eeff !important;
-  background: #0f2d58 !important; }
-
-#chat-input,
-.overlay textarea,
-#song-search-input,
-.overlay input.text,
-.room-search-input input, .message-input {
-  border: none !important;
-  box-shadow: none !important;
-  color: #e2eeff !important;
-  background: #0f2d58 !important; }
-
-.header-room-name {
-  font-weight: bold !important; }
+  border-top-color: #0f2d58 !important;
+  border-bottom-color: #0a1f3e !important;
+  box-shadow: 0 -1px 0 0 #103161 !important;
+  background-image: linear-gradient(to bottom, #0f2d58, #0c2446) !important; }
 
 .tab-item {
-  box-shadow: none !important; }
-  .tab-item .tab-title {
-    text-shadow: none !important; }
-  .tab-item.selected {
-    background: #e1bb22 !important; }
-    .tab-item.selected .tab-title {
-      font-weight: bold !important;
-      color: #ffffff !important;
-      margin: -1px 0 0 -1px !important; }
-  .tab-item:not(.selected):hover {
-    background: #0a1f3e !important; }
-  .tab-item:not(.selected):not(:hover) .tab-title {
-    color: #96c1ff !important; }
+  border: none;
+  box-shadow: -1px 0 0 0 #08172c, inset 1px 0 0 0 #0a1f3e; }
 
-.tab-pane a,
+#settings .option, .options-menu .options, .floating-menu .option, #playlist .floating-menu .option, #topBG .roomListItem, #buddyList .buddyListRoom, #buddyList .buddyListTitle,
+#buddyList #buddyListHeader, #buddyList .buddyListRoom:hover,
+#buddyList .buddyListTitle:hover,
+#buddyList #buddyListHeader:hover {
+  border: none;
+  box-shadow: 0 -1px 0 0 #08172c, inset 0 1px 0 0 #0c2446; }
+
+.header-room-name {
+  font-weight: bold;
+  color: #a0afc3; }
+
+.header-social div {
+  filter: saturate(0%) brightness(0%) invert(60.98039%) opacity(1);
+  filter: url('data:image/svg+xml;utf8,    <svg xmlns="http://www.w3.org/2000/svg">      <filter id="recolor" color-interpolation-filters="sRGB">        <feColorMatrix type="matrix" values="          0 0 0 0 0.46758          0 0 0 0 0.58428          0 0 0 0 0.75202          0 0 0 1 0        "/>      </filter>    </svg>    #recolor'); }
+
+.header-search,
+#settings .settings-button,
+.room-search-input .mag-glass {
+  opacity: 0.5; }
+
+.tab-item:active .tab-title, .tab-item.selected .tab-title {
+  font-weight: bold;
+  text-shadow: none;
+  color: #08172c;
+  margin: -1px 0 0 -1px; }
+
+.tab-item:active .tab-icon, .tab-item.selected .tab-icon {
+  filter: saturate(0%) brightness(0%) invert(10.15686%) opacity(1);
+  filter: url('data:image/svg+xml;utf8,    <svg xmlns="http://www.w3.org/2000/svg">      <filter id="recolor" color-interpolation-filters="sRGB">        <feColorMatrix type="matrix" values="          0 0 0 0 0.02949          0 0 0 0 0.08846          0 0 0 0 0.17365          0 0 0 1 0        "/>      </filter>    </svg>    #recolor'); }
+
+.tab-item:not(.selected) {
+  border-bottom-color: #08172c; }
+  .tab-item:not(.selected):hover {
+    background: #0c2446; }
+  .tab-item:not(.selected) .tab-icon {
+    filter: saturate(0%) brightness(0%) invert(60.98039%) opacity(1);
+    filter: url('data:image/svg+xml;utf8,    <svg xmlns="http://www.w3.org/2000/svg">      <filter id="recolor" color-interpolation-filters="sRGB">        <feColorMatrix type="matrix" values="          0 0 0 0 0.46758          0 0 0 0 0.58428          0 0 0 0 0.75202          0 0 0 1 0        "/>      </filter>    </svg>    #recolor'); }
+  .tab-item:not(.selected) .tab-title {
+    color: #7795c0; }
+
+.queue-message,
+.default-message {
+  color: #7795c0;
+  text-shadow: none; }
+
+#overlay a,
 #pmWindows a,
-#topBG #content a,
-.profile .statslink a {
-  color: #e1bb22 !important;
-  text-decoration: none !important;
-  background: transparent !important;
-  border-bottom: 1px dotted !important; }
+.tabbed-panel a,
+#topBG #content a {
+  border-bottom: 1px dotted;
+  text-decoration: none !important; }
+  #overlay a:hover,
+  #pmWindows a:hover,
+  .tabbed-panel a:hover,
+  #topBG #content a:hover {
+    border-bottom-style: solid; }
+
+.become-dj, .invite-dj {
+  color: #08172c; }
+
+.chat .message:nth-child(even),
+.guest-list > :nth-child(even):not(.separator),
+.striped-list > :nth-child(even):not(.separator),
+.song-list > ul > :nth-child(even):not(.separator),
+.message-history > :nth-child(even):not(.separator),
+.conversations-list > ul > :nth-child(even):not(.separator) {
+  border-color: #0a1f3e; }
+
+.chat .message:nth-child(odd),
+.guest-list > :nth-child(odd):not(.separator),
+.striped-list > :nth-child(odd):not(.separator),
+.song-list > ul > :nth-child(odd):not(.separator),
+.message-history > :nth-child(odd):not(.separator),
+.conversations-list > ul > :nth-child(odd):not(.separator) {
+  border-color: #0a1f3e; }
+
+.guest-list > :nth-child(odd):not(.separator):not(.no-hover):hover,
+.guest-list > :nth-child(even):not(.separator):not(.no-hover):hover,
+.striped-list > :nth-child(odd):not(.separator):not(.no-hover):hover,
+.striped-list > :nth-child(even):not(.separator):not(.no-hover):hover,
+.song-list > ul > :nth-child(odd):not(.separator):not(.no-hover):hover,
+.song-list > ul > :nth-child(even):not(.separator):not(.no-hover):hover,
+.message-history > :nth-child(odd):not(.separator):not(.no-hover):hover,
+.message-history > :nth-child(even):not(.separator):not(.no-hover):hover,
+.conversations-list > ul > :nth-child(odd):not(.separator):not(.no-hover):hover,
+.conversations-list > ul > :nth-child(even):not(.separator):not(.no-hover):hover {
+  background-color: #0f2d58; }
+
+.sliding-nav .sliding-nav-pane-title {
+  color: #a0afc3;
+  text-shadow: none; }
+
+.sliding-nav button.sliding-nav-pane-back.back {
+  width: 41px;
+  outline: none;
+  background: none; }
+  .sliding-nav button.sliding-nav-pane-back.back::after {
+    left: 0px;
+    top: -9px;
+    content: "✖";
+    display: block;
+    text-indent: 0;
+    font-size: 1.3em;
+    font-weight: bold;
+    position: relative;
+    color: #08172c; }
+
+.song-list .separator,
+.sliding-nav .separator {
+  text-shadow: none;
+  color: #a0afc3; }
+
+.floating-panel-bar .divider,
+.floating-panel-header .divider {
+  display: none; }
+
+#chat-input,
+.message-input,
+#song-search-input,
+.overlay input.text,
+.room-search-input input,
+.overlay textarea.textarea {
+  color: #a0afc3;
+  background: #091b35;
+  border-color: transparent;
+  box-shadow: inset 0 0 0 1px #08172c, 0 1px 0 0 #0f2d58; }
+  #chat-input::-moz-placeholder, .message-input::-moz-placeholder, #song-search-input::-moz-placeholder, .overlay input.text::-moz-placeholder, .room-search-input input::-moz-placeholder, .overlay textarea.textarea::-moz-placeholder {
+    color: #7795c0; }
+  #chat-input:-ms-input-placeholder, .message-input:-ms-input-placeholder, #song-search-input:-ms-input-placeholder, .overlay input.text:-ms-input-placeholder, .room-search-input input:-ms-input-placeholder, .overlay textarea.textarea:-ms-input-placeholder {
+    color: #7795c0; }
+  #chat-input::placeholder,
+  .message-input::placeholder,
+  #song-search-input::placeholder,
+  .overlay input.text::placeholder,
+  .room-search-input input::placeholder,
+  .overlay textarea.textarea::placeholder {
+    color: #7795c0; }
 
 #mainNav li:not(.selected) .nav-text,
 #subNav li:not(.selected) .subnav-text {
-  color: #96c1ff !important; }
+  color: #7795c0 !important; }
 
 #subNav li.selected,
 #mainNav li.selected {
@@ -101,43 +193,6 @@
 .song-playing .songboard-progress-bar {
   bottom: -59px; }
 
-.room-tab .room-name {
-  color: #e2eeff !important; }
-
-.room-tab .num-listeners,
-.room-tab .description-wrap {
-  color: #96c1ff; }
-
-.room-tab .room-info-intro {
-  border-bottom: none !important; }
-
-.room-tab .room-info-wrap {
-  border-top: 1px solid #0c2446 !important;
-  border-bottom: 1px solid #0c2446 !important; }
-
-.room-tab .save-description-btn .icon {
-  filter: brightness(10) !important; }
-
-.room-tab .edit-description {
-  padding-bottom: 25px !important; }
-
-.room-tab .flat-button {
-  border: 1px solid #0c2446 !important; }
-  .room-tab .flat-button:not(:hover) h3 {
-    color: #96c1ff !important; }
-
-.queue-message,
-.default-message {
-  text-shadow: none !important;
-  color: #96c1ff !important; }
-
-#create-room span {
-  color: #ffffff !important; }
-
-.become-dj,
-.invite-dj {
-  color: #091b35 !important; }
-
 ::-webkit-scrollbar {
   width: 7px; }
 
@@ -148,174 +203,218 @@
   background: #0c2446; }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #96c1ff; }
+  background: #7795c0; }
+
+#settings .dropdown {
+  background: #08172c; }
 
 #settings .option {
   font-weight: bold;
-  box-shadow: none !important;
-  background: #0f2d58 !important;
-  border-bottom: 1px solid #123669 !important; }
-  #settings .option a,
-  #settings .option .description {
-    color: #e2eeff !important; }
-  #settings .option:hover,
-  #settings .option .selected {
-    background: #e1bb22 !important; }
-    #settings .option:hover a,
-    #settings .option:hover .description,
-    #settings .option .selected a,
-    #settings .option .selected .description {
-      color: #ffffff !important; }
-
-.settings-dropdown .dropdown {
   background: #0a1f3e; }
+  #settings .option a, #settings .option .description {
+    color: #a0afc3; }
+  #settings .option:hover a, #settings .option:hover .description, #settings .option.selected a, #settings .option.selected .description {
+    color: #08172c; }
 
-.options-menu .nib {
-  filter: invert(1) !important;
-  border-color: #f1d4ac !important;
-  background-color: #f4ddbd !important; }
+#settings .logout {
+  color: #7795c0; }
+  #settings .logout:before {
+    filter: saturate(0%) brightness(0%) invert(16.15686%) opacity(1);
+    filter: url('data:image/svg+xml;utf8,    <svg xmlns="http://www.w3.org/2000/svg">      <filter id="recolor" color-interpolation-filters="sRGB">        <feColorMatrix type="matrix" values="          0 0 0 0 0.04691          0 0 0 0 0.14072          0 0 0 0 0.27623          0 0 0 1 0        "/>      </filter>    </svg>    #recolor'); }
 
-.options-menu.closed .nib {
-  border-color: transparent !important;
-  background-color: transparent !important; }
+.options-menu:not(.closed) .nib {
+  filter: invert(1) brightness(0.6);
+  border-color: #f0d2a7;
+  background-color: #f3dbb9; }
 
 .options-menu .options {
-  box-shadow: none !important;
-  background: #0f2d58 !important;
-  border-color: #123669 !important; }
+  background: #0c2446;
+  border-color: #0f2d58; }
   .options-menu .options .option {
     font-weight: bold;
-    color: #e2eeff !important; }
+    color: #a0afc3; }
     .options-menu .options .option:hover, .options-menu .options .option.active {
-      color: #ffffff !important;
-      background: #e1bb22 !important; }
+      color: #08172c; }
 
 .floating-menu {
-  box-shadow: none !important;
-  background: #091b35 !important;
-  border: 1px solid #091b35 !important; }
+  background: #08172c;
+  border: 1px solid #0a1f3e; }
   .floating-menu .option {
-    box-shadow: none !important;
-    color: #e2eeff !important;
-    border-top: 1px solid #123669 !important; }
-    .floating-menu .option:not(.active), .floating-menu .option:not(.special) {
-      background: #0f2d58 !important; }
+    color: #a0afc3;
+    background: #091b35; }
     .floating-menu .option.special {
-      background: #0a1f3e !important; }
+      background: #08172c; }
     .floating-menu .option.active, .floating-menu .option.selected, .floating-menu .option:not(.split-option):not(.disabled):hover {
-      color: #ffffff !important;
-      background: #e1bb22 !important; }
-    .floating-menu .option .playlist-queue,
-    .floating-menu .option .playlist-queue-plus {
-      filter: brightness(10) !important; }
-    .floating-menu .option .playlist-queue {
-      background-position: 0 -76px !important; }
-    .floating-menu .option .playlist-queue-plus {
-      background-position: 0 -92px !important; }
+      color: #08172c; }
 
-.overlay .modal {
-  background: #e1bb22 !important; }
-  .overlay .modal .title {
-    color: #ffffff !important; }
-  .overlay .modal .content-container {
-    background: #091b35 !important; }
-    .overlay .modal .content-container .content {
-      color: #e2eeff !important; }
+#playlist .switch-menu.second {
+  background: #08172c; }
+  #playlist .switch-menu.second .left-arrow {
+    filter: saturate(0%) brightness(0%) invert(20.15686%) opacity(1);
+    filter: url('data:image/svg+xml;utf8,    <svg xmlns="http://www.w3.org/2000/svg">      <filter id="recolor" color-interpolation-filters="sRGB">        <feColorMatrix type="matrix" values="          0 0 0 0 0.05852          0 0 0 0 0.17556          0 0 0 0 0.34462          0 0 0 1 0        "/>      </filter>    </svg>    #recolor'); }
+  #playlist .switch-menu.second:hover {
+    color: #7795c0; }
 
-.floating-panel-bar,
-.floating-panel-header {
-  border-top: 1px solid #123669 !important;
-  border-bottom: 1px solid #123669 !important; }
-  .floating-panel-bar .divider,
-  .floating-panel-header .divider {
-    display: none; }
-  .floating-panel-bar .count,
-  .floating-panel-header .count {
-    color: #96c1ff !important; }
+#playlist .floating-menu .option:not(:hover) {
+  color: #7795c0; }
 
-.roomListItem {
-  border: none !important; }
-  .roomListItem .stat,
-  .roomListItem .songName {
-    color: #e2eeff !important; }
-  .roomListItem .stat .icon {
-    filter: grayscale(1); }
-  .roomListItem .needed .count {
-    color: #e1bb22 !important; }
-  .roomListItem .listenNow {
-    border: none !important;
-    box-shadow: none !important;
-    text-shadow: none !important;
-    color: #ffffff !important;
-    background: #e1bb22 !important; }
-  .roomListItem .roomDJs .icon {
-    background-position: 0 -37px !important;
-    background: url("https://s3.amazonaws.com/assets.turntable.fm/images/sprites/lobby-sprite.png") no-repeat top left !important; }
+#playlist .floating-menu .option.site-add {
+  background: #091b35; }
 
-.room-list .roomName,
-.tabbed-panel .separator,
-.lobby-panel .buddyListTitleText {
-  text-shadow: none !important;
-  color: #e2eeff !important; }
+#playlist .floating-menu .option .playlist-queue,
+#playlist .floating-menu .option .playlist-trash,
+#playlist .floating-menu .option .queue-plus-icon,
+#playlist .floating-menu .option .playlist-move-bottom,
+#playlist .floating-menu .option .playlist-right-arrow {
+  filter: saturate(0%) brightness(0%) invert(20.15686%) opacity(1);
+  filter: url('data:image/svg+xml;utf8,    <svg xmlns="http://www.w3.org/2000/svg">      <filter id="recolor" color-interpolation-filters="sRGB">        <feColorMatrix type="matrix" values="          0 0 0 0 0.05852          0 0 0 0 0.17556          0 0 0 0 0.34462          0 0 0 1 0        "/>      </filter>    </svg>    #recolor'); }
 
-.roomListBuddyIcon.isAvatar {
-  border: none !important;
-  background: transparent !important; }
+#playlist .floating-menu .option:hover .playlist-queue,
+#playlist .floating-menu .option:hover .playlist-trash,
+#playlist .floating-menu .option:hover .queue-plus-icon,
+#playlist .floating-menu .option:hover .playlist-move-bottom,
+#playlist .floating-menu .option:hover .playlist-right-arrow {
+  filter: saturate(0%) brightness(0%) invert(10.15686%) opacity(1);
+  filter: url('data:image/svg+xml;utf8,    <svg xmlns="http://www.w3.org/2000/svg">      <filter id="recolor" color-interpolation-filters="sRGB">        <feColorMatrix type="matrix" values="          0 0 0 0 0.02949          0 0 0 0 0.08846          0 0 0 0 0.17365          0 0 0 1 0        "/>      </filter>    </svg>    #recolor'); }
 
-.panel-button {
-  border: none !important;
-  box-shadow: none !important;
-  text-shadow: none !important;
-  color: #96c1ff !important;
-  background: transparent !important; }
+#playlist .floating-menu .option .playlist-move-bottom {
+  background-position: 0 -270px;
+  width: 18px;
+  height: 18px;
+  left: 8px; }
 
-#queue-header {
-  border-top: 1px solid transparent !important; }
+.overlay .modal .title {
+  color: #08172c; }
 
-#queue-header .done {
-  border: 1px solid #091b35 !important; }
+.overlay .modal .content-container {
+  background: #091b35; }
+  .overlay .modal .content-container .content {
+    color: #a0afc3; }
+    .overlay .modal .content-container .content .section {
+      border-color: #08172c; }
+    .overlay .modal .content-container .content input,
+    .overlay .modal .content-container .content textarea {
+      background: #08172c; }
+    .overlay .modal .content-container .content button,
+    .overlay .modal .content-container .content button:hover {
+      border: none;
+      box-shadow: none;
+      text-shadow: none;
+      color: #08172c; }
+    .overlay .modal .content-container .content button:not(.submit),
+    .overlay .modal .content-container .content button:not(.submit):hover {
+      background: #7795c0; }
+    .overlay .modal .content-container .content .social a {
+      border: none !important; }
+    .overlay .modal .content-container .content .website a {
+      padding: 5px 10px;
+      border: 1px dotted;
+      border-radius: 5px;
+      display: inline-block;
+      background: transparent; }
+      .overlay .modal .content-container .content .website a:hover {
+        border-style: solid;
+        filter: brightness(1.2); }
 
-.sliding-nav-pane-title {
-  text-shadow: none !important;
-  color: #e2eeff !important; }
-
-.sliding-nav-pane-back {
-  width: 41px !important;
-  background: none !important; }
-  .sliding-nav-pane-back::after {
-    left: 0px;
-    top: -10px;
-    content: "x";
-    display: block;
-    text-indent: 0;
-    font-size: 1.3em;
+#topBG {
+  background: #091b35; }
+  #topBG #create-room span {
+    text-shadow: none;
     font-weight: bold;
-    position: relative;
-    color: #96c1ff; }
+    color: #08172c; }
+  #topBG #create-room .create-room {
+    filter: saturate(0%) brightness(0%) invert(10.15686%) opacity(1);
+    filter: url('data:image/svg+xml;utf8,    <svg xmlns="http://www.w3.org/2000/svg">      <filter id="recolor" color-interpolation-filters="sRGB">        <feColorMatrix type="matrix" values="          0 0 0 0 0.02949          0 0 0 0 0.08846          0 0 0 0 0.17365          0 0 0 1 0        "/>      </filter>    </svg>    #recolor'); }
+  #topBG #newsbox {
+    color: #7795c0;
+    background: #0a1f3e; }
+  #topBG #subNav {
+    box-shadow: 0 -1px 0 0 #0c2446, inset 0 1px 0 0 #0f2d58; }
+  #topBG #subNav li.selected,
+  #topBG #mainNav li.selected {
+    margin-top: 10px;
+    color: #a0afc3;
+    background: #091b35; }
+  #topBG #subNav li:not(.selected),
+  #topBG #mainNav li:not(.selected) {
+    color: #7795c0; }
+  #topBG .room-list {
+    margin-top: 1px; }
+  #topBG .room-list,
+  #topBG .roomListItem {
+    background: #091b35; }
+  #topBG .roomListItem .roomName {
+    color: #a0afc3; }
+  #topBG .roomListItem .roomDJs,
+  #topBG .roomListItem .songName,
+  #topBG .roomListItem .roomListeners,
+  #topBG .roomListItem .moreRoomBuddies {
+    color: #7795c0; }
+  #topBG .roomListItem .roomListBuddyIcon {
+    border-color: #0f2d58;
+    background-color: #08172c; }
+  #topBG .roomListItem .roomDJs:not(.needed) .icon {
+    filter: saturate(0%) brightness(0%) invert(60.98039%) opacity(1);
+    filter: url('data:image/svg+xml;utf8,    <svg xmlns="http://www.w3.org/2000/svg">      <filter id="recolor" color-interpolation-filters="sRGB">        <feColorMatrix type="matrix" values="          0 0 0 0 0.46758          0 0 0 0 0.58428          0 0 0 0 0.75202          0 0 0 1 0        "/>      </filter>    </svg>    #recolor'); }
+  #topBG .roomListItem .roomListeners .icon {
+    filter: saturate(0%) brightness(0%) invert(60.98039%) opacity(1);
+    filter: url('data:image/svg+xml;utf8,    <svg xmlns="http://www.w3.org/2000/svg">      <filter id="recolor" color-interpolation-filters="sRGB">        <feColorMatrix type="matrix" values="          0 0 0 0 0.46758          0 0 0 0 0.58428          0 0 0 0 0.75202          0 0 0 1 0        "/>      </filter>    </svg>    #recolor'); }
+  #topBG .roomListItem .listenNow {
+    box-shadow: none;
+    text-shadow: none;
+    border: 1px solid;
+    color: #7795c0;
+    background: transparent; }
+  #topBG #footer a,
+  #topBG #footerMainNav {
+    border-bottom: 1px solid #08172c; }
+  #topBG #footerSubNav,
+  #topBG #footerTwitter a,
+  #topBG #footerTwitter2 a,
+  #topBG #footerFacebook a {
+    border-top: 1px solid #103161; }
+  #topBG #footerCopyright {
+    color: #7795c0; }
 
-#chat-form,
-.song-search {
+#buddyList .buddyListTitle .buddyCount {
+  background: #08172c; }
+
+#buddyList .buddyListTitle .buddyCountMid {
+  color: #7795c0; }
+
+#buddyList .buddyListTitleText {
+  text-shadow: none;
+  color: #7795c0; }
+
+#buddyList #buddyListHeader .myName,
+#buddyList #buddyListHeader .myStats span {
+  color: #a0afc3; }
+
+#buddyList #buddyListHeader .myStats {
+  color: #7795c0; }
+
+#buddyList .buddyListRoom,
+#buddyList .buddyListTitle,
+#buddyList #buddyListHeader {
+  color: #a0afc3;
+  background: #0a1f3e; }
+  #buddyList .buddyListRoom:hover,
+  #buddyList .buddyListTitle:hover,
+  #buddyList #buddyListHeader:hover {
+    background: #0c2446; }
+
+#chat-form {
   left: 36px; }
 
-#chat-input::-moz-placeholder, .overlay textarea::-moz-placeholder, #song-search-input::-moz-placeholder, .overlay input.text::-moz-placeholder, .room-search-input input::-moz-placeholder {
-  color: #96c1ff !important; }
-
-#chat-input:-ms-input-placeholder, .overlay textarea:-ms-input-placeholder, #song-search-input:-ms-input-placeholder, .overlay input.text:-ms-input-placeholder, .room-search-input input:-ms-input-placeholder {
-  color: #96c1ff !important; }
-
-#chat-input::placeholder,
-.overlay textarea::placeholder,
-#song-search-input::placeholder,
-.overlay input.text::placeholder,
-.room-search-input input::placeholder {
-  color: #96c1ff !important; }
+#ding-menu {
+  margin-left: -71px; }
 
 .chat-bar .chatsound-container {
   width: 23px !important;
   background: transparent !important; }
 
 .chat-bar .chatsound {
-  left: 6px !important;
+  top: -2px !important;
   width: 21px !important;
   height: 21px !important;
   padding: 0px !important;
@@ -327,138 +426,235 @@
   background-position: 0 -563px !important;
   background-image: url(https://s3.amazonaws.com/assets.turntable.fm/images/sprites/chrome-sprite@2x.png) !important; }
 
-#playlist-display .down-arrow,
-#playlist-display .playlist-queue-inset {
-  filter: contrast(0) !important; }
+.chat .message.action {
+  color: #a73c3c;
+  border-right: 5px solid #a73c3c; }
 
-.chat .message:nth-child(even),
-.guest-list > :nth-child(even):not(.separator),
-.striped-list > :nth-child(even):not(.separator),
-.song-list > ul > :nth-child(even):not(.separator),
-.message-history > :nth-child(even):not(.separator),
-.conversations-list > ul > :nth-child(even):not(.separator),
-.chat .message:nth-child(odd),
-.guest-list > :nth-child(odd):not(.separator),
-.striped-list > :nth-child(odd):not(.separator),
-.song-list > ul > :nth-child(odd):not(.separator),
-.message-history > :nth-child(odd):not(.separator),
-.conversations-list > ul > :nth-child(odd):not(.separator) {
-  border-color: #0c2446 !important; }
+.chat .message.snag {
+  color: #b74e88;
+  border-right: 5px solid #b74e88; }
 
-.song-list .song .title {
-  color: #e2eeff !important; }
+.chat .message.join {
+  color: #4a9a4d;
+  border-right: 5px solid #4a9a4d; }
 
-.song-list .song .details {
-  color: #96c1ff !important; }
-
-.song-list .song .progress {
-  background: rgba(225, 187, 34, 0.2) !important; }
-
-.song-list .song .scoregood {
-  color: #091b35 !important;
-  background: rgba(122, 241, 120, 0.6) !important; }
-
-.song-list .song .scorebad {
-  color: #091b35 !important;
-  background: rgba(230, 86, 86, 0.6) !important; }
-
-.song-list .song:not(:hover) .score {
-  opacity: 0.5 !important; }
-
-.playlist-go-top,
-.playlist-open-options {
-  filter: invert(1) !important; }
-
-.playlist-go-top {
-  background-position: 0 -326px !important; }
-
-.playlist-open-options {
-  background-position: 0 -216px !important; }
+.chat .message.left {
+  color: #a73c3c;
+  border-right: 5px solid #a73c3c; }
 
 .chat .message.stat .subject:hover,
 .chat .message.stat .speaker:hover {
-  color: #e2eeff !important; }
+  color: #a0afc3 !important; }
 
-.chat .message:not(.stat) .subject:hover,
-.chat .message:not(.stat) .speaker:hover {
-  color: #e1bb22 !important; }
+.song-search {
+  left: 36px; }
 
-.chat .message.mention {
-  background: rgba(225, 187, 34, 0.2) !important;
-  border-right: 5px solid #e1bb22 !important; }
+#playlist .panel-button {
+  border: none;
+  box-shadow: none;
+  text-shadow: none;
+  color: #a0afc3;
+  background: transparent; }
+  #playlist .panel-button:hover {
+    background: #0c2446; }
+  #playlist .panel-button .down-arrow,
+  #playlist .panel-button .playlist-queue-inset {
+    filter: saturate(0%) brightness(0%) invert(69.60784%) opacity(1);
+    filter: url('data:image/svg+xml;utf8,    <svg xmlns="http://www.w3.org/2000/svg">      <filter id="recolor" color-interpolation-filters="sRGB">        <feColorMatrix type="matrix" values="          0 0 0 0 0.62563          0 0 0 0 0.68601          0 0 0 0 0.76652          0 0 0 1 0        "/>      </filter>    </svg>    #recolor'); }
 
-.chat .message.action {
-  color: #e65656 !important;
-  border-right: 5px solid #e65656 !important; }
+#maindiv .song-list .song .title {
+  color: #a0afc3; }
 
-.chat .message.join {
-  color: #7af178 !important;
-  border-right: 5px solid #7af178 !important; }
+#maindiv .song-list .song .vinyl {
+  opacity: 0.5; }
 
-.chat .message.snag {
-  color: #f16e98 !important;
-  border-right: 5px solid #f16e98 !important; }
+#maindiv .song-list .song .details {
+  color: #7795c0; }
 
-.chat .message.left {
-  color: #e65656 !important;
-  border-right: 5px solid #e65656 !important; }
+#maindiv .song-list .song .scorebad {
+  color: #7795c0;
+  background-color: transparent; }
 
-#buddyListMain {
-  box-shadow: none !important; }
+#maindiv .song-list .song .scoregood {
+  color: #08172c; }
 
-.pmClose,
-.pmHeader .nib {
-  filter: invert(1) !important;
-  opacity: 0.7; }
+#maindiv .song-list .song:not(:hover) .score {
+  opacity: 0.5; }
+
+#maindiv .song-list .song.current-song {
+  background-color: #0f2d58; }
+
+#maindiv .song-list .song .playlist-go-top,
+#maindiv .song-list .song .playlist-open-options {
+  background: transparent; }
+  #maindiv .song-list .song .playlist-go-top::after,
+  #maindiv .song-list .song .playlist-open-options::after {
+    display: block;
+    color: #08172c; }
+
+#maindiv .song-list .song .playlist-go-top::after {
+  content: "⌃";
+  font-size: 20px; }
+
+#maindiv .song-list .song .playlist-open-options::after {
+  content: "⚙";
+  font-size: 22px;
+  margin: -5px 0 0 1px; }
+
+#queue-header .btn-group {
+  top: 10px; }
+
+.room-tab .room-name {
+  color: #a0afc3; }
+
+.room-tab .room-info-intro {
+  border: none; }
+
+.room-tab .room-info-wrap {
+  border-color: #08172c; }
+  .room-tab .room-info-wrap .options-menu.closed .nib,
+  .room-tab .room-info-wrap .save-description-btn .icon {
+    filter: saturate(0%) brightness(0%) invert(60.98039%) opacity(1);
+    filter: url('data:image/svg+xml;utf8,    <svg xmlns="http://www.w3.org/2000/svg">      <filter id="recolor" color-interpolation-filters="sRGB">        <feColorMatrix type="matrix" values="          0 0 0 0 0.46758          0 0 0 0 0.58428          0 0 0 0 0.75202          0 0 0 1 0        "/>      </filter>    </svg>    #recolor'); }
+  .room-tab .room-info-wrap .edit-description {
+    padding-bottom: 25px; }
+
+.room-tab .num-listeners,
+.room-tab .description-wrap {
+  color: #7795c0; }
+
+.room-tab .flat-button {
+  border-color: #08172c; }
+  .room-tab .flat-button h3 {
+    color: #7795c0; }
+  .room-tab .flat-button:hover {
+    background: #0c2446; }
+    .room-tab .flat-button:hover h3 {
+      color: #a0afc3; }
 
 #buddyListNipple {
-  opacity: 0 !important; }
+  filter: saturate(0%) brightness(0%) invert(12.15686%) opacity(1);
+  filter: url('data:image/svg+xml;utf8,    <svg xmlns="http://www.w3.org/2000/svg">      <filter id="recolor" color-interpolation-filters="sRGB">        <feColorMatrix type="matrix" values="          0 0 0 0 0.03529          0 0 0 0 0.10588          0 0 0 0 0.20784          0 0 0 1 0        "/>      </filter>    </svg>    #recolor'); }
 
-#buddyListTitle {
-  color: #ffffff !important;
-  text-shadow: none !important; }
+.pm-unavailable-warning {
+  border-bottom: 1px solid #103161; }
 
-#privateChatIcon:not(.open) .chatIcon {
-  filter: contrast(0) brightness(1.6) !important; }
+#pmWindows .pmClose,
+#pmWindows .pmHeader .nib {
+  opacity: 1;
+  filter: saturate(0%) brightness(0%) invert(10.15686%) opacity(1);
+  filter: url('data:image/svg+xml;utf8,    <svg xmlns="http://www.w3.org/2000/svg">      <filter id="recolor" color-interpolation-filters="sRGB">        <feColorMatrix type="matrix" values="          0 0 0 0 0.02949          0 0 0 0 0.08846          0 0 0 0 0.17365          0 0 0 1 0        "/>      </filter>    </svg>    #recolor'); }
+
+#pmWindows .pmWindowIcon:hover {
+  background-color: transparent; }
+
+.pmGreyTop:not(.new-message) .username {
+  color: #a0afc3; }
+
+.conversation-username {
+  color: #a0afc3 !important; }
+
+.conversation-user-room {
+  color: #7795c0 !important; }
 
 .avatar-head {
   background-color: transparent !important; }
 
-.conversation-username {
-  color: #e2eeff !important; }
+#buddyListMain {
+  box-shadow: none; }
+  #buddyListMain #buddyListHeader {
+    border: 1px solid #08172c; }
+  #buddyListMain #buddyListTitle {
+    border: none;
+    text-shadow: none;
+    color: #08172c; }
 
-.conversation-user-room {
-  color: #96c1ff !important; }
+#turnStyles input:not(:checked):after {
+  color: #08172c; }
 
-#ts_hotbar input:not(:checked):after,
-#ts_window input:not(:checked):after {
-  color: #2162c1; }
+#turnStyles small, #turnStyles h5 {
+  color: #7795c0; }
 
-#ts_tabs div,
-#ts_hotbar label,
-#ts_window label,
-#ts_window select,
-#ts_window option {
-  color: #e2eeff;
-  background: #102f5c; }
+#turnStyles select {
+  border-color: #103161; }
+
+.ts_toggle,
+.ts_inputs,
+#ts_tabs div {
+  color: #a0afc3;
+  background: #0f2d58; }
+
+#ts_mute {
+  opacity: 0.5; }
 
 #ts_tabs .active {
-  background: #e1bb22 !important;
-  color: #ffffff !important; }
+  color: #08172c; }
 
-#ts_window small, #ts_window h5 {
-  color: #96c1ff; }
+#ts_volume #ts_slider::-moz-range-thumb {
+  background: #a0afc3; }
 
-#ts_window select {
-  border-color: #123669 !important; }
+#ts_volume #ts_slider::-webkit-slider-thumb {
+  background: #a0afc3; }
 
-#ts_upload,
-.chat-bar .chatsound,
-#settings .settings-button,
-.roomListItem .needed .icon,
-#playlist .search .mag-glass,
-.room-search-input .mag-glass,
-#playlist-display .down-arrow,
-.tab-item:not(.selected) .tab-icon,
-#playlist-display .playlist-queue-inset {
-  filter: sepia(1) hue-rotate(180deg) saturate(4) !important; }
+#overlay a,
+#pmWindows a,
+#turnStyles h4,
+#topBG #content a,
+#turnStyles #ts_menu,
+#turnStyles #ts_close,
+#maindiv .tabbed-panel a,
+#turnStyles .ts_credits a,
+.buddyListRoom .buddyRoomName,
+#turnStyles input:checked:after,
+.chat .message:not(.stat) .subject:hover,
+.chat .message:not(.stat) .speaker:hover,
+.fans .stat-number:not(.disabled):hover,
+.fanofs .stat-number:not(.disabled):hover,
+#buddyList #buddyListHeader .myName:hover,
+#buddyList #buddyListHeader .myFans:hover,
+#topBG .roomListItem .roomDJs.needed {
+  color: #bd9e0e; }
+
+#topBG .roomListItem .roomDJs.needed .icon {
+  filter: saturate(0%) brightness(0%) invert(39.80392%) opacity(1);
+  filter: url('data:image/svg+xml;utf8,    <svg xmlns="http://www.w3.org/2000/svg">      <filter id="recolor" color-interpolation-filters="sRGB">        <feColorMatrix type="matrix" values="          0 0 0 0 0.74118          0 0 0 0 0.61961          0 0 0 0 0.0549          0 0 0 1 0        "/>      </filter>    </svg>    #recolor'); }
+
+.chat .message.mention {
+  border-right: 5px solid #bd9e0e; }
+
+.chat .message.mention,
+#songs .song-list .song .progress {
+  background: rgba(189, 158, 14, 0.2); }
+
+.overlay .modal,
+.overlay .modal .title,
+#maindiv .song-list .song .scoregood {
+  background-color: #bd9e0e; }
+
+.become-dj, .invite-dj,
+.header-bar .favorite,
+.header-bar .header-logo,
+#privateChatIcon .chatIcon,
+.buddyListRoom .joinRoomButton {
+  filter: brightness(0.75); }
+
+#ts_slider {
+  background: #bd9e0e; }
+
+#topBG #create-room,
+#ts_tabs div.active,
+#settings .option:hover,
+#settings .option.selected,
+.options-menu .option:hover,
+.options-menu .option.active,
+#buddyListMain #buddyListHeader,
+.tabbed-panel .tab-item:active,
+.tabbed-panel .tab-item.selected,
+.floating-menu .option.active,
+.floating-menu .option.selected,
+.floating-menu .option:not(.split-option):not(.disabled):hover,
+.modal button.submit,
+.modal button.submit:hover,
+button.tt-button.primary,
+button.tt-button.primary:hover {
+  background-image: linear-gradient(to bottom, #bd9e0e, #a58a0c); }

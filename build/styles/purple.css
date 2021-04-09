@@ -1,46 +1,61 @@
-#ts_slider,
-.overlay .modal,
-.score.scoregood,
-#settings .option.selected,
-.floating-menu .option.active,
-.floating-menu .option.selected {
-  background: #9075ff !important; }
-
-.mini-djs .mini-dj.active .avatar-head {
-  box-shadow: inset 0 0 0 2px #9075ff !important; }
-
-.song .progress,
-.chat .message.mention {
-  background: rgba(144, 117, 255, 0.2) !important; }
-
-.ts_menu,
-.tab-pane a,
+#overlay a,
 #pmWindows a,
-#ts_window h4,
+#turnStyles h4,
 #topBG #content a,
-.profile .statslink a,
-#myInfo .myName:hover,
-#myInfo .myFans:hover,
-.current-song .details,
-#ts_window .ts_credits a,
-.mini-room-current-dj-name,
-.lobby-panel .buddyRoomName,
-.roomListItem .needed .count,
-#ts_hotbar input:checked:after,
-#ts_window input:checked:after,
-.tab-item:not(.selected):hover .tab-title,
+#turnStyles #ts_menu,
+#turnStyles #ts_close,
+#maindiv .tabbed-panel a,
+#turnStyles .ts_credits a,
+.buddyListRoom .buddyRoomName,
+#turnStyles input:checked:after,
 .chat .message:not(.stat) .subject:hover,
 .chat .message:not(.stat) .speaker:hover,
 .fans .stat-number:not(.disabled):hover,
-.fanofs .stat-number:not(.disabled):hover {
-  color: #bcacff !important; }
+.fanofs .stat-number:not(.disabled):hover,
+#buddyList #buddyListHeader .myName:hover,
+#buddyList #buddyListHeader .myFans:hover,
+#topBG .roomListItem .roomDJs.needed {
+  color: #bcacff; }
+
+#topBG .roomListItem .roomDJs.needed .icon {
+  filter: saturate(0%) brightness(0%) invert(72.94118%) opacity(1);
+  filter: url('data:image/svg+xml;utf8,    <svg xmlns="http://www.w3.org/2000/svg">      <filter id="recolor" color-interpolation-filters="sRGB">        <feColorMatrix type="matrix" values="          0 0 0 0 0.56471          0 0 0 0 0.45882          0 0 0 0 1          0 0 0 1 0        "/>      </filter>    </svg>    #recolor'); }
 
 .chat .message.mention {
-  border-right-color: #9075ff !important; }
+  border-right: 5px solid #9075ff; }
 
-#buddyListTitle,
-#buddyListHeader {
-  border-color: #9075ff !important; }
+.chat .message.mention,
+#songs .song-list .song .progress {
+  background: rgba(144, 117, 255, 0.2); }
+
+.overlay .modal,
+.overlay .modal .title,
+#maindiv .song-list .song .scoregood {
+  background-color: #9075ff; }
+
+#ts_slider {
+  background: #9075ff; }
+
+#topBG #create-room,
+#ts_tabs div.active,
+#settings .option:hover,
+#settings .option.selected,
+.options-menu .option:hover,
+.options-menu .option.active,
+#buddyListMain #buddyListHeader,
+.tabbed-panel .tab-item:active,
+.tabbed-panel .tab-item.selected,
+.floating-menu .option.active,
+.floating-menu .option.selected,
+.floating-menu .option:not(.split-option):not(.disabled):hover,
+.modal button.submit,
+.modal button.submit:hover,
+button.tt-button.primary,
+button.tt-button.primary:hover {
+  background-image: linear-gradient(to bottom, #9075ff, #7b5cff); }
+
+.mini-djs .mini-dj.active .avatar-head {
+  box-shadow: inset 0 0 0 2px #9075ff; }
 
 .lame-button {
   filter: grayscale(1) !important; }
@@ -53,9 +68,9 @@
 
 .become-dj,
 .invite-dj,
-.header-logo,
 .song-details,
 .songboard-add,
+.header-bar .header-logo,
 .mini-djs .invite-dj-btn,
 .mini-djs .become-dj-btn,
 .favorite-star.favorited,
@@ -65,18 +80,3 @@
 
 .tab-item:not(.selected):hover .tab-icon {
   filter: sepia(1) hue-rotate(245deg) saturate(4); }
-
-#create-room,
-.modal .title,
-#buddyListHeader,
-.tab-item:active,
-.tab-item.selected,
-#ts_tabs div.active,
-.pmGreyTop.new-message,
-#settings .option:hover,
-.roomListItem .listenNow,
-button.tt-button.primary.small.inset,
-.options-menu .options .option:hover,
-.floating-menu .option:not(.split-option):not(.disabled):hover {
-  box-shadow: none !important;
-  background-image: linear-gradient(to bottom, #9075ff, #6742ff) !important; }
