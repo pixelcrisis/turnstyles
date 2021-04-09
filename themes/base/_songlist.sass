@@ -1,0 +1,59 @@
+.song-search
+  left: 36px
+
+#playlist .panel-button
+  border: none
+  box-shadow: none
+  text-shadow: none
+  color: $color-text
+  background: transparent
+
+  &:hover
+    background: $color-bg-2
+
+  .down-arrow,
+  .playlist-queue-inset
+    @include recolor($color-text)
+
+#maindiv .song-list .song
+  .title 
+    color: $color-text
+
+  .vinyl
+    opacity: 0.5
+
+  .details
+    color: $color-subtle
+
+  .scorebad
+    color: $color-subtle
+    background-color: transparent
+
+  .scoregood
+    color: $color-bg-0
+
+  &:not(:hover) .score
+    opacity: 0.5
+
+  &.current-song
+    background-color: $color-bg-3
+
+  .playlist-go-top,
+  .playlist-open-options
+    background: transparent
+    &::after 
+      display: block
+      color: $color-bg-0
+
+  .playlist-go-top::after
+    content: "⌃"
+    font-size: 20px
+
+  .playlist-open-options::after
+    content: "⚙"
+    font-size: 22px
+    margin: -5px 0 0 1px
+
+#queue-header
+  .btn-group
+    top: 10px

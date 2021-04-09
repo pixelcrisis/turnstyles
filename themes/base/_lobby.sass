@@ -1,0 +1,103 @@
+#topBG
+  background: $color-bg
+
+  #create-room 
+    span
+      text-shadow: none
+      font-weight: bold
+      color: $color-bg-0
+    .create-room
+      @include recolor($color-bg-0)
+
+  #newsbox
+    color: $color-subtle
+    background: $color-bg-1
+  
+  #subNav
+    box-shadow: 0 -1px 0 0 $color-bg-2, inset 0 1px 0 0 $color-bg-3
+
+  #subNav li,
+  #mainNav li
+    &.selected
+      margin-top: 10px
+      color: $color-text
+      background: $color-bg
+
+    &:not(.selected)
+      color: $color-subtle
+
+  .lobby-panel .lobby-panel-header
+    @extend %bg-gradient
+
+  .room-list
+    margin-top: 1px
+
+  .room-list,
+  .roomListItem
+    background: $color-bg
+
+  .roomListItem
+    @extend %border-x
+
+    .roomName
+      color: $color-text
+
+    .roomDJs,
+    .songName,
+    .roomListeners,
+    .moreRoomBuddies
+      color: $color-subtle
+
+    .roomListBuddyIcon
+      border-color: $color-bg-3
+      background-color: $color-bg-0
+
+    .roomListeners .icon
+      @include recolor($color-subtle)
+
+    .listenNow
+      box-shadow: none
+      text-shadow: none
+      border: 1px solid
+      color: $color-subtle
+      background: transparent
+
+  #footer a,
+  #footerMainNav
+    border-bottom: 1px solid $color-bg-0
+
+  #footerSubNav,
+  #footerTwitter a,
+  #footerTwitter2 a,
+  #footerFacebook a
+    border-top: 1px solid $color-bg-4
+
+  #footerCopyright
+    color: $color-subtle
+
+#buddyList
+  .buddyListTitle
+    @extend %bg-gradient
+
+  .buddyListTitleText
+    text-shadow: none
+    color: $color-subtle
+
+  #buddyListHeader
+    .myName,
+    .myStats span
+      color: $color-text
+
+    .myStats
+      color: $color-subtle
+
+  .buddyListRoom,
+  .buddyListTitle,
+  #buddyListHeader
+    @extend %border-x
+    color: $color-text
+    background: $color-bg-1
+
+    &:hover
+      @extend %border-x
+      background: $color-bg-2

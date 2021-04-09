@@ -1,0 +1,36 @@
+.room-tab 
+  .room-name
+    color: $color-text
+
+  .room-info-intro
+    border: none
+    @extend %content-main
+
+  .room-info-wrap
+    @extend %content-alt
+    border-color: $color-bg-0
+
+    .options-menu.closed .nib,
+    .save-description-btn .icon
+      @include recolor($color-subtle)
+
+    .edit-description
+      @extend %content-alt
+      padding-bottom: 25px
+
+  .num-listeners,
+  .description-wrap
+    color: $color-subtle
+
+  .flat-button 
+    @extend %content-alt
+    border-color: $color-bg-0
+
+    h3
+      color: $color-subtle
+    
+    &:hover 
+      background: $color-bg-2
+      
+      h3
+        color: $color-text

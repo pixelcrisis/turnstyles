@@ -1,0 +1,64 @@
+$fade: linear-gradient(to bottom, $color-main, darken($color-main, 5%))
+
+#overlay a,
+#pmWindows a,
+#ts_window h4,
+#topBG #content a,
+#ts_window .ts_menu,
+#ts_hotbar .ts_menu,
+#maindiv .tabbed-panel a,
+#ts_window .ts_credits a,
+.buddyListRoom .buddyRoomName,
+#ts_hotbar input:checked:after,
+#ts_window input:checked:after,
+.chat .message:not(.stat) .subject:hover,
+.chat .message:not(.stat) .speaker:hover,
+.fans .stat-number:not(.disabled):hover, 
+.fanofs .stat-number:not(.disabled):hover,
+#buddyList #buddyListHeader .myName:hover,
+#buddyList #buddyListHeader .myFans:hover,
+#topBG .roomListItem .roomDJs.needed 
+  color: $color-main 
+
+#topBG .roomListItem .roomDJs.needed .icon
+  @include recolor($color-main)
+
+.chat .message.mention
+  border-right: 5px solid $color-main
+
+.chat .message.mention,
+#songs .song-list .song .progress
+  background: rgba($color-main, 0.2)
+
+.overlay .modal,
+.overlay .modal .title,
+#maindiv .song-list .song .scoregood
+  background-color: $color-main
+
+.become-dj, .invite-dj,
+.header-bar .favorite,
+.header-bar .header-logo,
+#privateChatIcon .chatIcon,
+.buddyListRoom .joinRoomButton
+  filter: brightness(0.75)
+
+#ts_slider
+  background: $color-main
+
+#topBG #create-room,
+#ts_tabs div.active,
+#settings .option:hover,
+#settings .option.selected,
+.options-menu .option:hover,
+.options-menu .option.active,
+#buddyListMain #buddyListHeader,
+.tabbed-panel .tab-item:active, 
+.tabbed-panel .tab-item.selected,
+.floating-menu .option.active,
+.floating-menu .option.selected,
+.floating-menu .option:not(.split-option):not(.disabled):hover,
+.modal button.submit,
+.modal button.submit:hover,
+button.tt-button.primary,
+button.tt-button.primary:hover
+  background-image: $fade

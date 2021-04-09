@@ -1,47 +1,43 @@
+$color-text:   lighten(mix(#ffffff, $color-bg, 20%), 40%) !default
+$color-subtle: lighten(mix(#ffffff, $color-bg, 10%), 40%) !default
+
+$color-bg-0:  darken($color-bg, 2%)
+$color-bg-1: lighten($color-bg, 2%)
+$color-bg-2: lighten($color-bg, 4%)
+$color-bg-3: lighten($color-bg, 8%)
+$color-bg-4: lighten($color-bg, 10%)
+
 %content-main
-  box-shadow: none !important
-  text-shadow: none !important
-  color: $text !important
-  background: $bg-main !important
+  color: $color-text
+  background: $color-bg
 
 %content-alt
-  box-shadow: none !important
-  text-shadow: none !important
-  color: $text !important
-  background: $bg-alt !important
+  color: $color-text
+  background: $color-bg-1
 
-%content-panel
-  box-shadow: none !important
-  color: $text !important
-  background: $bg-panel !important
+%bg-gradient
+  border-top-color: $color-bg-3 !important
+  border-bottom-color: $color-bg-1 !important
+  box-shadow: 0 -1px 0 0 $color-bg-4 !important
+  background-image: linear-gradient(to bottom, $color-bg-3, $color-bg-2) !important
 
-%text-input
-  border: none !important
-  box-shadow: none !important
-  color: $text-input !important
-  background: $bg-input !important
+%border-y
+  border: none
+  box-shadow: -1px 0 0 0 $color-bg-0, inset 1px 0 0 0 $color-bg-1
 
-@mixin dark-buttons
-  @if $dark-theme
-    filter: brightness(10) !important
+%border-x
+  border: none
+  box-shadow: 0 -1px 0 0 $color-bg-0, inset 0 1px 0 0 $color-bg-2
 
-@mixin inverted
-  @if $dark-theme
-    filter: invert(1) !important
-
-@mixin full-invert
-  @if $dark-theme
-    @include inverted
-    border-color: lighten(invert($border-p, 100%), 5%) !important
-    background-color: lighten(invert($bg-panel, 100%), 5%) !important
-
+@import "recolor"
 @import "header"
 @import "content"
 @import "popups"
-@import "panels" // inputs
-@import "buttons"
-@import "striped"
-@import "songs"
-@import "chat"
-@import "private"
-@import "options"
+@import "modals"
+@import "lobby"
+@import "roomchat"
+@import "songlist"
+@import "roominfo"
+@import "userchat"
+@import "tspanel"
+@import "accents"
