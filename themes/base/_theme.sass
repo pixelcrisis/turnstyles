@@ -1,3 +1,5 @@
+@import "../../mixins/recolor"
+
 $color-text:   lighten(mix(#ffffff, $color-bg, 20%), 40%) !default
 $color-subtle: lighten(mix(#ffffff, $color-bg, 10%), 40%) !default
 
@@ -29,7 +31,6 @@ $color-bg-4: lighten($color-bg, 10%)
   border: none
   box-shadow: 0 -1px 0 0 $color-bg-0, inset 0 1px 0 0 $color-bg-2
 
-@import "recolor"
 @import "header"
 @import "content"
 @import "popups"
