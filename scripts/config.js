@@ -25,7 +25,9 @@ module.exports = tS => {
     chat_spun: false,
     chat_snag: false,
     chat_join: false,
-    chat_left: false
+    chat_left: false,
+
+    user_css: ''
   }
 
   tS.options = {
@@ -50,6 +52,12 @@ module.exports = tS => {
     let option = e.target.id.split('ts_').join('')
     let saving = toggle ? e.target.checked : e.target.value
 
+    // shortcut to finding css on click
+    if (option == 'apply') {
+      option = 'user_css'
+      saving = $('#ts_user_css').val()
+    }
+
     this.config[option] = saving
     let stored = JSON.stringify(this.config)
     window.localStorage.setItem("tsdb", stored)
@@ -57,7 +65,8 @@ module.exports = tS => {
     this.Log('saved config')
 
     // emit update for rooms, update themes in lobby
-    let visual = option == "style" || option == "theme"
+    let visual = option == "style" || option == "theme" || option == 'user_css'
+
     if (!this.lobby) this.emit('update', option, saving)
     else if (visual) this.updateThemes(option, saving)
   }

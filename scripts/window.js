@@ -5,6 +5,7 @@ module.exports = tS => {
   tS.buildWindow = function () {
     $('.header-bar').append(layout(this))
 
+    // full menu toggler
     $('#ts_menu, #ts_close').on('click', () => {
       $('#turnStyles').toggleClass('active')
     })
@@ -16,6 +17,7 @@ module.exports = tS => {
     })
 
     // save config on option change
+    $('#ts_apply').on('click', tS.saveConfig.bind(this))
     $('.ts_option').on('change', tS.saveConfig.bind(this))
   }
 
@@ -96,8 +98,8 @@ const dingTab = self => `
 const cssTab = self => `
   <div class="ts_tab tab_css">
     <h4>Custom CSS</h4>
-    <textarea id="ts_custom_css" class="ts_inputs" cols="60" rows="10">${ self.config.custom_css || "" }</textarea>
-    <h4 id="ts_apply">Apply Styles</h4>
+    <textarea id="ts_user_css" class="ts_inputs" cols="60" rows="10">${ self.config.user_css || "" }</textarea>
+    <h4 id="ts_apply">Save And Apply Styles</h4>
   </div>
 `
 
