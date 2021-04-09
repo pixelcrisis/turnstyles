@@ -15,6 +15,7 @@ module.exports = tS => {
 
     no_aud: false,
     no_vid: false,
+    no_bub: false,
 
     ping_pm: false,
     ping_song: false,

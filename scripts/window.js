@@ -95,6 +95,8 @@ const visualTab = self => `
     <br>
     ${ toggle(self, 'no_aud', 'Hide Audience') }
     ${ toggle(self, 'no_vid', 'Hide Player') }
+    <br>
+    ${ toggle(self, 'no_bub', 'Hide Chat Bubbles') }
   </div>
 `
 

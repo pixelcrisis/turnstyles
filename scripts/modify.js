@@ -17,6 +17,7 @@ module.exports = tS => {
     // hide elements
     this.hidden('no_vid', this.config.no_vid)
     this.hidden('no_aud', this.config.no_aud)
+    this.hidden('no_bub', this.config.no_bub)
     
     // replace upload with organize
     $('#upload-button').after(`<div id="ts_upload"></div>`)
@@ -26,6 +27,7 @@ module.exports = tS => {
   tS.hidden = function (key, value) {
     if (key == "no_vid") this.toggleClass('ts_hide_videos', value)
     if (key == "no_aud") this.toggleClass('ts_hide_audience', value)
+    if (key == "no_bub") this.toggleClass('ts_hide_bubbles', value)
   }
 
   tS.on('attach', tS.modify)
