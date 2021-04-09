@@ -50,10 +50,6 @@ module.exports = tS => {
     let option = e.target.id.split('ts_').join('')
     let saving = toggle ? e.target.checked : e.target.value
 
-    // mirror values between hot bar and main option window
-    let mirror = $(`#ts_hotbar #${e.target.id}, #ts_window #${e.target.id}`)
-    mirror.prop(toggle ? 'checked' : 'value', saving)
-
     this.config[option] = saving
     let stored = JSON.stringify(this.config)
     window.localStorage.setItem("tsdb", stored)
