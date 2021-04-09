@@ -52,6 +52,9 @@
       border-color: $color-bg-3
       background-color: $color-bg-0
 
+    .roomDJs:not(.needed) .icon
+      @include recolor($color-subtle)
+
     .roomListeners .icon
       @include recolor($color-subtle)
 
@@ -78,6 +81,12 @@
 #buddyList
   .buddyListTitle
     @extend %bg-gradient
+
+    .buddyCount
+      background: $color-bg-0
+      
+    .buddyCountMid
+      color: $color-subtle
 
   .buddyListTitleText
     text-shadow: none
