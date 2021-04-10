@@ -35,7 +35,7 @@ module.exports = tS => {
     if (last.song) stat = `${last.love}❤️${last.hate}💔${last.snag}💖`
 
     this.emit('tracked', stat)
-    this.Log(`cached track: ${ this.now_playing.song || 'nosong'}`)
+    this.Log(`new song: ${ this.now_playing.song || 'none'}`)
   }
 
   tS.cacheNewDJ = function (e, data) {
@@ -47,7 +47,8 @@ module.exports = tS => {
       hate: data && data.hate ? data.hate : 0,
       snag: data && data.snag ? data.snag : 0
     }
-    this.Log(`cached new DJ: ${user}`)
+    let name = this.userName(user)
+    this.Log(`new dj: [${name}] (${user})`)
   }
 
   tS.cacheSnags = function () {
@@ -68,6 +69,7 @@ module.exports = tS => {
     let data = `${stat.love}❤️${stat.hate}💔${stat.snag}💖${stat.spun}▶️`
     delete this.current_djs[user]
     this.emit('dropped', name, data)
+    this.Log(`old dj: [${name}] (${user})`)
   }
 
   tS.on('attach',       tS.buildCache)
