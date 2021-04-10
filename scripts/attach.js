@@ -45,6 +45,22 @@ module.exports = tS => {
     this.Log(`loaded room`)
   }
 
+  tS.reload = function reload () {
+    window.$tS = null
+    $('#ts_wrap').remove()
+    $('link.tS-theme').remove()
+    $('link.tS-style').remove()
+    $('link[href$="turnStyles.css"]').remove()
+    $('script[href$="turnStyles.js"]').remove()
+    
+    const script = document.createElement('script')
+    script.src = `${this.__base}/turnStyles.js`
+    script.type = "text/javascript"
+    document.body.append(script)
+
+    this.Log(`reloaded turnStyles`)
+  }
+
   // look for prop with key in obj
   const findKey = function (obj, key) {
     for (let prop in obj) {

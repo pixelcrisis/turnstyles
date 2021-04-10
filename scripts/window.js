@@ -34,6 +34,7 @@ const layout = self => `
       ${ optsTab(self) }
       ${ dingTab(self) }
       ${ cssTab(self) }
+      ${ modTab(self) }
 
       ${ footer(self) }
     </div>
@@ -45,7 +46,8 @@ const header = `
 
   <div id="ts_tabs">
     <div class="tab_opts active">Options</div>
-    <div class="tab_ding">Notifications</div>
+    <div class="tab_room">Room</div>
+    <div class="tab_ding">Notify</div>
     <div class="tab_css">Custom Css</div>
   </div>
 `
@@ -60,38 +62,46 @@ const quick = self => `
 
 const optsTab = self => `
   <div class="ts_tab tab_opts active">
-    <h4>General Features</h4>
-    ${ toggle(self, 'autobop', 'Autobop') }
-    ${ toggle(self, 'has_vol', 'Control Volume') }
-    <br>
-    ${ toggle(self, 'nextdj', 'Next DJ Spot') }
-    ${ toggle(self, 'pingdj', 'Wait For Ping') }
-    <br>
-    <h4>Visual Options</h4>
-    ${ select(self, 'theme') }
-    ${ select(self, 'style') }
-    <br>
-    ${ toggle(self, 'no_aud', 'Hide Audience') }
-    ${ toggle(self, 'no_vid', 'Hide Player') }
-    <br>
-    ${ toggle(self, 'no_bub', 'Hide Chat Bubbles') }
+    <div>
+      <h4>General Features</h4>
+      ${ toggle(self, 'autobop', 'Autobop') }
+      ${ toggle(self, 'has_vol', 'Control Volume') }
+      <br>
+      ${ toggle(self, 'nextdj', 'Next DJ Spot') }
+      ${ toggle(self, 'pingdj', 'Wait For Ping') }
+    </div>
+    <div>
+      <h4>Hide Elements</h4>
+      ${ toggle(self, 'no_aud', 'Hide Audience') }
+      ${ toggle(self, 'no_vid', 'Hide Player') }
+      <br>
+      ${ toggle(self, 'no_bub', 'Hide Chat Bubbles') }
+    </div>
+    <div>
+      <h4>Visual Options</h4>
+      ${ select(self, 'theme') }
+      ${ select(self, 'style') }
+    </div>
   </div>
 `
 
 const dingTab = self => `
   <div class="ts_tab tab_ding">
-    <h4>Messages In Chat</h4>
-    ${ toggle(self, 'chat_song', 'Last Song Stats') }
-    ${ toggle(self, 'chat_spun', 'Dropped DJ Stats') }
-    <br>
-    ${ toggle(self, 'chat_snag', 'User Snags') }
-    ${ toggle(self, 'chat_join', 'User Joins') }
-    ${ toggle(self, 'chat_left', 'User Leaves') }
-    <br>
-    <h4>Desktop Notifications</h4>
-    ${ toggle(self, 'ping_pm', 'On DMs') }
-    ${ toggle(self, 'ping_chat', 'On Mentions') }
-    ${ toggle(self, 'ping_song', 'On New Songs') }
+    <div>
+      <h4>Messages In Chat</h4>
+      ${ toggle(self, 'chat_song', 'Last Song Stats') }
+      ${ toggle(self, 'chat_spun', 'Dropped DJ Stats') }
+      <br>
+      ${ toggle(self, 'chat_snag', 'User Snags') }
+      ${ toggle(self, 'chat_join', 'User Joins') }
+      ${ toggle(self, 'chat_left', 'User Leaves') }
+    </div>
+    <div>
+      <h4>Desktop Notifications</h4>
+      ${ toggle(self, 'ping_pm', 'On DMs') }
+      ${ toggle(self, 'ping_chat', 'On Mentions') }
+      ${ toggle(self, 'ping_song', 'On New Songs') }
+    </div>
   </div>
 `
 
@@ -100,6 +110,13 @@ const cssTab = self => `
     <h4>Custom CSS</h4>
     <textarea id="ts_user_css" class="ts_inputs" cols="60" rows="10">${ self.config.user_css || "" }</textarea>
     <h4 id="ts_apply">Save And Apply Styles</h4>
+  </div>
+`
+
+const modTab = self => `
+  <div class="ts_tab tab_room">
+    <h4>Room / Moderator Features</h4>
+    ${ button('reload', 'Reload turnStyles') }
   </div>
 `
 
@@ -121,6 +138,10 @@ const select = (self, list) => `
       </option>
     `).join('') }
   </select>
+`
+
+const button = (func, name) => `
+  <button class="ts_inputs" onclick="$tS.${func}()">${name}</button>
 `
 
 const footer = self => `
