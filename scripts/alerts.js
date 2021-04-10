@@ -51,7 +51,7 @@ module.exports = tS => {
 
   tS.alertJoin = function (e) {
     let user = e.user[0]
-    this.Log(`user joined: ${user.name} (${user.userid})`)
+    this.Log(`[${user.name}](${user.userid}) joined. `)
     
     if (this.config.chat_join) {
       this.postToChat(user.name, `joined.`, 'join')
@@ -60,7 +60,7 @@ module.exports = tS => {
 
   tS.alertLeft = function (e) {
     let user = e.user[0]
-    this.Log(`user left: ${user.name} (${user.userid})`)
+    this.Log(`[${user.name}](${user.userid}) left. `)
 
     if (this.config.chat_left) {
       this.postToChat(user.name, `left.`, 'left')
