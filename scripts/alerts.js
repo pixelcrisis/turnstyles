@@ -67,6 +67,13 @@ module.exports = tS => {
     }
   }
 
+  tS.alertVote = function (e) {
+    let curr = e.room.metadata.votelog
+    let vote = curr[curr.length - 1]
+    let name = this.userName(vote[0])
+    this.Log(`[${name}] voted: ${vote[1]}`)
+  }
+
   tS.on('pmmed',        tS.alertPm)
   tS.on('speak',        tS.alertPing)
   tS.on('snagged',      tS.alertSnag)
@@ -74,5 +81,6 @@ module.exports = tS => {
   tS.on('dropped',      tS.alertDrop)
   tS.on('registered',   tS.alertJoin)
   tS.on('deregistered', tS.alertLeft)
+  tS.on('update_votes', tS.alertVote)
 
 }
