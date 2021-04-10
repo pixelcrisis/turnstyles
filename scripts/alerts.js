@@ -60,7 +60,7 @@ module.exports = tS => {
 
   tS.alertLeft = function (e) {
     let user = e.user[0]
-    this.Log(`[${user.name}](${user.userid}) left. `)
+    this.Log(`[${user.name}](${user.userid}) left.`)
 
     if (this.config.chat_left) {
       this.postToChat(user.name, `left.`, 'left')
