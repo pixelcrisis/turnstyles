@@ -542,8 +542,8 @@
 #pmWindows .pmClose,
 #pmWindows .pmHeader .nib {
   opacity: 1;
-  filter: saturate(0%) brightness(0%) invert(10.54902%) opacity(1);
-  filter: url('data:image/svg+xml;utf8,    <svg xmlns="http://www.w3.org/2000/svg">      <filter id="recolor" color-interpolation-filters="sRGB">        <feColorMatrix type="matrix" values="          0 0 0 0 0.08241          0 0 0 0 0.06263          0 0 0 0 0.14835          0 0 0 1 0        "/>      </filter>    </svg>    #recolor'); }
+  filter: saturate(0%) brightness(0%) invert(61.37255%) opacity(1);
+  filter: url('data:image/svg+xml;utf8,    <svg xmlns="http://www.w3.org/2000/svg">      <filter id="recolor" color-interpolation-filters="sRGB">        <feColorMatrix type="matrix" values="          0 0 0 0 0.56766          0 0 0 0 0.53222          0 0 0 0 0.69523          0 0 0 1 0        "/>      </filter>    </svg>    #recolor'); }
 
 #pmWindows .pmWindowIcon:hover {
   background-color: transparent; }

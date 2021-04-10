@@ -89,6 +89,12 @@
   flex: 0 0 100%;
   padding: 15px 0;
   line-height: 2em; }
+  .ts_tab div {
+    width: 100%;
+    max-width: 250px;
+    margin-bottom: 10px;
+    vertical-align: top;
+    display: inline-block; }
   .ts_tab:not(.active) {
     display: none; }
   .ts_tab h4:not(:first-of-type) {
@@ -100,7 +106,8 @@
 
 .ts_toggle,
 .ts_inputs {
-  margin: 0 5px 5px 0; }
+  margin: 0 5px 5px 0;
+  white-space: nowrap; }
 
 .ts_toggle {
   padding-left: 20px !important; }
@@ -117,6 +124,11 @@
       color: rgba(0, 0, 0, 0.5); }
     .ts_toggle input:checked:after {
       color: gold; }
+
+#ts_logs {
+  margin-bottom: 40px;
+  padding: 0 5px 0 20px;
+  font-family: monospace; }
 
 #room-view {
   background: #000000; }
