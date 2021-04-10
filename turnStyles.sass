@@ -106,6 +106,13 @@
   flex: 0 0 100%
   padding: 15px 0
   line-height: 2em
+
+  div
+    width: 100%
+    max-width: 250px
+    margin-bottom: 10px
+    vertical-align: top
+    display: inline-block
   
   &:not(.active)
     display: none
@@ -121,6 +128,7 @@
 .ts_toggle,
 .ts_inputs
   margin: 0 5px 5px 0
+  white-space: nowrap
 
 .ts_toggle 
   padding-left: 20px !important
@@ -141,6 +149,11 @@
     
     &:checked:after
       color: gold  
+
+#ts_logs
+  margin-bottom: 40px
+  padding: 0 5px 0 20px
+  font-family: monospace
 
 // turntable styling defaults
 #room-view

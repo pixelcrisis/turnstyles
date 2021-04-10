@@ -2,7 +2,19 @@
 
 module.exports = tS => {
 
-  tS.Log = str => console.info(`turnStyles :: ${str}`)
+  // logging functions
+  tS.logBook = []
+  tS.Log = str => {
+    this.logBook = this.logBook || tS.logBook
+
+    this.logBook.push(`> ${str}`)
+    console.info(`turnStyles :: ${str}`)
+
+    if (this.logBook.length > 50) this.logBook.shift()
+
+    let logger = $('#ts_logs')[0]
+    if (logger) logger.innerHTML = this.logBook.join('<br>')
+  }
 
   // portals to tt
   tS.user = () => window.turntable.user

@@ -50,21 +50,28 @@ module.exports = tS => {
   }
 
   tS.alertJoin = function (e) {
-    this.Log(`user joined: ${name} (${e.user[0].userid})`)
+    let user = e.user[0]
+    this.Log(`[${user.name}](${user.userid}) joined. `)
     
     if (this.config.chat_join) {
-      let name = e.user[0].name
-      this.postToChat(name, `joined.`, 'join')
+      this.postToChat(user.name, `joined.`, 'join')
     }
   }
 
   tS.alertLeft = function (e) {
-    this.Log(`user left: ${name} (${e.user[0].userid})`)
+    let user = e.user[0]
+    this.Log(`[${user.name}](${user.userid}) left.`)
 
     if (this.config.chat_left) {
-      let name = e.user[0].name
-      this.postToChat(name, `left.`, 'left')
+      this.postToChat(user.name, `left.`, 'left')
     }
+  }
+
+  tS.alertVote = function (e) {
+    let curr = e.room.metadata.votelog
+    let vote = curr[curr.length - 1]
+    let name = this.userName(vote[0])
+    this.Log(`[${name}] voted: ${vote[1]}`)
   }
 
   tS.on('pmmed',        tS.alertPm)
@@ -74,5 +81,6 @@ module.exports = tS => {
   tS.on('dropped',      tS.alertDrop)
   tS.on('registered',   tS.alertJoin)
   tS.on('deregistered', tS.alertLeft)
+  tS.on('update_votes', tS.alertVote)
 
 }
