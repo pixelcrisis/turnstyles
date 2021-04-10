@@ -36,6 +36,9 @@ module.exports = tS => {
     let full = findKey(room, "roomData")
     if (!full) return again()
 
+    // add our logBook output
+    $('.room-info-nav').after(`<div id="ts_logs"></div>`)
+
     // clone realVolume for volume overrides
     this.realVolume = window.turntablePlayer.realVolume
     

@@ -32,9 +32,9 @@ const layout = self => `
       ${ quick(self) }
 
       ${ optsTab(self) }
+      ${ roomTab(self) }
       ${ dingTab(self) }
       ${ cssTab(self) }
-      ${ modTab(self) }
 
       ${ footer(self) }
     </div>
@@ -85,6 +85,13 @@ const optsTab = self => `
   </div>
 `
 
+const roomTab = self => `
+  <div class="ts_tab tab_room">
+    <h4>Room / Moderator Features</h4>
+    ${ button('reload', 'Reload turnStyles') }
+  </div>
+`
+
 const dingTab = self => `
   <div class="ts_tab tab_ding">
     <div>
@@ -110,13 +117,6 @@ const cssTab = self => `
     <h4>Custom CSS</h4>
     <textarea id="ts_user_css" class="ts_inputs" cols="60" rows="10">${ self.config.user_css || "" }</textarea>
     <h4 id="ts_apply">Save And Apply Styles</h4>
-  </div>
-`
-
-const modTab = self => `
-  <div class="ts_tab tab_room">
-    <h4>Room / Moderator Features</h4>
-    ${ button('reload', 'Reload turnStyles') }
   </div>
 `
 
