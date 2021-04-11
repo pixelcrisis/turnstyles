@@ -2,7 +2,7 @@
 
 module.exports = tS => {
 
-  tS.notifyAuth = function () {
+  tS.notifyAuth = function notifyAuth () {
     let opt = this.config
     let has = opt.ping_chat || opt.ping_pm || opt.ping_song
     // return if nothing to notify, chrome is available or Notification isn't
@@ -18,19 +18,19 @@ module.exports = tS => {
     return true
   }
 
-  tS.stopNotify = function () {
+  tS.stopNotify = function stopNotify () {
     if (document.hasFocus()) return true
     if (!this.chrome && !this.notifyAuth()) return true
     return false
   }
 
-  tS.sendNotify = function (data, key) {
+  tS.sendNotify = function sendNotify (data, key) {
     if (this.stopNotify()) return
     let send = this.notifyType(data)
     return key ? this.suspend(send, 5, key) : send()
   }
 
-  tS.notifyType = function (data) {
+  tS.notifyType = function notifyType (data) {
     let chrome = { type: "tsNotify", notification: data }
     let browse = { icon: this.icon(), body: data.text }
 
@@ -41,7 +41,7 @@ module.exports = tS => {
     }
   }
 
-  tS.postToChat = function (bold, text, type) {
+  tS.postToChat = function postToChat (bold, text, type) {
     $('.chat .messages').append(layout(bold, text, type))
     this.view().updateChatScroll()
   }

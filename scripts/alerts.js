@@ -2,7 +2,7 @@
 
 module.exports = tS => {
 
-  tS.alertSong = function (stat) {
+  tS.alertSong = function alertSong (stat) {
     let song = this.now_playing.song
     if (song && this.config.ping_song) {
       let head = `Now Playing: ${song}`
@@ -17,7 +17,7 @@ module.exports = tS => {
     }
   }
 
-  tS.alertDrop = function (name, stat) {
+  tS.alertDrop = function alertDrop (name, stat) {
     if (this.config.chat_spun) {
       let head = `${name} - ${stat}`
       let text = `- is done spining!`
@@ -25,7 +25,7 @@ module.exports = tS => {
     }
   }
 
-  tS.alertPm = function (e) {
+  tS.alertPm = function alertPm (e) {
     if (this.config.ping_pm) {
       let name = this.buddyName(e.senderid)
       let head = name ? `New PM from: ${name}` : `New PM`
@@ -33,26 +33,27 @@ module.exports = tS => {
     }
   }
 
-  tS.alertPing = function (e) {
+  tS.alertPing = function alertPing (e) {
     // unset afk if user is active
     if (e.userid == this.user().id) {
       this.config.is_afk = false
-      $('#ts_quick #ts_is_afk').prop('checked', false)
-      $('#ts_quick #ts_is_afk').trigger('change')
+      this.writeConfig()
       this.postToChat('Welcome Back!', `I've turned off AFK for you!`, 'stat')
     }
 
     if (!this.pinged(e.text)) return
+
     if (this.config.ping_chat) {
       let head = `[${this.view().roomData.name}] @${e.name}`
       this.sendNotify({ head, text: e.text }, 'ping_chat')
     }
+    
     if (this.config.is_afk && this.config.afk_ping) {
       this.speak(this.config.afk_ping)
     }
   }
 
-  tS.alertSnag = function (e) {
+  tS.alertSnag = function alertSnag (e) {
     if (this.config.chat_snag) {
       let name = this.userName(e.userid)
       let text = `has snagged this track!`
@@ -60,7 +61,7 @@ module.exports = tS => {
     }
   }
 
-  tS.alertJoin = function (e) {
+  tS.alertJoin = function alertJoin (e) {
     let user = e.user[0]
     this.Log(`[${user.name}](${user.userid}) joined. `)
     
@@ -69,7 +70,7 @@ module.exports = tS => {
     }
   }
 
-  tS.alertLeft = function (e) {
+  tS.alertLeft = function alertLeft (e) {
     let user = e.user[0]
     this.Log(`[${user.name}](${user.userid}) left.`)
 
@@ -78,11 +79,18 @@ module.exports = tS => {
     }
   }
 
-  tS.alertVote = function (e) {
+  tS.alertVote = function alertVote (e) {
     let curr = e.room.metadata.votelog
     let vote = curr[curr.length - 1]
     let name = this.userName(vote[0])
     this.Log(`[${name}] voted: ${vote[1]}`)
+  }
+
+  tS.sendReminder = function sendReminder (e) {
+    let freq = parseInt(this.config.remind)
+    if ((e / freq) === 1 && this.config.reminder) {
+      this.speak(this.config.reminder)
+    }
   }
 
   tS.on('pmmed',        tS.alertPm)
@@ -93,5 +101,6 @@ module.exports = tS => {
   tS.on('registered',   tS.alertJoin)
   tS.on('deregistered', tS.alertLeft)
   tS.on('update_votes', tS.alertVote)
+  tS.on('heartbeat',    tS.sendReminder)
 
 }

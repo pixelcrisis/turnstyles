@@ -2,7 +2,7 @@
 
 module.exports = tS => {
 
-  tS.autoBop = function () {
+  tS.autoBop = function autoBop () {
     if (this.bopping) clearTimeout(this.bopping)
     if (!this.config.autobop) return
 

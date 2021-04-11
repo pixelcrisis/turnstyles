@@ -2,7 +2,7 @@
 
 module.exports = tS => {
 
-  tS.init = function () {
+  tS.init = function initTurnStyles () {
     if (this.__base) return // don't init if we're here
       
     this.chrome = !!window.tsBase
@@ -18,7 +18,7 @@ module.exports = tS => {
     this.attach()
   }
 
-  tS.attach = function () {
+  tS.attach = function attachTurntable () {
     let core = window.turntable
     if (!core) return this.Log(`no room`)
 
@@ -37,6 +37,9 @@ module.exports = tS => {
     let full = findKey(room, "roomData")
     if (!full) return again()
 
+    // start our heartbeat
+    this.heart = setInterval(tS.beat.bind(this), 60 * 1000)
+
     // add our logBook output
     $('.room-info-nav').after(`<div id="ts_logs"></div>`)
 
@@ -48,6 +51,11 @@ module.exports = tS => {
     core.addEventListener('message', this.handle.bind(this))
     this.emit('attach', room)
     this.Log(`loaded room`)
+  }
+
+  tS.beat = function heartBeat () {
+    this.config.beats = parseInt(this.config.beats) + 1
+    this.emit('heartbeat', this.config.beats)
   }
 
   tS.reload = function reload () {
@@ -62,14 +70,14 @@ module.exports = tS => {
     document.body.append(script)
   }
 
-  // look for prop with key in obj
-  const findKey = function (obj, key) {
-    for (let prop in obj) {
-      let data = obj[prop]
-      if (data !== null && typeof data != "undefined" && data[key]) {
-        return data
-      }
+}
+
+// look for prop with key in obj
+const findKey = function (obj, key) {
+  for (let prop in obj) {
+    let data = obj[prop]
+    if (data !== null && typeof data != "undefined" && data[key]) {
+      return data
     }
   }
-
 }

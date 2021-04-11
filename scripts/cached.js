@@ -6,12 +6,12 @@ module.exports = tS => {
   tS.now_playing = {}
   tS.current_djs = {}
 
-  tS.buildCache = function (room) {
+  tS.buildCache = function buildCache (room) {
     for (let id of room.djids) this.cacheNewDJ(id)
     this.cacheTrack(room.currentSong)
   }
 
-  tS.cacheTrack = function (e) {
+  tS.cacheTrack = function cacheTrack (e) {
     let song = e && e.room ? e.room.metadata.current_song : e
     let love = e && e.upvoters ? e.upvoters.length : 0
     let djid = song ? song.djid : false
@@ -38,7 +38,7 @@ module.exports = tS => {
     this.Log(`new song: ${ this.now_playing.song || 'none'}`)
   }
 
-  tS.cacheNewDJ = function (e, data) {
+  tS.cacheNewDJ = function cacheNewDJ (e, data) {
     let user = e.user ? e.user[0].userid : e
     let curr = this.current_djs[user]
     if (!curr) this.current_djs[user] = {
@@ -51,16 +51,16 @@ module.exports = tS => {
     this.Log(`new dj: [${name}] (${user})`)
   }
 
-  tS.cacheSnags = function () {
+  tS.cacheSnags = function cacheSnags () {
     this.now_playing.snag += 1
   }
 
-  tS.cacheVotes = function (e) {
+  tS.cacheVotes = function cacheVotes (e) {
     this.now_playing.love = e.room.metadata.upvotes
     this.now_playing.hate = e.room.metadata.downvotes
   }
 
-  tS.clearOldDJ = function (e) {
+  tS.clearOldDJ = function clearOldDJ (e) {
     let name = e.user[0].name
     let user = e.user[0].userid
     if (!this.current_djs[user]) return

@@ -90,15 +90,25 @@ const optsTab = self => `
 const roomTab = self => `
   <div class="ts_tab tab_room">
     <div>
-      <h4>Room / Moderator Features</h4>
+      <h4>Room Features</h4>
       ${ toggle(self, 'is_afk', 'Go AFK') }
-      <input type="text" id="ts_afk" class="ts_inputs"
+      <input type="text" id="ts_afk_ping" class="ts_inputs"
         value="${ self.config.afk_ping }" />
       <br>
       ${ button('afk_ping', 'Save AFK Response') }
+      <br>
     </div>
     <div>
-      <h4>Other</h4>
+      <h4>Automated Reminder</h4>
+      ${ select(self, 'remind', true) } 
+      <br>
+      <input type="text" id="ts_reminder" class="ts_inputs"
+        value="${ self.config.reminder }" />
+      <br>
+      ${ button('reminder', 'Save Reminder') }
+    </div>
+    <div>
+      <h4>Other Features</h4>
       ${ doFunc('reload', 'Reload turnStyles') }
     </div>
   </div>
@@ -141,9 +151,11 @@ const toggle = (self, item, name) => `
   </label>
 `
 
-const select = (self, list) => `
+const upper = str => str[0].toUpperCase() + str.substring(1)
+const empty = arr => `<option value="">No ${ upper(arr) }</option>`
+const select = (self, list, none) => `
   <select id="ts_${list}" class="ts_option ts_inputs">
-    <option value="">No ${list[0].toUpperCase() + list.substring(1)}</option>
+    ${ none ? '' : empty(list) }
     ${ Object.keys(self.options[list]).map(key => `
       <option value="${key}" ${self.config[list] == key ? 'selected' : ''}>
         ${self.options[list][key]}

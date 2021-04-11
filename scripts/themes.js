@@ -2,7 +2,7 @@
 
 module.exports = tS => {
 
-  tS.loadThemes = function (config) {
+  tS.loadThemes = function loadThemes (config) {
     $('link.tS-core').remove()
     create(this.__base, 'turnStyles')
     
@@ -17,7 +17,7 @@ module.exports = tS => {
     inject(config.user_css)
   }
 
-  tS.updateThemes = function (key, value) {
+  tS.updateThemes = function updateThemes (key, value) {
     if (key == 'theme') update(this.__base, value, 'themes')
     if (key == 'style') update(this.__base, value, 'styles')
     if (key == 'user_css') inject(value)
@@ -28,7 +28,7 @@ module.exports = tS => {
 
 }
 
-const inject = style => {
+const inject = function injstCoreStyles (style) {
   let css = document.createElement('style')
   css.classList.add('tScss')
   css.type = "text/css"
@@ -37,12 +37,12 @@ const inject = style => {
   document.head.append(css)
 }
 
-const locate = (base, file, folder) => {
+const locate = function locateCSSPath (base, file, folder) {
   let path = folder ? `${base}/${folder}` : `${base}`
   return `${path}/${file}.css`
 }
 
-const create = (base, file, folder) => {
+const create = function createLinkElem (base, file, folder) {
   let link = document.createElement('link')
   link.classList.add(`tS-${folder || 'core'}`)
   link.type = 'text/css'; link.rel = 'stylesheet'
@@ -50,7 +50,7 @@ const create = (base, file, folder) => {
   document.head.append(link)
 }
 
-const update = (base, file, folder) => {
+const update = function updateLinkElem (base, file, folder) {
   let curr = $(`link.tS-${folder}`)
   // delete any current stylsheet if set to none
   if (!file) return curr.length ? curr.remove() : false
