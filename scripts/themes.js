@@ -3,10 +3,17 @@
 module.exports = tS => {
 
   tS.loadThemes = function (config) {
+    $('link.tS-core').remove()
     create(this.__base, 'turnStyles')
     
-    this.updateThemes('theme', config.theme)
-    this.updateThemes('style', config.style)
+
+    $('link.tS-themes').remove()
+    create(this.__base, config.theme, 'themes')
+
+
+    $('link.tS-styles').remove()
+    create(this.__base, config.style, 'styles')
+
     inject(config.user_css)
   }
 

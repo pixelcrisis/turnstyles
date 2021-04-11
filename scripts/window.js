@@ -3,6 +3,7 @@
 module.exports = tS => {
 
   tS.buildWindow = function () {
+    $('#ts_wrap').remove()
     $('.header-bar').append(layout(this))
 
     // full menu toggler

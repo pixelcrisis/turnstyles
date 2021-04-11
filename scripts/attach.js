@@ -43,6 +43,7 @@ module.exports = tS => {
     this.realVolume = window.turntablePlayer.realVolume
     
     // interpret turntable events as our own
+    core.removeEventListener('message', this.handle.bind(this))
     core.addEventListener('message', this.handle.bind(this))
     this.emit('attach', room)
     this.Log(`loaded room`)
@@ -50,18 +51,14 @@ module.exports = tS => {
 
   tS.reload = function reload () {
     window.$tS = null
-    $('#ts_wrap').remove()
-    $('link.tS-theme').remove()
-    $('link.tS-style').remove()
-    $('link[href$="turnStyles.css"]').remove()
     $('script[href$="turnStyles.js"]').remove()
     
     const script = document.createElement('script')
     script.src = `${this.__base}/turnStyles.js`
     script.type = "text/javascript"
+    
+    this.Log(`reloading`)
     document.body.append(script)
-
-    this.Log(`reloaded turnStyles`)
   }
 
   // look for prop with key in obj
