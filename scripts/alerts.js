@@ -35,7 +35,7 @@ module.exports = tS => {
 
   tS.alertPing = function alertPing (e) {
     // unset afk if user is active
-    if (e.userid == this.user().id) {
+    if (e.userid == this.user().id && this.config.is_afk) {
       this.config.is_afk = false
       this.writeConfig()
       this.postToChat('Welcome Back!', `I've turned off AFK for you!`, 'stat')
@@ -88,7 +88,7 @@ module.exports = tS => {
 
   tS.sendReminder = function sendReminder (e) {
     let freq = parseInt(this.config.remind)
-    if ((e / freq) === 1 && this.config.reminder) {
+    if ((e % freq) === 0 && this.config.reminder) {
       this.speak(this.config.reminder)
     }
   }
