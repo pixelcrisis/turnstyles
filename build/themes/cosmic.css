@@ -1,6 +1,7 @@
 @charset "UTF-8";
 .header-bar,
-.tab-item:not(.selected), #songs,
+.tab-item:not(.selected), body,
+#songs,
 .tab-pane,
 .song-list,
 .guest-list, .chat .message:nth-child(even),
