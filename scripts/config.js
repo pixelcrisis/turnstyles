@@ -72,12 +72,7 @@ module.exports = tS => {
       saving = $(`#ts_${option}`).val()
     }
 
-    this.config[option] = saving
-    this.writeConfig()
-
-    // mirror values between quick bar and main option window
-    let mirror = $(`#ts_quick #${e.target.id}, .ts_tab #${e.target.id}`)
-    mirror.prop(toggle ? 'checked' : 'value', saving)
+    this.writeConfig(option, saving)
 
     // emit update for rooms, update themes in lobby
     let visual = option == "style" || option == "theme" || option == 'user_css'
@@ -86,10 +81,18 @@ module.exports = tS => {
     else if (visual) this.updateThemes(option, saving)
   }
 
-  tS.writeConfig = function writeConfig () {
+  tS.writeConfig = function writeConfig (opt, val) {
+    this.config[opt] = val
     let stored = JSON.stringify(this.config)
     window.localStorage.setItem("tsdb", stored)
+    this.mirroredOpt(opt, val)
     this.Log(`saved config`)
+  }
+
+  tS.mirroredOpt = function mirrorOption (opt, val) {
+    let toggle = typeof val === 'boolean'
+    let mirror = $(`#ts_quick #ts_${opt}, .ts_tab #ts_${opt}`)
+    mirror.prop(toggle ? 'checked' : 'value', val)
   }
 
 }

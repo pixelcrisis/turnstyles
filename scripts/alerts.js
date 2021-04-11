@@ -36,8 +36,7 @@ module.exports = tS => {
   tS.alertPing = function alertPing (e) {
     // unset afk if user is active
     if (e.userid == this.user().id && this.config.is_afk) {
-      this.config.is_afk = false
-      this.writeConfig()
+      this.writeConfig('is_afk', false)
       this.postToChat('Welcome Back!', `I've turned off AFK for you!`, 'stat')
     }
 
