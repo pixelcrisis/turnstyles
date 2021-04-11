@@ -27,6 +27,9 @@ module.exports = tS => {
     chat_join: false,
     chat_left: false,
 
+    is_afk: false,
+    afk_ping: `I'm AFK - Back in a sec!`,
+
     user_css: ''
   }
 
@@ -52,15 +55,19 @@ module.exports = tS => {
     let option = e.target.id.split('ts_').join('')
     let saving = toggle ? e.target.checked : e.target.value
 
-    // shortcut to finding css on click
-    if (option == 'apply') {
-      option = 'user_css'
-      saving = $('#ts_user_css').val()
+    // interpret button presses
+    if (option.indexOf('btn_') === 0) {
+      option = option.split('btn_').join('')
+      saving = $(`#ts_${option}`).val()
     }
 
     this.config[option] = saving
     let stored = JSON.stringify(this.config)
     window.localStorage.setItem("tsdb", stored)
+
+    // mirror values between quick bar and main option window
+    let mirror = $(`#ts_quick #${e.target.id}, .ts_tab #${e.target.id}`)
+    mirror.prop(toggle ? 'checked' : 'value', saving)
 
     this.Log('saved config')
 

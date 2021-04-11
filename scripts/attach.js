@@ -13,6 +13,7 @@ module.exports = tS => {
     let version = require('../package.json').version
     // load and apply our defaults
     this.config = { ...this.default, ...configs, version }
+    this.config.is_afk = false
     this.emit('loaded', this.config)
     this.attach()
   }
@@ -54,7 +55,7 @@ module.exports = tS => {
     $('script[href$="turnStyles.js"]').remove()
     
     const script = document.createElement('script')
-    script.src = `${this.__base}/turnStyles.js`
+    script.src = `${this.__base}/turnStyles.js?${Math.random()}`
     script.type = "text/javascript"
     
     this.Log(`reloading`)

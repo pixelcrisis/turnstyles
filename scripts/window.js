@@ -18,7 +18,7 @@ module.exports = tS => {
     })
 
     // save config on option change
-    $('#ts_apply').on('click', tS.saveConfig.bind(this))
+    $('.ts_optbtn').on('click', tS.saveConfig.bind(this))
     $('.ts_option').on('change', tS.saveConfig.bind(this))
   }
 
@@ -55,6 +55,7 @@ const header = `
 
 const quick = self => `
   <div id="ts_quick">
+    ${ toggle(self, 'is_afk', 'Go AFK') }
     ${ toggle(self, 'autobop', 'Autobop') }
     ${ toggle(self, 'nextdj', 'Next DJ Spot') }
     ${ toggle(self, 'pingdj', 'Wait For Ping') }
@@ -88,8 +89,18 @@ const optsTab = self => `
 
 const roomTab = self => `
   <div class="ts_tab tab_room">
-    <h4>Room / Moderator Features</h4>
-    ${ button('reload', 'Reload turnStyles') }
+    <div>
+      <h4>Room / Moderator Features</h4>
+      ${ toggle(self, 'is_afk', 'Go AFK') }
+      <input type="text" id="ts_afk" class="ts_inputs"
+        value="${ self.config.afk_ping }" />
+      <br>
+      ${ button('afk_ping', 'Save AFK Response') }
+    </div>
+    <div>
+      <h4>Other</h4>
+      ${ doFunc('reload', 'Reload turnStyles') }
+    </div>
   </div>
 `
 
@@ -116,8 +127,8 @@ const dingTab = self => `
 const cssTab = self => `
   <div class="ts_tab tab_css">
     <h4>Custom CSS</h4>
-    <textarea id="ts_user_css" class="ts_inputs" cols="60" rows="10">${ self.config.user_css || "" }</textarea>
-    <h4 id="ts_apply">Save And Apply Styles</h4>
+    <textarea id="ts_user_css" class="ts_inputs" cols="60" rows="10">${ self.config.user_css }</textarea>
+    ${ button('user_css', 'Save And Apply Styles') }
   </div>
 `
 
@@ -141,7 +152,11 @@ const select = (self, list) => `
   </select>
 `
 
-const button = (func, name) => `
+const button = (opt, name) => `
+  <button class="ts_inputs ts_optbtn" id="ts_btn_${opt}">${name}</button>
+`
+
+const doFunc = (func, name) => `
   <button class="ts_inputs" onclick="$tS.${func}()">${name}</button>
 `
 

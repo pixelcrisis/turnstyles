@@ -20,8 +20,8 @@ module.exports = tS => {
     if (this.user().id != e.user[0].userid) return
 
     this.config.nextdj = false
-    $('#ts_hotbar #ts_nextdj').prop('checked', false)
-    $('#ts_hotbar #ts_nextdj').trigger('change')
+    $('#ts_quick #ts_nextdj').prop('checked', false)
+    $('#ts_quick #ts_nextdj').trigger('change')
 
     let head = `You've Hopped On Deck!`
     let text = `NextDJ is now disabled.`
@@ -42,5 +42,3 @@ module.exports = tS => {
   tS.on('speak',  tS.nextOnPing)
 
 }
-
-const inputs = `#ts_hotbar #ts_nextdj, #ts_window #ts_nextdj`
