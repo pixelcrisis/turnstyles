@@ -85,6 +85,12 @@ module.exports = tS => {
     this.Log(`[${name}] voted: ${vote[1]}`)
   }
 
+  tS.alertAfk = function alertOnAfk (key, value) {
+    if (key == 'is_afk' && value && this.config.afk_ping) {
+      this.speak(this.config.afk_ping)
+    }
+  }
+
   tS.sendReminder = function sendReminder (e) {
     let freq = parseInt(this.config.remind)
     if ((e % freq) === 0 && this.config.reminder) {
@@ -93,6 +99,7 @@ module.exports = tS => {
   }
 
   tS.on('pmmed',        tS.alertPm)
+  tS.on('update',       tS.alertAfk)
   tS.on('speak',        tS.alertPing)
   tS.on('snagged',      tS.alertSnag)
   tS.on('tracked',      tS.alertSong)
