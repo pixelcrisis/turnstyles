@@ -35,20 +35,20 @@ module.exports = tS => {
 
   tS.alertPing = function alertPing (e) {
     // unset afk if user is active
-    if (e.userid == this.user().id && this.config.is_afk) {
-      this.config.is_afk = false
-      this.writeConfig()
+    let ping = this.pinged(e.text)
+    let isme = e.userid == this.user().id
+
+    if (isme && this.config.is_afk && e.text != this.config.afk_ping) {
+      this.writeConfig('is_afk', false)
       this.postToChat('Welcome Back!', `I've turned off AFK for you!`, 'stat')
     }
 
-    if (!this.pinged(e.text)) return
-
-    if (this.config.ping_chat) {
+    if (ping && this.config.ping_chat) {
       let head = `[${this.view().roomData.name}] @${e.name}`
       this.sendNotify({ head, text: e.text }, 'ping_chat')
     }
     
-    if (this.config.is_afk && this.config.afk_ping) {
+    if (ping && this.config.is_afk && this.config.afk_ping) {
       this.speak(this.config.afk_ping)
     }
   }
@@ -86,6 +86,12 @@ module.exports = tS => {
     this.Log(`[${name}] voted: ${vote[1]}`)
   }
 
+  tS.alertAfk = function alertOnAfk (key, value) {
+    if (key == 'is_afk' && value && this.config.afk_ping) {
+      this.speak(this.config.afk_ping)
+    }
+  }
+
   tS.sendReminder = function sendReminder (e) {
     let freq = parseInt(this.config.remind)
     if ((e % freq) === 0 && this.config.reminder) {
@@ -94,6 +100,7 @@ module.exports = tS => {
   }
 
   tS.on('pmmed',        tS.alertPm)
+  tS.on('update',       tS.alertAfk)
   tS.on('speak',        tS.alertPing)
   tS.on('snagged',      tS.alertSnag)
   tS.on('tracked',      tS.alertSong)

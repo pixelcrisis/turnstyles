@@ -1,6 +1,6 @@
 {
   "name": "turnStyles",
-  "version": "5.6.0",
+  "version": "5.6.1",
   "main": "turnStyles.js",
   "repository": "git@github.com:pixelcrisis/turntable-tweaks.git",
   "author": "pixelcrisis <pxcrisis@gmail.com>",

@@ -19,8 +19,7 @@ module.exports = tS => {
     if (!this.config.nextdj) return
     if (this.user().id != e.user[0].userid) return
 
-    this.config.nextdj = false
-    this.writeConfig()
+    this.writeConfig('nextdj', false)
 
     let head = `You've Hopped On Deck!`
     let text = `NextDJ is now disabled.`
