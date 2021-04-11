@@ -8,43 +8,64 @@
         background: #1a1a1a;
       }
       a {
-        padding: 10px;
-        max-width: 150px;
-        border: 2px solid;
-        border-radius: 5px;
-        display: inline-block;
+        color: gold;
         text-decoration: none;
-        margin: 10px 5px 30px;
       }
       .main {
         margin-top: 30px;
         text-align: center;
       }
-      img {
-        max-width: 200px;
+      .logo {
+        max-width: 100px;
       }
       .book {
         color: #eaeaea;
       }
       .link {
-        color: gold;
+        padding: 10px;
+        max-width: 150px;
         font-weight: bold;
+        border: 2px solid;
+        border-radius: 5px;
+        margin: 10px 5px 30px;
+        display: inline-block;
+      }
+      p img {
+        margin: 5px;
       }
     </style>
   </head>
   <body>
     <div class="main">
-      <img src="src/images/icon.png" alt="turnStyles">
+      <img class="logo" src="build/images/icon.png" alt="turnStyles">
       <h1>turnStyles | for turntable.fm</h1>
       <div class="links">
         <a class="link" href="https://chrome.google.com/webstore/detail/turntable-tweaks/pmlkackfnbbnjfejpddpakallilkbdme">
           Chrome Store
         </a>
-        <a class="book" href="javascript:(function (){let s=document.createElement('script');s.src='https://ts.pixelcrisis.co/build/turnStyles.js?'+Math.random();s.type='text/javascript';document.body.appendChild(s)}());">
+        <a class="link book" href="javascript:(function (){let s=document.createElement('script');s.src='https://ts.pixelcrisis.co/build/turnStyles.js?'+Math.random();s.type='text/javascript';document.body.appendChild(s)}());">
           Bookmarklet
         </a>
       </div>
       <strong>Install, or Drag The Bookmarklet Link To Your Bookmarks Bar</strong>
+
+      <p>
+        <a href="https://chrome.google.com/webstore/detail/pmlkackfnbbnjfejpddpakallilkbdme" target="_blank">
+          <img src="https://img.shields.io/chrome-web-store/stars/pmlkackfnbbnjfejpddpakallilkbdme?color=gold&label=Rating&logo=google-chrome&logoColor=white&style=for-the-badge" />
+        </a>
+        <a href="https://chrome.google.com/webstore/detail/pmlkackfnbbnjfejpddpakallilkbdme" target="_blank">
+          <img src="https://img.shields.io/chrome-web-store/users/pmlkackfnbbnjfejpddpakallilkbdme?color=gold&label=Users&logo=google-chrome&logoColor=white&style=for-the-badge" />
+        </a>
+        <br>
+        <a href="https://chrome.google.com/webstore/detail/pmlkackfnbbnjfejpddpakallilkbdme" target="_blank">
+          <img src="https://img.shields.io/chrome-web-store/v/pmlkackfnbbnjfejpddpakallilkbdme?color=teal&label=Version&logo=google-chrome&logoColor=white&style=for-the-badge" />
+        </a>
+        <a href="https://ts.pixelcrisis.co" target="_blank">
+          <img src="https://img.shields.io/github/package-json/v/pixelcrisis/turnstyles?color=teal&label=Version&logo=javascript&logoColor=white&style=for-the-badge" />
+        </a>
+      </p>
+
     </div>
   </body>
+
 </html>
