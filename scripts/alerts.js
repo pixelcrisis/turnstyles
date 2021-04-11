@@ -35,19 +35,20 @@ module.exports = tS => {
 
   tS.alertPing = function alertPing (e) {
     // unset afk if user is active
-    if (e.userid == this.user().id && this.config.is_afk) {
+    let ping = this.pinged(e.text)
+    let isme = e.userid == this.user().id
+
+    if (isme && this.config.is_afk && e.text != this.config.afk_ping) {
       this.writeConfig('is_afk', false)
       this.postToChat('Welcome Back!', `I've turned off AFK for you!`, 'stat')
     }
 
-    if (!this.pinged(e.text)) return
-
-    if (this.config.ping_chat) {
+    if (ping && this.config.ping_chat) {
       let head = `[${this.view().roomData.name}] @${e.name}`
       this.sendNotify({ head, text: e.text }, 'ping_chat')
     }
     
-    if (this.config.is_afk && this.config.afk_ping) {
+    if (ping && this.config.is_afk && this.config.afk_ping) {
       this.speak(this.config.afk_ping)
     }
   }
