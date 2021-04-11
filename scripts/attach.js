@@ -2,7 +2,7 @@
 
 module.exports = tS => {
 
-  tS.init = function () {
+  tS.init = function initTurnStyles () {
     if (this.__base) return // don't init if we're here
       
     this.chrome = !!window.tsBase
@@ -13,11 +13,12 @@ module.exports = tS => {
     let version = require('../package.json').version
     // load and apply our defaults
     this.config = { ...this.default, ...configs, version }
+    this.config.is_afk = false
     this.emit('loaded', this.config)
     this.attach()
   }
 
-  tS.attach = function () {
+  tS.attach = function attachTurntable () {
     let core = window.turntable
     if (!core) return this.Log(`no room`)
 
@@ -36,6 +37,9 @@ module.exports = tS => {
     let full = findKey(room, "roomData")
     if (!full) return again()
 
+    // start our heartbeat
+    this.heart = setInterval(tS.beat.bind(this), 60 * 1000)
+
     // add our logBook output
     $('.room-info-nav').after(`<div id="ts_logs"></div>`)
 
@@ -43,35 +47,37 @@ module.exports = tS => {
     this.realVolume = window.turntablePlayer.realVolume
     
     // interpret turntable events as our own
+    core.removeEventListener('message', this.handle.bind(this))
     core.addEventListener('message', this.handle.bind(this))
     this.emit('attach', room)
     this.Log(`loaded room`)
   }
 
+  tS.beat = function heartBeat () {
+    this.config.beats = parseInt(this.config.beats) + 1
+    this.emit('heartbeat', this.config.beats)
+  }
+
   tS.reload = function reload () {
     window.$tS = null
-    $('#ts_wrap').remove()
-    $('link.tS-theme').remove()
-    $('link.tS-style').remove()
-    $('link[href$="turnStyles.css"]').remove()
     $('script[href$="turnStyles.js"]').remove()
     
     const script = document.createElement('script')
-    script.src = `${this.__base}/turnStyles.js`
+    script.src = `${this.__base}/turnStyles.js?${Math.random()}`
     script.type = "text/javascript"
+    
+    this.Log(`reloading`)
     document.body.append(script)
-
-    this.Log(`reloaded turnStyles`)
   }
 
-  // look for prop with key in obj
-  const findKey = function (obj, key) {
-    for (let prop in obj) {
-      let data = obj[prop]
-      if (data !== null && typeof data != "undefined" && data[key]) {
-        return data
-      }
+}
+
+// look for prop with key in obj
+const findKey = function (obj, key) {
+  for (let prop in obj) {
+    let data = obj[prop]
+    if (data !== null && typeof data != "undefined" && data[key]) {
+      return data
     }
   }
-
 }

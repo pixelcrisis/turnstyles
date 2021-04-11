@@ -3,6 +3,7 @@
 module.exports = tS => {
 
   tS.buildWindow = function () {
+    $('#ts_wrap').remove()
     $('.header-bar').append(layout(this))
 
     // full menu toggler
@@ -17,7 +18,7 @@ module.exports = tS => {
     })
 
     // save config on option change
-    $('#ts_apply').on('click', tS.saveConfig.bind(this))
+    $('.ts_optbtn').on('click', tS.saveConfig.bind(this))
     $('.ts_option').on('change', tS.saveConfig.bind(this))
   }
 
@@ -54,6 +55,7 @@ const header = `
 
 const quick = self => `
   <div id="ts_quick">
+    ${ toggle(self, 'is_afk', 'Go AFK') }
     ${ toggle(self, 'autobop', 'Autobop') }
     ${ toggle(self, 'nextdj', 'Next DJ Spot') }
     ${ toggle(self, 'pingdj', 'Wait For Ping') }
@@ -87,8 +89,28 @@ const optsTab = self => `
 
 const roomTab = self => `
   <div class="ts_tab tab_room">
-    <h4>Room / Moderator Features</h4>
-    ${ button('reload', 'Reload turnStyles') }
+    <div>
+      <h4>Room Features</h4>
+      ${ toggle(self, 'is_afk', 'Go AFK') }
+      <input type="text" id="ts_afk_ping" class="ts_inputs"
+        value="${ self.config.afk_ping }" />
+      <br>
+      ${ button('afk_ping', 'Save AFK Response') }
+      <br>
+    </div>
+    <div>
+      <h4>Automated Reminder</h4>
+      ${ select(self, 'remind', true) } 
+      <br>
+      <input type="text" id="ts_reminder" class="ts_inputs"
+        value="${ self.config.reminder }" />
+      <br>
+      ${ button('reminder', 'Save Reminder') }
+    </div>
+    <div>
+      <h4>Other Features</h4>
+      ${ doFunc('reload', 'Reload turnStyles') }
+    </div>
   </div>
 `
 
@@ -115,8 +137,8 @@ const dingTab = self => `
 const cssTab = self => `
   <div class="ts_tab tab_css">
     <h4>Custom CSS</h4>
-    <textarea id="ts_user_css" class="ts_inputs" cols="60" rows="10">${ self.config.user_css || "" }</textarea>
-    <h4 id="ts_apply">Save And Apply Styles</h4>
+    <textarea id="ts_user_css" class="ts_inputs" cols="60" rows="10">${ self.config.user_css }</textarea>
+    ${ button('user_css', 'Save And Apply Styles') }
   </div>
 `
 
@@ -129,9 +151,11 @@ const toggle = (self, item, name) => `
   </label>
 `
 
-const select = (self, list) => `
+const upper = str => str[0].toUpperCase() + str.substring(1)
+const empty = arr => `<option value="">No ${ upper(arr) }</option>`
+const select = (self, list, none) => `
   <select id="ts_${list}" class="ts_option ts_inputs">
-    <option value="">No ${list[0].toUpperCase() + list.substring(1)}</option>
+    ${ none ? '' : empty(list) }
     ${ Object.keys(self.options[list]).map(key => `
       <option value="${key}" ${self.config[list] == key ? 'selected' : ''}>
         ${self.options[list][key]}
@@ -140,7 +164,11 @@ const select = (self, list) => `
   </select>
 `
 
-const button = (func, name) => `
+const button = (opt, name) => `
+  <button class="ts_inputs ts_optbtn" id="ts_btn_${opt}">${name}</button>
+`
+
+const doFunc = (func, name) => `
   <button class="ts_inputs" onclick="$tS.${func}()">${name}</button>
 `
 

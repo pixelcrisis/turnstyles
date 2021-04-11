@@ -2,26 +2,25 @@
 
 module.exports = tS => {
 
-  tS.checkDecks = function () {
+  tS.checkDecks = function checkDecks () {
     if (!this.config.nextdj) return
     if (!this.config.pingdj) this.tryJumping()
     else this.suspend(null, 2, 'nextdj')
   }
 
-  tS.tryJumping = function () {
+  tS.tryJumping = function tryJumping () {
     let button = $('.become-dj').length
     if (!button) return this.Log(`nextdj: no spot`)
     this.Log(`nextdj: taking spot`)
     this.view().becomeDj()
   }
 
-  tS.isSpinning = function (e) {
+  tS.isSpinning = function isSpinning (e) {
     if (!this.config.nextdj) return
     if (this.user().id != e.user[0].userid) return
 
     this.config.nextdj = false
-    $('#ts_hotbar #ts_nextdj').prop('checked', false)
-    $('#ts_hotbar #ts_nextdj').trigger('change')
+    this.writeConfig()
 
     let head = `You've Hopped On Deck!`
     let text = `NextDJ is now disabled.`
@@ -30,7 +29,7 @@ module.exports = tS => {
     this.postToChat(head, text)
   }
 
-  tS.nextOnPing = function (e) {
+  tS.nextOnPing = function nextOnPing (e) {
     if (!this.pinged(e.text)) return
     if (this.holding['nextdj']) this.tryJumping()
   }
@@ -42,5 +41,3 @@ module.exports = tS => {
   tS.on('speak',  tS.nextOnPing)
 
 }
-
-const inputs = `#ts_hotbar #ts_nextdj, #ts_window #ts_nextdj`

@@ -2,7 +2,7 @@
 
 module.exports = tS => {
 
-  tS.loadVolume = function () {
+  tS.loadVolume = function loadVolume () {
     let opt = this.config.has_vol
     let has = $('body').hasClass('has-volume')
     this.toggleClass('has-volume', opt)
@@ -11,7 +11,7 @@ module.exports = tS => {
     if (opt && !has) this.addVolume()
   }
 
-  tS.addVolume = function () {
+  tS.addVolume = function addVolume () {
     $('.header-content').append(layout)
 
     const scroll = 'DOMMouseScroll mousewheel'
@@ -20,12 +20,12 @@ module.exports = tS => {
     $('#ts_slider').on(scroll,  this.onVolWheel.bind(this))
   }
 
-  tS.remVolume = function () {
+  tS.remVolume = function remVolume () {
     $('#ts_volume').remove()
     window.turntablePlayer.realVolume = this.realVolume
   }
 
-  tS.saveVolume = function (vol) {
+  tS.saveVolume = function saveVolume (vol) {
     vol = vol.target ? vol.target.value : vol
     let volume = vol > 0 ? convert(vol) : -3
 
@@ -38,7 +38,7 @@ module.exports = tS => {
   }
 
   // handle scrolling on the volume input
-  tS.onVolWheel = function (e) {
+  tS.onVolWheel = function onVolWheel (e) {
     const curr = current()
     let shifted = e.originalEvent.shiftKey ? 1 : 5
     let descend = e.originalEvent.deltaY > 0
@@ -50,11 +50,11 @@ module.exports = tS => {
     return false
   }
 
-  tS.checkMuted = function () { 
+  tS.checkMuted = function checkMuted () { 
     if (this.mute) this.toggleMute() 
   }
 
-  tS.toggleMute = function () {
+  tS.toggleMute = function toggleMute () {
     this.mute = !this.mute
     $('#ts_volume').toggleClass('muted', this.mute)
 

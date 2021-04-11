@@ -20,6 +20,15 @@ module.exports = tS => {
   tS.user = () => window.turntable.user
   tS.view = () => window.turntable.topViewController
 
+  // send an actual message to room
+  tS.speak = function (text) {
+    window.turntable.sendMessage({
+      text, api: 'room.speak',
+      roomid: this.view().roomId,
+      section: this.view().section
+    })
+  }
+
   // grab a link to our icon 
   tS.icon = () => `${this.__base}/images/icon128.png`
 

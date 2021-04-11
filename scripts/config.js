@@ -27,6 +27,13 @@ module.exports = tS => {
     chat_join: false,
     chat_left: false,
 
+    is_afk: false,
+    afk_ping: `I'm AFK - Back in a sec!`,
+
+    beats: 0,
+    remind: 0,
+    reminder: '',
+
     user_css: ''
   }
 
@@ -44,31 +51,45 @@ module.exports = tS => {
       teal: "Teal",
       green: "Green",
       purple: "Purple"
+    },
+    remind: {
+      0: "Don't Remind",
+      15: "Every 15m",
+      30: "Every 30m",
+      60: "Every 1h",
+      120: "Every 2h"
     }
   }
 
-  tS.saveConfig = function (e) {
+  tS.saveConfig = function saveConfig (e) {
     let toggle = e.target.type == "checkbox"
     let option = e.target.id.split('ts_').join('')
     let saving = toggle ? e.target.checked : e.target.value
 
-    // shortcut to finding css on click
-    if (option == 'apply') {
-      option = 'user_css'
-      saving = $('#ts_user_css').val()
+    // interpret button presses
+    if (option.indexOf('btn_') === 0) {
+      option = option.split('btn_').join('')
+      saving = $(`#ts_${option}`).val()
     }
 
     this.config[option] = saving
-    let stored = JSON.stringify(this.config)
-    window.localStorage.setItem("tsdb", stored)
+    this.writeConfig()
 
-    this.Log('saved config')
+    // mirror values between quick bar and main option window
+    let mirror = $(`#ts_quick #${e.target.id}, .ts_tab #${e.target.id}`)
+    mirror.prop(toggle ? 'checked' : 'value', saving)
 
     // emit update for rooms, update themes in lobby
     let visual = option == "style" || option == "theme" || option == 'user_css'
 
     if (!this.lobby) this.emit('update', option, saving)
     else if (visual) this.updateThemes(option, saving)
+  }
+
+  tS.writeConfig = function writeConfig () {
+    let stored = JSON.stringify(this.config)
+    window.localStorage.setItem("tsdb", stored)
+    this.Log(`saved config`)
   }
 
 }

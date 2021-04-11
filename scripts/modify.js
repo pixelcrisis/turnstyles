@@ -2,7 +2,7 @@
 
 module.exports = tS => {
 
-  tS.modify = function () {
+  tS.modify = function modifyTurntable () {
     // song counter
     const list = '#songs'
     const song = '#songs-wrapper'
@@ -37,21 +37,21 @@ module.exports = tS => {
 
 const modified = 'DOMSubtreeModified'
 
-const orderSongs = () => {
+const orderSongs = function orderSongs () {
   let playlist = window.turntable.playlist
   if (playlist.isFiltering) playlist.clearSearchBar()
   $("#queue-header").removeClass("normal").addClass("edit")
   playlist.queue.batchEditMode()
 }
 
-const countSongs = () => {
+const countSongs = function countSongs () {
   let head = $('#playlist-header .text')[0]
   let data = window.turntable.playlist.fileids.length
   let name = head.innerHTML.split('<em>')[0]
   head.innerHTML = `${name} <em>${data}</em>`
 }
 
-const attachStats = () => {
+const attachStats = function attachStats () {
   if ($('.profile.modal .statslink').length) return
   // find the userid of the user
   let data = $('.profile.modal .userid')
