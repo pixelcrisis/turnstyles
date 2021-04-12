@@ -123,11 +123,26 @@ input.ts_inputs
 
   h4:not(:first-of-type)
     margin-top: 5px
+    
+  button,
+  select,
+  input[type="text"]
+    padding: 6px 10px
+    width: calc(100% - 5px)
+
+  input[type="text"]
+    font-size: 0.9em
+    font-weight: normal
+    box-sizing: border-box
 
   textarea
     font-size: 15px
     font-family: monospace
     text-transform: none !important
+
+  .ts_toggle
+    padding: 0
+    display: block
 
 .ts_toggle,
 .ts_inputs
