@@ -7,13 +7,17 @@ module.exports = tS => {
   tS.Log = str => {
     this.logBook = this.logBook || tS.logBook
 
-    this.logBook.push(`> ${str}`)
-    console.info(`turnStyles :: ${str}`)
+    let date = new Date()
+    let time = `[${date.toLocaleTimeString('en-US')}]`
+
+    this.logBook.push(`[tS] ${time} <span>${str}</span>`)
+    console.info(`${time} turnStyles :: ${str}`)
 
     if (this.logBook.length > 50) this.logBook.shift()
 
     let logger = $('#ts_logs')[0]
-    if (logger) logger.innerHTML = this.logBook.join('<br>')
+    let copied = [ ...this.logBook ]
+    if (logger) logger.innerHTML = copied.reverse().join('<br>')
   }
 
   // portals to tt

@@ -109,6 +109,7 @@ const roomTab = self => `
     </div>
     <div>
       <h4>Other Features</h4>
+      ${ toggle(self, 'logging', 'Show Logs In Room Tab') }
       ${ doFunc('reload', 'Reload turnStyles') }
     </div>
   </div>
