@@ -110,6 +110,10 @@ const roomTab = self => `
       ${ toggle(self, 'logging', 'Show Logs In Room Tab') }
       ${ doFunc('reload', 'Reload turnStyles') }
     </div>
+    <div>
+      <h4>turntable</h4>
+      ${ doFunc('reloadMusic', 'Reload Music Players') }
+    </div>
   </div>
 `
 
