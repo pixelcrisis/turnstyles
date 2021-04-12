@@ -54,6 +54,12 @@
     font-size: 0.8em
     text-transform: uppercase
 
+  select
+    -webkit-appearance: none
+
+  option
+    padding: 5px
+
   .ts_credits
     small
       margin-right: 5px
@@ -64,6 +70,9 @@
 
       &:not(:hover)
         opacity: 0.75
+
+#ts_quick .ts_toggle span
+  margin: 0
 
 .ts_toggle,
 .ts_inputs,
@@ -150,24 +159,18 @@ input.ts_inputs
   white-space: nowrap
 
 .ts_toggle 
-  padding-left: 20px !important
-  
-  span
-    opacity: 0.25
-    margin: 0 17px 0 7px
-  
   input
-    width: 0
-    
-    &:after 
-      content: "•"
-      display: block
-      font-size: 3.2em
-      margin: -13px 0 0 -13px
-      color: rgba(#000000, 0.5)
-    
-    &:checked:after
-      color: gold  
+    display: none
+
+  span
+    font-size: 3.2em
+    margin: 0 5px 0 9px
+    vertical-align: top
+    display: inline-block
+    color: rgba(#000000, 0.5)
+
+  input:checked + span
+    color: gold
 
 #ts_logs
   height: 200px

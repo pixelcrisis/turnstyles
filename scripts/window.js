@@ -143,6 +143,7 @@ const toggle = (self, item, name) => `
     <input id="ts_${item}" class="ts_option" type="checkbox"
       ${ self.config[item] ? 'checked' : '' }>
     </input>
+    <span>•</span>
     ${name}
   </label>
 `
