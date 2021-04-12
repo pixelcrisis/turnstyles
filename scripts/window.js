@@ -44,7 +44,7 @@ const layout = self => `
 
 const header = `
   <h3 id="ts_menu" class="ts_menu_toggle">
-    <span class="open">☰</span>
+    <span class="open">≡</span>
     <span class="close">✖</span>
     tS
   </h3>
