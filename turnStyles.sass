@@ -23,7 +23,8 @@
   &:not(.active)
     .ts_tab, 
     #ts_tabs, 
-    .ts_credits
+    .ts_credits,
+    #ts_menu .close
       display: none
 
   &.active 
@@ -32,27 +33,49 @@
     #ts_quick
       display: none
 
-    #ts_menu:before
-      content: "✖"
-      padding-right: 6px
-
-  #ts_menu,
-  #ts_close
-    color: gold
-    cursor: pointer
+    #ts_menu .open
+      display: none
 
   #ts_menu
     margin-right: 10px
 
-    &:before
-      content: "☰"
-      padding-right: 5px
+    .open,
+    .close
+      display: inline-block
+      vertical-align: bottom
+
+    .open
+      font-size: 1.2em
+      font-weight: bold
+      padding-right: 1px 
+
+    .close
+      font-size: 1em
+      margin-top: 1px
+
+  .ts_menu_toggle
+    color: gold
+    cursor: pointer
 
   h4
     color: gold
     opacity: 0.6
     font-size: 0.8em
     text-transform: uppercase
+
+  select
+    -webkit-appearance: none
+    background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>")
+    background-repeat: no-repeat
+    background-position-x: 100%
+    background-position-y: 0
+
+  button
+    background: transparent
+    border: 1px solid rgba(255,255,255,0.2)
+
+  option
+    padding: 5px
 
   .ts_credits
     small
@@ -64,6 +87,9 @@
 
       &:not(:hover)
         opacity: 0.75
+
+#ts_quick .ts_toggle span
+  margin: 0
 
 .ts_toggle,
 .ts_inputs,
@@ -128,6 +154,7 @@ input.ts_inputs
   select,
   input[type="text"]
     padding: 6px 10px
+    margin: 0 5px 6px 0
     width: calc(100% - 5px)
 
   input[type="text"]
@@ -150,24 +177,18 @@ input.ts_inputs
   white-space: nowrap
 
 .ts_toggle 
-  padding-left: 20px !important
-  
-  span
-    opacity: 0.25
-    margin: 0 17px 0 7px
-  
   input
-    width: 0
-    
-    &:after 
-      content: "•"
-      display: block
-      font-size: 3.2em
-      margin: -13px 0 0 -13px
-      color: rgba(#000000, 0.5)
-    
-    &:checked:after
-      color: gold  
+    display: none
+
+  span
+    font-size: 3.2em
+    margin: 0 5px 0 9px
+    vertical-align: top
+    display: inline-block
+    color: rgba(#000000, 0.5)
+
+  input:checked + span
+    color: gold
 
 #ts_logs
   height: 200px

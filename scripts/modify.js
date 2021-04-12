@@ -32,6 +32,24 @@ module.exports = tS => {
     if (key == "logging") this.toggleClass('ts_has_logging', value)
   }
 
+  tS.reloadMusic = function reloadPlayers () {
+    let yt = window.youtube
+    let sc = window.soundcloudplayer
+    
+    if (sc.song) {
+      sc.songTime = sc.player.currentTime() / 1e3
+      sc.previewStartTime = Date.now() - 1000
+      sc.resumeSong(sc.song)
+    }
+    
+    if (yt.song) {
+      yt.songTime = yt.player[0].getCurrentTime()
+      yt.previewStartTime = Date.now() - 3000
+      yt.resumeSong(yt.song)
+    }
+    $('#turnStyles').removeClass('active')
+  }
+
   tS.on('attach', tS.modify)
   tS.on('update', tS.hidden)
 

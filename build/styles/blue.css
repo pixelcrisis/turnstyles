@@ -7,7 +7,7 @@
 #maindiv .tabbed-panel a,
 #turnStyles .ts_credits a,
 .buddyListRoom .buddyRoomName,
-#turnStyles input:checked:after,
+#turnStyles input:checked + span,
 .chat .message:not(.stat) .subject:hover,
 .chat .message:not(.stat) .speaker:hover,
 .fans .stat-number:not(.disabled):hover,
