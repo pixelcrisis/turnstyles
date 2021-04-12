@@ -23,7 +23,8 @@
   &:not(.active)
     .ts_tab, 
     #ts_tabs, 
-    .ts_credits
+    .ts_credits,
+    #ts_menu .close
       display: none
 
   &.active 
@@ -32,21 +33,23 @@
     #ts_quick
       display: none
 
-    #ts_menu:before
-      content: "✖"
-      padding-right: 6px
-
-  #ts_menu,
-  #ts_close
-    color: gold
-    cursor: pointer
+    #ts_menu .open
+      display: none
 
   #ts_menu
     margin-right: 10px
 
-    &:before
-      content: "☰"
-      padding-right: 5px
+    .open,
+    .close
+      font-size: 1em
+      display: inline-block
+
+    .close
+      padding: 1px 1px 0 1px
+
+  .ts_menu_toggle
+    color: gold
+    cursor: pointer
 
   h4
     color: gold
@@ -56,6 +59,10 @@
 
   select
     -webkit-appearance: none
+
+  button
+    background: transparent
+    border: 1px solid rgba(255,255,255,0.2)
 
   option
     padding: 5px

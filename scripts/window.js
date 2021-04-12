@@ -7,7 +7,7 @@ module.exports = tS => {
     $('.header-bar').append(layout(this))
 
     // full menu toggler
-    $('#ts_menu, #ts_close').on('click', () => {
+    $('.ts_menu_toggle').on('click', () => {
       $('#turnStyles').toggleClass('active')
     })
 
@@ -43,7 +43,11 @@ const layout = self => `
 `
 
 const header = `
-  <h3 id="ts_menu">tS</h3>
+  <h3 id="ts_menu" class="ts_menu_toggle">
+    <span class="open">☰</span>
+    <span class="close">✖</span>
+    tS
+  </h3>
 
   <div id="ts_tabs">
     <div class="tab_opts active">Options</div>
@@ -73,9 +77,9 @@ const optsTab = self => `
     </div>
     <div>
       <h4>Hide Elements</h4>
+      ${ toggle(self, 'no_bub', 'Hide Chat Bubbles') }
       ${ toggle(self, 'no_aud', 'Hide Audience') }
       ${ toggle(self, 'no_vid', 'Hide Player') }
-      ${ toggle(self, 'no_bub', 'Hide Chat Bubbles') }
     </div>
     <div>
       <h4>Visual Options</h4>
@@ -171,7 +175,7 @@ const doFunc = (func, name) => `
 
 const footer = self => `
   <div class="ts_credits">
-    <small id="ts_close">✔︎ CLOSE</small>
+    <small id="ts_close" class="ts_menu_toggle">✔︎ CLOSE</small>
     <small>v${self.config.version}</small>
     <small>
       <a href="https://discord.gg/jnRs4WnPjM" target="_blank">
