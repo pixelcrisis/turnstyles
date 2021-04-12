@@ -1,4 +1,3 @@
-@charset "UTF-8";
 .header-bar {
   z-index: 1;
   font-size: 13px;
@@ -21,29 +20,47 @@
   align-items: center; }
   #turnStyles:not(.active) .ts_tab,
   #turnStyles:not(.active) #ts_tabs,
-  #turnStyles:not(.active) .ts_credits {
+  #turnStyles:not(.active) .ts_credits,
+  #turnStyles:not(.active) #ts_menu .close {
     display: none; }
   #turnStyles.active {
     display: flex; }
     #turnStyles.active #ts_quick {
       display: none; }
-    #turnStyles.active #ts_menu:before {
-      content: "✖";
-      padding-right: 6px; }
-  #turnStyles #ts_menu,
-  #turnStyles #ts_close {
-    color: gold;
-    cursor: pointer; }
+    #turnStyles.active #ts_menu .open {
+      display: none; }
   #turnStyles #ts_menu {
     margin-right: 10px; }
-    #turnStyles #ts_menu:before {
-      content: "☰";
-      padding-right: 5px; }
+    #turnStyles #ts_menu .open,
+    #turnStyles #ts_menu .close {
+      display: inline-block;
+      vertical-align: bottom; }
+    #turnStyles #ts_menu .open {
+      font-size: 1.2em;
+      font-weight: bold;
+      padding-right: 1px; }
+    #turnStyles #ts_menu .close {
+      font-size: 1em;
+      margin-top: 1px; }
+  #turnStyles .ts_menu_toggle {
+    color: gold;
+    cursor: pointer; }
   #turnStyles h4 {
     color: gold;
     opacity: 0.6;
     font-size: 0.8em;
     text-transform: uppercase; }
+  #turnStyles select {
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    background-repeat: no-repeat;
+    background-position-x: 100%;
+    background-position-y: 0; }
+  #turnStyles button {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2); }
+  #turnStyles option {
+    padding: 5px; }
   #turnStyles .ts_credits small {
     margin-right: 5px; }
   #turnStyles .ts_credits a {
@@ -52,6 +69,9 @@
     text-transform: uppercase; }
     #turnStyles .ts_credits a:not(:hover) {
       opacity: 0.75; }
+
+#ts_quick .ts_toggle span {
+  margin: 0; }
 
 .ts_toggle,
 .ts_inputs,
@@ -108,6 +128,7 @@ input.ts_inputs {
   .ts_tab select,
   .ts_tab input[type="text"] {
     padding: 6px 10px;
+    margin: 0 5px 6px 0;
     width: calc(100% - 5px); }
   .ts_tab input[type="text"] {
     font-size: 0.9em;
@@ -126,21 +147,18 @@ input.ts_inputs {
   margin: 0 5px 5px 0;
   white-space: nowrap; }
 
-.ts_toggle {
-  padding-left: 20px !important; }
-  .ts_toggle span {
-    opacity: 0.25;
-    margin: 0 17px 0 7px; }
-  .ts_toggle input {
-    width: 0; }
-    .ts_toggle input:after {
-      content: "•";
-      display: block;
-      font-size: 3.2em;
-      margin: -13px 0 0 -13px;
-      color: rgba(0, 0, 0, 0.5); }
-    .ts_toggle input:checked:after {
-      color: gold; }
+.ts_toggle input {
+  display: none; }
+
+.ts_toggle span {
+  font-size: 3.2em;
+  margin: 0 5px 0 9px;
+  vertical-align: top;
+  display: inline-block;
+  color: rgba(0, 0, 0, 0.5); }
+
+.ts_toggle input:checked + span {
+  color: gold; }
 
 #ts_logs {
   height: 200px;
