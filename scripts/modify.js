@@ -15,19 +15,21 @@ module.exports = tS => {
     $(main).on(modified, user, attachStats)
 
     // hide elements
-    this.hidden('no_vid', this.config.no_vid)
-    this.hidden('no_aud', this.config.no_aud)
-    this.hidden('no_bub', this.config.no_bub)
+    this.hidden('no_vid',  this.config.no_vid)
+    this.hidden('no_aud',  this.config.no_aud)
+    this.hidden('no_bub',  this.config.no_bub)
+    this.hidden('logging', this.config.logging)
     
     // replace upload with organize
     $('#upload-button').after(`<div id="ts_upload"></div>`)
     $('#ts_upload').on('click', orderSongs)
   }
 
-  tS.hidden = function (key, value) {
-    if (key == "no_vid") this.toggleClass('ts_hide_videos', value)
-    if (key == "no_aud") this.toggleClass('ts_hide_audience', value)
-    if (key == "no_bub") this.toggleClass('ts_hide_bubbles', value)
+  tS.hidden = function toggleHiddenElements (key, value) {
+    if (key == "no_vid")  this.toggleClass('ts_hide_videos', value)
+    if (key == "no_aud")  this.toggleClass('ts_hide_audience', value)
+    if (key == "no_bub")  this.toggleClass('ts_hide_bubbles', value)
+    if (key == "logging") this.toggleClass('ts_has_logging', value)
   }
 
   tS.on('attach', tS.modify)

@@ -68,7 +68,6 @@ const optsTab = self => `
       <h4>General Features</h4>
       ${ toggle(self, 'autobop', 'Autobop') }
       ${ toggle(self, 'has_vol', 'Control Volume') }
-      <br>
       ${ toggle(self, 'nextdj', 'Next DJ Spot') }
       ${ toggle(self, 'pingdj', 'Wait For Ping') }
     </div>
@@ -76,7 +75,6 @@ const optsTab = self => `
       <h4>Hide Elements</h4>
       ${ toggle(self, 'no_aud', 'Hide Audience') }
       ${ toggle(self, 'no_vid', 'Hide Player') }
-      <br>
       ${ toggle(self, 'no_bub', 'Hide Chat Bubbles') }
     </div>
     <div>
@@ -94,21 +92,18 @@ const roomTab = self => `
       ${ toggle(self, 'is_afk', 'Go AFK') }
       <input type="text" id="ts_afk_ping" class="ts_inputs"
         value="${ self.config.afk_ping }" />
-      <br>
       ${ button('afk_ping', 'Save AFK Response') }
-      <br>
     </div>
     <div>
       <h4>Automated Reminder</h4>
       ${ select(self, 'remind', true) } 
-      <br>
       <input type="text" id="ts_reminder" class="ts_inputs"
         value="${ self.config.reminder }" />
-      <br>
       ${ button('reminder', 'Save Reminder') }
     </div>
     <div>
-      <h4>Other Features</h4>
+      <h4>turnstyles</h4>
+      ${ toggle(self, 'logging', 'Show Logs In Room Tab') }
       ${ doFunc('reload', 'Reload turnStyles') }
     </div>
   </div>
@@ -120,7 +115,6 @@ const dingTab = self => `
       <h4>Messages In Chat</h4>
       ${ toggle(self, 'chat_song', 'Last Song Stats') }
       ${ toggle(self, 'chat_spun', 'Dropped DJ Stats') }
-      <br>
       ${ toggle(self, 'chat_snag', 'User Snags') }
       ${ toggle(self, 'chat_join', 'User Joins') }
       ${ toggle(self, 'chat_left', 'User Leaves') }
@@ -136,9 +130,11 @@ const dingTab = self => `
 
 const cssTab = self => `
   <div class="ts_tab tab_css">
-    <h4>Custom CSS</h4>
-    <textarea id="ts_user_css" class="ts_inputs" cols="60" rows="10">${ self.config.user_css }</textarea>
-    ${ button('user_css', 'Save And Apply Styles') }
+    <div>
+      <h4>Custom CSS</h4>
+      <textarea id="ts_user_css" class="ts_inputs" cols="60" rows="10">${ self.config.user_css }</textarea>
+      ${ button('user_css', 'Save And Apply Styles') }
+    </div>
   </div>
 `
 

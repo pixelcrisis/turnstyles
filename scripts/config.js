@@ -3,6 +3,8 @@
 module.exports = tS => {
 
   tS.default = {
+    logging: false,
+    
     theme: "dark",
     style: "",
 
