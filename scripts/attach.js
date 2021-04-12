@@ -47,8 +47,9 @@ module.exports = tS => {
     this.realVolume = window.turntablePlayer.realVolume
     
     // interpret turntable events as our own
-    core.removeEventListener('message', this.handle.bind(this))
-    core.addEventListener('message', this.handle.bind(this))
+    this.handler = this.handle.bind(this)
+    core.addEventListener('message', this.handler)
+
     this.emit('attach', room)
     this.Log(`loaded room`)
   }
@@ -59,8 +60,9 @@ module.exports = tS => {
   }
 
   tS.reload = function reload () {
-    window.$tS = null
-    $('script[href$="turnStyles.js"]').remove()
+    clearInterval(this.heart)
+    window.turntable.removeEventListener('message', this.handler)
+    $(`script[src*="turnStyles.js"]`).remove()
     
     const script = document.createElement('script')
     script.src = `${this.__base}/turnStyles.js?${Math.random()}`
