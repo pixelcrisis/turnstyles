@@ -16,8 +16,10 @@ module.exports = tS => {
     if (this.logBook.length > 50) this.logBook.shift()
 
     let logger = $('#ts_logs')[0]
-    let copied = [ ...this.logBook ]
-    if (logger) logger.innerHTML = copied.reverse().join('<br>')
+    if (logger) {
+      logger.innerHTML = this.logBook.join('<br>')
+      logger.scrollTop = logger.scrollHeight
+    }
   }
 
   // portals to tt
