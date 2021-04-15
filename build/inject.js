@@ -13,7 +13,7 @@ document.body.append(turnStyles)
 console.info(`turnStyles :: injected`)
 
 // pass a notification message to notify.js
-window.addEventListener("message", msg => {
+window.addEventListener("message", event => {
   if (event.data.type != "tsNotify") return
   chrome.runtime.sendMessage('', event.data)
 })

@@ -4,25 +4,25 @@
 const tS = {} // define our object
 
 // import our utilities
-require('./scripts/_tools.js')(tS)
-require('./scripts/events.js')(tS)
-require('./scripts/config.js')(tS)
-require('./scripts/cached.js')(tS)
-require('./scripts/attach.js')(tS)
+require('./script/_tools.js')(tS)
+require('./script/events.js')(tS)
+require('./script/config.js')(tS)
+require('./script/cached.js')(tS)
+require('./script/attach.js')(tS)
 
 // attach our options window
-require('./scripts/window.js')(tS)
+require('./script/window.js')(tS)
 
 // import our UI features
-require('./scripts/themes.js')(tS)
-require('./scripts/modify.js')(tS)
-require('./scripts/volume.js')(tS)
+require('./script/themes.js')(tS)
+require('./script/modify.js')(tS)
+require('./script/volume.js')(tS)
 
 // import functionalities
-require('./scripts/bopper.js')(tS)
-require('./scripts/nextdj.js')(tS)
-require('./scripts/notify.js')(tS)
-require('./scripts/alerts.js')(tS)
+require('./script/bopper.js')(tS)
+require('./script/nextdj.js')(tS)
+require('./script/notify.js')(tS)
+require('./script/alerts.js')(tS)
 
 window.$tS = tS
 window.$tS.init() // attach.js

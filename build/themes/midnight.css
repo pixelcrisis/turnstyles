@@ -11,7 +11,8 @@
 .message-history > :nth-child(even):not(.separator),
 .conversations-list > ul > :nth-child(even):not(.separator), .room-tab .room-info-intro, .message-history,
 .conversations-list,
-.mini-pms-view .bottom-bar, #turnStyles {
+.mini-pms-view .bottom-bar, #ts_wrap,
+#turnStyles {
   color: #a0afc3;
   background: #091b35; }
 
@@ -570,12 +571,16 @@
     text-shadow: none;
     color: #08172c; }
 
+#ts_wrap input:not(:checked) + span,
 #turnStyles input:not(:checked) + span {
   color: #08172c; }
 
-#turnStyles small, #turnStyles h5 {
+#ts_wrap small, #ts_wrap h5,
+#turnStyles small,
+#turnStyles h5 {
   color: #7795c0; }
 
+#ts_wrap select,
 #turnStyles select {
   border-color: #103161; }
 

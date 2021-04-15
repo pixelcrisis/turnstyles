@@ -1,4 +1,4 @@
-@import "../../mixins/recolor"
+@import "../mixins"
 
 $color-text:   lighten(mix(#ffffff, $color-bg, 20%), 40%) !default
 $color-subtle: lighten(mix(#ffffff, $color-bg, 10%), 40%) !default
@@ -31,14 +31,14 @@ $color-bg-4: lighten($color-bg, 10%)
   border: none
   box-shadow: 0 -1px 0 0 $color-bg-0, inset 0 1px 0 0 $color-bg-2
 
-@import "header"
-@import "content"
-@import "popups"
-@import "modals"
-@import "lobby"
-@import "roomchat"
-@import "songlist"
-@import "roominfo"
-@import "userchat"
-@import "tspanel"
-@import "accents"
+@import "base/header"
+@import "base/content"
+@import "base/popups"
+@import "base/modals"
+@import "base/lobby"
+@import "base/roomchat"
+@import "base/songlist"
+@import "base/roominfo"
+@import "base/userchat"
+@import "base/tspanel"
+@import "base/accents"
