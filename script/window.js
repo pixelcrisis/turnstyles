@@ -66,6 +66,7 @@ const quick = self => `
     ${ toggle(self, 'is_afk', 'Go AFK') }
     ${ toggle(self, 'autobop', 'Autobop') }
     ${ toggle(self, 'nextdj', 'Next DJ Spot') }
+    ${ toggle(self, 'auto_q', 'Auto-Queue') }
   </div>
 `
 
@@ -94,7 +95,7 @@ const optsTab = self => `
 const roomTab = self => `
   <div class="ts_tab tab_room">
     <div>
-      <h4>Room Features</h4>
+      <h4>AFK Reminder</h4>
       ${ toggle(self, 'is_afk', 'Go AFK') }
       <input type="text" id="ts_afk_ping" class="ts_inputs"
         value="${ self.config.afk_ping }" />
@@ -147,7 +148,7 @@ const cssTab = self => `
 
 const toggle = (self, item, name) => `
   <label class="ts_toggle">
-    <input id="ts_${item}" class="ts_option" type="checkbox"
+    <input data-for="${item}" class="ts_option" type="checkbox"
       ${ self.config[item] ? 'checked' : '' }>
     </input>
     <span>•</span>
@@ -158,7 +159,7 @@ const toggle = (self, item, name) => `
 const upper = str => str[0].toUpperCase() + str.substring(1)
 const empty = arr => `<option value="">No ${ upper(arr) }</option>`
 const select = (self, list, none) => `
-  <select id="ts_${list}" class="ts_option ts_inputs">
+  <select data-for="${list}" class="ts_option ts_inputs">
     ${ none ? '' : empty(list) }
     ${ Object.keys(self.options[list]).map(key => `
       <option value="${key}" ${self.config[list] == key ? 'selected' : ''}>
@@ -169,7 +170,7 @@ const select = (self, list, none) => `
 `
 
 const button = (opt, name) => `
-  <button class="ts_inputs ts_optbtn" id="ts_btn_${opt}">${name}</button>
+  <button class="ts_inputs ts_optbtn" data-for="ts_${opt}">${name}</button>
 `
 
 const doFunc = (func, name) => `

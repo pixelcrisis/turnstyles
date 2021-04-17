@@ -6,14 +6,14 @@ module.exports = tS => {
   // called on all option items
   tS.saveConfig = function saveConfig (e) {
     // parse the key and data
+    let which = e.target.dataset.for
     let check = e.target.type == "checkbox"
-    let which = e.target.id.split('ts_').join('')
     let value = check ? e.target.checked : e.target.value
 
     // if we are using a button func, parse it
-    if (which.indexOf('btn_') === 0) {
-      which = option.split('btn_').join('')
-      value = $(`#ts_${which}`).val()
+    if (which.indexOf('ts_') === 0) {
+      value = $(`#${which}`).val()
+      which = which.split('ts_').join('')
     }
 
     // save the update
