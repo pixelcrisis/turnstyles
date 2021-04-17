@@ -1,7 +1,8 @@
-// bopper.js | autobop - always boppin
+// autobop.js | always boppin
 
 module.exports = tS => {
 
+  // fire our autobop at a random interval
   tS.autoBop = function autoBop () {
     if (this.bopping) clearTimeout(this.bopping)
     if (!this.config.autobop) return
@@ -10,11 +11,13 @@ module.exports = tS => {
     this.bopping = setTimeout(bop, delay)
   }
 
+  // fire autobop on load, new song
   tS.on('attach',  tS.autoBop)
   tS.on('newsong', tS.autoBop)
 
 }
 
+// "click" the awesome button
 const bop = () => {
   $(window).focus()
   let opts = { bubbles: true, cancelable: true, view: window }

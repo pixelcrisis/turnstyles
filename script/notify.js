@@ -1,12 +1,14 @@
-// notify.js | notification functionality
+// notify.js | send notifications / fake chat messages
 
 module.exports = tS => {
 
+  // get notifications permission from the browser
   tS.notifyAuth = function notifyAuth () {
     let opt = this.config
     let has = opt.ping_chat || opt.ping_pm || opt.ping_song
-    // return if nothing to notify, chrome is available or Notification isn't
-    if (!has || this.chrome || !('Notification' in window)) return false
+
+    // return if no notifications possible/available
+    if (!has || !('Notification' in window)) return false
 
     if (Notification.permission === 'denied') return false
     if (Notification.permission === 'default') {
@@ -18,31 +20,32 @@ module.exports = tS => {
     return true
   }
 
-  tS.stopNotify = function stopNotify () {
-    if (document.hasFocus()) return true
-    if (!this.chrome && !this.notifyAuth()) return true
-    return false
-  }
-
-  tS.sendNotify = function sendNotify (data, key) {
-    if (this.stopNotify()) return
-    let send = this.notifyType(data)
-    return key ? this.suspend(send, 5, key) : send()
-  }
-
-  tS.notifyType = function notifyType (data) {
-    let chrome = { type: "tsNotify", notification: data }
-    let browse = { icon: this.icon(), body: data.text }
-
-    if (this.chrome) return () => window.postMessage(chrome)
-    else return () => {
-      let sent = new Notification(data.head, browse)
+  // send out a browser notification
+  tS.notifyUser = function sendNotification (head, body, key) {
+    // return if no perms or we're using turntable
+    if (!this.notifyAuth() || document.hasFocus()) return
+    let icon = `${this.__base}/images/icon128.png`
+  
+    let ding = () => {
+      let sent = new Notification(head, { icon, body })
       sent.onclick = () => { window.focus(); sent.close() }
     }
+
+    // delay spammy notifications with suspend
+    return key ? this.suspend(ding, 5, key) : ding()
   }
 
+  // post a pseudo message in chat only available to user
   tS.postToChat = function postToChat (bold, text, type) {
-    $('.chat .messages').append(layout(bold, text, type))
+    $('.chat .messages').append(`
+      <div class="message ${type}">
+        <em>
+          <span class="subject">${bold}</span>
+          <span class="text">${text}</span>
+        </em>
+      </div>
+    `)
+
     this.view().updateChatScroll()
   }
 
@@ -50,12 +53,3 @@ module.exports = tS => {
   tS.on('update', tS.notifyAuth)
 
 }
-
-const layout = (bold, text, type = "") => `
-  <div class="message ${type}">
-    <em>
-      <span class="subject">${bold}</span>
-      <span class="text">${text}</span>
-    </em>
-  </div>
-`

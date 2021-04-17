@@ -2,7 +2,8 @@
 
 module.exports = tS => {
 
-  tS.loadThemes = function loadThemes (config) {
+  // apply all core and selected at startup
+  tS.on('loaded', function loadThemes (config) {
     $('link.tS-core').remove()
     create(this.__base, 'turnStyles')
     
@@ -15,19 +16,18 @@ module.exports = tS => {
     create(this.__base, config.style, 'styles')
 
     inject(config.user_css)
-  }
+  })
 
-  tS.updateThemes = function updateThemes (key, value) {
-    if (key == 'theme') update(this.__base, value, 'themes')
-    if (key == 'style') update(this.__base, value, 'styles')
-    if (key == 'user_css') inject(value)
-  }
-
-  tS.on('loaded', tS.loadThemes)
-  tS.on('update', tS.updateThemes)
+  // refresh theme/style/css on save
+  tS.on('update', function updateThemes (key, val) {
+    if (key == 'theme') update(this.__base, val, 'themes')
+    if (key == 'style') update(this.__base, val, 'styles')
+    if (key == 'user_css') inject(val)
+  })
 
 }
 
+// inject custom css into the DOM
 const inject = function injstCoreStyles (style) {
   let css = document.createElement('style')
   css.classList.add('tScss')
@@ -37,11 +37,13 @@ const inject = function injstCoreStyles (style) {
   document.head.append(css)
 }
 
+// locate a path, this is necessary for extension/bookmarklet
 const locate = function locateCSSPath (base, file, folder) {
   let path = folder ? `${base}/${folder}` : `${base}`
   return `${path}/${file}.css`
 }
 
+// create a link to a theme or a style
 const create = function createLinkElem (base, file, folder) {
   let link = document.createElement('link')
   link.classList.add(`tS-${folder || 'core'}`)
@@ -50,6 +52,7 @@ const create = function createLinkElem (base, file, folder) {
   document.head.append(link)
 }
 
+// update a link to a theme or a style, create if none
 const update = function updateLinkElem (base, file, folder) {
   let curr = $(`link.tS-${folder}`)
   // delete any current stylsheet if set to none

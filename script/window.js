@@ -6,6 +6,10 @@ module.exports = tS => {
     $('#ts_wrap').remove()
     $('.header-bar').append(layout(this))
 
+    // add our logBook output
+    $('#ts_logs').remove()
+    $('.room-info-nav').after(`<div id="ts_logs"></div>`)
+
     // full menu toggler
     $('.ts_menu_toggle').on('click', () => {
       $('#turnStyles').toggleClass('active')
@@ -106,13 +110,10 @@ const roomTab = self => `
       ${ button('reminder', 'Save Reminder') }
     </div>
     <div>
-      <h4>turnstyles</h4>
+      <h4>Debugging</h4>
       ${ toggle(self, 'logging', 'Show Logs In Room Tab') }
-      ${ doFunc('reload', 'Reload turnStyles') }
-    </div>
-    <div>
-      <h4>turntable</h4>
       ${ doFunc('reloadMusic', 'Reload Music Players') }
+      ${ doFunc('reload', 'Reload turnStyles') }
     </div>
   </div>
 `

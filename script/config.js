@@ -1,4 +1,4 @@
-// config.js | handles saving, defaults, options
+// config.js | the default config objects
 
 module.exports = tS => {
 
@@ -61,40 +61,6 @@ module.exports = tS => {
       60: "Every 1h",
       120: "Every 2h"
     }
-  }
-
-  tS.saveConfig = function saveConfig (e) {
-    let toggle = e.target.type == "checkbox"
-    let option = e.target.id.split('ts_').join('')
-    let saving = toggle ? e.target.checked : e.target.value
-
-    // interpret button presses
-    if (option.indexOf('btn_') === 0) {
-      option = option.split('btn_').join('')
-      saving = $(`#ts_${option}`).val()
-    }
-
-    this.writeConfig(option, saving)
-
-    // emit update for rooms, update themes in lobby
-    let visual = option == "style" || option == "theme" || option == 'user_css'
-
-    if (!this.lobby) this.emit('update', option, saving)
-    else if (visual) this.updateThemes(option, saving)
-  }
-
-  tS.writeConfig = function writeConfig (opt, val) {
-    this.config[opt] = val
-    let stored = JSON.stringify(this.config)
-    window.localStorage.setItem("tsdb", stored)
-    this.mirroredOpt(opt, val)
-    this.Log(`saved config`)
-  }
-
-  tS.mirroredOpt = function mirrorOption (opt, val) {
-    let toggle = typeof val === 'boolean'
-    let mirror = $(`#ts_quick #ts_${opt}, .ts_tab #ts_${opt}`)
-    mirror.prop(toggle ? 'checked' : 'value', val)
   }
 
 }

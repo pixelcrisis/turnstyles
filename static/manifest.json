@@ -23,10 +23,6 @@
       "matches": [ "*://turntable.fm/*" ]
     }
   ],
-  "background": {
-    "scripts": [ "notify.js" ],
-    "persistent": false
-  },
   "web_accessible_resources": [ 
     "turnStyles.css",
     "turnStyles.js",

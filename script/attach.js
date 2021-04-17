@@ -3,9 +3,6 @@
 module.exports = tS => {
 
   tS.init = function initTurnStyles () {
-    if (this.__base) return // don't init if we're here
-      
-    this.chrome = !!window.tsBase
     this.__base = window.tsBase || 'https://ts.pixelcrisis.co/build'
     // load any saved user configs
     let storage = window.localStorage.getItem("tsdb")
@@ -18,6 +15,7 @@ module.exports = tS => {
     this.attach()
   }
 
+  // attach to a turntable room
   tS.attach = function attachTurntable () {
     let core = window.turntable
     if (!core) return this.Log(`no room`)
@@ -37,29 +35,13 @@ module.exports = tS => {
     let full = findKey(room, "roomData")
     if (!full) return again()
 
-    // start our heartbeat
-    this.heart = setInterval(tS.beat.bind(this), 60 * 1000)
-
-    // add our logBook output
-    $('.room-info-nav').after(`<div id="ts_logs"></div>`)
-
-    // clone realVolume for volume overrides
-    this.realVolume = window.turntablePlayer.realVolume
-    
-    // interpret turntable events as our own
-    this.handler = this.handle.bind(this)
-    core.addEventListener('message', this.handler)
-
     this.emit('attach', room)
     this.Log(`loaded room`)
   }
 
-  tS.beat = function heartBeat () {
-    this.config.beats = parseInt(this.config.beats) + 1
-    this.emit('heartbeat', this.config.beats)
-  }
-
-  tS.reload = function reload () {
+  // unload and reload all of turnstyles
+  // mainly for dev use to update without refresh 
+  tS.reload = function reloadTurnstyles () {
     clearInterval(this.heart)
     window.turntable.removeEventListener('message', this.handler)
     $(`script[src*="turnStyles.js"]`).remove()
