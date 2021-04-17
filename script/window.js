@@ -100,7 +100,7 @@ const roomTab = self => `
       <input type="text" id="ts_q_ping" class="ts_inputs"
         value="${ self.config.q_ping }" />
       ${ button('q_ping', 'Save Queue Ping') }
-      <small><em>Copy your bot's queue message above to take the decks automatically when you're called.</em></small>
+      <small><em>Paste your bot's queue message above to take the decks automatically when you're called.</em></small>
     </div>
     <div>
       <h4>AFK Reminder</h4>
