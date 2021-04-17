@@ -33,7 +33,7 @@ module.exports = tS => {
     // check if a checkbox or text input
     let toggle = typeof val === 'boolean'
     // mirror the option between window/hotbar
-    let mirror = $(`#ts_quick #ts_${opt}, .ts_tab #ts_${opt}`)
+    let mirror = $(`*[data-for="${opt}"]`)
     mirror.prop(toggle ? 'checked' : 'value', val)
   }
 
