@@ -30,6 +30,7 @@ require('./script/notify.js')(tS)
 require('./script/alerts.js')(tS)
 require('./script/autobop.js')(tS)
 require('./script/reminder.js')(tS)
+require('./script/autoqueue.js')(tS)
 
 window.$tS = tS
 window.$tS.init() // attach.js

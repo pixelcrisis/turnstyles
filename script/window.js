@@ -95,6 +95,13 @@ const optsTab = self => `
 const roomTab = self => `
   <div class="ts_tab tab_room">
     <div>
+      <h4>Automated Queue</h4>
+      ${ toggle(self, 'auto_q', 'Auto-Queue') } 
+      <input type="text" id="ts_q_ping" class="ts_inputs"
+        value="${ self.config.q_ping }" />
+      ${ button('q_ping', 'Save Queue Ping') }
+    </div>
+    <div>
       <h4>AFK Reminder</h4>
       ${ toggle(self, 'is_afk', 'Go AFK') }
       <input type="text" id="ts_afk_ping" class="ts_inputs"
