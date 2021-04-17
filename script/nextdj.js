@@ -27,6 +27,13 @@ module.exports = tS => {
     this.writeConfig('nextdj', false)
   })
 
+  // check for our auto-queue feature 
+  tS.on('speak', function checkAutoQueue (e) {
+    if (!this.config.auto_q) return
+    let match = this.config.q_ping == e.text
+    if (match) this.view().becomeDj()
+  })
+
   tS.on('attach', tS.checkDecks)
   tS.on('update', tS.checkDecks)
   tS.on('rem_dj', tS.checkDecks)
