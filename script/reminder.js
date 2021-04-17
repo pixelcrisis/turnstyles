@@ -7,7 +7,7 @@ module.exports = tS => {
     let freq = parseInt(this.config.remind)
 
     // min divisible by freq (eg 120 every 60)
-    if ((min % freq) === 0 && text) this.speak(text)
+    if ((min % freq) === 0 && text) this.speak(`[tS] ${text}`)
   })
 
 }
