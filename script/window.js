@@ -100,6 +100,7 @@ const roomTab = self => `
       <input type="text" id="ts_q_ping" class="ts_inputs"
         value="${ self.config.q_ping }" />
       ${ button('q_ping', 'Save Queue Ping') }
+      <small><em>Copy your bot's queue message above to take the decks automatically when you're called.</em></small>
     </div>
     <div>
       <h4>AFK Reminder</h4>
@@ -107,6 +108,7 @@ const roomTab = self => `
       <input type="text" id="ts_afk_ping" class="ts_inputs"
         value="${ self.config.afk_ping }" />
       ${ button('afk_ping', 'Save AFK Response') }
+      <small><em>Sends the response when you go AFK, and if you get pinged while gone.</em></small>
     </div>
     <div>
       <h4>Automated Reminder</h4>
@@ -114,11 +116,12 @@ const roomTab = self => `
       <input type="text" id="ts_reminder" class="ts_inputs"
         value="${ self.config.reminder }" />
       ${ button('reminder', 'Save Reminder') }
+      <small><em>Send an automated message at a set interval in your room - prefixed with [tS]</em></small>
     </div>
     <div>
       <h4>Debugging</h4>
       ${ toggle(self, 'logging', 'Show Logs In Room Tab') }
-      ${ doFunc('reloadMusic', 'Reload Music Players') }
+      ${ doFunc('reloadMusic', 'Fix Glitched Music Player') }
       ${ doFunc('reload', 'Reload turnStyles') }
     </div>
   </div>

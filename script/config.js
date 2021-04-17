@@ -12,7 +12,7 @@ module.exports = tS => {
 
     nextdj: false,
     auto_q: false,
-    q_ping: '',
+    q_ping: `Hey @user - it's your turn!`,
 
     has_vol: false,
 
@@ -35,7 +35,7 @@ module.exports = tS => {
 
     beats: 0,
     remind: 0,
-    reminder: '',
+    reminder: `Today's theme is: Cool.`,
 
     user_css: ''
   }
