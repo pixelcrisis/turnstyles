@@ -5,14 +5,6 @@ module.exports = tS => {
   // check for an open DJ spot 
   tS.checkDecks = function checkDecks () {
     if (!this.config.nextdj) return
-    // if we're not waiting for a ping, jump
-    // otherwise use suspend to wait 2 seconds
-    if (!this.config.pingdj) this.tryJumping()
-    else this.suspend(null, 2, 'nextdj')
-  }
-
-  // attempt to take an open DJ spot
-  tS.tryJumping = function takeDJSpot () {
     // check for a spot by checking for button
     let button = $('.become-dj').length
     if (!button) return this.Log(`nextdj: no spot`)
@@ -33,11 +25,6 @@ module.exports = tS => {
     this.postToChat(head, text)
 
     this.writeConfig('nextdj', false)
-  })
-
-  // check for the queue ping 
-  tS.on('speak', function nextDJOnPing (e) {
-    if (e.$ping && this.holding['nextdj']) this.tryJumping()
   })
 
   tS.on('attach', tS.checkDecks)

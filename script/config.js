@@ -11,7 +11,6 @@ module.exports = tS => {
     autobop: true,
 
     nextdj: false,
-    pingdj: false,
 
     has_vol: false,
 

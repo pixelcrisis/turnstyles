@@ -66,7 +66,6 @@ const quick = self => `
     ${ toggle(self, 'is_afk', 'Go AFK') }
     ${ toggle(self, 'autobop', 'Autobop') }
     ${ toggle(self, 'nextdj', 'Next DJ Spot') }
-    ${ toggle(self, 'pingdj', 'Wait For Ping') }
   </div>
 `
 
@@ -77,7 +76,6 @@ const optsTab = self => `
       ${ toggle(self, 'autobop', 'Autobop') }
       ${ toggle(self, 'has_vol', 'Control Volume') }
       ${ toggle(self, 'nextdj', 'Next DJ Spot') }
-      ${ toggle(self, 'pingdj', 'Wait For Ping') }
     </div>
     <div>
       <h4>Hide Elements</h4>
