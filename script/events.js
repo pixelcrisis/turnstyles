@@ -16,6 +16,7 @@ module.exports = tS => {
   }
 
   // interpret turntable events as our own
+  // handler is bound in attach.js
   tS.handle = function tsHandleEvent (e) {
     if (!e.command) return
 
@@ -28,12 +29,6 @@ module.exports = tS => {
     // fire our own events
     this.emit(e.command, e)
   }
-
-  // bind the handler to turntable
-  tS.on('attach', function bindHandler () {
-    this.handler = this.handle.bind(this)
-    window.turntable.addEventListener('message', this.handler)
-  })
 
   tS.events = {}
 

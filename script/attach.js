@@ -35,6 +35,10 @@ module.exports = tS => {
     let full = findKey(room, "roomData")
     if (!full) return again()
 
+    // bind our event handler
+    this.handler = this.handle.bind(this)
+    window.turntable.addEventListener('message', this.handler)
+
     this.emit('attach', room)
     this.Log(`loaded room`)
   }
