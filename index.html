@@ -6,10 +6,14 @@
       body {
         color: #eaeaea;
         background: #1a1a1a;
+        font-family: 'Arial', sans-serif;
       }
       a {
         color: gold;
         text-decoration: none;
+      }
+      p {
+        margin: 30px 0;
       }
       .main {
         margin-top: 30px;
@@ -18,17 +22,30 @@
       .logo {
         max-width: 100px;
       }
-      .book {
-        color: #eaeaea;
+      .list {
+        margin: 10px 0 30px;
       }
       .link {
-        padding: 10px;
-        max-width: 150px;
+        margin: 5px;
+        color: #1a1a1a;
+        font-size: 0.9em;
+        background: gold;
         font-weight: bold;
-        border: 2px solid;
-        border-radius: 5px;
-        margin: 10px 5px 30px;
+        padding: 7px 20px;
         display: inline-block;
+        text-transform: uppercase;
+      }
+      .link:hover {
+        filter: brightness(1.1);
+      }
+      .fire {
+        background: lightskyblue;
+      }
+      .book {
+        background: palegreen;
+      }
+      .beta {
+        background: lightsalmon;
       }
       p img {
         margin: 5px;
@@ -39,30 +56,67 @@
     <div class="main">
       <img class="logo" src="build/images/icon.png" alt="turnStyles">
       <h1>turnStyles | for turntable.fm</h1>
-      <div class="links">
-        <a class="link" href="https://chrome.google.com/webstore/detail/turntable-tweaks/pmlkackfnbbnjfejpddpakallilkbdme">
-          Chrome Store
-        </a>
-        <a class="link book" href="javascript:(function (){let s=document.createElement('script');s.src='https://ts.pixelcrisis.co/build/turnStyles.js?'+Math.random();s.type='text/javascript';document.body.appendChild(s)}());">
-          Bookmarklet
-        </a>
-      </div>
-      <strong>Install, or Drag The Bookmarklet Link To Your Bookmarks Bar</strong>
-
       <p>
+        <a class="link" href="https://chrome.google.com/webstore/detail/turntable-tweaks/pmlkackfnbbnjfejpddpakallilkbdme">
+          On The Chrome Store
+        </a>
+        <br>
         <a href="https://chrome.google.com/webstore/detail/pmlkackfnbbnjfejpddpakallilkbdme" target="_blank">
           <img src="https://img.shields.io/chrome-web-store/stars/pmlkackfnbbnjfejpddpakallilkbdme?color=gold&label=Rating&logo=google-chrome&logoColor=white&style=for-the-badge" />
         </a>
         <a href="https://chrome.google.com/webstore/detail/pmlkackfnbbnjfejpddpakallilkbdme" target="_blank">
           <img src="https://img.shields.io/chrome-web-store/users/pmlkackfnbbnjfejpddpakallilkbdme?color=gold&label=Users&logo=google-chrome&logoColor=white&style=for-the-badge" />
         </a>
-        <br>
         <a href="https://chrome.google.com/webstore/detail/pmlkackfnbbnjfejpddpakallilkbdme" target="_blank">
-          <img src="https://img.shields.io/chrome-web-store/v/pmlkackfnbbnjfejpddpakallilkbdme?color=teal&label=Version&logo=google-chrome&logoColor=white&style=for-the-badge" />
+          <img src="https://img.shields.io/chrome-web-store/v/pmlkackfnbbnjfejpddpakallilkbdme?color=gold&label=Version&logo=google-chrome&logoColor=white&style=for-the-badge" />
         </a>
-        <a href="https://ts.pixelcrisis.co" target="_blank">
-          <img src="https://img.shields.io/github/package-json/v/pixelcrisis/turnstyles?color=teal&label=Version&logo=javascript&logoColor=white&style=for-the-badge" />
+      </p>
+      <p>
+        <a class="link fire" href="#">
+          As A Firefox Addon
         </a>
+        <br>
+        <strong><em>Coming Soon!</em></strong>
+      </p>
+      <p>
+        <a class="link book" href="javascript:(function (){let s=document.createElement('script');s.src='https://ts.pixelcrisis.co/build/turnStyles.js?'+Math.random();s.type='text/javascript';document.body.appendChild(s)}());">
+          Stable Bookmarklet
+        </a>
+        <br>
+        <img src="https://img.shields.io/github/package-json/v/pixelcrisis/turnstyles?color=palegreen&label=Version&logo=javascript&logoColor=white&style=for-the-badge" />
+      </p>
+      <p>
+        <a class="link beta" href="javascript:(function (){let b=document.createElement('script');b.textContent='window.tsBase=\'https://etc.pixelcrisis.co/turnstyles/build\'';b.type='text/javascript';document.body.appendChild(b);let s=document.createElement('script');s.src='https://etc.pixelcrisis.co/turnstyles/build/turnStyles.js?'+Math.random();s.type='text/javascript';document.body.appendChild(s)}());">
+          Beta Bookmarklet
+        </a>
+        <br>
+        <img src="https://img.shields.io/github/package-json/v/pixelcrisis/turnstyles/dev?color=lightsalmon&label=Version&logo=javascript&logoColor=white&style=for-the-badge">
+      </p>
+      <p>
+        <strong><em>Drag The Bookmarklet Links To Your Bookmarks Bar</em></strong>
+      </p>
+      <p>
+        <h2>Features</h2>
+        <strong>Autobop:</strong>
+        Auto Awesome new songs
+        <br>
+        <strong>Show Volume:</strong>
+        Always visible volume slider
+        <br>
+        <strong>Temp Mute:</strong>
+        Mute only until next song
+        <br>
+        <strong>Themes:</strong>
+        Dark Mode, Night Mode
+        <br>
+        <strong>Styles:</strong>
+        Replace the Gold!
+        <br>
+        <strong>Desktop Notifications:</strong>
+        New Songs, Mentions, PMs!
+        <br>
+        <strong>Chat Notifications:</strong>
+        User leave/join, Snags, Song Stats, Dropped DJ stats
       </p>
 
     </div>
