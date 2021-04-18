@@ -66,10 +66,12 @@ button.tt-button.primary:hover {
 #room-view > canvas:nth-child(2) {
   filter: sepia(0.5) hue-rotate(250deg) saturate(3); }
 
+.has_party #room-view > canvas:nth-child(2) {
+  -webkit-animation: party-mode 4s infinite;
+          animation: party-mode 4s infinite; }
+
 .become-dj,
 .invite-dj,
-.song-details,
-.songboard-add,
 .header-bar .header-logo,
 .mini-djs .invite-dj-btn,
 .mini-djs .become-dj-btn,
@@ -80,3 +82,31 @@ button.tt-button.primary:hover {
 
 .tab-item:not(.selected):hover .tab-icon {
   filter: sepia(1) hue-rotate(250deg) saturate(4); }
+
+@-webkit-keyframes party-mode {
+  0% {
+    filter: sepia(0.5) hue-rotate(0deg) saturate(4); }
+  20% {
+    filter: sepia(0.5) hue-rotate(60deg) saturate(4); }
+  40% {
+    filter: sepia(0.5) hue-rotate(120deg) saturate(4); }
+  60% {
+    filter: sepia(0.5) hue-rotate(180deg) saturate(4); }
+  80% {
+    filter: sepia(0.5) hue-rotate(240deg) saturate(4); }
+  100% {
+    filter: sepia(0.5) hue-rotate(300deg) saturate(4); } }
+
+@keyframes party-mode {
+  0% {
+    filter: sepia(0.5) hue-rotate(0deg) saturate(4); }
+  20% {
+    filter: sepia(0.5) hue-rotate(60deg) saturate(4); }
+  40% {
+    filter: sepia(0.5) hue-rotate(120deg) saturate(4); }
+  60% {
+    filter: sepia(0.5) hue-rotate(180deg) saturate(4); }
+  80% {
+    filter: sepia(0.5) hue-rotate(240deg) saturate(4); }
+  100% {
+    filter: sepia(0.5) hue-rotate(300deg) saturate(4); } }

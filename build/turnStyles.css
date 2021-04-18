@@ -124,6 +124,10 @@ input.ts_inputs {
     display: none; }
   .ts_tab h4:not(:first-of-type) {
     margin-top: 5px; }
+  .ts_tab small {
+    display: block;
+    line-height: 15px;
+    margin-bottom: 5px; }
   .ts_tab button,
   .ts_tab select,
   .ts_tab input[type="text"] {
@@ -138,6 +142,8 @@ input.ts_inputs {
     font-size: 15px;
     font-family: monospace;
     text-transform: none !important; }
+  .ts_tab select.ts_inputs {
+    padding: 7px 10px; }
   .ts_tab .ts_toggle {
     padding: 0;
     display: block; }

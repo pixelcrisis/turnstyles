@@ -7,6 +7,8 @@
 	"extends": "eslint:recommended",
 	"globals": {
 		"$": "readonly",
+		"chrome": "readonly",
+		"browser": "readonly",
 		"Atomics": "readonly",
 		"SharedArrayBuffer": "readonly"
 	},

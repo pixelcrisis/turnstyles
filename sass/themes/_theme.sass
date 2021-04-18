@@ -1,0 +1,44 @@
+@import "../mixins"
+
+$color-text:   lighten(mix(#ffffff, $color-bg, 20%), 40%) !default
+$color-subtle: lighten(mix(#ffffff, $color-bg, 10%), 40%) !default
+
+$color-bg-0:  darken($color-bg, 2%)
+$color-bg-1: lighten($color-bg, 2%)
+$color-bg-2: lighten($color-bg, 4%)
+$color-bg-3: lighten($color-bg, 8%)
+$color-bg-4: lighten($color-bg, 10%)
+
+%content-main
+  color: $color-text
+  background: $color-bg
+
+%content-alt
+  color: $color-text
+  background: $color-bg-1
+
+%bg-gradient
+  border-top-color: $color-bg-3 !important
+  border-bottom-color: $color-bg-1 !important
+  box-shadow: 0 -1px 0 0 $color-bg-4 !important
+  background-image: linear-gradient(to bottom, $color-bg-3, $color-bg-2) !important
+
+%border-y
+  border: none
+  box-shadow: -1px 0 0 0 $color-bg-0, inset 1px 0 0 0 $color-bg-1
+
+%border-x
+  border: none
+  box-shadow: 0 -1px 0 0 $color-bg-0, inset 0 1px 0 0 $color-bg-2
+
+@import "base/header"
+@import "base/content"
+@import "base/popups"
+@import "base/modals"
+@import "base/lobby"
+@import "base/roomchat"
+@import "base/songlist"
+@import "base/roominfo"
+@import "base/userchat"
+@import "base/tspanel"
+@import "base/accents"
