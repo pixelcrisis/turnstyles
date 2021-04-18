@@ -1,9 +1,9 @@
-const ext = browser || chrome
+const ext = chrome || browser
 const url = ext.runtime.getURL('turnStyles.js')
 
 // inject url base into the window
 // this tells the script we're an extension
-const path = url.split('turnStyles.js')[0]
+const path = url.split('/turnStyles.js')[0]
 const base = document.createElement('script')
 base.textContent = `window.tsBase = "${path}"`
 base.type = 'text/javascript'
