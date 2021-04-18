@@ -19,7 +19,7 @@ module.exports = tS => {
   // check for ping
   tS.pinged = str => {
     let ping = `@${window.turntable.user.attributes.name}`
-    return str.toLowerCase().indexOf(ping.toLowerCase()) > -1
+    return str && str.toLowerCase().indexOf(ping.toLowerCase()) > -1
   }
 
   // send an actual message to room
