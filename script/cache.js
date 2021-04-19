@@ -16,7 +16,7 @@ module.exports = tS => {
 
   // keep track of snags as well
   tS.on('snagged', function cacheSnags () {
-    this.now_playing.snags += 1
+    this.now_playing.snag += 1
   })
 
   // cache new DJs as they appear
