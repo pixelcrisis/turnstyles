@@ -45,6 +45,7 @@ const locate = function locateCSSPath (base, file, folder) {
 
 // create a link to a theme or a style
 const create = function createLinkElem (base, file, folder) {
+  if (!file) return
   let link = document.createElement('link')
   link.classList.add(`tS-${folder || 'core'}`)
   link.type = 'text/css'; link.rel = 'stylesheet'
