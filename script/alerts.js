@@ -14,6 +14,19 @@ module.exports = tS => {
     this.notifyUser(head, e.text, 'chat_ping')
   })
 
+  tS.on('speak', function alertMatched (e) {
+    let list = this.config.ping_word.split(",")
+    for (let word of list) {
+      let text = e.text.toLowerCase()
+      let find = word.trim().toLowerCase()
+      if (text.indexOf(find) > -1) {
+        $('.chat .messages .message:last-child').addClass('mention')
+        let head = `[${this.view().roomData.name}] Found: ${word}`
+        return this.notifyUser(head, e.text, 'match_ping')
+      }
+    }
+  })
+
   tS.on('snagged', function alertSnag (e) {
     if (!this.config.chat_snag) return
     this.postToChat(e.$name, `has snagged this track!`, 'snag')
