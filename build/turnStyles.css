@@ -63,12 +63,17 @@
     padding: 5px; }
   #turnStyles .ts_credits small {
     margin-right: 5px; }
-  #turnStyles .ts_credits a {
+  #turnStyles .ts_link {
     color: gold;
     text-decoration: none;
     text-transform: uppercase; }
-    #turnStyles .ts_credits a:not(:hover) {
+    #turnStyles .ts_link:not(:hover) {
       opacity: 0.75; }
+  #turnStyles .list {
+    font-size: 0.95em;
+    line-height: 1.2em; }
+    #turnStyles .list .ts_link {
+      display: block; }
 
 #ts_quick .ts_toggle span {
   margin: 0; }
@@ -114,7 +119,7 @@ input.ts_inputs {
   flex: 0 0 100%;
   padding: 15px 0;
   line-height: 2em; }
-  .ts_tab div {
+  .ts_tab .block {
     width: 100%;
     max-width: 250px;
     margin-bottom: 10px;
