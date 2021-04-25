@@ -1,139 +1,180 @@
 <html>
-  <head>
-    <title>turnStyles | for turntable.fm</title>
-    <link rel="icon" href="src/images/icon48.png">
-    <style type="text/css">
-      body {
-        color: #eaeaea;
-        background: #1a1a1a;
-        font-family: 'Arial', sans-serif;
-      }
-      a {
-        color: gold;
-        text-decoration: none;
-      }
-      p {
-        margin: 30px 0;
-      }
-      .main {
-        margin-top: 30px;
-        text-align: center;
-      }
-      .logo {
-        max-width: 100px;
-      }
-      .list {
-        margin: 10px 0 30px;
-      }
-      .link {
-        margin: 5px;
-        color: #1a1a1a;
-        font-size: 0.9em;
-        background: gold;
-        font-weight: bold;
-        padding: 7px 20px;
-        display: inline-block;
-        text-transform: uppercase;
-      }
-      .link:hover {
-        filter: brightness(1.1);
-      }
-      .fire {
-        background: lightskyblue;
-      }
-      .book {
-        background: palegreen;
-      }
-      .beta {
-        background: lightsalmon;
-      }
-      p img {
-        margin: 5px;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="main">
-      <img class="logo" src="build/images/icon.png" alt="turnStyles">
-      <h1>turnStyles | for turntable.fm</h1>
-      <p>
-        <a class="link" href="https://chrome.google.com/webstore/detail/turntable-tweaks/pmlkackfnbbnjfejpddpakallilkbdme">
-          On The Chrome Store
-        </a>
-        <br>
-        <a href="https://chrome.google.com/webstore/detail/pmlkackfnbbnjfejpddpakallilkbdme" target="_blank">
-          <img src="https://img.shields.io/chrome-web-store/stars/pmlkackfnbbnjfejpddpakallilkbdme?color=gold&label=Rating&logo=google-chrome&logoColor=white&style=for-the-badge" />
-        </a>
-        <a href="https://chrome.google.com/webstore/detail/pmlkackfnbbnjfejpddpakallilkbdme" target="_blank">
-          <img src="https://img.shields.io/chrome-web-store/users/pmlkackfnbbnjfejpddpakallilkbdme?color=gold&label=Users&logo=google-chrome&logoColor=white&style=for-the-badge" />
-        </a>
-        <a href="https://chrome.google.com/webstore/detail/pmlkackfnbbnjfejpddpakallilkbdme" target="_blank">
-          <img src="https://img.shields.io/chrome-web-store/v/pmlkackfnbbnjfejpddpakallilkbdme?color=gold&label=Version&logo=google-chrome&logoColor=white&style=for-the-badge" />
-        </a>
-      </p>
-      <p>
-        <a class="link fire" href="https://addons.mozilla.org/en-US/firefox/addon/turnstyles-for-turntable-fm/">
-          As A Firefox Addon
-        </a>
-        <br>
-        <a href="https://addons.mozilla.org/en-US/firefox/addon/turnstyles-for-turntable-fm/" target="_blank">
-          <img src="https://img.shields.io/amo/stars/turnstyles-for-turntable-fm?color=lightskyblue&label=Rating&logo=firefox&logoColor=white&style=for-the-badge">
-        </a>
-        <a href="https://addons.mozilla.org/en-US/firefox/addon/turnstyles-for-turntable-fm/" target="_blank">
-          <img src="https://img.shields.io/amo/users/turnstyles-for-turntable-fm?color=lightskyblue&label=Users&logo=firefox&logoColor=white&style=for-the-badge">
-        </a>
-        <a href="https://addons.mozilla.org/en-US/firefox/addon/turnstyles-for-turntable-fm/" target="_blank">
-          <img src="https://img.shields.io/amo/v/turnstyles-for-turntable-fm?color=lightskyblue&label=Version&logo=firefox&logoColor=white&style=for-the-badge">
-        </a>
-      </p>
-      <p>
-        <a class="link book" href="javascript:(function (){let s=document.createElement('script');s.src='https://ts.pixelcrisis.co/build/turnStyles.js?'+Math.random();s.type='text/javascript';document.body.appendChild(s)}());">
-          Stable Bookmarklet
-        </a>
-        <br>
-        <img src="https://img.shields.io/github/package-json/v/pixelcrisis/turnstyles?color=palegreen&label=Version&logo=javascript&logoColor=white&style=for-the-badge" />
-        <a href="https://discord.gg/ZprHwNUw8y" target="_blank">
-          <img src="https://img.shields.io/discord/595791360477626380?color=palegreen&label=%20support%20discord&logo=discord&logoColor=white&style=for-the-badge">
-        </a>
-      </p>
-      <p>
-        <a class="link beta" href="javascript:(function (){let b=document.createElement('script');b.textContent='window.tsBase=\'https://etc.pixelcrisis.co/turnstyles/build\'';b.type='text/javascript';document.body.appendChild(b);let s=document.createElement('script');s.src='https://etc.pixelcrisis.co/turnstyles/build/turnStyles.js?'+Math.random();s.type='text/javascript';document.body.appendChild(s)}());">
-          Beta Bookmarklet
-        </a>
-        <br>
-        <img src="https://img.shields.io/github/package-json/v/pixelcrisis/turnstyles/dev?color=lightsalmon&label=Version&logo=javascript&logoColor=white&style=for-the-badge">
-        <a href="https://discord.gg/ZprHwNUw8y" target="_blank">
-          <img src="https://img.shields.io/discord/595791360477626380?color=lightsalmon&label=%20beta%20discord&logo=discord&logoColor=white&style=for-the-badge">
-        </a>
-      </p>
-      <p>
-        <strong><em>Drag The Bookmarklet Links To Your Bookmarks Bar</em></strong>
-      </p>
-      <p>
-        <h2>Features</h2>
-        <strong>Autobop:</strong>
-        Auto Awesome new songs
-        <br>
-        <strong>Show Volume:</strong>
-        Always visible volume slider
-        <br>
-        <strong>Temp Mute:</strong>
-        Mute only until next song
-        <br>
-        <strong>Themes:</strong>
-        Dark Mode, Night Mode
-        <br>
-        <strong>Styles:</strong>
-        Replace the Gold!
-        <br>
-        <strong>Desktop Notifications:</strong>
-        New Songs, Mentions, PMs!
-        <br>
-        <strong>Chat Notifications:</strong>
-        User leave/join, Snags, Song Stats, Dropped DJ stats
-      </p>
 
-    </div>
-  </body>
+<head>
+  <title>turnStyles | for turntable.fm</title>
+  <link rel="icon" href="src/images/icon48.png">
+  <style type="text/css">
+    body {
+      color: #eaeaea;
+      background: #1a1a1a;
+      font-family: 'Arial', sans-serif;
+    }
+
+    a {
+      color: gold;
+      text-decoration: none;
+    }
+
+    p {
+      margin: 30px 0;
+    }
+
+    .main {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .logo {
+      max-width: 100px;
+    }
+
+    .list {
+      margin: 10px 0 30px;
+    }
+
+    .link {
+      margin: 5px;
+      color: #1a1a1a;
+      font-size: 0.9em;
+      background: gold;
+      font-weight: bold;
+      padding: 7px 20px;
+      display: inline-block;
+      text-transform: uppercase;
+    }
+
+    .link:hover {
+      filter: brightness(1.1);
+    }
+
+    .fire {
+      background: lightskyblue;
+    }
+
+    .book {
+      background: palegreen;
+    }
+
+    .beta {
+      background: lightsalmon;
+    }
+
+    p img {
+      margin: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main">
+    <img class="logo" src="build/images/icon.png" alt="turnStyles">
+    <h1>turnStyles | for turntable.fm</h1>
+    <p>
+      <a class="link"
+        href="https://chrome.google.com/webstore/detail/turntable-tweaks/pmlkackfnbbnjfejpddpakallilkbdme">
+        On The Chrome Store
+      </a>
+      <br>
+      <a href="https://chrome.google.com/webstore/detail/pmlkackfnbbnjfejpddpakallilkbdme" target="_blank">
+        <img
+          src="https://img.shields.io/chrome-web-store/stars/pmlkackfnbbnjfejpddpakallilkbdme?color=gold&label=Rating&logo=google-chrome&logoColor=white&style=for-the-badge" />
+      </a>
+      <a href="https://chrome.google.com/webstore/detail/pmlkackfnbbnjfejpddpakallilkbdme" target="_blank">
+        <img
+          src="https://img.shields.io/chrome-web-store/users/pmlkackfnbbnjfejpddpakallilkbdme?color=gold&label=Users&logo=google-chrome&logoColor=white&style=for-the-badge" />
+      </a>
+      <a href="https://chrome.google.com/webstore/detail/pmlkackfnbbnjfejpddpakallilkbdme" target="_blank">
+        <img
+          src="https://img.shields.io/chrome-web-store/v/pmlkackfnbbnjfejpddpakallilkbdme?color=gold&label=Version&logo=google-chrome&logoColor=white&style=for-the-badge" />
+      </a>
+    </p>
+    <p>
+      <a class="link fire" href="https://addons.mozilla.org/en-US/firefox/addon/turnstyles-for-turntable-fm/">
+        As A Firefox Addon
+      </a>
+      <br>
+      <a href="https://addons.mozilla.org/en-US/firefox/addon/turnstyles-for-turntable-fm/" target="_blank">
+        <img
+          src="https://img.shields.io/amo/stars/turnstyles-for-turntable-fm?color=lightskyblue&label=Rating&logo=firefox&logoColor=white&style=for-the-badge">
+      </a>
+      <a href="https://addons.mozilla.org/en-US/firefox/addon/turnstyles-for-turntable-fm/" target="_blank">
+        <img
+          src="https://img.shields.io/amo/users/turnstyles-for-turntable-fm?color=lightskyblue&label=Users&logo=firefox&logoColor=white&style=for-the-badge">
+      </a>
+      <a href="https://addons.mozilla.org/en-US/firefox/addon/turnstyles-for-turntable-fm/" target="_blank">
+        <img
+          src="https://img.shields.io/amo/v/turnstyles-for-turntable-fm?color=lightskyblue&label=Version&logo=firefox&logoColor=white&style=for-the-badge">
+      </a>
+    </p>
+    <p>
+      <a class="link book"
+        href="javascript:(function (){let s=document.createElement('script');s.src='https://ts.pixelcrisis.co/build/turnStyles.js?'+Math.random();s.type='text/javascript';document.body.appendChild(s)}());">
+        Stable Bookmarklet
+      </a>
+      <br>
+      <img
+        src="https://img.shields.io/github/package-json/v/pixelcrisis/turnstyles?color=palegreen&label=Version&logo=javascript&logoColor=white&style=for-the-badge" />
+      <a href="https://discord.gg/ZprHwNUw8y" target="_blank">
+        <img
+          src="https://img.shields.io/discord/595791360477626380?color=palegreen&label=%20support%20discord&logo=discord&logoColor=white&style=for-the-badge">
+      </a>
+    </p>
+    <p>
+      <a class="link beta"
+        href="javascript:(function (){let b=document.createElement('script');b.textContent='window.tsBase=\'https://etc.pixelcrisis.co/turnstyles/build\'';b.type='text/javascript';document.body.appendChild(b);let s=document.createElement('script');s.src='https://etc.pixelcrisis.co/turnstyles/build/turnStyles.js?'+Math.random();s.type='text/javascript';document.body.appendChild(s)}());">
+        Beta Bookmarklet
+      </a>
+      <br>
+      <img
+        src="https://img.shields.io/github/package-json/v/pixelcrisis/turnstyles/dev?color=lightsalmon&label=Version&logo=javascript&logoColor=white&style=for-the-badge">
+      <a href="https://discord.gg/ZprHwNUw8y" target="_blank">
+        <img
+          src="https://img.shields.io/discord/595791360477626380?color=lightsalmon&label=%20beta%20discord&logo=discord&logoColor=white&style=for-the-badge">
+      </a>
+    </p>
+    <p>
+      <strong><em>Drag The Bookmarklet Links To Your Bookmarks Bar</em></strong>
+    </p>
+    <p>
+      <h2>Features</h2>
+      <strong>Autobop:</strong>
+      Auto Awesome new songs
+      <br>
+      <strong>Show Volume:</strong>
+      Always visible volume slider
+      <br>
+      <strong>Temp Mute:</strong>
+      Mute only until next song
+      <br>
+      <strong>Themes:</strong>
+      Dark Mode, Night Mode, Cosmic, Midnight
+      <br>
+      <strong>Styles</strong>
+      Replace the Gold!
+      <br>
+      <strong>Desktop Notifications:</strong>
+      New Songs, Stats, Mentions, PMs!
+      <br>
+      <strong>Chat Notifications:</strong>
+      User leave/join, Snags, Song Stats, Dropped DJ stats
+      <br>
+      <strong>Custom Chat Notifications:</strong>
+      Get notified on your chosen keywords
+      <br>
+      <strong>Auto AFK Mentions:</strong>
+      Let everyone know you're AFK when mentioned
+      <br>
+      <strong>Auto DJ Queue:</strong>
+      Jump on the decks with the next available DJ spot or
+      <br>set a custom mention trigger to add yourself when you're
+      mentioned
+      <br>
+      <strong>Custom CSS:</strong>
+      Add your own custom CSS to turntable.fm
+        <br>
+    </p>
+
+  </div>
+</body>
 
 </html>
