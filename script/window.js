@@ -40,6 +40,7 @@ const layout = self => `
       ${ roomTab(self) }
       ${ dingTab(self) }
       ${ cssTab(self) }
+      ${ infoTab() }
 
       ${ footer(self) }
     </div>
@@ -58,6 +59,7 @@ const header = `
     <div class="tab_room">Room</div>
     <div class="tab_ding">Notify</div>
     <div class="tab_css">Custom Css</div>
+    <div class="tab_info">About</div>
   </div>
 `
 
@@ -72,19 +74,19 @@ const quick = self => `
 
 const optsTab = self => `
   <div class="ts_tab tab_opts active">
-    <div>
+    <div class="block">
       <h4>General Features</h4>
       ${ toggle(self, 'autobop', 'Autobop') }
       ${ toggle(self, 'has_vol', 'Control Volume') }
       ${ toggle(self, 'nextdj', 'Next DJ Spot') }
     </div>
-    <div>
+    <div class="block">
       <h4>Hide Elements</h4>
       ${ toggle(self, 'no_bub', 'Hide Chat Bubbles') }
       ${ toggle(self, 'no_aud', 'Hide Audience') }
       ${ toggle(self, 'no_vid', 'Hide Player') }
     </div>
-    <div>
+    <div class="block">
       <h4>Visual Options</h4>
       ${ select(self, 'theme') }
       ${ select(self, 'style') }
@@ -94,7 +96,7 @@ const optsTab = self => `
 
 const roomTab = self => `
   <div class="ts_tab tab_room">
-    <div>
+    <div class="block">
       <h4>Automated Queue</h4>
       ${ toggle(self, 'auto_q', 'Auto-Queue') } 
       <input type="text" id="ts_q_ping" class="ts_inputs"
@@ -102,7 +104,7 @@ const roomTab = self => `
       ${ button('q_ping', 'Save Queue Ping') }
       <small><em>Paste your bot's queue message above to take the decks automatically when you're called.</em></small>
     </div>
-    <div>
+    <div class="block">
       <h4>AFK Reminder</h4>
       ${ toggle(self, 'is_afk', 'Go AFK') }
       <input type="text" id="ts_afk_ping" class="ts_inputs"
@@ -110,7 +112,7 @@ const roomTab = self => `
       ${ button('afk_ping', 'Save AFK Response') }
       <small><em>Sends the response when you go AFK, and if you get pinged while gone.</em></small>
     </div>
-    <div>
+    <div class="block">
       <h4>Automated Reminder</h4>
       ${ select(self, 'remind', true) } 
       <input type="text" id="ts_reminder" class="ts_inputs"
@@ -118,7 +120,7 @@ const roomTab = self => `
       ${ button('reminder', 'Save Reminder') }
       <small><em>Send an automated message at a set interval in your room - prefixed with [tS]</em></small>
     </div>
-    <div>
+    <div class="block">
       <h4>Debugging</h4>
       ${ toggle(self, 'logging', 'Show Logs In Room Tab') }
       ${ doFunc('reloadMusic', 'Fix Glitched Music Player') }
@@ -129,7 +131,7 @@ const roomTab = self => `
 
 const dingTab = self => `
   <div class="ts_tab tab_ding">
-    <div>
+    <div class="block">
       <h4>Messages In Chat</h4>
       ${ toggle(self, 'chat_song', 'Last Song Stats') }
       ${ toggle(self, 'chat_spun', 'Dropped DJ Stats') }
@@ -137,7 +139,7 @@ const dingTab = self => `
       ${ toggle(self, 'chat_join', 'User Joins') }
       ${ toggle(self, 'chat_left', 'User Leaves') }
     </div>
-    <div>
+    <div class="block">
       <h4>Desktop Notifications</h4>
       ${ toggle(self, 'ping_pm', 'On DMs') }
       ${ toggle(self, 'ping_chat', 'On Mentions') }
@@ -148,11 +150,51 @@ const dingTab = self => `
 
 const cssTab = self => `
   <div class="ts_tab tab_css">
-    <div>
+    <div class="block">
       <h4>Custom CSS</h4>
       <textarea id="ts_user_css" class="ts_inputs" cols="60" rows="10">${ self.config.user_css }</textarea>
       ${ button('user_css', 'Save And Apply Styles') }
     </div>
+  </div>
+`
+
+const infoTab = () => `
+  <div class="ts_tab tab_info">
+    <div class="block">
+      <h4>Share tS</h4>
+      <div class="list">
+        <a class="ts_link" href="https://chrome.google.com/webstore/detail/turntable-tweaks/pmlkackfnbbnjfejpddpakallilkbdme" target="_blank">Chrome Store</a>
+        <a class="ts_link" href="https://addons.mozilla.org/en-US/firefox/addon/turnstyles-for-turntable-fm/" target="_blank">Firefox Addon</a>
+        <a class="ts_link" href="https://ts.pixelcrisis.co" target="_blank">Bookmarklets</a>
+      </div>
+    </div>
+    <div class="block">
+      <h4>Get In Touch</h4>
+      <div class="list">
+        ON TURNTABLE: <em>@crisis</em>
+        <a class="ts_link" href="https://discord.gg/ZprHwNUw8y" target="_blank">turnStyles Discord</a>
+        <a class="ts_link" href="https://discord.gg/jnRs4WnPjM" target="_blank">Turntable.fm Discord</a>
+      </div>
+    </div>
+    <div class="block">
+      <h4>Extras</h4>
+      <div class="list">
+        <a class="ts_link" href="https://github.com/pixelcrisis/turnstyles" target="_blank">turnStyles github</a>
+        <a class="ts_link" href=""https://github.com/fluteds/ttscripts target="_blank">ttscripts (themes + more)</a>
+      </div>
+    </div>
+  </div>
+`
+
+const footer = self => `
+  <div class="ts_credits">
+    <small id="ts_close" class="ts_menu_toggle">✔︎ CLOSE</small>
+    <small>v${self.config.version}</small>
+    <small>
+      <a class="ts_link" href="https://discord.gg/jnRs4WnPjM" target="_blank">
+        Join me on the TT Discord
+      </a>
+    </small>
   </div>
 `
 
@@ -185,16 +227,4 @@ const button = (opt, name) => `
 
 const doFunc = (func, name) => `
   <button class="ts_inputs" onclick="$tS.${func}()">${name}</button>
-`
-
-const footer = self => `
-  <div class="ts_credits">
-    <small id="ts_close" class="ts_menu_toggle">✔︎ CLOSE</small>
-    <small>v${self.config.version}</small>
-    <small>
-      <a href="https://discord.gg/jnRs4WnPjM" target="_blank">
-        Join me on the TT Discord
-      </a>
-    </small>
-  </div>
 `

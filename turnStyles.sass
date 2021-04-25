@@ -80,13 +80,21 @@
   .ts_credits
     small
       margin-right: 5px
-    a
-      color: gold
-      text-decoration: none
-      text-transform: uppercase
 
-      &:not(:hover)
-        opacity: 0.75
+  .ts_link
+    color: gold
+    text-decoration: none
+    text-transform: uppercase
+
+    &:not(:hover)
+      opacity: 0.75
+
+  .list 
+    font-size: 0.95em
+    line-height: 1.2em
+    
+    .ts_link
+      display: block
 
 #ts_quick .ts_toggle span
   margin: 0
@@ -137,7 +145,7 @@ input.ts_inputs
   padding: 15px 0
   line-height: 2em
 
-  div
+  .block
     width: 100%
     max-width: 250px
     margin-bottom: 10px
