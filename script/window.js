@@ -145,6 +145,13 @@ const dingTab = self => `
       ${ toggle(self, 'ping_chat', 'On Mentions') }
       ${ toggle(self, 'ping_song', 'On New Songs') }
     </div>
+    <div class="block">
+      <h4>Ding On Match</h4>
+      <input type="text" id="ts_ping_word" class="ts_inputs"
+        value="${ self.config.ping_word }" />
+      ${ button('ping_word', 'Save Matched Words') }
+      <small><em>Sends a notification and highlights message on word match in chat. Use multiple words in a comma separated list.</em></small>
+    </div>
   </div>
 `
 

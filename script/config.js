@@ -23,6 +23,7 @@ module.exports = tS => {
     ping_pm: false,
     ping_song: false,
     ping_chat: false,
+    ping_word: "",
 
     chat_song: false,
     chat_spun: false,
