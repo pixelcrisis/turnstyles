@@ -1,192 +1,8 @@
+@charset "UTF-8";
 .header-bar {
   z-index: 1;
   font-size: 13px;
   line-height: 42px; }
-  .header-bar:hover #turnStyles {
-    display: flex; }
-
-#ts_wrap {
-  background: #2f2f2f; }
-
-#turnStyles {
-  display: none;
-  color: #eaeaea;
-  margin: 0 auto;
-  flex-wrap: wrap;
-  max-width: 960px;
-  line-height: 1em;
-  font-weight: bold;
-  padding: 10px 20px;
-  align-items: center; }
-  #turnStyles:not(.active) .ts_tab,
-  #turnStyles:not(.active) #ts_tabs,
-  #turnStyles:not(.active) .ts_credits,
-  #turnStyles:not(.active) #ts_menu .close {
-    display: none; }
-  #turnStyles.active {
-    display: flex; }
-    #turnStyles.active #ts_quick {
-      display: none; }
-    #turnStyles.active #ts_menu .open {
-      display: none; }
-  #turnStyles #ts_menu {
-    margin-right: 10px; }
-    #turnStyles #ts_menu .open,
-    #turnStyles #ts_menu .close {
-      display: inline-block;
-      vertical-align: bottom; }
-    #turnStyles #ts_menu .open {
-      font-size: 1.2em;
-      font-weight: bold;
-      padding-right: 1px; }
-    #turnStyles #ts_menu .close {
-      font-size: 1em;
-      margin-top: 1px; }
-  #turnStyles .ts_menu_toggle {
-    color: gold;
-    cursor: pointer; }
-  #turnStyles h4 {
-    color: gold;
-    opacity: 0.6;
-    font-size: 0.8em;
-    text-transform: uppercase; }
-  #turnStyles select {
-    -webkit-appearance: none;
-    background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
-    background-repeat: no-repeat;
-    background-position-x: 100%;
-    background-position-y: 0; }
-  #turnStyles button {
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.2); }
-  #turnStyles option {
-    padding: 5px; }
-  #turnStyles .ts_credits small {
-    margin-right: 5px; }
-  #turnStyles .ts_link {
-    color: gold;
-    text-decoration: none;
-    text-transform: uppercase; }
-    #turnStyles .ts_link:not(:hover) {
-      opacity: 0.75; }
-  #turnStyles .list {
-    font-size: 0.95em;
-    line-height: 1.2em; }
-    #turnStyles .list .ts_link {
-      display: block; }
-
-#ts_quick .ts_toggle span {
-  margin: 0; }
-
-.ts_toggle,
-.ts_inputs,
-#ts_tabs div {
-  border: none;
-  outline: none;
-  color: #ffffff;
-  cursor: pointer;
-  font-size: 0.8em;
-  padding: 5px 10px;
-  font-weight: bold;
-  border-radius: 5px;
-  background: #444444;
-  text-transform: uppercase; }
-
-input.ts_inputs,
-button.ts_inputs {
-  margin: 3px 5px 5px 0;
-  padding: 5px 10px 6px; }
-
-input.ts_inputs {
-  text-transform: none !important; }
-
-#ts_tabs {
-  margin: -5px 0; }
-  #ts_tabs div {
-    margin: 0 -2px;
-    display: inline-block; }
-    #ts_tabs div.active {
-      color: #2f2f2f;
-      background: gold; }
-    #ts_tabs div:not(:first-of-type) {
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0; }
-    #ts_tabs div:not(:last-of-type) {
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0; }
-
-.ts_tab {
-  flex: 0 0 100%;
-  padding: 15px 0;
-  line-height: 2em; }
-  .ts_tab .block {
-    width: 100%;
-    max-width: 250px;
-    margin-bottom: 10px;
-    vertical-align: top;
-    display: inline-block; }
-  .ts_tab:not(.active) {
-    display: none; }
-  .ts_tab h4:not(:first-of-type) {
-    margin-top: 5px; }
-  .ts_tab small {
-    display: block;
-    line-height: 15px;
-    margin-bottom: 5px; }
-  .ts_tab button,
-  .ts_tab select,
-  .ts_tab input[type="text"] {
-    padding: 6px 10px;
-    margin: 0 5px 6px 0;
-    width: calc(100% - 5px); }
-  .ts_tab input[type="text"] {
-    font-size: 0.9em;
-    font-weight: normal;
-    box-sizing: border-box; }
-  .ts_tab textarea {
-    font-size: 15px;
-    font-family: monospace;
-    text-transform: none !important; }
-  .ts_tab select.ts_inputs {
-    padding: 7px 10px; }
-  .ts_tab .ts_toggle {
-    padding: 0;
-    display: block; }
-
-.ts_toggle,
-.ts_inputs {
-  margin: 0 5px 5px 0;
-  white-space: nowrap; }
-
-.ts_toggle input {
-  display: none; }
-
-.ts_toggle span {
-  font-size: 3.2em;
-  margin: 0 5px 0 9px;
-  vertical-align: top;
-  display: inline-block;
-  color: rgba(0, 0, 0, 0.5); }
-
-.ts_toggle input:checked + span {
-  color: gold; }
-
-#ts_logs {
-  height: 200px;
-  display: none;
-  overflow: auto;
-  font-size: 0.85em;
-  font-weight: normal;
-  margin-bottom: 40px;
-  font-family: monospace;
-  padding: 10px 5px 10px 20px;
-  background: rgba(0, 0, 0, 0.2); }
-  #ts_logs span {
-    display: block;
-    padding-left: 10px; }
-
-.ts_has_logging #ts_logs {
-  display: block; }
 
 #room-view {
   background: #000000; }
@@ -202,6 +18,154 @@ input.ts_inputs {
   right: 25px;
   line-height: 27px;
   position: absolute; }
+
+#ts_upload {
+  top: 2px;
+  left: 8px;
+  width: 21px;
+  height: 21px;
+  padding: 0px;
+  opacity: 0.7;
+  border: none;
+  margin-top: 5px;
+  cursor: pointer;
+  position: relative;
+  background-size: 38px;
+  background-position: 0 -563px;
+  background-image: url(https://s3.amazonaws.com/assets.turntable.fm/images/sprites/chrome-sprite@2x.png); }
+
+#upload-button {
+  display: none; }
+
+#ts_panel,
+#ts_hotbar {
+  color: #eaeaea;
+  background: #2f2f2f; }
+  #ts_panel *,
+  #ts_hotbar * {
+    box-sizing: border-box; }
+  #ts_panel label input,
+  #ts_hotbar label input {
+    display: none; }
+  #ts_panel label span,
+  #ts_hotbar label span {
+    width: 20px;
+    font-size: 12px;
+    display: inline-block; }
+  #ts_panel label input:checked + span:after,
+  #ts_hotbar label input:checked + span:after {
+    color: gold;
+    content: '✔'; }
+  #ts_panel label input:not(:checked) + span:after,
+  #ts_hotbar label input:not(:checked) + span:after {
+    content: '✘';
+    font-size: 13px; }
+
+#ts_hotbar {
+  background: #2f2f2f; }
+  #ts_hotbar h1 {
+    color: gold;
+    font-size: 17px;
+    cursor: pointer;
+    margin: -1px 0 0 5px; }
+  #ts_hotbar label {
+    border: none;
+    outline: none;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 0.8em;
+    margin-left: 10px;
+    padding: 5px 10px;
+    font-weight: bold;
+    border-radius: 5px;
+    background: #444444;
+    text-transform: uppercase; }
+    #ts_hotbar label span {
+      width: 15px; }
+  #ts_hotbar .ts_wrap {
+    display: none;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    max-width: 960px;
+    line-height: 1em;
+    font-weight: bold;
+    padding: 10px 20px;
+    align-items: center; }
+
+#ts_panel {
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  width: 100%;
+  padding: 0 15px;
+  position: absolute;
+  overflow-y: scroll;
+  white-space: normal;
+  box-sizing: border-box; }
+  #ts_panel p {
+    margin-top: 5px; }
+  #ts_panel a {
+    color: gold;
+    border: none;
+    display: block;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase; }
+  #ts_panel h1 {
+    color: gold;
+    font-size: 18px;
+    line-height: 42px;
+    margin-bottom: 5px; }
+    #ts_panel h1 small {
+      color: #a5a5a5; }
+  #ts_panel h4 {
+    color: #a5a5a5;
+    cursor: pointer;
+    font-size: 11px;
+    margin-bottom: 10px;
+    text-transform: uppercase; }
+  #ts_panel label,
+  #ts_panel select,
+  #ts_panel button,
+  #ts_panel input[type="text"] {
+    outline: none;
+    display: block;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 5px 7px;
+    font-weight: bold;
+    background: transparent;
+    border-color: transparent; }
+  #ts_panel button,
+  #ts_panel textarea,
+  #ts_panel input[type="text"] {
+    width: 100%;
+    margin: 10px 0;
+    border-radius: 5px; }
+  #ts_panel button {
+    color: #a5a5a5;
+    border: 2px solid #444444; }
+  #ts_panel textarea,
+  #ts_panel input[type="text"] {
+    background: #444444; }
+  #ts_panel select {
+    padding-left: 30px;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    background-repeat: no-repeat;
+    background-position-x: 0;
+    background-position-y: 0; }
+  #ts_panel .ts_close {
+    float: right;
+    font-size: 15px;
+    cursor: pointer; }
+  #ts_panel .ts_section {
+    margin-top: 15px; }
+    #ts_panel .ts_section:not(.active) .ts_content {
+      display: none; }
+
+.header-bar:hover #ts_hotbar .ts_wrap {
+  display: flex; }
 
 .has-volume .header-room {
   width: 100% !important;
@@ -276,23 +240,8 @@ input.ts_inputs {
   text-align: left;
   display: inline-block; }
 
-#ts_upload {
-  top: 2px;
-  left: 8px;
-  width: 21px;
-  height: 21px;
-  padding: 0px;
-  opacity: 0.7;
-  border: none;
-  margin-top: 5px;
-  cursor: pointer;
-  position: relative;
-  background-size: 38px;
-  background-position: 0 -563px;
-  background-image: url(https://s3.amazonaws.com/assets.turntable.fm/images/sprites/chrome-sprite@2x.png); }
-
-#upload-button {
-  display: none; }
+.ts_has_logging #ts_logs {
+  display: block; }
 
 .ts_hide_videos .screen-content,
 .ts_hide_bubbles .speech-bubble,

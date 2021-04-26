@@ -11,8 +11,8 @@
 .message-history > :nth-child(even):not(.separator),
 .conversations-list > ul > :nth-child(even):not(.separator), .room-tab .room-info-intro, .message-history,
 .conversations-list,
-.mini-pms-view .bottom-bar, #ts_wrap,
-#turnStyles {
+.mini-pms-view .bottom-bar, #ts_panel,
+#ts_hotbar {
   color: #bfbfbf;
   background: #2f2f2f; }
 
@@ -571,47 +571,34 @@
     text-shadow: none;
     color: #2a2a2a; }
 
-#ts_wrap input:not(:checked) + span,
-#turnStyles input:not(:checked) + span {
-  color: #2a2a2a; }
+#ts_panel label,
+#ts_panel select,
+#ts_panel button,
+#ts_panel input[type="text"] {
+  color: #bfbfbf; }
 
-#ts_wrap small, #ts_wrap h5,
-#turnStyles small,
-#turnStyles h5 {
+#ts_panel h4,
+#ts_panel button,
+#ts_panel h1 small {
   color: #aaaaaa; }
 
-#ts_wrap select,
-#turnStyles select {
+#ts_panel button {
   border-color: #494949; }
 
-.ts_toggle,
-.ts_inputs,
-#ts_tabs div {
-  color: #bfbfbf;
-  background: #434343; }
+#ts_panel textarea,
+#ts_panel input[type="text"] {
+  background: #494949; }
 
-#ts_mute {
-  opacity: 0.5; }
-
-#ts_tabs .active {
-  color: #2a2a2a; }
-
-#ts_volume #ts_slider::-moz-range-thumb {
-  background: #bfbfbf; }
-
-#ts_volume #ts_slider::-webkit-slider-thumb {
-  background: #bfbfbf; }
+#ts_hotbar label {
+  background: #494949; }
+  #ts_hotbar label input:not(:checked) + span {
+    color: #aaaaaa; }
 
 #overlay a,
 #pmWindows a,
-#turnStyles h4,
 #topBG #content a,
-#turnStyles .ts_link,
-#turnStyles #ts_menu,
-#turnStyles #ts_close,
 #maindiv .tabbed-panel a,
 .buddyListRoom .buddyRoomName,
-#turnStyles input:checked + span,
 .chat .message:not(.stat) .subject:hover,
 .chat .message:not(.stat) .speaker:hover,
 .fans .stat-number:not(.disabled):hover,
@@ -648,7 +635,6 @@
   background: #bd9e0e; }
 
 #topBG #create-room,
-#ts_tabs div.active,
 #settings .option:hover,
 #settings .option.selected,
 .options-menu .option:hover,

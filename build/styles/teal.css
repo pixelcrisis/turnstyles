@@ -1,20 +1,20 @@
+#ts_panel a,
+#ts_panel h1,
+#ts_hotbar h1,
 #overlay a,
 #pmWindows a,
-#turnStyles h4,
 #topBG #content a,
-#turnStyles .ts_link,
-#turnStyles #ts_menu,
-#turnStyles #ts_close,
 #maindiv .tabbed-panel a,
 .buddyListRoom .buddyRoomName,
-#turnStyles input:checked + span,
+#topBG .roomListItem .roomDJs.needed,
 .chat .message:not(.stat) .subject:hover,
 .chat .message:not(.stat) .speaker:hover,
 .fans .stat-number:not(.disabled):hover,
 .fanofs .stat-number:not(.disabled):hover,
 #buddyList #buddyListHeader .myName:hover,
 #buddyList #buddyListHeader .myFans:hover,
-#topBG .roomListItem .roomDJs.needed {
+#ts_panel label input:checked + span:after,
+#ts_hotbar label input:checked + span:after {
   color: #66c9d7; }
 
 #topBG .roomListItem .roomDJs.needed .icon {
@@ -37,7 +37,6 @@
   background: #00a5bc; }
 
 #topBG #create-room,
-#ts_tabs div.active,
 #settings .option:hover,
 #settings .option.selected,
 .options-menu .option:hover,
