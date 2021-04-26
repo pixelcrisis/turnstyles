@@ -15,7 +15,7 @@ module.exports = tS => {
   })
 
   tS.on('speak', function alertMatched (e) {
-    let list = this.config.ping_word.split(",")
+    let list = this.config.hot_words.split(",")
     for (let word of list) {
       let text = e.text.toLowerCase()
       let find = word.trim().toLowerCase()

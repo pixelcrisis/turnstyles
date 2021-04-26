@@ -14,8 +14,8 @@ require('./script/logging.js')(tS)
 require('./script/suspend.js')(tS)
 require('./script/heartbeat.js')(tS)
 
-// attach our options window
-require('./script/window.js')(tS)
+// attach our hotbar 
+require('./script/hotbar.js')(tS)
 
 // import our UI features
 require('./script/themes.js')(tS)
