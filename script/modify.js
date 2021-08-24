@@ -61,9 +61,9 @@ const attachLink = function attachStatsLink () {
   if (find.length != 24) return // not a valid id yet
   $('.profile.modal .section.web-links').show()
   $('.profile.modal .website').append(`
-    <a class="statslink" href="https://ttstats.info/user/${find}" 
+    <a class="statslink" href="https://thompsn.com/turntable/leaderboard/thing/?id=${find}" 
       target="_blank" onclick="$('.modal .close-x')[0].click()">
-      ttStats Profile
+      Leaderboard
     </a>
   `)
 }
