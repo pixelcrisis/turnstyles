@@ -6,7 +6,7 @@ module.exports = app => {
     $('#tsPanel').remove()
     $('.header-bar').append(this.Panel())
     // bind the panel toggle
-    $('#tsPanel h1').on('click', () => $('#tsPanel').toggleClass('active'))
+    $('#tsPanel .ts_menu').on('click', () => $('#tsPanel').toggleClass('active'))
     // bind our tab switching
     $('.ts-tab').on('click', function switchTab (e) {
       $('.ts-tab.active, .ts-tabbed.active').removeClass('active')
@@ -23,7 +23,7 @@ module.exports = app => {
     return `
       <div id="tsPanel">
         <div id="tsBar">
-          <h1></h1>
+          <h1 class="ts_menu"></h1>
           ${ this._toggle('is_afk',  'AFK') }
           ${ this._toggle('autobop', 'Autobop') }
           ${ this._toggle('nextdj',  'Next DJ') }
@@ -76,7 +76,7 @@ module.exports = app => {
 
           <div class="ts-tabbed" data-tab="css">
             <p class="full">Add your own custom CSS snippets to turntable!</p>
-            <textarea id="ts_user_css" rows="10">
+            <textarea id="ts_user_css" class="ts-flat" rows="10">
               ${ this.config.user_css }
             </textarea>
             <div class="break"></div>
@@ -137,7 +137,7 @@ module.exports = app => {
 
   app._toggle = function (item, name) {
     return `
-      <label>
+      <label class="ts-flat">
         <input class="ts-switch" type="checkbox"
           data-for="${item}" ${ this.config[item] ? 'checked' : ''}> 
         <span class="ts-icon"></span> ${name}
@@ -150,7 +150,7 @@ module.exports = app => {
     const empty = arr => `<option value="">No ${ upper(arr) }</option>`
 
     return `
-      <select data-for="${list}" class="ts-switch">
+      <select class="ts-flat" data-for="${list}" class="ts-switch">
         ${ none ? '' : empty(list) }
         ${ Object.keys(this.options[list]).map(key => `
           <option value="${key}" ${this.config[list] == key ? 'selected' : ''}>
@@ -163,7 +163,7 @@ module.exports = app => {
 
   app._inputs = function (item) {
     return `
-      <input type="text" 
+      <input type="text" class="ts-flat"
         id="ts_${item}" value="${ this.config[item] }">
       </input> 
     `
@@ -171,13 +171,13 @@ module.exports = app => {
 
   app._button = function (opt, name) {
     return `
-      <button class="ts-button" data-for="ts_${opt}">${name}</button>
+      <button class="ts-flat ts-button" data-for="ts_${opt}">${name}</button>
     `
   }
 
   app._doFunc = function (func, name) {
     return `
-      <button onclick="$tS.${func}()">${name}</button>
+      <button class="ts-flat" onclick="$tS.${func}()">${name}</button>
     `
   }
 
