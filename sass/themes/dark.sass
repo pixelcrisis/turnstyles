@@ -1,9 +1,29 @@
-$color-bg: #2f2f2f // dark green
+@import "../mixins"
 
-$color-main: #bd9e0e // turntable gold
-$color-snag: #b74e88 // pink
-$color-join: #4a9a4d // green
-$color-left: #a73c3c // red
-$color-mods: #a73c3c // red (removed from decks, etc)
+$tint: 0deg
 
-@import "theme"
+$base: #2f2f2f
+$main: #f3cc12
+$text: #cccccc
+
+$snag: #e853a6 // pink
+$join: #4abf54 // green
+$left: #e64f4f // red
+$mods: #e64f4f // red (removed from decks, etc)
+
+.ts-tint-vote
+	opacity: 1
+
+.ts-tint-back
+	opacity: 1
+
+.ts-shift-main
+	opacity: 1
+
+.ts-shift-invert
+	opacity: 1
+
+.ts-shift-mute
+	opacity: 1
+
+@import "base/theme"

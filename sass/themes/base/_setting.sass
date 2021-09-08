@@ -1,0 +1,67 @@
+#settings.settings-dropdown
+
+	.logout
+		color: $main
+	.logout:before
+		height: 19px
+		margin: 0 5px 0 7px
+		@extend .ts-shift-invert
+		@include ico-bg(35px, -481px)
+
+	.volume-icon
+		height: 27px
+		@extend .ts-shift-main
+	.volume-icon.volume-level-0
+		@include ico-bg(35px, -290px)
+	.volume-icon.volume-level-1
+		@include ico-bg(35px, -268px)
+	.volume-icon.volume-level-2
+		@include ico-bg(35px, -246px)
+
+	.volume-slider
+		right: 20px
+	.volume-slider-fill
+		@extend .ts-gradient
+
+	.volume-slider-knob,
+	.volume-slider-knob:after,
+	.volume-slider-knob:before
+		box-shadow: none
+	.volume-slider-knob
+		background: $text
+	.volume-slider-knob:after
+		background: $main
+
+
+#settings.settings-dropdown .dropdown
+	background: $base-inset
+
+	&:after, &:before
+		border-bottom-color: $base-inset
+
+	.option.link,
+	.option.split-option
+		box-shadow: none
+		border-top: 1px solid $base-faded
+		@extend .ts-content-mute
+
+		&.selected,
+		&:not(.split-option):hover
+			background: $base-hover
+
+		.description, a
+			color: $text-alt
+			&:hover
+				color: $text
+
+	.option	.option
+		background: $base-inset
+		box-shadow: inset 0 0 0 1px $base-faded
+
+		&:hover
+			background: $base-inset
+		&:before
+			@extend .ts-shift-mute
+		&.selected:before,
+		&:not(.selected):hover:before
+			@extend .ts-shift-main

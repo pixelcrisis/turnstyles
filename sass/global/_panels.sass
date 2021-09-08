@@ -1,0 +1,163 @@
+#tsBar,
+#tsFull,
+  display: none
+  margin: 0 auto
+  flex-wrap: wrap
+  max-width: 960px
+  line-height: 1em
+  font-weight: bold
+  padding: 10px 20px
+  align-items: center
+
+#tsFull .ts-row,
+#tsFull .ts-tabbed
+  display: flex
+  flex-wrap: wrap
+  align-items: center
+
+#tsPanel.active 
+  #tsFull
+    display: block
+    h1
+      font-size: 21px
+      padding: 3px 0 0 7px
+      background-image: none
+  h1
+    opacity: 1
+
+.header-bar:hover #tsPanel:not(.active) #tsBar
+  display: flex
+
+#tsPanel
+  color: #eaeaea
+  background: #2f2f2f
+
+  *
+    box-sizing: border-box
+
+  h1
+    width: 30px
+    height: 20px
+    opacity: 0.7
+    cursor: pointer
+    background-size: 37px
+    background-position: 0 -549px
+    background-image: url(https://s3.amazonaws.com/assets.turntable.fm/images/sprites/chrome-sprite@2x.png)
+
+    &:hover
+      opacity: 0.8
+
+  a
+    color: #f3cc12
+    border: none
+    display: block
+    font-weight: bold
+    text-decoration: none
+
+  label,
+  select,
+  button,
+  .ts-tab
+    text-transform: uppercase
+
+  label,
+  select,
+  button,
+  .ts-tab,
+  textarea,
+  input[type="text"]
+    border: none
+    outline: none
+    color: #ffffff
+    cursor: pointer
+    font-size: 0.8em
+    padding: 5px 10px
+    font-weight: bold
+    margin-right: 10px
+    border-radius: 5px
+    background: #444444
+
+  p
+    color: #a4a4a4
+    font-weight: normal
+
+    &:not(.full)
+      margin: -5px 0 10px
+
+    &.full
+      margin-bottom: 5px
+
+  button,
+  textarea,
+  input[type="text"]
+    padding: 6px 10px 7px
+
+  textarea,
+  input[type="text"]
+    width: 100%
+    max-width: 300px
+    text-transform: none
+
+  select
+    padding-left: 24px
+    -webkit-appearance: none
+    background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>")
+    background-repeat: no-repeat
+    background-position-x: 0
+    background-position-y: -2px
+
+  .ts-tab
+    margin-right: 0px 
+    border-radius: 0px
+
+    &.active
+      color: #000000
+      background: #f3cc12
+
+    &:first-of-type 
+      border-top-left-radius: 5px
+      border-bottom-left-radius: 5px
+
+    &:last-of-type 
+      border-top-right-radius: 5px
+      border-bottom-right-radius: 5px
+
+  .ts-tabbed
+    padding: 10px 5px
+
+    a
+     margin: 0 15px 10px 0
+
+    .full,
+    .break
+      flex-basis: 100%
+
+    .break
+      height: 5px
+
+    label,
+    select,
+    button,
+    textarea,
+    input[type="text"]
+      margin-bottom: 10px
+
+    &:not(.active)
+      display: none
+
+  label
+    input
+      display: none
+
+    span
+      width: 12px
+      font-size: 12px
+      display: inline-block
+
+    input:checked + span:after
+      color: #f3cc12
+      content: '✔'
+
+    input:not(:checked) + span:after
+      content: '✘'
+      opacity: 0.75

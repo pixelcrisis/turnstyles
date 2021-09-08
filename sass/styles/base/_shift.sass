@@ -1,0 +1,30 @@
+body.th-none,
+body.th-dark,
+body.th-night,
+body.th-cosmic,
+body.th-midnight
+	// lame button always grayscale
+	.board .lame-button
+		filter: grayscale(1) !important
+
+	// style the upvote button
+	.board .awesome-button
+		@extend %tint-vote
+
+// background lighting
+#room-view > canvas:nth-child(2)
+	@extend %tint-back
+
+body.th-dark,
+body.th-night,
+body.th-cosmic,
+body.th-midnight
+	#{$shift-main}
+		@extend %shift-main
+
+	#{$shift-mute}
+		@extend %shift-mute
+
+	#{$shift-invert}
+		@extend %shift-invert
+	

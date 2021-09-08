@@ -1,230 +1,68 @@
 @charset "UTF-8";
-.header-bar {
-  z-index: 1;
-  font-size: 13px;
-  line-height: 42px; }
-
 #room-view {
   background: #000000; }
-
-.chat .message.stat:not(:hover) {
-  opacity: 0.5; }
 
 .section.statslink {
   text-align: center !important; }
 
-#playlist-display em {
-  top: 0;
-  right: 25px;
-  line-height: 27px;
-  position: absolute; }
+.chat .message.stat:not(:hover) {
+  opacity: 0.5; }
 
-#ts_upload {
-  top: 2px;
-  left: 8px;
-  width: 21px;
-  height: 21px;
-  padding: 0px;
-  opacity: 0.7;
-  border: none;
-  margin-top: 5px;
-  cursor: pointer;
-  position: relative;
-  background-size: 38px;
-  background-position: 0 -563px;
-  background-image: url(https://s3.amazonaws.com/assets.turntable.fm/images/sprites/chrome-sprite@2x.png); }
-
-#upload-button {
-  display: none; }
-
-#ts_panel,
-#ts_hotbar {
-  color: #eaeaea;
-  background: #2f2f2f; }
-  #ts_panel *,
-  #ts_hotbar * {
-    box-sizing: border-box; }
-  #ts_panel label input,
-  #ts_hotbar label input {
-    display: none; }
-  #ts_panel label span,
-  #ts_hotbar label span {
-    width: 20px;
-    font-size: 12px;
-    display: inline-block; }
-  #ts_panel label input:checked + span:after,
-  #ts_hotbar label input:checked + span:after {
-    color: gold;
-    content: '✔'; }
-  #ts_panel label input:not(:checked) + span:after,
-  #ts_hotbar label input:not(:checked) + span:after {
-    content: '✘';
-    font-size: 13px; }
-
-#ts_hotbar {
-  background: #2f2f2f; }
-  #ts_hotbar h1 {
-    color: gold;
-    font-size: 17px;
-    cursor: pointer;
-    margin: -1px 0 0 5px; }
-  #ts_hotbar label {
-    border: none;
-    outline: none;
-    color: #ffffff;
-    cursor: pointer;
-    font-size: 0.8em;
-    margin-left: 10px;
-    padding: 5px 10px;
-    font-weight: bold;
-    border-radius: 5px;
-    background: #444444;
-    text-transform: uppercase; }
-    #ts_hotbar label span {
-      width: 15px; }
-  #ts_hotbar .ts_wrap {
-    display: none;
-    margin: 0 auto;
-    flex-wrap: wrap;
-    max-width: 960px;
-    line-height: 1em;
-    font-weight: bold;
-    padding: 10px 20px;
-    align-items: center; }
-
-#ts_panel {
-  top: 0;
-  bottom: 0;
+.header-bar {
   z-index: 1;
-  width: 100%;
-  padding: 0 15px;
-  position: absolute;
-  overflow-y: scroll;
-  white-space: normal;
-  box-sizing: border-box; }
-  #ts_panel p {
-    margin-top: 5px; }
-  #ts_panel a {
-    color: gold;
-    border: none;
-    display: block;
-    font-weight: bold;
-    text-decoration: none;
-    text-transform: uppercase; }
-  #ts_panel h1 {
-    color: gold;
-    font-size: 18px;
-    line-height: 42px;
-    margin-bottom: 5px; }
-    #ts_panel h1 small {
-      color: #a5a5a5; }
-  #ts_panel h4 {
-    color: #a5a5a5;
-    cursor: pointer;
-    font-size: 11px;
-    margin-bottom: 10px;
-    text-transform: uppercase; }
-  #ts_panel label,
-  #ts_panel select,
-  #ts_panel button,
-  #ts_panel input[type="text"] {
-    outline: none;
-    display: block;
-    color: #ffffff;
-    cursor: pointer;
-    padding: 5px 7px;
-    font-weight: bold;
-    background: transparent;
-    border-color: transparent; }
-  #ts_panel button,
-  #ts_panel textarea,
-  #ts_panel input[type="text"] {
-    width: 100%;
-    margin: 10px 0;
-    border-radius: 5px; }
-  #ts_panel button {
-    color: #a5a5a5;
-    border: 2px solid #444444; }
-  #ts_panel textarea,
-  #ts_panel input[type="text"] {
-    background: #444444; }
-  #ts_panel select {
-    padding-left: 30px;
-    -webkit-appearance: none;
-    background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
-    background-repeat: no-repeat;
-    background-position-x: 0;
-    background-position-y: 0; }
-  #ts_panel .ts_close {
-    float: right;
-    font-size: 15px;
-    cursor: pointer; }
-  #ts_panel .ts_section {
-    margin-top: 15px; }
-    #ts_panel .ts_section:not(.active) .ts_content {
-      display: none; }
-
-.header-bar:hover #ts_hotbar .ts_wrap {
-  display: flex; }
-
-.has-volume .header-room {
-  width: 100% !important;
-  padding: 0 0 0 75px !important; }
-  .has-volume .header-room > div {
+  font-size: 13px;
+  line-height: 42px; }
+  .header-bar .header-room {
+    width: 100% !important;
+    padding: 0 0 0 75px; }
+  .header-bar .header-room > div {
     position: initial !important;
     vertical-align: top !important;
     display: inline-block !important;
     margin: -2px 10px 0 0 !important; }
 
-.has-volume .dropdown-volume-container {
+#playlist-display em {
+  top: 0;
+  right: 25px;
+  position: absolute;
+  line-height: 27px; }
+
+#tsLogs {
+  padding: 0 20px; }
+  #tsLogs span {
+    display: block;
+    padding-left: 10px; }
+
+#upload-button {
+  display: none; }
+
+#tsUpload {
+  top: 6px;
+  left: 8px;
+  position: relative;
+  width: 21px;
+  height: 21px;
+  padding: 0px;
+  opacity: 0.7;
+  border: none;
+  cursor: pointer;
+  filter: invert(1);
+  background-size: 38px !important;
+  background-position: 0 -563px !important;
+  background-image: url(https://s3.amazonaws.com/assets.turntable.fm/images/sprites/chrome-sprite@2x.png) !important; }
+
+.ts_vol .dropdown-volume-container {
   display: none !important; }
 
-#ts_volume {
+#tsVolume {
   top: 0;
   right: 120px;
-  width: 160px;
   z-index: 6000;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  position: absolute; }
-  #ts_volume.muted #ts_muted {
-    display: inline-block; }
-  #ts_volume.muted #ts_slider {
-    display: none; }
-  #ts_volume.muted #ts_mute {
-    background-position: 0 -316px; }
-  #ts_volume:not(.muted) #ts_muted {
-    display: none; }
-  #ts_volume:not(.muted) #ts_mute {
-    background-position: 0 -229px; }
-  #ts_volume #ts_slider, #ts_volume #ts_muted {
-    width: 130px; }
+  position: absolute;
+  user-select: none;
+  width: 160px; }
 
-#ts_slider {
-  height: 5px;
-  outline: none;
-  margin-top: -4px;
-  background: gold;
-  border-radius: 5px;
-  -webkit-appearance: none; }
-  #ts_slider::-webkit-slider-thumb {
-    width: 15px;
-    height: 15px;
-    cursor: pointer;
-    border-radius: 50%;
-    background: #ffffff;
-    appearance: none;
-    -webkit-appearance: none; }
-  #ts_slider::-moz-range-thumb {
-    width: 15px;
-    height: 15px;
-    cursor: pointer;
-    border-radius: 50%;
-    background: #ffffff; }
-
-#ts_mute {
+#tsMute {
   width: 20px;
   height: 20px;
   cursor: pointer;
@@ -232,18 +70,209 @@
   display: inline-block;
   vertical-align: middle;
   background-size: 35px;
+  background-position: 0 -229px;
   background-image: url(https://s3.amazonaws.com/assets.turntable.fm/images/sprites/chrome-sprite@2x.png); }
 
-#ts_muted {
+#tsSlider {
+  height: 5px;
+  width: 130px;
+  margin-top: -4px;
+  border-radius: 5px;
+  background: gold;
+  outline: none;
+  -webkit-appearance: none; }
+  #tsSlider::-webkit-slider-thumb {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    background: #ffffff;
+    appearance: none;
+    -webkit-appearance: none; }
+  #tsSlider::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    background: #ffffff; }
+
+#tsMuted {
+  display: none;
+  width: 130px;
   color: #ffffff;
   line-height: 1em;
-  text-align: left;
+  text-align: left; }
+
+.ts_muted #tsSlider {
+  display: none; }
+
+.ts_muted #tsMuted {
   display: inline-block; }
 
-.ts_has_logging #ts_logs {
+.ts_muted #tsMute {
+  background-position: 0 -316px; }
+
+body.logging #tsLogs {
   display: block; }
 
-.ts_hide_videos .screen-content,
-.ts_hide_bubbles .speech-bubble,
-.ts_hide_audience #room-view > canvas:nth-child(4) {
+body.no_bub .speech-bubble,
+body.no_vid .screen-content,
+body.no_aud #room-view > canvas:nth-child(4) {
   display: none !important; }
+
+body.played #queue .song.ts_played {
+  box-shadow: inset -14px 0 36px -20px #ff0000 !important; }
+
+body.has_party #room-view > canvas:nth-child(2) {
+  animation: party-mode 4s infinite; }
+
+@keyframes party-mode {
+  0% {
+    filter: brightness(1) sepia(0.7) hue-rotate(0deg) saturate(4); }
+  20% {
+    filter: brightness(1) sepia(0.7) hue-rotate(60deg) saturate(4); }
+  40% {
+    filter: brightness(1) sepia(0.7) hue-rotate(120deg) saturate(4); }
+  60% {
+    filter: brightness(1) sepia(0.7) hue-rotate(180deg) saturate(4); }
+  80% {
+    filter: brightness(1) sepia(0.7) hue-rotate(240deg) saturate(4); }
+  100% {
+    filter: brightness(1) sepia(0.7) hue-rotate(300deg) saturate(4); } }
+
+#tsBar,
+#tsFull {
+  display: none;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  max-width: 960px;
+  line-height: 1em;
+  font-weight: bold;
+  padding: 10px 20px;
+  align-items: center; }
+
+#tsFull .ts-row,
+#tsFull .ts-tabbed {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center; }
+
+#tsPanel.active #tsFull {
+  display: block; }
+  #tsPanel.active #tsFull h1 {
+    font-size: 21px;
+    padding: 3px 0 0 7px;
+    background-image: none; }
+
+#tsPanel.active h1 {
+  opacity: 1; }
+
+.header-bar:hover #tsPanel:not(.active) #tsBar {
+  display: flex; }
+
+#tsPanel {
+  color: #eaeaea;
+  background: #2f2f2f; }
+  #tsPanel * {
+    box-sizing: border-box; }
+  #tsPanel h1 {
+    width: 30px;
+    height: 20px;
+    opacity: 0.7;
+    cursor: pointer;
+    background-size: 37px;
+    background-position: 0 -549px;
+    background-image: url(https://s3.amazonaws.com/assets.turntable.fm/images/sprites/chrome-sprite@2x.png); }
+    #tsPanel h1:hover {
+      opacity: 0.8; }
+  #tsPanel a {
+    color: #f3cc12;
+    border: none;
+    display: block;
+    font-weight: bold;
+    text-decoration: none; }
+  #tsPanel label,
+  #tsPanel select,
+  #tsPanel button,
+  #tsPanel .ts-tab {
+    text-transform: uppercase; }
+  #tsPanel label,
+  #tsPanel select,
+  #tsPanel button,
+  #tsPanel .ts-tab,
+  #tsPanel textarea,
+  #tsPanel input[type="text"] {
+    border: none;
+    outline: none;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 0.8em;
+    padding: 5px 10px;
+    font-weight: bold;
+    margin-right: 10px;
+    border-radius: 5px;
+    background: #444444; }
+  #tsPanel p {
+    color: #a4a4a4;
+    font-weight: normal; }
+    #tsPanel p:not(.full) {
+      margin: -5px 0 10px; }
+    #tsPanel p.full {
+      margin-bottom: 5px; }
+  #tsPanel button,
+  #tsPanel textarea,
+  #tsPanel input[type="text"] {
+    padding: 6px 10px 7px; }
+  #tsPanel textarea,
+  #tsPanel input[type="text"] {
+    width: 100%;
+    max-width: 300px;
+    text-transform: none; }
+  #tsPanel select {
+    padding-left: 24px;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    background-repeat: no-repeat;
+    background-position-x: 0;
+    background-position-y: -2px; }
+  #tsPanel .ts-tab {
+    margin-right: 0px;
+    border-radius: 0px; }
+    #tsPanel .ts-tab.active {
+      color: #000000;
+      background: #f3cc12; }
+    #tsPanel .ts-tab:first-of-type {
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px; }
+    #tsPanel .ts-tab:last-of-type {
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px; }
+  #tsPanel .ts-tabbed {
+    padding: 10px 5px; }
+    #tsPanel .ts-tabbed a {
+      margin: 0 15px 10px 0; }
+    #tsPanel .ts-tabbed .full,
+    #tsPanel .ts-tabbed .break {
+      flex-basis: 100%; }
+    #tsPanel .ts-tabbed .break {
+      height: 5px; }
+    #tsPanel .ts-tabbed label,
+    #tsPanel .ts-tabbed select,
+    #tsPanel .ts-tabbed button,
+    #tsPanel .ts-tabbed textarea,
+    #tsPanel .ts-tabbed input[type="text"] {
+      margin-bottom: 10px; }
+    #tsPanel .ts-tabbed:not(.active) {
+      display: none; }
+  #tsPanel label input {
+    display: none; }
+  #tsPanel label span {
+    width: 12px;
+    font-size: 12px;
+    display: inline-block; }
+  #tsPanel label input:checked + span:after {
+    color: #f3cc12;
+    content: '✔'; }
+  #tsPanel label input:not(:checked) + span:after {
+    content: '✘';
+    opacity: 0.75; }

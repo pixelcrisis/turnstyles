@@ -1,111 +1,427 @@
-#ts_panel a,
-#ts_panel h1,
-#ts_hotbar h1,
-#overlay a,
-#pmWindows a,
-#topBG #content a,
-#maindiv .tabbed-panel a,
-.buddyListRoom .buddyRoomName,
-#topBG .roomListItem .roomDJs.needed,
-.chat .message:not(.stat) .subject:hover,
-.chat .message:not(.stat) .speaker:hover,
-.fans .stat-number:not(.disabled):hover,
-.fanofs .stat-number:not(.disabled):hover,
-#buddyList #buddyListHeader .myName:hover,
-#buddyList #buddyListHeader .myFans:hover,
-#ts_panel label input:checked + span:after,
-#ts_hotbar label input:checked + span:after {
-  color: #e698e9; }
-
-#topBG .roomListItem .roomDJs.needed .icon {
-  filter: saturate(0%) brightness(0%) invert(59.21569%) opacity(1);
-  filter: url('data:image/svg+xml;utf8,    <svg xmlns="http://www.w3.org/2000/svg">      <filter id="recolor" color-interpolation-filters="sRGB">        <feColorMatrix type="matrix" values="          0 0 0 0 0.83529          0 0 0 0 0.32941          0 0 0 0 0.8549          0 0 0 1 0        "/>      </filter>    </svg>    #recolor'); }
-
-.chat .message.mention {
-  border-right: 5px solid #d554da; }
-
-.chat .message.mention,
-#songs .song-list .song .progress {
-  background: rgba(213, 84, 218, 0.2); }
-
-.overlay .modal,
-.overlay .modal .title,
-#maindiv .song-list .song .scoregood {
-  background-color: #d554da; }
-
-#ts_slider {
-  background: #d554da; }
-
-#topBG #create-room,
-#settings .option:hover,
-#settings .option.selected,
-.options-menu .option:hover,
-.options-menu .option.active,
-#buddyListMain #buddyListHeader,
-.tabbed-panel .tab-item:active,
-.tabbed-panel .tab-item.selected,
-.floating-menu .option.active,
-.floating-menu .option.selected,
-.floating-menu .option:not(.split-option):not(.disabled):hover,
-.modal button.submit,
-.modal button.submit:hover,
-button.tt-button.primary,
-button.tt-button.primary:hover {
-  background-image: linear-gradient(to bottom, #d554da, #d03fd5); }
-
-.mini-djs .mini-dj.active .avatar-head {
-  box-shadow: inset 0 0 0 2px #d554da; }
-
-.lame-button {
-  filter: grayscale(1) !important; }
-
-.awesome-button {
-  filter: hue-rotate(200deg) brightness(0.8) saturate(2); }
+body.th-none .board .awesome-button,
+body.th-dark .board .awesome-button,
+body.th-night .board .awesome-button,
+body.th-cosmic .board .awesome-button,
+body.th-midnight .board .awesome-button {
+  filter: brightness(0.8) hue-rotate(200deg) saturate(2); }
 
 #room-view > canvas:nth-child(2) {
-  filter: sepia(0.5) hue-rotate(250deg) saturate(3); }
+  filter: brightness(1) sepia(0.7) hue-rotate(280deg) saturate(3); }
 
-.has_party #room-view > canvas:nth-child(2) {
-  -webkit-animation: party-mode 4s infinite;
-          animation: party-mode 4s infinite; }
+body.th-dark .ts-shift-main, body.th-dark #topBG .room-search-input .mag-glass, body.th-dark #topBG .room-list .roomListItem .roomAlbumArt[style*='empty-record.png'], body.th-dark #topBG #content #footer a, body.th-dark #tsPanel h1, body.th-dark #tsMute, body.th-dark .header-search, body.th-dark .settings-button, body.th-dark .header-logo, body.th-dark .logo, body.th-dark .header-logo2, body.th-dark .logo2, body.th-dark .favorite-star:hover, body.th-dark .header-social div:hover, body.th-dark .favorite-star.favorited, body.th-dark .header-bar .header-logo, body.th-dark .tab-item.selected .tab-icon, body.th-dark .tab-item:not(.selected):hover .tab-icon, body.th-dark .floating-menu .option.switch-menu.second .left-arrow, body.th-dark .options-menu .options .option:after, body.th-dark .new-modal .close-x, body.th-dark .new-modal .footer .carousel-left, body.th-dark .new-modal .footer .carousel-right, body.th-dark .profile .edit, body.th-dark #settings.settings-dropdown .volume-icon, body.th-dark #settings.settings-dropdown .dropdown .option .option.selected:before, body.th-dark #settings.settings-dropdown .dropdown .option .option:not(.selected):hover:before, body.th-dark #readybox img[src*=arrow], body.th-dark .room-tab .save-description-btn .icon, body.th-dark .room-tab .flat-button:after, body.th-dark #tsUpload, body.th-dark #playlist .mag-glass, body.th-dark #playlist .down-arrow, body.th-dark #playlist .playlist-edit, body.th-dark #playlist .playlist-trash, body.th-dark #playlist .playlist-queue, body.th-dark #playlist .queue-plus-icon, body.th-dark #playlist .playlist-queue-plus, body.th-dark #playlist .playlist-queue-inset, body.th-dark #playlist .playlist-move-bottom, body.th-dark #playlist .playlist-right-arrow, body.th-dark #playlist .playlist-queue-plus-inset, body.th-dark #playlist .song .playlist-checkbox, body.th-dark #maindiv .song-list .vinyl, body.th-dark #privateChatIcon .chatIcon, body.th-dark .pm-become-available, body.th-dark .pmGreyTop .pmWindowIcon,
+body.th-night .ts-shift-main,
+body.th-night #topBG .room-search-input .mag-glass,
+body.th-night #topBG .room-list .roomListItem .roomAlbumArt[style*='empty-record.png'],
+body.th-night #topBG #content #footer a,
+body.th-night #tsPanel h1,
+body.th-night #tsMute,
+body.th-night .header-search,
+body.th-night .settings-button,
+body.th-night .header-logo,
+body.th-night .logo,
+body.th-night .header-logo2,
+body.th-night .logo2,
+body.th-night .favorite-star:hover,
+body.th-night .header-social div:hover,
+body.th-night .favorite-star.favorited,
+body.th-night .header-bar .header-logo,
+body.th-night .tab-item.selected .tab-icon,
+body.th-night .tab-item:not(.selected):hover .tab-icon,
+body.th-night .floating-menu .option.switch-menu.second .left-arrow,
+body.th-night .options-menu .options .option:after,
+body.th-night .new-modal .close-x,
+body.th-night .new-modal .footer .carousel-left,
+body.th-night .new-modal .footer .carousel-right,
+body.th-night .profile .edit,
+body.th-night #settings.settings-dropdown .volume-icon,
+body.th-night #settings.settings-dropdown .dropdown .option .option.selected:before,
+body.th-night #settings.settings-dropdown .dropdown .option .option:not(.selected):hover:before,
+body.th-night #readybox img[src*=arrow],
+body.th-night .room-tab .save-description-btn .icon,
+body.th-night .room-tab .flat-button:after,
+body.th-night #tsUpload,
+body.th-night #playlist .mag-glass,
+body.th-night #playlist .down-arrow,
+body.th-night #playlist .playlist-edit,
+body.th-night #playlist .playlist-trash,
+body.th-night #playlist .playlist-queue,
+body.th-night #playlist .queue-plus-icon,
+body.th-night #playlist .playlist-queue-plus,
+body.th-night #playlist .playlist-queue-inset,
+body.th-night #playlist .playlist-move-bottom,
+body.th-night #playlist .playlist-right-arrow,
+body.th-night #playlist .playlist-queue-plus-inset,
+body.th-night #playlist .song .playlist-checkbox,
+body.th-night #maindiv .song-list .vinyl,
+body.th-night #privateChatIcon .chatIcon,
+body.th-night .pm-become-available,
+body.th-night .pmGreyTop .pmWindowIcon,
+body.th-cosmic .ts-shift-main,
+body.th-cosmic #topBG .room-search-input .mag-glass,
+body.th-cosmic #topBG .room-list .roomListItem .roomAlbumArt[style*='empty-record.png'],
+body.th-cosmic #topBG #content #footer a,
+body.th-cosmic #tsPanel h1,
+body.th-cosmic #tsMute,
+body.th-cosmic .header-search,
+body.th-cosmic .settings-button,
+body.th-cosmic .header-logo,
+body.th-cosmic .logo,
+body.th-cosmic .header-logo2,
+body.th-cosmic .logo2,
+body.th-cosmic .favorite-star:hover,
+body.th-cosmic .header-social div:hover,
+body.th-cosmic .favorite-star.favorited,
+body.th-cosmic .header-bar .header-logo,
+body.th-cosmic .tab-item.selected .tab-icon,
+body.th-cosmic .tab-item:not(.selected):hover .tab-icon,
+body.th-cosmic .floating-menu .option.switch-menu.second .left-arrow,
+body.th-cosmic .options-menu .options .option:after,
+body.th-cosmic .new-modal .close-x,
+body.th-cosmic .new-modal .footer .carousel-left,
+body.th-cosmic .new-modal .footer .carousel-right,
+body.th-cosmic .profile .edit,
+body.th-cosmic #settings.settings-dropdown .volume-icon,
+body.th-cosmic #settings.settings-dropdown .dropdown .option .option.selected:before,
+body.th-cosmic #settings.settings-dropdown .dropdown .option .option:not(.selected):hover:before,
+body.th-cosmic #readybox img[src*=arrow],
+body.th-cosmic .room-tab .save-description-btn .icon,
+body.th-cosmic .room-tab .flat-button:after,
+body.th-cosmic #tsUpload,
+body.th-cosmic #playlist .mag-glass,
+body.th-cosmic #playlist .down-arrow,
+body.th-cosmic #playlist .playlist-edit,
+body.th-cosmic #playlist .playlist-trash,
+body.th-cosmic #playlist .playlist-queue,
+body.th-cosmic #playlist .queue-plus-icon,
+body.th-cosmic #playlist .playlist-queue-plus,
+body.th-cosmic #playlist .playlist-queue-inset,
+body.th-cosmic #playlist .playlist-move-bottom,
+body.th-cosmic #playlist .playlist-right-arrow,
+body.th-cosmic #playlist .playlist-queue-plus-inset,
+body.th-cosmic #playlist .song .playlist-checkbox,
+body.th-cosmic #maindiv .song-list .vinyl,
+body.th-cosmic #privateChatIcon .chatIcon,
+body.th-cosmic .pm-become-available,
+body.th-cosmic .pmGreyTop .pmWindowIcon,
+body.th-midnight .ts-shift-main,
+body.th-midnight #topBG .room-search-input .mag-glass,
+body.th-midnight #topBG .room-list .roomListItem .roomAlbumArt[style*='empty-record.png'],
+body.th-midnight #topBG #content #footer a,
+body.th-midnight #tsPanel h1,
+body.th-midnight #tsMute,
+body.th-midnight .header-search,
+body.th-midnight .settings-button,
+body.th-midnight .header-logo,
+body.th-midnight .logo,
+body.th-midnight .header-logo2,
+body.th-midnight .logo2,
+body.th-midnight .favorite-star:hover,
+body.th-midnight .header-social div:hover,
+body.th-midnight .favorite-star.favorited,
+body.th-midnight .header-bar .header-logo,
+body.th-midnight .tab-item.selected .tab-icon,
+body.th-midnight .tab-item:not(.selected):hover .tab-icon,
+body.th-midnight .floating-menu .option.switch-menu.second .left-arrow,
+body.th-midnight .options-menu .options .option:after,
+body.th-midnight .new-modal .close-x,
+body.th-midnight .new-modal .footer .carousel-left,
+body.th-midnight .new-modal .footer .carousel-right,
+body.th-midnight .profile .edit,
+body.th-midnight #settings.settings-dropdown .volume-icon,
+body.th-midnight #settings.settings-dropdown .dropdown .option .option.selected:before,
+body.th-midnight #settings.settings-dropdown .dropdown .option .option:not(.selected):hover:before,
+body.th-midnight #readybox img[src*=arrow],
+body.th-midnight .room-tab .save-description-btn .icon,
+body.th-midnight .room-tab .flat-button:after,
+body.th-midnight #tsUpload,
+body.th-midnight #playlist .mag-glass,
+body.th-midnight #playlist .down-arrow,
+body.th-midnight #playlist .playlist-edit,
+body.th-midnight #playlist .playlist-trash,
+body.th-midnight #playlist .playlist-queue,
+body.th-midnight #playlist .queue-plus-icon,
+body.th-midnight #playlist .playlist-queue-plus,
+body.th-midnight #playlist .playlist-queue-inset,
+body.th-midnight #playlist .playlist-move-bottom,
+body.th-midnight #playlist .playlist-right-arrow,
+body.th-midnight #playlist .playlist-queue-plus-inset,
+body.th-midnight #playlist .song .playlist-checkbox,
+body.th-midnight #maindiv .song-list .vinyl,
+body.th-midnight #privateChatIcon .chatIcon,
+body.th-midnight .pm-become-available,
+body.th-midnight .pmGreyTop .pmWindowIcon, body.th-none .header-logo, body.th-none .logo, body.th-none .header-logo2, body.th-none .logo2,
+body.th-none .favorite-star:hover, body.th-none .header-social div:hover,
+body.th-none .favorite-star.favorited, body.th-none .header-bar .header-logo {
+  filter: invert(0) brightness(0.55) grayscale(1) sepia(1) hue-rotate(250deg) saturate(3); }
 
-.become-dj,
-.invite-dj,
-.header-bar .header-logo,
-.mini-djs .invite-dj-btn,
-.mini-djs .become-dj-btn,
-.favorite-star.favorited,
-.buddyListRoom .joinRoomButton,
-#privateChatIcon.open .chatIcon {
-  filter: hue-rotate(250deg) brightness(0.7) saturate(2); }
+body.th-dark .ts-shift-invert, body.th-dark #topBG .room-list .roomListItem .roomDJs.needed .icon, body.th-dark #settings.settings-dropdown .logout:before,
+body.th-night .ts-shift-invert,
+body.th-night #topBG .room-list .roomListItem .roomDJs.needed .icon,
+body.th-night #settings.settings-dropdown .logout:before,
+body.th-cosmic .ts-shift-invert,
+body.th-cosmic #topBG .room-list .roomListItem .roomDJs.needed .icon,
+body.th-cosmic #settings.settings-dropdown .logout:before,
+body.th-midnight .ts-shift-invert,
+body.th-midnight #topBG .room-list .roomListItem .roomDJs.needed .icon,
+body.th-midnight #settings.settings-dropdown .logout:before {
+  filter: invert(1) brightness(0.55) grayscale(1) sepia(1) hue-rotate(250deg) saturate(3); }
 
-.tab-item:not(.selected):hover .tab-icon {
-  filter: sepia(1) hue-rotate(250deg) saturate(4); }
+body.th-dark .ts-shift-mute, body.th-dark #topBG .room-list .roomListItem .roomListeners .icon, body.th-dark #topBG .room-list .roomListItem .roomDJs:not(.needed) .icon, body.th-dark .header-social div, body.th-dark .tab-item:not(.selected):not(:hover) .tab-icon, body.th-dark #settings.settings-dropdown .dropdown .option .option:before, body.th-dark .chat-bar .chatsound,
+body.th-night .ts-shift-mute,
+body.th-night #topBG .room-list .roomListItem .roomListeners .icon,
+body.th-night #topBG .room-list .roomListItem .roomDJs:not(.needed) .icon,
+body.th-night .header-social div,
+body.th-night .tab-item:not(.selected):not(:hover) .tab-icon,
+body.th-night #settings.settings-dropdown .dropdown .option .option:before,
+body.th-night .chat-bar .chatsound,
+body.th-cosmic .ts-shift-mute,
+body.th-cosmic #topBG .room-list .roomListItem .roomListeners .icon,
+body.th-cosmic #topBG .room-list .roomListItem .roomDJs:not(.needed) .icon,
+body.th-cosmic .header-social div,
+body.th-cosmic .tab-item:not(.selected):not(:hover) .tab-icon,
+body.th-cosmic #settings.settings-dropdown .dropdown .option .option:before,
+body.th-cosmic .chat-bar .chatsound,
+body.th-midnight .ts-shift-mute,
+body.th-midnight #topBG .room-list .roomListItem .roomListeners .icon,
+body.th-midnight #topBG .room-list .roomListItem .roomDJs:not(.needed) .icon,
+body.th-midnight .header-social div,
+body.th-midnight .tab-item:not(.selected):not(:hover) .tab-icon,
+body.th-midnight #settings.settings-dropdown .dropdown .option .option:before,
+body.th-midnight .chat-bar .chatsound {
+  filter: invert(0) brightness(0.4) grayscale(1) sepia(1) hue-rotate(270deg) saturate(1.5); }
 
-@-webkit-keyframes party-mode {
-  0% {
-    filter: sepia(0.5) hue-rotate(0deg) saturate(4); }
-  20% {
-    filter: sepia(0.5) hue-rotate(60deg) saturate(4); }
-  40% {
-    filter: sepia(0.5) hue-rotate(120deg) saturate(4); }
-  60% {
-    filter: sepia(0.5) hue-rotate(180deg) saturate(4); }
-  80% {
-    filter: sepia(0.5) hue-rotate(240deg) saturate(4); }
-  100% {
-    filter: sepia(0.5) hue-rotate(300deg) saturate(4); } }
+body.th-none #tsPanel a, body.th-none #overlay a, body.th-none #pmWindows a, body.th-none #topBG #content a, body.th-none #maindiv .tabbed-panel a, body.th-none .room-tab .num-listeners, body.th-none .room-tab .flat-button:hover h3, body.th-none #tsPanel label input:checked + span:after, body.th-none .options-menu:not(.closed) .nib:after, body.th-none .options-menu .options .option.checked, body.th-none .floating-menu .option.active, body.th-none .floating-menu .option.special:hover, body.th-none .floating-menu .option.selected, body.th-none .floating-menu .option.site-add, body.th-none .floating-menu .option.switch-menu.second .text, body.th-none #topBG .roomListItem .roomDJs.needed .count, body.th-none #topBG #buddyList #buddyListHeader .myStats span, body.th-none #topBG #buddyList .buddyListTitle .buddyCountMid, body.th-none #settings.settings-dropdown .logout, body.th-none .chat .message .subject:hover, body.th-none .chat .message .speaker:hover, body.th-none .chat .message.mention .text,
+body.th-dark #tsPanel a,
+body.th-dark #overlay a,
+body.th-dark #pmWindows a,
+body.th-dark #topBG #content a,
+body.th-dark #maindiv .tabbed-panel a,
+body.th-dark .room-tab .num-listeners,
+body.th-dark .room-tab .flat-button:hover h3,
+body.th-dark #tsPanel label input:checked + span:after,
+body.th-dark .options-menu:not(.closed) .nib:after,
+body.th-dark .options-menu .options .option.checked,
+body.th-dark .floating-menu .option.active,
+body.th-dark .floating-menu .option.special:hover,
+body.th-dark .floating-menu .option.selected,
+body.th-dark .floating-menu .option.site-add,
+body.th-dark .floating-menu .option.switch-menu.second .text,
+body.th-dark #topBG .roomListItem .roomDJs.needed .count,
+body.th-dark #topBG #buddyList #buddyListHeader .myStats span,
+body.th-dark #topBG #buddyList .buddyListTitle .buddyCountMid,
+body.th-dark #settings.settings-dropdown .logout,
+body.th-dark .chat .message .subject:hover,
+body.th-dark .chat .message .speaker:hover,
+body.th-dark .chat .message.mention .text,
+body.th-night #tsPanel a,
+body.th-night #overlay a,
+body.th-night #pmWindows a,
+body.th-night #topBG #content a,
+body.th-night #maindiv .tabbed-panel a,
+body.th-night .room-tab .num-listeners,
+body.th-night .room-tab .flat-button:hover h3,
+body.th-night #tsPanel label input:checked + span:after,
+body.th-night .options-menu:not(.closed) .nib:after,
+body.th-night .options-menu .options .option.checked,
+body.th-night .floating-menu .option.active,
+body.th-night .floating-menu .option.special:hover,
+body.th-night .floating-menu .option.selected,
+body.th-night .floating-menu .option.site-add,
+body.th-night .floating-menu .option.switch-menu.second .text,
+body.th-night #topBG .roomListItem .roomDJs.needed .count,
+body.th-night #topBG #buddyList #buddyListHeader .myStats span,
+body.th-night #topBG #buddyList .buddyListTitle .buddyCountMid,
+body.th-night #settings.settings-dropdown .logout,
+body.th-night .chat .message .subject:hover,
+body.th-night .chat .message .speaker:hover,
+body.th-night .chat .message.mention .text,
+body.th-cosmic #tsPanel a,
+body.th-cosmic #overlay a,
+body.th-cosmic #pmWindows a,
+body.th-cosmic #topBG #content a,
+body.th-cosmic #maindiv .tabbed-panel a,
+body.th-cosmic .room-tab .num-listeners,
+body.th-cosmic .room-tab .flat-button:hover h3,
+body.th-cosmic #tsPanel label input:checked + span:after,
+body.th-cosmic .options-menu:not(.closed) .nib:after,
+body.th-cosmic .options-menu .options .option.checked,
+body.th-cosmic .floating-menu .option.active,
+body.th-cosmic .floating-menu .option.special:hover,
+body.th-cosmic .floating-menu .option.selected,
+body.th-cosmic .floating-menu .option.site-add,
+body.th-cosmic .floating-menu .option.switch-menu.second .text,
+body.th-cosmic #topBG .roomListItem .roomDJs.needed .count,
+body.th-cosmic #topBG #buddyList #buddyListHeader .myStats span,
+body.th-cosmic #topBG #buddyList .buddyListTitle .buddyCountMid,
+body.th-cosmic #settings.settings-dropdown .logout,
+body.th-cosmic .chat .message .subject:hover,
+body.th-cosmic .chat .message .speaker:hover,
+body.th-cosmic .chat .message.mention .text,
+body.th-midnight #tsPanel a,
+body.th-midnight #overlay a,
+body.th-midnight #pmWindows a,
+body.th-midnight #topBG #content a,
+body.th-midnight #maindiv .tabbed-panel a,
+body.th-midnight .room-tab .num-listeners,
+body.th-midnight .room-tab .flat-button:hover h3,
+body.th-midnight #tsPanel label input:checked + span:after,
+body.th-midnight .options-menu:not(.closed) .nib:after,
+body.th-midnight .options-menu .options .option.checked,
+body.th-midnight .floating-menu .option.active,
+body.th-midnight .floating-menu .option.special:hover,
+body.th-midnight .floating-menu .option.selected,
+body.th-midnight .floating-menu .option.site-add,
+body.th-midnight .floating-menu .option.switch-menu.second .text,
+body.th-midnight #topBG .roomListItem .roomDJs.needed .count,
+body.th-midnight #topBG #buddyList #buddyListHeader .myStats span,
+body.th-midnight #topBG #buddyList .buddyListTitle .buddyCountMid,
+body.th-midnight #settings.settings-dropdown .logout,
+body.th-midnight .chat .message .subject:hover,
+body.th-midnight .chat .message .speaker:hover,
+body.th-midnight .chat .message.mention .text {
+  color: #ca5dc8 !important; }
 
-@keyframes party-mode {
-  0% {
-    filter: sepia(0.5) hue-rotate(0deg) saturate(4); }
-  20% {
-    filter: sepia(0.5) hue-rotate(60deg) saturate(4); }
-  40% {
-    filter: sepia(0.5) hue-rotate(120deg) saturate(4); }
-  60% {
-    filter: sepia(0.5) hue-rotate(180deg) saturate(4); }
-  80% {
-    filter: sepia(0.5) hue-rotate(240deg) saturate(4); }
-  100% {
-    filter: sepia(0.5) hue-rotate(300deg) saturate(4); } }
+body.th-none #tsPanel.active, body.th-none .tab-item:active, body.th-none .tab-item.selected,
+body.th-dark #tsPanel.active,
+body.th-dark .tab-item:active,
+body.th-dark .tab-item.selected,
+body.th-night #tsPanel.active,
+body.th-night .tab-item:active,
+body.th-night .tab-item.selected,
+body.th-cosmic #tsPanel.active,
+body.th-cosmic .tab-item:active,
+body.th-cosmic .tab-item.selected,
+body.th-midnight #tsPanel.active,
+body.th-midnight .tab-item:active,
+body.th-midnight .tab-item.selected {
+  border-color: #ca5dc8 !important; }
+
+body.th-none #tsSlider, body.th-none #buddyList, body.th-none .overlay .modal, body.th-none .overlay .modal .title, body.th-none #settings .volume-slider-fill, body.th-none #settings .volume-slider-knob:after, body.th-none #maindiv .song-list .song .scoregood,
+body.th-dark #tsSlider,
+body.th-dark #buddyList,
+body.th-dark .overlay .modal,
+body.th-dark .overlay .modal .title,
+body.th-dark #settings .volume-slider-fill,
+body.th-dark #settings .volume-slider-knob:after,
+body.th-dark #maindiv .song-list .song .scoregood,
+body.th-night #tsSlider,
+body.th-night #buddyList,
+body.th-night .overlay .modal,
+body.th-night .overlay .modal .title,
+body.th-night #settings .volume-slider-fill,
+body.th-night #settings .volume-slider-knob:after,
+body.th-night #maindiv .song-list .song .scoregood,
+body.th-cosmic #tsSlider,
+body.th-cosmic #buddyList,
+body.th-cosmic .overlay .modal,
+body.th-cosmic .overlay .modal .title,
+body.th-cosmic #settings .volume-slider-fill,
+body.th-cosmic #settings .volume-slider-knob:after,
+body.th-cosmic #maindiv .song-list .song .scoregood,
+body.th-midnight #tsSlider,
+body.th-midnight #buddyList,
+body.th-midnight .overlay .modal,
+body.th-midnight .overlay .modal .title,
+body.th-midnight #settings .volume-slider-fill,
+body.th-midnight #settings .volume-slider-knob:after,
+body.th-midnight #maindiv .song-list .song .scoregood {
+  background: #ca5dc8 !important; }
+
+body.th-none #topBG #create-room, body.th-none #buddyListHeader, body.th-none .new-modal .title, body.th-none .new-modal .close-x, body.th-none .modal button.submit, body.th-none .modal button.submit:hover, body.th-none .pmGreyTop.new-message, body.th-none .invite-dj, body.th-none .become-dj, body.th-none .mini-djs .invite-dj-btn, body.th-none .mini-djs .become-dj-btn, body.th-none #topBG .room-list .roomListItem .listenNow,
+body.th-dark #topBG #create-room,
+body.th-dark #buddyListHeader,
+body.th-dark .new-modal .title,
+body.th-dark .new-modal .close-x,
+body.th-dark .modal button.submit,
+body.th-dark .modal button.submit:hover,
+body.th-dark .pmGreyTop.new-message,
+body.th-dark .invite-dj,
+body.th-dark .become-dj,
+body.th-dark .mini-djs .invite-dj-btn,
+body.th-dark .mini-djs .become-dj-btn,
+body.th-dark #topBG .room-list .roomListItem .listenNow,
+body.th-night #topBG #create-room,
+body.th-night #buddyListHeader,
+body.th-night .new-modal .title,
+body.th-night .new-modal .close-x,
+body.th-night .modal button.submit,
+body.th-night .modal button.submit:hover,
+body.th-night .pmGreyTop.new-message,
+body.th-night .invite-dj,
+body.th-night .become-dj,
+body.th-night .mini-djs .invite-dj-btn,
+body.th-night .mini-djs .become-dj-btn,
+body.th-night #topBG .room-list .roomListItem .listenNow,
+body.th-cosmic #topBG #create-room,
+body.th-cosmic #buddyListHeader,
+body.th-cosmic .new-modal .title,
+body.th-cosmic .new-modal .close-x,
+body.th-cosmic .modal button.submit,
+body.th-cosmic .modal button.submit:hover,
+body.th-cosmic .pmGreyTop.new-message,
+body.th-cosmic .invite-dj,
+body.th-cosmic .become-dj,
+body.th-cosmic .mini-djs .invite-dj-btn,
+body.th-cosmic .mini-djs .become-dj-btn,
+body.th-cosmic #topBG .room-list .roomListItem .listenNow,
+body.th-midnight #topBG #create-room,
+body.th-midnight #buddyListHeader,
+body.th-midnight .new-modal .title,
+body.th-midnight .new-modal .close-x,
+body.th-midnight .modal button.submit,
+body.th-midnight .modal button.submit:hover,
+body.th-midnight .pmGreyTop.new-message,
+body.th-midnight .invite-dj,
+body.th-midnight .become-dj,
+body.th-midnight .mini-djs .invite-dj-btn,
+body.th-midnight .mini-djs .become-dj-btn,
+body.th-midnight #topBG .room-list .roomListItem .listenNow {
+  background: linear-gradient(to bottom right, #d47cd2, #c03fbd) !important; }
+
+body.th-none .chat .message.mention,
+body.th-dark .chat .message.mention,
+body.th-night .chat .message.mention,
+body.th-cosmic .chat .message.mention,
+body.th-midnight .chat .message.mention {
+  border-right-color: #ca5dc8; }
+
+body.th-none .board .lame-button,
+body.th-dark .board .lame-button,
+body.th-night .board .lame-button,
+body.th-cosmic .board .lame-button,
+body.th-midnight .board .lame-button {
+  filter: grayscale(1) !important; }
+
+body.th-none .tab-item:active,
+body.th-none .tab-item.selected,
+body.th-none #tsPanel .ts-tab.active,
+body.th-none .room-tab .flat-button:hover {
+  background: #ca5dc8 !important; }
+
+body.th-none .options-menu .options .option.checked,
+body.th-none .floating-menu .option.active,
+body.th-none .floating-menu .option.special,
+body.th-none .floating-menu .option.selected,
+body.th-none .floating-menu .option.site-add,
+body.th-none .floating-menu .option.switch-menu.second .text {
+  background: #ffffff; }
+
+body.th-none .room-tab .flat-button:hover h3,
+body.th-none #maindiv .song-list .song .scoregood {
+  color: #ffffff; }
+
+body.th-none #buddyListHeader,
+body.th-none .pmGreyTop.new-message {
+  border: none;
+  box-shadow: none; }
+
+body.th-none #buddyListHeader,
+body.th-none .pmGreyTop.new-message,
+body.th-none .invite-dj, body.th-none .become-dj,
+body.th-none .mini-djs .invite-dj-btn,
+body.th-none .mini-djs .become-dj-btn,
+body.th-none #topBG #create-room span,
+body.th-none .pmGreyTop.new-message .title,
+body.th-none #buddyListHeader #buddyListTitle {
+  color: #000000;
+  text-shadow: none; }

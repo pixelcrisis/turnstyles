@@ -1,35 +1,28 @@
-// turnStyles.js 
-// by pixelcrisis
+let turnStyles = {}
+// a thing by pixelcrisis
 
-const tS = {} // define our object
+require('./script/utils/ttdata.js')(turnStyles)
+require('./script/utils/events.js')(turnStyles)
+require('./script/utils/logger.js')(turnStyles)
+require('./script/utils/timing.js')(turnStyles)
+require('./script/utils/notify.js')(turnStyles)
 
-// import our utilities
-require('./script/config.js')(tS)
-require('./script/events.js')(tS)
-require('./script/room.js')(tS)
-require('./script/cache.js')(tS)
-require('./script/attach.js')(tS)
-require('./script/storage.js')(tS)
-require('./script/logging.js')(tS)
-require('./script/suspend.js')(tS)
-require('./script/heartbeat.js')(tS)
+require('./script/state/config.js')(turnStyles)
+require('./script/state/session.js')(turnStyles)
+require('./script/state/storage.js')(turnStyles)
 
-// attach our hotbar 
-require('./script/hotbar.js')(tS)
+require('./script/core/alerts.js')(turnStyles)
+require('./script/core/themes.js')(turnStyles)
+require('./script/core/volume.js')(turnStyles)
+require('./script/core/profile.js')(turnStyles)
+require('./script/core/playlist.js')(turnStyles)
 
-// import our UI features
-require('./script/themes.js')(tS)
-require('./script/modify.js')(tS)
-require('./script/volume.js')(tS)
+require('./script/core/panels.js')(turnStyles)
+require('./script/core/attach.js')(turnStyles)
 
-// import functionalities
-require('./script/afk.js')(tS)
-require('./script/stats.js')(tS)
-require('./script/nextdj.js')(tS)
-require('./script/notify.js')(tS)
-require('./script/alerts.js')(tS)
-require('./script/autobop.js')(tS)
-require('./script/reminder.js')(tS)
+require('./script/main/afk.js')(turnStyles)
+require('./script/main/auto.js')(turnStyles)
+require('./script/main/stats.js')(turnStyles)
 
-window.$tS = tS
-window.$tS.init() // attach.js
+// attach to the room
+turnStyles.attach()

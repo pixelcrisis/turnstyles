@@ -100,12 +100,12 @@ mentioned
 
 ## Support
 
-<a href="https://discord.gg/ZprHwNUw8y" target="_blank">
+<a href="https://discord.gg/wqmAVvgSbE" target="_blank">
   <img
     src="https://img.shields.io/discord/595791360477626380?color=green&label=%20support%20discord&logo=discord&logoColor=white&style=for-the-badge">
 </a>
 
-- Join the [turnStyles Support Server](https://discord.gg/ZprHwNUw8y) - Includes support for **beta versions**
+- Join the [turnStyles Support Server](https://discord.gg/wqmAVvgSbE) - Includes support for **beta versions**
 - Join the turntable.fm [Discord](https://discord.gg/jnRs4WnPjM) and ask in `#extensions-discussion`
 - [Open an Issue!](https://github.com/pixelcrisis/turnstyles/issues/new)
 
@@ -136,4 +136,4 @@ A full Privacy Statement can be found under [Privacy.md](Privacy.md).
 
 The full changelog of turnStyles can be found under
 [turnStyles/releases.](https://github.com/pixelcrisis/turnstyles/releases) or join the [support
-Discord](https://discord.gg/ZprHwNUw8y) for previews of next releases!
+Discord](https://discord.gg/wqmAVvgSbE) for previews of next releases!

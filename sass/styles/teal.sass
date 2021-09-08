@@ -1,8 +1,21 @@
-$accent: #00a5bc
+@import "../mixins"
 
-$button: hue-rotate(90deg) brightness(0.8) saturate(2)
-$others: hue-rotate(140deg) brightness(0.7) saturate(1)
-$lights: sepia(0.5) hue-rotate(160deg) saturate(4)
-$grayed: sepia(1) hue-rotate(160deg) saturate(4)
+$color: #54bfb4
+$shift: 75deg
 
-@import 'style'
+%tint-vote
+	@include tint($shift, 2, 0.8)
+
+%tint-back
+	@include shift($shift + 80deg, 4)
+
+%shift-main
+	@include recolor($shift + 50deg, 4, 0.55)
+
+%shift-invert
+	@include recolor($shift + 50deg, 4, 0.55, 1)
+
+%shift-mute
+	@include recolor($shift + 70deg, 2, 0.4)
+
+@import "base/style"

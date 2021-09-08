@@ -1,36 +1,86 @@
-.room-tab 
-  .room-name
-    color: $color-text
+.room-tab
+	.room-name
+		color: $text
 
-  .room-info-intro
-    border: none
-    @extend %content-main
+	.num-listeners
+		color: $main
+		font-weight: bold
 
-  .room-info-wrap
-    @extend %content-alt
-    border-color: $color-bg-0
+	.description-wrap
+		color: $text
 
-    .options-menu.closed .nib,
-    .save-description-btn .icon
-      @include recolor($color-subtle)
+	.room-info-wrap,
+	.room-info-intro
+		@extend .ts-content
+		border: none
 
-    .edit-description
-      @extend %content-alt
-      padding-bottom: 25px
+	.room-info-intro
+		padding-bottom: 0
+	
+	.room-info-wrap
+		padding-top: 0
 
-  .num-listeners,
-  .description-wrap
-    color: $color-subtle
+	.edit-description
+		color: $text
+		margin-top: 15px
+		background: $base-faded
 
-  .flat-button 
-    @extend %content-alt
-    border-color: $color-bg-0
+	.save-description-btn 
+		opacity: 1
+		filter: brightness(1.5)
+		&:hover
+			filter: brightness(2)
+		.icon
+			@extend .ts-shift-main
 
-    h3
-      color: $color-subtle
-    
-    &:hover 
-      background: $color-bg-2
-      
-      h3
-        color: $color-text
+	.flat-button
+		border: none
+		background: $base-faded
+		h3
+			color: $text-alt
+
+		&:hover
+			background: $base-faded
+			h3
+				color: $main
+
+		&:after
+			@extend .ts-shift-main
+
+.sliding-nav
+	.sliding-nav-pane-header
+		border: none
+		box-shadow: none
+		background: $base-faded
+	.sliding-nav-pane-title
+		color: $text
+		text-shadow: none
+
+button.sliding-nav-pane-back.back
+  width: 41px
+  outline: none
+  background-image: none
+
+  &::after
+    left: 0
+    top: -9px
+    content: $end
+    display: block
+    text-indent: 0
+    font-size: 1.3em
+    font-weight: bold
+    position: relative
+    color: $text-alt
+
+.guest-list
+	@extend .ts-content
+
+	.separator
+		color: $text
+		text-shadow: none
+		background: $base-faded
+		box-shadow: none
+		border-color: $base-inset
+
+	.guest
+		@extend .ts-striped-list

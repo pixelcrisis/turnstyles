@@ -1,0 +1,60 @@
+// styles always applied
+
+#room-view
+	background: #000000
+
+.section.statslink
+	text-align: center !important
+
+.chat .message.stat:not(:hover)
+	opacity: 0.5
+
+// header structural changes
+// for attaching the panel
+.header-bar
+	z-index: 1
+	font-size: 13px
+	line-height: 42px
+
+	.header-room
+		width: 100% !important
+		padding: 0 0 0 75px
+		
+	.header-room > div
+		position: initial !important
+		vertical-align: top !important
+		display: inline-block !important
+		margin: -2px 10px 0 0 !important
+
+// style the "playlist counter"
+#playlist-display em
+	top: 0
+	right: 25px
+	position: absolute
+	line-height: 27px
+
+// the "logbook" in the room tab
+#tsLogs
+	padding: 0 20px
+
+	span
+		display: block
+		padding-left: 10px
+
+// replace the upload button
+// with a homebrew organize button
+#upload-button
+	display: none
+
+#tsUpload
+	top: 6px
+	left: 8px
+	position: relative
+	width: 21px
+	height: 21px
+	padding: 0px
+	opacity: 0.7
+	border: none
+	cursor: pointer
+	filter: invert(1)
+	@include tt-gear()

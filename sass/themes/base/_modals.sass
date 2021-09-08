@@ -1,43 +1,139 @@
-.overlay .modal
-  .title
-    color: $color-bg-0
+#transition-modal,
+#mainPanelLoadOverlay
+	background: $base-faded
 
-  .content-container
-    background: $color-bg
+// main overlay structure
+#overlay .modal
+	background: $base-inset
+	box-shadow: 0 0 0 1px $base-faded
+	
+	.title
+		color: $text
+		text-shadow: none
+		background: $base-inset
+	
+	.content-container
+		border-radius: 0px
+		border-color: $base-hover
+		@extend .ts-content
+	
+		.section
+			border-color: $base-inset
+	
+		input, textarea
+			color: $text
+			border: none
+			box-shadow: none
+			background: $base-hover
 
-    .content
-      color: $color-text
+// custom close button
+#overlay .modal .close-x
+	top: -10px
+	left: -12px
+	width: 25px
+	height: 25px
+	color: $text-alt
+	border: 2px solid
+	border-radius: 50%
+	text-align: center
+	background-color: $base
+	background-image: none
 
-      .section
-        border-color: $color-bg-0
+	&:after
+		content: $end
+		display: block
+		font-size: 16px
+		margin: 3px 0 0 1px
 
-      input,
-      textarea
-        background: $color-bg-0
+	&:hover
+		color: $text
 
-      button,
-      button:hover
-        border: none
-        box-shadow: none
-        text-shadow: none
-        color: $color-bg-0
+// profile edit buttons, etc
+.modal button
+	color: $text-alt
+	background: $base-hover
+	border: none !important
+	box-shadow: none !important
+	text-shadow: none !important
+	
+	&:hover
+		color: $text
+		background: lighten($base-hover, 5%)
+	
+	&.submit
+		color: $base-inset
+	
+		&:hover
+			filter: brightness(1.2)
+	
+		&, &:hover
+			@extend .ts-gradient
 
-      button:not(.submit),
-      button:not(.submit):hover
-        background: $color-subtle
+// choose your avatar modal, etc
+.new-modal
+	text-shadow: none
+	.title
+		color: $base-inset
+		box-shadow: none
+		text-shadow: none
+		border-bottom-color: $base-faded
+		@extend .ts-gradient
 
-      .social
-        a
-          border: none !important
+	.close-x
+		@extend .ts-shift-main
 
-      .website
-        a
-          padding: 5px 10px
-          border: 1px dotted
-          border-radius: 5px
-          display: inline-block
-          background: transparent
+	.content
+		@extend .ts-content
 
-          &:hover
-            border-style: solid
-            filter: brightness(1.2)
+	.header
+		color: $text
+		text-shadow: none
+
+	.avatar
+		border: 1px solid $base
+
+		&:hover, &.current-avatar
+			box-shadow: none
+			background: $base-inset
+			border-color: $base-hover
+
+	.footer
+		background: $base-faded
+		.level
+			color: $text-alt
+
+		.carousel-left,
+		.carousel-right
+			@extend .ts-shift-main
+
+		.carousel-indicators li
+			background: $base-hover
+
+			&:hover, &.active
+				background: $main
+
+//specifically profile edit tweaks
+.profile
+	.edit
+		@extend .ts-shift-main
+
+	.social 
+		margin-right: 5px
+		a
+			border: none !important
+
+	.website a
+		color: $main
+		padding: 5px 10px
+		border: 1px dotted
+		border-radius: 5px
+		display: inline-block
+		background: transparent
+
+		&:hover
+			border-style: solid
+			filter: brightness(1.2)
+
+	.fans .stat-number:not(.disabled):hover, 
+	.fanofs .stat-number:not(.disabled):hover
+		color: $main

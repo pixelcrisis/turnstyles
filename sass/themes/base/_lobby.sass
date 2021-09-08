@@ -1,112 +1,172 @@
+// everything not in a room?
+
 #topBG
-  background: $color-bg
+	@extend .ts-content
 
-  #create-room 
-    span
-      text-shadow: none
-      font-weight: bold
-      color: $color-bg-0
-    .create-room
-      @include recolor($color-bg-0)
+	.header-logo2
+		width: 110px
+		height: 24px
+		margin: 8px 0
+		background-size: contain
 
-  #newsbox
-    color: $color-subtle
-    background: $color-bg-1
-  
-  #subNav
-    box-shadow: 0 -1px 0 0 $color-bg-2, inset 0 1px 0 0 $color-bg-3
+	.room-search-input
+		input
+			padding-left: 32px
+			@extend .ts-text-input
 
-  #subNav li,
-  #mainNav li
-    &.selected
-      margin-top: 10px
-      color: $color-text
-      background: $color-bg
+		.mag-glass
+			margin: 3px 0 0 2px
+			background-size: 35px
+			background-position: 0 -419px
+			@extend .ts-shift-main
 
-    &:not(.selected)
-      color: $color-subtle
+	.header-bar .settings-button
+		margin-top: 3px
 
-  .lobby-panel .lobby-panel-header
-    @extend %bg-gradient
+	#create-room
+		border: none 
+		@extend .ts-gradient
 
-  .room-list
-    margin-top: 1px
+		span
+			color: $base-inset
+			text-shadow: none
+			font-weight: bold
 
-  .room-list,
-  .roomListItem
-    background: $color-bg
+		.create-header
+			display: none
 
-  .roomListItem
-    @extend %border-x
+		&:hover
+			filter: brightness(1.2)
 
-    .roomName
-      color: $color-text
+	.lobby-panel
+		box-shadow: none
+		border: 1px solid $base-inset
 
-    .roomDJs,
-    .songName,
-    .roomListeners,
-    .moreRoomBuddies
-      color: $color-subtle
+	#newsbox .lobby-panel
+		color: $text-alt
+		background: $base-inset
+		border: 1px solid $base-hover
+		a
+			color: $main !important
 
-    .roomListBuddyIcon
-      border-color: $color-bg-3
-      background-color: $color-bg-0
+	#mainPanelHeader
+		color: $text
+		box-shadow: none
+		background: $base-faded
 
-    .roomDJs:not(.needed) .icon
-      @include recolor($color-subtle)
+	#subNav, #mainNav
+		box-shadow: none
+		text-shadow: none
 
-    .roomListeners .icon
-      @include recolor($color-subtle)
+		li.selected
+			font-weight: normal
+			box-shadow: none !important
+			background: $base !important
+			border-color: $base !important
 
-    .listenNow
-      box-shadow: none
-      text-shadow: none
-      border: 1px solid
-      color: $color-subtle
-      background: transparent
+	#subNav
+		margin: 0 -1px
+		background: $base-inset
+		li.selected
+			background: $base-faded
 
-  #footer a,
-  #footerMainNav
-    border-bottom: 1px solid $color-bg-0
+	.room-list
+		background: $base-inset
+		.roomListItem
+			@extend .ts-striped-list
+			margin: 0
 
-  #footerSubNav,
-  #footerTwitter a,
-  #footerTwitter2 a,
-  #footerFacebook a
-    border-top: 1px solid $color-bg-4
+			.roomName
+				color: $text
+			.roomDJs,
+			.songName,
+			.roomListeners,
+			.moreRoomBuddies
+				color: $text-alt
+			.roomListBuddyIcon
+				border-color: $base-hover
+				background-color: $base-faded
+			.roomListeners .icon,
+			.roomDJs:not(.needed) .icon
+				@extend .ts-shift-mute
+			.roomDJs.needed 
+				.icon
+					@extend .ts-shift-invert
+				.count
+					color: $main
+			.roomAlbumArt[style*='empty-record.png']
+				@extend .ts-shift-main
 
-  #footerCopyright
-    color: $color-subtle
 
-#buddyList
-  .buddyListTitle
-    @extend %bg-gradient
+			.listenNow
+				@extend .ts-gradient
+				border: none
+				color: $base-inset
+				box-shadow: none
+				text-shadow: none
+				&:hover
+					filter: brightness(1.2)
 
-    .buddyCount
-      background: $color-bg-0
-      
-    .buddyCountMid
-      color: $color-subtle
+	#buddyList
+		background: $base-inset
+		border: 1px solid $base-hover
+		
+		#buddyListHeader
+			text-shadow: none !important
+			background: $base-inset !important
+			.myName
+				color: $text
+			.myStats span
+				color: $main
+				font-weight: bold
+			.myStats
+				color: $text-alt
 
-  .buddyListTitleText
-    text-shadow: none
-    color: $color-subtle
+		#buddyListContent
+			margin-top: -2px
 
-  #buddyListHeader
-    .myName,
-    .myStats span
-      color: $color-text
+		.buddyListTitle
+			box-shadow: none
+			background: $base-faded
+			.buddyListTitleText
+				color: $text
+				text-shadow: none
+			.buddyCount
+				margin-top: 5px
+				background: transparent
+			.buddyCountMid
+				color: $main
+				text-shadow: none
+			.buddyCountIcon
+				display: none
 
-    .myStats
-      color: $color-subtle
+		.buddyListRoom
+			border-top: none
+			box-shadow: none
+			background: $base-inset
+			border-bottom: 1px solid $base-faded
+			.buddyRoomName
+				color: $text
+			.joinRoomButton
+				margin-top: -2px
+				text-align: right
+				background: none
+				&::after
+					color: $main
+					font-size: 10px
+					font-weight: bold
+					text-align: right
+					content: "Join Room ➜"
 
-  .buddyListRoom,
-  .buddyListTitle,
-  #buddyListHeader
-    @extend %border-x
-    color: $color-text
-    background: $color-bg-1
-
-    &:hover
-      @extend %border-x
-      background: $color-bg-2
+	#footerMainNav
+		border: none
+	#footerCopyright
+		color: $text-alt
+		text-shadow: none
+	#content #footer a
+		@extend .ts-shift-main
+		color: $text
+		border: none !important
+		text-shadow: none !important
+		&:not(:hover)
+			opacity: 0.8

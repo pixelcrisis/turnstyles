@@ -1,0 +1,33 @@
+// toggle-able CSS options
+
+// show logs
+body.logging #tsLogs
+	display: block
+
+// hide video, users, chat bubbles
+body.no_bub .speech-bubble,
+body.no_vid .screen-content,
+body.no_aud #room-view > canvas:nth-child(4)
+	display: none !important
+
+// highlight recently played songs
+body.played #queue .song.ts_played
+	box-shadow: inset -14px 0 36px -20px #ff0000 !important
+
+// unused party mode animation?
+body.has_party #room-view > canvas:nth-child(2)
+	animation: party-mode 4s infinite
+
+@keyframes party-mode
+	0%
+		@include shift(  0deg, 4)
+	20%
+		@include shift( 60deg, 4)
+	40%
+		@include shift(120deg, 4)
+	60%
+		@include shift(180deg, 4)
+	80%
+		@include shift(240deg, 4)
+	100%
+		@include shift(300deg, 4)

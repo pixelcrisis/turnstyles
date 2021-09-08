@@ -1,0 +1,41 @@
+#tsBar,
+#tsFull
+	padding: 10px
+
+#tsPanel
+	border-top: 2px solid $base-hover
+	@extend .ts-content
+
+	h1
+		@extend .ts-shift-main
+		opacity: 1
+
+	p
+		color: $text-alt
+
+	a
+		color: $main
+
+	label,
+	select,
+	button,
+	textarea,
+	input[type="text"]
+		color: $text
+		background-color: $base-faded
+
+	label
+		input:checked + span:after
+			color: $main
+		input:not(:checked) + span
+			color: $text-alt
+
+	.ts-tab
+		color: $text-alt
+		background: $base-faded
+		&.active
+			color: $text
+			background: $base-faded
+
+	&.active
+		border-color: $main

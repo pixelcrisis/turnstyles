@@ -1,45 +1,59 @@
-// replace the chat button
+// replace chat settings button
 #chat-form
-  left: 36px
-
+	left: 33px
 #ding-menu
-  margin-left: -71px
+	margin-left: -71px
+.chat-bar 
+	.chatsound-container
+		width: 21px
+		background: transparent
+	.chatsound
+		top: 4px
+		width: 21px
+		height: 22px
+		padding: 0px
+		border: none
+		cursor: pointer
+		@extend .ts-shift-main
+		@include tt-gear(35px, -519px)
 
-.chat-bar .chatsound-container
-  width: 23px !important
-  background: transparent !important
+// text input
+.chat-bar
+	box-shadow: none
+	background: $base-faded
+	box-sizing: border-box
+	border-bottom: none
+	border-top: 1px solid $base-inset
 
-.chat-bar .chatsound
-  top: -2px !important
-  width: 21px !important
-  height: 21px !important
-  padding: 0px !important
-  opacity: 0.7 !important
-  border: none !important
-  margin-top: 5px !important
-  cursor: pointer !important
-  background-size: 38px !important
-  background-position: 0 -563px !important
-  background-image: url(https://s3.amazonaws.com/assets.turntable.fm/images/sprites/chrome-sprite@2x.png) !important
+	#chat-input
+		@extend .ts-text-input
+		margin-top: -1px
 
+// messages
 .chat .message
-  &.action
-    color: $color-mods
-    border-right: 5px solid $color-mods
+	@extend .ts-striped-list
 
-  &.snag
-    color: $color-snag
-    border-right: 5px solid $color-snag
+	&.join, &.left, &.snag, &.action
+		border-right: 5px solid
 
-  &.join
-    color: $color-join
-    border-right: 5px solid $color-join
+	&.action
+		color: $mods
+	&.snag
+		color: $snag
+	&.join
+		color: $join
+	&.left
+		color: $left
 
-  &.left
-    color: $color-left
-    border-right: 5px solid $color-left
+	&.mention
+		border-right: 5px solid $main
+	&.mention .text
+		color: $main
+		
+	.subject:hover,
+	.speaker:hover
+		color: $main
 
-  &.stat
-    .subject:hover,
-    .speaker:hover
-      color: $color-text !important
+	&.stat .subject:hover,
+	&.stat .speaker:hover
+		color: $text

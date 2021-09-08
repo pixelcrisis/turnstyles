@@ -1,0 +1,40 @@
+body.th-none
+  .tab-item:active,
+  .tab-item.selected,
+  #tsPanel .ts-tab.active,
+  .room-tab .flat-button:hover,
+    background: $color !important
+
+  // remove backgrounds
+  .options-menu .options .option.checked,
+  .floating-menu .option.active,
+  .floating-menu .option.special,
+  .floating-menu .option.selected,
+  .floating-menu .option.site-add,
+  .floating-menu .option.switch-menu.second .text
+    background: #ffffff
+
+  .room-tab .flat-button:hover h3,
+  #maindiv .song-list .song .scoregood
+    color: #ffffff
+
+  // pm headers
+  #buddyListHeader,
+  .pmGreyTop.new-message
+    border: none
+    box-shadow: none
+  #buddyListHeader,
+  .pmGreyTop.new-message,
+  .invite-dj, .become-dj,
+  .mini-djs .invite-dj-btn,
+  .mini-djs .become-dj-btn,
+  #topBG #create-room span,
+  .pmGreyTop.new-message .title,
+  #buddyListHeader #buddyListTitle
+    color: #000000
+    text-shadow: none
+
+  .header-logo, .logo, .header-logo2, .logo2, 
+  .favorite-star:hover, .header-social div:hover, 
+  .favorite-star.favorited, .header-bar .header-logo
+    @extend %shift-main
