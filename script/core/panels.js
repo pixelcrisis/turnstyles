@@ -31,7 +31,7 @@ module.exports = app => {
         </div>
         <div id="tsFull">
           <div class="ts-row">
-            <h1>✖</h1>
+            <h1 class="ts_menu">✖</h1>
             <span class="ts-tab active" data-tab="general">General</span>
             <span class="ts-tab" data-tab="visual">Visual</span>
             <span class="ts-tab" data-tab="css">CSS</span>
@@ -76,7 +76,7 @@ module.exports = app => {
 
           <div class="ts-tabbed" data-tab="css">
             <p class="full">Add your own custom CSS snippets to turntable!</p>
-            <textarea id="ts_user_css" class="ts-flat" rows="10">
+            <textarea id="ts_user_css" class="ts-flat ts-user" rows="10">
               ${ this.config.user_css }
             </textarea>
             <div class="break"></div>
@@ -163,7 +163,7 @@ module.exports = app => {
 
   app._inputs = function (item) {
     return `
-      <input type="text" class="ts-flat"
+      <input type="text" class="ts-flat ts-user"
         id="ts_${item}" value="${ this.config[item] }">
       </input> 
     `
@@ -171,13 +171,13 @@ module.exports = app => {
 
   app._button = function (opt, name) {
     return `
-      <button class="ts-flat ts-button" data-for="ts_${opt}">${name}</button>
+      <button class="ts-flat ts-button ts-user" data-for="ts_${opt}">${name}</button>
     `
   }
 
   app._doFunc = function (func, name) {
     return `
-      <button class="ts-flat" onclick="$tS.${func}()">${name}</button>
+      <button class="ts-flat ts-user" onclick="$tS.${func}()">${name}</button>
     `
   }
 
