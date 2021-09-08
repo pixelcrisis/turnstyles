@@ -75,6 +75,7 @@ module.exports = app => {
 const Link = (id, url) => {
   let el = document.createElement('link')
   el.id = id
+  el.type = "text/css"
   el.rel = "stylesheet"
   el.href = url
   return el
