@@ -20,7 +20,6 @@ module.exports = app => {
   // define our HTML structures
   // for the options panel & partials
   app.Panel = function () {
-    console.log('TODO: Restructure Panel')
     return `
       <div id="tsPanel">
         <div id="tsBar">

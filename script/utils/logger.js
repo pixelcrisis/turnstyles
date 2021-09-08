@@ -24,7 +24,6 @@ module.exports = app => {
 
 	app.on('attach', function addLogPane () {
     $('#tsLogs').remove()
-    console.log('TODO: Test Logger Panel')
     $('.room-info-nav').after(`<div id="tsLogs"></div>`)
 	})
 
