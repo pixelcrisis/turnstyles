@@ -5,21 +5,21 @@ module.exports = app => {
 	// quick access to turntable room data
 	app.$User = () => window.turntable.user
 	app.$View = () => window.turntable.topViewController
+	app.$Chat = () => window.turntable.buddyList.pmWindows
 	app.$Room = () => window.turntable.topViewController.roomData
 
-	// get a username
-	app.$Name = userid => {
-		if (!userid) return 'Unknown'
-		// find the user in the room
-		let user = window.turntable.topViewController.userMap[userid]
+	// find username from id
+	app.$Name = id => {
+		if (!id) return 'Unknown'
+		// check the room for the user first
+		let user = app.$View().userMap[id]
 		if (user) return user.attributes.name
-		// else find the user via PM windows?
-		if (window.turntable.buddyList.pmWindows) {
-			let chat = window.turntable.buddyList.pmWindows[userid]
-			if (chat) return chat.otherUser.attributes.name
+		// else loop through PM windows for user
+		if (app.$Chat()) {
+			let buds = app.$Chat()[id]
+			if (buds) return buds.otherUser.attributes.name
 		}
-		// guess we have no idea
-		return 'Someone'
+		return 'Unknown' // nowhere else to check
 	}
 
 	// check if user was pinged in chat message
@@ -43,7 +43,6 @@ module.exports = app => {
 
 		// update the song delay as time of refresh
 		// then resume the song to force an update
-
 		if (sc.song) {
 			sc.songTime = sc.player.currentTime() / 1e3
 			sc.previewStartTime = Date.now() - 1000
@@ -57,7 +56,7 @@ module.exports = app => {
 		}
 
 		// close the panel on finish
-		$('#turnStyles').removeClass('active')
+		$('#tsPanel').removeClass('active')
 	}
 
 }
