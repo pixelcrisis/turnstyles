@@ -56,7 +56,7 @@ module.exports = app => {
 
 		// reload turnStyles
 		const script = document.createElement('script')
-		script.src = `${this.__base}/turnStyles.js?${Math.random()}`
+		script.src = `${this.__base}/turnStyles.js?v=${Math.random()}`
 		script.type = 'text/javascript'
 
 		this.Log('reloading')

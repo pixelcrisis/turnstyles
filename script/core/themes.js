@@ -40,7 +40,7 @@ module.exports = app => {
     // piece together our base URL using folder
     let base = `${this.__base}${ folder ? `/${folder}` : ''}`
     // null the URL if the option is nothing
-    let path = file ? `${base}/${file}.css` : '#'
+    let path = file ? `${base}/${file}.css?v=${Math.random()}` : '#'
     // create the link if it doesn't exist
     if (!el.length) document.head.append(Link(id, path))
     // otherwise we update the href
