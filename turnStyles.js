@@ -11,7 +11,6 @@ require('./script/state/config.js')(turnStyles)
 require('./script/state/session.js')(turnStyles)
 require('./script/state/storage.js')(turnStyles)
 
-require('./script/core/alerts.js')(turnStyles)
 require('./script/core/themes.js')(turnStyles)
 require('./script/core/volume.js')(turnStyles)
 require('./script/core/profile.js')(turnStyles)
