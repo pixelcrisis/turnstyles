@@ -114,186 +114,231 @@ module.exports = app => {
 
 module.exports = app => {
 
-  app.addPanel = function () {
-    $('#tsPanel').remove()
-    $('.header-bar').append(this.Panel())
-    // bind the panel toggle
-    $('#tsPanel .ts_menu').on('click', () => $('#tsPanel').toggleClass('active'))
-    // bind our tab switching
-    $('.ts-tab').on('click', function switchTab (e) {
-      $('.ts-tab.active, .ts-tabbed.active').removeClass('active')
+  app.bindPanel = function () {
+    $('#turnStyles').remove()
+    $('.header-bar').append(this.buildPanel())
+
+    // panel toggle bind
+    $('.ts-menu').on('click', () => $('#turnStyles').toggleClass('active'))
+
+    // bind tab switcher
+    $('.ts-tab').on('click', (e) => {
+      $('#turnStyles .active').removeClass('active')
       $(`*[data-tab="${e.target.dataset.tab}"]`).addClass('active')
     })
-    // save config on option change
-    $('.ts-button').on('click', this.saveConfig.bind(this))
+
+    // bind config changes
+    $('.ts-button').on('click',  this.saveConfig.bind(this))
     $('.ts-switch').on('change', this.saveConfig.bind(this))
   }
 
-  // define our HTML structures
-  // for the options panel & partials
-  app.Panel = function () {
-    return `
-      <div id="tsPanel">
-        <div id="tsBar">
-          <h1 class="ts_menu"></h1>
-          ${ this._toggle('is_afk',  'AFK') }
-          ${ this._toggle('autobop', 'Autobop') }
-          ${ this._toggle('nextdj',  'Next DJ') }
-          ${ this._toggle('auto_q',  'AutoQueue') }
-        </div>
-        <div id="tsFull">
-          <div class="ts-row">
-            <h1 class="ts_menu">✖</h1>
-            <span class="ts-tab active" data-tab="general">General</span>
-            <span class="ts-tab" data-tab="visual">Visual</span>
-            <span class="ts-tab" data-tab="css">CSS</span>
-            <span class="ts-tab" data-tab="alerts">Alerts</span>
-            <span class="ts-tab" data-tab="about">About</span>
-          </div>
+  // core HTML structures
+  app.buildPanel = function () { 
+    return `<div id="turnStyles">
+              ${ this.buildHotBar() }
+              ${ this.buildFullView() }
+            </div>`
+  }
 
-          <div class="ts-tabbed active" data-tab="general">
-            ${ this._toggle('autobop', 'Autobop') }
-            ${ this._toggle('nextdj',  'Next DJ Spot') }
-            ${ this._toggle('has_vol', 'Control Volume') }
-            
-            <div class="break"></div>
-            <p class="full">Paste your bot's queue message below to take the decks automatically when you're called.</p>
-            ${ this._toggle('auto_q', 'Enable Auto Queue') }
-            ${ this._inputs('q_ping') }
-            ${ this._button('q_ping', 'Save Queue Ping') }
-            
-            <div class="break"></div>
-            <p class="full">Sends the response when you go AFK, and if you get pinged while gone.</p>
-            ${ this._toggle('is_afk', 'Go AFK') } 
-            ${ this._inputs('afk_ping') }
-            ${ this._button('afk_ping', 'Save AFK Response') }
-          </div>
+  app.buildHotBar = function () {
+    return `<div id="hotBar">
+              <h1 class="ts-menu ts-open"></h1>
+              ${ this.addToggle('is_afk',  'AFK') }
+              ${ this.addToggle('autobop', 'Autobop') }
+              ${ this.addToggle('nextdj',  'Next DJ') }
+              ${ this.addToggle('auto_q',  'AutoQueue') }
+            </div>`
+  }
 
-          <div class="ts-tabbed" data-tab="visual">
-            <p class="full">Turntable Theme & Style</p>
-            ${ this._select('theme') }
-            ${ this._select('style') }
-            
-            <div class="break"></div>
-            <p class="full">Hide Various Elements Around Turntable</p>
-            ${ this._toggle('no_bub', 'Hide Chat Bubbles') }
-            ${ this._toggle('no_aud', 'Hide Audience') }
-            ${ this._toggle('no_vid', 'Hide Player') }
+  app.buildFullView = function() {
+    return `<div id="fullView">
+              <div class="ts-row">
+                <h1 class="ts-menu ts-close">✖</h1>
+                ${ this.addTab('General', true) }
+                ${ this.addTab('Visual') }
+                ${ this.addTab('CSS') }
+                ${ this.addTab('Alerts') }
+                ${ this.addTab('About') }
+              </div>
+
+              ${ this.buildGeneral() }
+              ${ this.buildVisual() }
+              ${ this.buildCSS() }
+              ${ this.buildAlerts() }
+              ${ this.buildAbout() }
+            </div>`
+  }
+
+  app.buildGeneral = function () {
+    return `<div data-tab="General" class="ts-row active">
+              ${ this.addToggle('autobop', 'Autobop') }
+              ${ this.addToggle('nextdj',  'Next DJ Spot') }
+              ${ this.addToggle('has_vol', 'Control Volume') }
+              
+              <div class="break"></div>
+              ${ this.addToggle('auto_q', 'Enable AutoQueue') }
+              ${ this.addString('q_ping') }
+              ${ this.addButton('q_ping', 'Save Queue Ping') }
+              <p>Paste your bot's queue message above to hop on deck automatically when you're called up.</p>
+
+              <div class="break"></div>
+              ${ this.addToggle('is_afk', 'Go AFK') } 
+              ${ this.addString('afk_ping') }
+              ${ this.addButton('afk_ping', 'Save AFK Response') }
+              <p>Sends the response when you go AFK, and if you get pinged while gone.</p>
+            </div>`
+  }
+
+  app.buildVisual = function () {
+    return `<div data-tab="Visual" class="ts-row">
+              ${ this.addChoice('theme') }
+              ${ this.addChoice('style') }
+              <p>Turntable Theme & Style</p>
+              
+              <div class="break"></div>
+              ${ this.addToggle('no_bub', 'Hide Chat Bubbles') }
+              ${ this.addToggle('no_aud', 'Hide Audience') }
+              ${ this.addToggle('no_vid', 'Hide Player') }
+              <p>Hide Various Elements Around Turntable</p>
+
+              <div class="break"></div>
+              ${ this.addToggle('played', 'Highlight Recently Played Songs') }
+              <p>Add A Red Glow To Songs Played Recently In Room</p>
+            </div>`
+  }
+
+  app.buildCSS = function () {
+    return `<div data-tab="CSS" class="ts-row">
+              <textarea id="ts_user_css" class="ts-inputs" rows="10">
+                ${ this.config.user_css }
+              </textarea>
+              <p>Add your own custom CSS snippets to turntable!</p>
+              <div class="break"></div>
+              ${ this.addButton('user_css', 'Save And Apply Styles') }
+            </div>`
+  }
+
+  app.buildAlerts = function () {
+    return `<div data-tab="Alerts" class="ts-row">
+              ${ this.addToggle('chat_song', 'Last Song Stats') }
+              ${ this.addToggle('chat_spun', 'Dropped DJ Stats') }
+              ${ this.addToggle('chat_snag', 'User Snags') }
+              ${ this.addToggle('chat_join', 'User Joins') }
+              ${ this.addToggle('chat_left', 'User Leaves') }
+              <p>Info Posted In Chat (Just For You To See)</p>
+              
+              <div class="break"></div>
+              ${ this.addToggle('ping_pm', 'On DMs') }
+              ${ this.addToggle('ping_chat', 'On Mentions') }
+              ${ this.addToggle('ping_song', 'On New Songs') }
+              <p>Send Desktop Notifications</p>
+
+              <div class="break"></div>
+              ${ this.addString('hot_words') }
+              ${ this.addButton('hot_words', 'Save Hot Words') }
+              <p>Notifies / highlights word match in chat. Use multiple words in a comma separated list.</p>
+            </div>`
+  }
+
+  app.buildAbout = function () {
+    return `<div data-tab="About" class="ts-row">
+              
+            ${ this.addToggle('logging',     'Show Logs In Room Tab') } 
+            ${ this.runScript('reloadMusic', 'Fix Glitched Players') }
+            ${ this.runScript('reload',      'Reload turnStyles') }
 
             <div class="break"></div>
-            <p class="full">Add A Red Glow To Songs Played Recently In Room</p>
-            ${ this._toggle('played', 'Highlight Recently Played Songs') }
-            
-          </div>
-
-          <div class="ts-tabbed" data-tab="css">
-            <p class="full">Add your own custom CSS snippets to turntable!</p>
-            <textarea id="ts_user_css" class="ts-flat ts-user" rows="10">
-              ${ this.config.user_css }
-            </textarea>
-            <div class="break"></div>
-            ${ this._button('user_css', 'Save And Apply Styles') }
-          </div>
-
-          <div class="ts-tabbed" data-tab="alerts">
-            <p class="full">Info Posted In Chat (Just For You To See)</p>
-            ${ this._toggle('chat_song', 'Last Song Stats') }
-            ${ this._toggle('chat_spun', 'Dropped DJ Stats') }
-            ${ this._toggle('chat_snag', 'User Snags') }
-            ${ this._toggle('chat_join', 'User Joins') }
-            ${ this._toggle('chat_left', 'User Leaves') }
-            
-            <div class="break"></div>
-            <p class="full">Send Desktop Notifications</p>
-            ${ this._toggle('ping_pm', 'On DMs') }
-            ${ this._toggle('ping_chat', 'On Mentions') }
-            ${ this._toggle('ping_song', 'On New Songs') }
-
-            <div class="break"></div>
-            <p class="full">Notifies / highlights word match in chat. Use multiple words in a comma separated list.</p>
-            ${ this._inputs('hot_words') }
-            ${ this._button('hot_words', 'Save Hot Words') }
-          </div>
-
-          <div class="ts-tabbed" data-tab="about">
-            ${ this._toggle('logging', 'Show Logs In Room Tab') } 
-            ${ this._doFunc('reloadMusic', 'Fix Glitched Players') }
-            ${ this._doFunc('reload', 'Reload turnStyles') }
-
-            <div class="break"></div>
-            <p class="full">turnStyles v${this.config.version}</p>
             <a class="ts_link" href="https://chrome.google.com/webstore/detail/turntable-tweaks/pmlkackfnbbnjfejpddpakallilkbdme" target="_blank">Chrome Store</a>
             <a class="ts_link" href="https://addons.mozilla.org/en-US/firefox/addon/turnstyles-for-turntable-fm/" target="_blank">Firefox Addon</a>
             <a class="ts_link" href="https://ts.pixelcrisis.co" target="_blank">Bookmarklet</a>
+            <p>turnStyles v${this.config.version}</p>
 
             <div class="break"></div>
-            <p class="full">Support On Discord</p>
             <a class="ts_link" href="https://discord.gg/wqmAVvgSbE" target="_blank">turnStyles Discord</a>
             <a class="ts_link" href="https://discord.gg/jnRs4WnPjM" target="_blank">Turntable.fm Discord</a>
+            <p>Support On Discord</p>
 
             <div class="break"></div>
-            <p class="full">On Github</p>
             <a class="ts_link" href="https://github.com/pixelcrisis/turnstyles" target="_blank">turnStyles</a>
             <a class="ts_link" href=""https://github.com/fluteds/ttscripts target="_blank">ttscripts (themes + more)</a>
+            <p>On Github</p>
 
             <div class="break"></div>
-            <p class="full">The Developer</p>
             <strong>Turntable: <em>@crisis</em></strong>&nbsp;-&nbsp;
             <strong>Discord: <em>@crisis</em></strong>
-          </div>
-          </div>
-        </div>
-      </div>
-    `
+            <p>The Developer</p>
+            </div>`
   }
 
-  app._toggle = function (item, name) {
-    return `
-      <label class="ts-flat">
-        <input class="ts-switch" type="checkbox"
-          data-for="${item}" ${ this.config[item] ? 'checked' : ''}> 
-        <span class="ts-icon"></span> ${name}
-      </label>
-    `
+  // partial HTML structures
+  app.addTab = function (name, active) {
+    return `<span data-tab="${name}"
+              class="ts-tab ${active ? 'active' : ''}">
+              ${name}
+            </span>`
+
   }
 
-  app._select = function (list, none) {
+  // checked if option true
+  app.checked = function (item) {
+    return this.config[item] ? 'checked' : ''
+  }
+
+  app.addToggle = function (item, name) {
+    return `<label class="ts-toggle">
+              <input 
+                type="checkbox"
+                class="ts-switch"
+                data-for="${item}"
+                ${ this.checked(item) }>
+              <span class="ts-state"></span>
+              ${name}
+            </label>`
+  }
+
+  app.addString = function (item) {
+    return `<input 
+              type="text"
+              id="ts_${item}"
+              class="ts-inputs"
+              value="${ this.config[item] }">
+            </input>`
+  }
+
+  app.addButton = function (item, name) {
+    return `<button 
+              class="ts-button"
+              data-for="ts_${item}">
+              ${name}
+            </button>`
+  }
+
+  app.selected = function (list, key) {
+    return this.config[list] == key ? 'selected' : ''
+  }
+
+  app.addChoice = function (list, none) {
     const upper = str => str[0].toUpperCase() + str.substring(1)
     const empty = arr => `<option value="">No ${ upper(arr) }</option>`
 
+    return `<select class="ts-choice ts-switch" data-for="${list}">
+              ${ empty(list) }
+              ${ Object.keys(this.options[list]).map(key => `
+                  <option value="${key}" ${ this.selected(list, key)}>
+                    ${ this.options[list][key] }
+                  </option>
+                `).join('') }
+            </select>
+            `
+  }
+
+  app.runScript = function (func, name) {
     return `
-      <select class="ts-flat ts-switch" data-for="${list}">
-        ${ none ? '' : empty(list) }
-        ${ Object.keys(this.options[list]).map(key => `
-          <option value="${key}" ${this.config[list] == key ? 'selected' : ''}>
-            ${this.options[list][key]}
-          </option>
-        `).join('') }
-      </select>
+      <button class="ts-button" onclick="$tS.${func}()">${name}</button>
     `
   }
 
-  app._inputs = function (item) {
-    return `
-      <input type="text" class="ts-flat ts-user"
-        id="ts_${item}" value="${ this.config[item] }">
-      </input> 
-    `
-  }
-
-  app._button = function (opt, name) {
-    return `
-      <button class="ts-flat ts-button ts-user" data-for="ts_${opt}">${name}</button>
-    `
-  }
-
-  app._doFunc = function (func, name) {
-    return `
-      <button class="ts-flat ts-user" onclick="$tS.${func}()">${name}</button>
-    `
-  }
-
-  app.on('attach', app.addPanel)
+  app.on('attach', app.bindPanel)
 
 }
 },{}],4:[function(require,module,exports){
