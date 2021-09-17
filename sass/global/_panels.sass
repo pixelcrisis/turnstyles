@@ -1,113 +1,52 @@
-#tsPanel
+#turnStyles
   color: #eaeaea
   background: #2f2f2f
 
-#tsPanel *
-  box-sizing: border-box
-
-#tsBar,
-#tsFull
+#hotBar,
+#fullView
   display: none
-  margin: 0 auto
   flex-wrap: wrap
+  margin: 0 auto
   max-width: 960px
   line-height: 1em
-  font-weight: bold
   padding: 10px 20px
   align-items: center
 
-.header-bar:hover #tsPanel:not(.active) #tsBar
-  display: flex
+#turnStyles.active 
+  #hotBar
+    display: none
+  #fullView
+    display: flex
 
-#tsFull .ts-row,
-#tsFull .ts-tabbed
-  display: flex
-  flex-wrap: wrap
-  align-items: center
+.header-bar:hover
+  #turnStyles:not(.active)
+    #hotBar
+      display: flex
 
-#tsFull .ts-tabbed:not(.active)
-  display: none
-
-#tsPanel.active .ts_menu
-  opacity: 1
-  font-size: 21px
-  padding: 3px 0 0 7px
-  background-image: none
-
-#tsPanel.active  #tsFull
-  display: block
-
-#tsPanel .ts_menu
+.ts-menu
   width: 30px
   height: 20px
   opacity: 0.7
   cursor: pointer
-  background-size: 37px
-  background-position: 0 -549px
-  background-image: url(https://s3.amazonaws.com/assets.turntable.fm/images/sprites/chrome-sprite@2x.png)
+  font-size: 20px
+  display: inline-block
 
   &:hover
-    opacity: 0.8
+    opacity: 0.9
 
-#tsPanel a
-  color: #f3cc12
-  border: none
-  display: block
-  font-weight: bold
-  text-decoration: none
+  &.ts-open
+    margin-right: 5px
+    @include tt-gear(37px, -549px)
 
-#tsPanel .ts-tab,
-#tsPanel .ts-flat
-  border: none
-  outline: none
-  color: #ffffff
-  cursor: pointer
-  font-size: 0.8em
-  padding: 5px 10px
-  font-weight: bold
-  margin-right: 10px
-  border-radius: 5px
-  background: #444444
-
-#tsPanel .ts-tab,
-#tsPanel .ts-flat:not(input):not(textarea)
-  text-transform: uppercase
-
-
-#tsPanel  p
-  color: #a4a4a4
-  font-weight: normal
-
-  &:not(.full)
-    margin: -5px 0 10px
-
-  &.full
-    margin-bottom: 5px
-
-#tsPanel .ts-user
-  padding: 6px 10px 7px
-
-#tsPanel textarea,
-#tsPanel input[type="text"]
-  width: 100%
-  max-width: 300px
-  text-transform: none
-
-#tsPanel select
-  padding-left: 24px
-  -webkit-appearance: none
-  background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>")
-  background-repeat: no-repeat
-  background-position-x: 0
-  background-position-y: -2px
+  &.ts-close
+    padding: 5px 0 0 4px
 
 .ts-tab
   margin-right: 0px 
   border-radius: 0px
 
   &.active
-    color: #000000
-    background: #f3cc12
+    color: #f3cc12
 
   &:first-of-type 
     border-top-left-radius: 5px
@@ -117,37 +56,54 @@
     border-top-right-radius: 5px
     border-bottom-right-radius: 5px
 
-.ts-tabbed
-  padding: 10px 5px
+.ts-row
+  display: flex
+  flex-wrap: wrap
+  align-items: center
+  flex-basis: 100%
+
+  + .ts-row
+    margin-top: 15px
 
   a
-   margin: 0 15px 10px 0
+    color: #f3cc12
+    margin-right: 10px
 
-  .full,
+  p
+    color: #b3b3b3
+    flex-basis: 100%
+    margin-top: 5px
+
   .break
+    height: 15px
     flex-basis: 100%
 
-  .break
-    height: 5px
-
-  label,
-  select,
-  button,
-  textarea,
-  input[type="text"]
-    margin-bottom: 10px
-
-  &:not(.active)
+  &[data-tab]:not(.active)
     display: none
 
-#tsPanel label
-  input
-    display: none
+.ts-tab,
+.ts-toggle,
+.ts-inputs,
+.ts-button,
+.ts-choice
+  color: #eaeaea
+  cursor: pointer
+  font-size: 0.9em
+  font-weight: bold
+  padding: 5px 10px
+  background: #444444
+
+.ts-toggle
+  margin-right: 5px
+  border-radius: 5px
 
   span
     width: 12px
     font-size: 12px
     display: inline-block
+
+  input
+    display: none
 
   input:checked + span:after
     color: #f3cc12
@@ -156,3 +112,19 @@
   input:not(:checked) + span:after
     content: '✘'
     opacity: 0.75
+
+.ts-inputs
+  width: 100%
+  outline: none
+  margin-right: 5px
+  max-width: 300px
+  border-radius: 5px
+  font-weight: normal
+  background: #2f2f2f
+  border: 1px solid #444444
+
+.ts-button,
+.ts-choice
+  border: none
+  border-radius: 5px
+  margin-right: 5px

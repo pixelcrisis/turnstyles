@@ -1,8 +1,8 @@
-#tsBar,
-#tsFull
+#hotBar,
+#fullView
 	padding: 10px
 
-#tsPanel
+#turnStyles
 	border-top: 2px solid $base-hover
 	@extend .ts-content
 
@@ -18,11 +18,14 @@
 
 	label,
 	select,
-	button,
-	textarea,
-	input[type="text"]
+	button
 		color: $text
 		background-color: $base-faded
+
+	textarea,
+	input[type="text"]
+		background: transparent
+		border-color: $base-hover
 
 	label
 		input:checked + span:after
