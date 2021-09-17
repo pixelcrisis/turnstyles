@@ -150,7 +150,7 @@ module.exports = app => {
     const empty = arr => `<option value="">No ${ upper(arr) }</option>`
 
     return `
-      <select class="ts-flat" data-for="${list}" class="ts-switch">
+      <select class="ts-flat ts-switch" data-for="${list}">
         ${ none ? '' : empty(list) }
         ${ Object.keys(this.options[list]).map(key => `
           <option value="${key}" ${this.config[list] == key ? 'selected' : ''}>
