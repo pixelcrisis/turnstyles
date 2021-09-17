@@ -10,7 +10,7 @@ module.exports = app => {
     if (!is_afk || !afk_ping) return
     // send out afk message on mention
     // don't send messages to ourselves
-    if (!e.$self) this.Speak(afk_ping)
+    if (!e.$self && e.$ping) this.Speak(afk_ping)
     // and if it was us, we aren't afk
     // as long as we don't count our afk message
     else if (e.text != afk_ping) {
