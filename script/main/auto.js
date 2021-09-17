@@ -6,7 +6,7 @@ module.exports = app => {
   app.on(['attach', 'newsong'], function autoBop () {
     // reset our timeout every call
     if (this.bop) clearTimeout(this.bop)
-    if (!this.config.autoBop) return
+    if (!this.config.autobop) return
 
     // use random intervals to Bop
     const delay = (Math.random() * 7) * 100
