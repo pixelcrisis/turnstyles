@@ -13,7 +13,7 @@ module.exports = app => {
     if (!e.$self && e.$ping) this.Speak(afk_ping)
     // and if it was us, we aren't afk
     // as long as we don't count our afk message
-    else if (e.text != afk_ping) {
+    else if (e.$self && e.text != afk_ping) {
       this.setConfig('is_afk', false)
       this.Post({
         head: `Welcome Back!`,
