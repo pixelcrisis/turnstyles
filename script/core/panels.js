@@ -152,10 +152,13 @@ module.exports = app => {
             <p>On Github</p>
 
             <div class="break"></div>
-            <a href="https://patreon.com/pixelcrisis">❤ Patreon</a>
-            -&nbsp;<strong>Turntable: <em>@crisis</em></strong>&nbsp;-&nbsp;
+            <strong>Turntable: <em>@crisis</em></strong>&nbsp;-&nbsp;
             <strong>Discord: <em>@crisis</em></strong>
             <p>The Developer</p>
+
+            <div class="break"></div>
+            <a href="https://patreon.com/pixelcrisis">Make Requests On Patreon!</a>
+            <p>Patrons can get features and themes added!</p>
             </div>`
   }
 
