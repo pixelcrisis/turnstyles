@@ -136,23 +136,24 @@ module.exports = app => {
             ${ this.runScript('reload',      'Reload turnStyles') }
 
             <div class="break"></div>
-            <a class="ts_link" href="https://chrome.google.com/webstore/detail/turntable-tweaks/pmlkackfnbbnjfejpddpakallilkbdme" target="_blank">Chrome Store</a>
-            <a class="ts_link" href="https://addons.mozilla.org/en-US/firefox/addon/turnstyles-for-turntable-fm/" target="_blank">Firefox Addon</a>
-            <a class="ts_link" href="https://ts.pixelcrisis.co" target="_blank">Bookmarklet</a>
+            <a href="https://chrome.google.com/webstore/detail/turntable-tweaks/pmlkackfnbbnjfejpddpakallilkbdme" target="_blank">Chrome Store</a>
+            <a href="https://addons.mozilla.org/en-US/firefox/addon/turnstyles-for-turntable-fm/" target="_blank">Firefox Addon</a>
+            <a href="https://ts.pixelcrisis.co" target="_blank">Bookmarklet</a>
             <p>turnStyles v${this.config.version}</p>
 
             <div class="break"></div>
-            <a class="ts_link" href="https://discord.gg/wqmAVvgSbE" target="_blank">turnStyles Discord</a>
-            <a class="ts_link" href="https://discord.gg/jnRs4WnPjM" target="_blank">Turntable.fm Discord</a>
+            <a href="https://discord.gg/wqmAVvgSbE" target="_blank">turnStyles Discord</a>
+            <a href="https://discord.gg/jnRs4WnPjM" target="_blank">Turntable.fm Discord</a>
             <p>Support On Discord</p>
 
             <div class="break"></div>
-            <a class="ts_link" href="https://github.com/pixelcrisis/turnstyles" target="_blank">turnStyles</a>
-            <a class="ts_link" href=""https://github.com/fluteds/ttscripts target="_blank">ttscripts (themes + more)</a>
+            <a href="https://github.com/pixelcrisis/turnstyles" target="_blank">turnStyles</a>
+            <a href=""https://github.com/fluteds/ttscripts target="_blank">ttscripts (themes + more)</a>
             <p>On Github</p>
 
             <div class="break"></div>
-            <strong>Turntable: <em>@crisis</em></strong>&nbsp;-&nbsp;
+            <a href="https://patreon.com/pixelcrisis">❤ Patreon</a>
+            -&nbsp;<strong>Turntable: <em>@crisis</em></strong>&nbsp;-&nbsp;
             <strong>Discord: <em>@crisis</em></strong>
             <p>The Developer</p>
             </div>`
