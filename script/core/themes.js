@@ -45,7 +45,7 @@ module.exports = app => {
     if (!el.length) document.head.append(Link(id, path))
     // otherwise we update the href
     else el.attr('href', path)
-    if (path != "#") this.Log(`inserted: ${path}`)
+    if (path != "#") this.Log(`inserted: ${path.split('?v')[0]}`)
 
     // update the body class
     if (folder == 'themes') {
