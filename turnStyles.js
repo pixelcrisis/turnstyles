@@ -22,6 +22,7 @@ require('./script/core/attach.js')(turnStyles)
 require('./script/main/afk.js')(turnStyles)
 require('./script/main/auto.js')(turnStyles)
 require('./script/main/stats.js')(turnStyles)
+require('./script/main/alerts.js')(turnStyles)
 
 // attach to the room
 turnStyles.attach()
