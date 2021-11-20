@@ -16,6 +16,7 @@ module.exports = app => {
 		q_ping: `Hey @user - it's your turn!`,
 
 		has_vol: false,
+		stamps: false,
 
 		no_aud: false,
 		no_vid: false,

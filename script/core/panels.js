@@ -87,7 +87,8 @@ module.exports = app => {
               ${ this.addToggle('no_bub', 'Hide Chat Bubbles') }
               ${ this.addToggle('no_aud', 'Hide Audience') }
               ${ this.addToggle('no_vid', 'Hide Player') }
-              <p>Hide Various Elements Around Turntable</p>
+              ${ this.addToggle('stamps', 'Add Timestamps To Chat') }
+              <p>Hide/Show Various Elements Around Turntable</p>
 
               <div class="break"></div>
               ${ this.addToggle('played', 'Highlight Recently Played Songs') }

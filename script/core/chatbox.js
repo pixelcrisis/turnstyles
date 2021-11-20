@@ -12,6 +12,7 @@ module.exports = app => {
 
   // add timestamps to chat window
   app.on('speak', function (e) {
+    if (!this.config.stamps) return
     let message = $('.chat .messages .message:last-of-type')
     let matches = message[0].innerText.includes(e.text)
     let stamped = message.has('.timestamp').length
