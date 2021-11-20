@@ -3,7 +3,7 @@
 module.exports = app => {
 
   // retrieve and post song stats from session
-  app.on('tracked', function (stat) {
+  app.on('tracked', function alertTracked (stat) {
     // stats on new song
     let curr = this.now_playing
     let last = this.last_played
@@ -23,7 +23,7 @@ module.exports = app => {
   })
 
   // retrieve and post dj stats from session
-  app.on('dropped', function (name, stat) {
+  app.on('dropped', function alertDropped (name, stat) {
     // stats for DJ dropping
     if (this.config.chat_spun) this.Post({
       head: `${name} - ${stat}`,
