@@ -110,6 +110,35 @@ module.exports = app => {
 
 }
 },{}],3:[function(require,module,exports){
+// chatbox.js | modifying the chatbox
+
+module.exports = app => {
+
+  // fade out 'started playing' messages
+  app.on('newchat', function (el) {
+    let last = $(el).children('.message').last()
+    let user = last.has('.avatar').length
+    let text = last[0].innerText.includes('started playing')
+    if (!user && text) last.addClass('stat')
+  })
+
+  // add timestamps to chat window
+  app.on('speak', function (e) {
+    if (!this.config.stamps) return
+    let message = $('.chat .messages .message:last-of-type')
+    let matches = message[0].innerText.includes(e.text)
+    let stamped = message.has('.timestamp').length
+
+    if (!stamped && matches) {
+      let _time = new Date().toLocaleTimeString('en-US')
+      let stamp = _time.split(':').slice(0, 2).join(':')
+
+      message.prepend(`<div class="timestamp">${stamp}</div>`)
+    }
+  })
+
+}
+},{}],4:[function(require,module,exports){
 // inputs.js | handle the hotbar/options panel
 
 module.exports = app => {
@@ -199,7 +228,8 @@ module.exports = app => {
               ${ this.addToggle('no_bub', 'Hide Chat Bubbles') }
               ${ this.addToggle('no_aud', 'Hide Audience') }
               ${ this.addToggle('no_vid', 'Hide Player') }
-              <p>Hide Various Elements Around Turntable</p>
+              ${ this.addToggle('stamps', 'Add Timestamps To Chat') }
+              <p>Hide/Show Various Elements Around Turntable</p>
 
               <div class="break"></div>
               ${ this.addToggle('played', 'Highlight Recently Played Songs') }
@@ -345,7 +375,7 @@ module.exports = app => {
   app.on('attach', app.bindPanel)
 
 }
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 // playlist.js | modifying the playlist
 
 module.exports = app => {
@@ -408,7 +438,7 @@ module.exports = app => {
     if (key == 'played') this.classes('played', val)
   })
 }
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 // profile.js | modifying the user profile
 
 module.exports = app => {
@@ -429,7 +459,7 @@ module.exports = app => {
   })
 
 }
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 // themes.js | handles loading/reloading themes/styles
 
 module.exports = app => {
@@ -521,7 +551,7 @@ const CSS = style => {
   el.innerHTML = style
   return el
 }
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 // volume.js | replace the turntable volume
 
 module.exports = app => {
@@ -641,7 +671,7 @@ const currentVol = e => {
 
 // get the volume from tt, but make it spicy
 const naturalVol = () => convertVol(currentVol())
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 // afk.js | respond to dings with an AFK message
 
 module.exports = app => {
@@ -675,7 +705,58 @@ module.exports = app => {
   })
 
 }
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
+// alerts.js | sending data to chat/notifications
+
+module.exports = app => {
+
+  // notify on new PMs
+  app.on('pmmed', function notifyPMs (e) {
+    if (this.config.ping_pm) this.Notify({
+      head: `New PM ${e.$from ? `from: ${e.$from}` : ''}`,
+      body: e.text,
+      type: 'pm_ping'
+    })
+  })
+
+  // notify on new mentions
+  app.on('speak', function notifyMentions (e) {
+    if (this.config.ping_chat && e.$ping) this.Notify({
+      head: `[${this.view().roomData.name}] @${e.name}`,
+      body: e.text,
+      type: 'chat_ping'
+    })
+  })
+
+  // alert on snags
+  app.on('snagged', function alertSnags (e) {
+    if (this.config.chat_snag) this.Post({
+      head: e.$name,
+      body: `has snagged this track!`,
+      type: 'snag'
+    })
+  })
+
+  // alert on joins
+  app.on('registered', function alertJoined (e) {
+    if (this.config.chat_join) for (let user of e.user) this.Post({
+      head: user.name,
+      body: 'joined.',
+      type: 'join'
+    })
+  })
+
+  // alert on leave
+  app.on('deregistered', function alertLeft (e) {
+    if (this.config.chat_left) for (let user of e.user) this.Post({
+      head: user.name,
+      body: 'left.',
+      type: 'left'
+    })
+  })
+
+}
+},{}],11:[function(require,module,exports){
 // auto.js | our automatic functions
 
 module.exports = app => {
@@ -743,41 +824,43 @@ module.exports = app => {
   })
 
 }
-},{}],10:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 // stats.js | tracking and posting song/dj stats
 
 module.exports = app => {
 
   // retrieve and post song stats from session
-  app.on('tracked', function (stat) {
+  app.on('tracked', function alertTracked (stat) {
     // stats on new song
     let curr = this.now_playing
     let last = this.last_played
-    if (curr.song && this.config.ping_song) {
-      // send new song notifications
-      let head = `Now Playing: ${curr.song}`
-      let body = stat || `By: ${curr.artist}`
-      this.Notify({ head, body })
-    }
 
-    if (stat && this.config.chat_song) {
-      // send last played stats to chat
-      let body = `${last.song} by ${last.artist}`
-      this.Post({ head: stat, body, type: 'stat' })
-    }
+    // notify on new songs
+    if (this.config.ping_song && curr.song) this.Notify({
+      head: `Now Playing: ${curr.song}`,
+      body: stat || `By: ${curr.artist}`
+    })
+
+    // alert on last song stats
+    if (this.config.chat_song && stat) this.Post({
+      head: stat,
+      body: `${last.song} by ${last.artist}`,
+      type: 'stat'
+    })
   })
 
   // retrieve and post dj stats from session
-  app.on('dropped', function (name, stat) {
+  app.on('dropped', function alertDropped (name, stat) {
     // stats for DJ dropping
-    if (!this.config.chat_spun) return
-    let head = `${name} - ${stat}`
-    let body = " - is done spinning!"
-    this.Post({ head, body, type: 'stat' })
+    if (this.config.chat_spun) this.Post({
+      head: `${name} - ${stat}`,
+      body: ` - is done spinning!`,
+      type: 'stat'
+    })
   })
 
 }
-},{}],11:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 // config.js | the default config objects
 
 module.exports = app => {
@@ -796,6 +879,7 @@ module.exports = app => {
 		q_ping: `Hey @user - it's your turn!`,
 
 		has_vol: false,
+		stamps: false,
 
 		no_aud: false,
 		no_vid: false,
@@ -845,7 +929,7 @@ module.exports = app => {
 	}
 
 }
-},{}],12:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 // cache.js | handles storing tt data
 
 module.exports = app => {
@@ -944,7 +1028,7 @@ module.exports = app => {
 	}
 
 }
-},{}],13:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 // storage.js | saving our configs
 
 module.exports = app => {
@@ -1005,7 +1089,7 @@ module.exports = app => {
 	}
 
 }
-},{"../../package.json":1}],14:[function(require,module,exports){
+},{"../../package.json":1}],16:[function(require,module,exports){
 // events.js | trigger internal events
 
 module.exports = app => {
@@ -1055,6 +1139,9 @@ module.exports = app => {
 			for (let changed of mutations) {
 				let el = changed.target
 
+				// watch for new chat messages
+				if (el.className == "messages") app.Emit('newchat', el)
+
 				// watch for playlist updates
 				if (el.className == "songs") app.Emit('playlist')
 
@@ -1072,7 +1159,7 @@ module.exports = app => {
 	})
 
 }
-},{}],15:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 // logger.js | print logs in console and room
 
 module.exports = app => {
@@ -1140,7 +1227,7 @@ module.exports = app => {
 	}
 
 }
-},{}],16:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 // notify.js | send notifications / fake chat messages
 
 module.exports = app => {
@@ -1208,7 +1295,7 @@ module.exports = app => {
   app.on(['attach', 'update'], app.canNotify)
 
 }
-},{}],17:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 // timing.js | internal loop and delays
 
 module.exports = app => {
@@ -1244,7 +1331,7 @@ module.exports = app => {
 	})
 
 }
-},{}],18:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 // utils.js | interacting with turntable
 
 module.exports = app => {
@@ -1307,7 +1394,7 @@ module.exports = app => {
 	}
 
 }
-},{}],19:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 let turnStyles = {}
 // a thing by pixelcrisis
 
@@ -1324,6 +1411,7 @@ require('./script/state/storage.js')(turnStyles)
 require('./script/core/themes.js')(turnStyles)
 require('./script/core/volume.js')(turnStyles)
 require('./script/core/profile.js')(turnStyles)
+require('./script/core/chatbox.js')(turnStyles)
 require('./script/core/playlist.js')(turnStyles)
 
 require('./script/core/panels.js')(turnStyles)
@@ -1332,7 +1420,8 @@ require('./script/core/attach.js')(turnStyles)
 require('./script/main/afk.js')(turnStyles)
 require('./script/main/auto.js')(turnStyles)
 require('./script/main/stats.js')(turnStyles)
+require('./script/main/alerts.js')(turnStyles)
 
 // attach to the room
 turnStyles.attach()
-},{"./script/core/attach.js":2,"./script/core/panels.js":3,"./script/core/playlist.js":4,"./script/core/profile.js":5,"./script/core/themes.js":6,"./script/core/volume.js":7,"./script/main/afk.js":8,"./script/main/auto.js":9,"./script/main/stats.js":10,"./script/state/config.js":11,"./script/state/session.js":12,"./script/state/storage.js":13,"./script/utils/events.js":14,"./script/utils/logger.js":15,"./script/utils/notify.js":16,"./script/utils/timing.js":17,"./script/utils/ttdata.js":18}]},{},[19]);
+},{"./script/core/attach.js":2,"./script/core/chatbox.js":3,"./script/core/panels.js":4,"./script/core/playlist.js":5,"./script/core/profile.js":6,"./script/core/themes.js":7,"./script/core/volume.js":8,"./script/main/afk.js":9,"./script/main/alerts.js":10,"./script/main/auto.js":11,"./script/main/stats.js":12,"./script/state/config.js":13,"./script/state/session.js":14,"./script/state/storage.js":15,"./script/utils/events.js":16,"./script/utils/logger.js":17,"./script/utils/notify.js":18,"./script/utils/timing.js":19,"./script/utils/ttdata.js":20}]},{},[21]);
