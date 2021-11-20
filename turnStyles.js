@@ -14,6 +14,7 @@ require('./script/state/storage.js')(turnStyles)
 require('./script/core/themes.js')(turnStyles)
 require('./script/core/volume.js')(turnStyles)
 require('./script/core/profile.js')(turnStyles)
+require('./script/core/chatbox.js')(turnStyles)
 require('./script/core/playlist.js')(turnStyles)
 
 require('./script/core/panels.js')(turnStyles)

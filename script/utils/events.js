@@ -47,6 +47,9 @@ module.exports = app => {
 			for (let changed of mutations) {
 				let el = changed.target
 
+				// watch for new chat messages
+				if (el.className == "messages") app.Emit('newchat', el)
+
 				// watch for playlist updates
 				if (el.className == "songs") app.Emit('playlist')
 
