@@ -19,6 +19,7 @@ module.exports = app => {
     this.classes('no_bub', config.no_bub)
     this.classes('no_vid', config.no_vid)
     this.classes('no_aud', config.no_aud)
+    this.classes('logging', config.logging)
   })
 
   // update link/css elements
@@ -30,6 +31,7 @@ module.exports = app => {
     if (key == 'no_bub') this.classes('no_bub', val)
     if (key == 'no_vid') this.classes('no_vid', val)
     if (key == 'no_aud') this.classes('no_aud', val)
+    if (key == 'logging') this.classes('logging', val)
   })
 
   // insert or update link to our CSS files

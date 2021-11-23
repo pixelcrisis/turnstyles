@@ -5,6 +5,7 @@ body.logging #tsLogs
 	display: block
 
 // hide video, users, chat bubbles
+body:not(.logging) #tsLogs,
 body.no_bub .speech-bubble,
 body.no_vid .screen-content,
 body.no_aud #room-view > canvas:nth-child(4)
