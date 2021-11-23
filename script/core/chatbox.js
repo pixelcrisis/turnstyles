@@ -14,7 +14,7 @@ module.exports = app => {
   app.on('speak', function (e) {
     if (!this.config.stamps) return
     let message = $('.chat .messages .message:last-of-type')
-    let matches = message[0].innerText.includes(e.text)
+    let matches = message[0].innerText.includes(e.name)
     let stamped = message.has('.timestamp').length
 
     if (!stamped && matches) {
