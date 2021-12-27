@@ -22,18 +22,21 @@ module.exports = app => {
   // highlight any recently played songs
   app.checkPlaylist = function (log) {
     if (log) this.songlog = log
-    let list = window.playlist.fileids
+    let list = this.songlog
     // clear any highlighted songs
     $('.song.ts_played').removeClass('ts_played')
     // loop through all the songs in the playlist
-    for (let i = 0; i < list.length; i++) {
-      let song = list[i]
-      // check the song against the song log
-      for (let item of this.songlog) if (item._id == song) {
-        // if we have a match, add a highlight to the element
-        $(`#queue .songs .song:nth-child(${i + 1})`).addClass("ts_played")
+    $('#queue .songs .song').each(function () {
+      let block = $(this)
+      let p_title = block.find('.title').text()
+      let p_artist = block.find('.details').text().split(' • ')[0]
+      for (let item of list) {
+        let { song, artist } = item.metadata
+        if (song == p_title && artist == p_artist) {
+          block.addClass('ts_played')
+        }
       }
-    }
+    })
   }
 
   // bind our playlist features on attach
