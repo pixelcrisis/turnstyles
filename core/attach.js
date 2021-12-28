@@ -5,10 +5,7 @@ module.exports = app => {
 	// attach (init) into the turntable room
 	app.attach = function () {
 		this.getConfig()
-		// load config and fetch tt
 		const core = window.turntable
-		
-		// first make sure we have a room
 		if (!core) return this.Log('no room')
 		const user = window.turntable.user
 
@@ -16,30 +13,16 @@ module.exports = app => {
 		this.lobby = $('#turntable #topBG').length
 		if (this.lobby) return this.addPanel()
 
-		// attempt to attach to the room
-
 		// we loop until the window has loaded the room fully
 		const again = () => setTimeout(app.attach.bind(this), 150)
 
-		// look for a nested prop in an object
-		// this makes sure turntable has loaded the data
-		const findKey = (obj, key) => {
-			for (let prop in obj) {
-				let data = obj[prop]
-				if (data !== null && typeof data != "undefined" && data[key]) {
-					return data
-				}
-			}
-		}
-
 		if (!user) return again()
-		let room = findKey(core, 'roomId')
+		let room = this._findKey(core, 'roomId')
 		if (!room) return again()
-		let full = findKey(room, 'roomData')
+		let full = this._findKey(room, 'roomData')
 		if (!full) return again()
 
 		// room loaded!
-		// bind our event listener
 		this.listener = this.listen.bind(this)
 		window.turntable.addEventListener('message', this.listener)
 
@@ -56,7 +39,7 @@ module.exports = app => {
 
 		// reload turnStyles
 		const script = document.createElement('script')
-		script.src = `${this.__base}/turnStyles.js?v=${Math.random()}`
+		script.src = `${ this.__base }/turnStyles.js?v=${ Math.random() }`
 		script.type = 'text/javascript'
 
 		this.Log('reloading')

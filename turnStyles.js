@@ -1,29 +1,32 @@
 let turnStyles = {}
 // a thing by pixelcrisis
 
-require('./script/utils/ttdata.js')(turnStyles)
-require('./script/utils/events.js')(turnStyles)
-require('./script/utils/logger.js')(turnStyles)
-require('./script/utils/timing.js')(turnStyles)
-require('./script/utils/notify.js')(turnStyles)
+require('./data/config.js')(turnStyles)
 
-require('./script/state/config.js')(turnStyles)
-require('./script/state/session.js')(turnStyles)
-require('./script/state/storage.js')(turnStyles)
+require('./core/global.js')(turnStyles)
+require('./core/layout.js')(turnStyles)
+require('./core/ttlink.js')(turnStyles)
+require('./core/events.js')(turnStyles)
+require('./core/logger.js')(turnStyles)
+require('./core/timing.js')(turnStyles)
+require('./core/notify.js')(turnStyles)
 
-require('./script/core/themes.js')(turnStyles)
-require('./script/core/volume.js')(turnStyles)
-require('./script/core/profile.js')(turnStyles)
-require('./script/core/chatbox.js')(turnStyles)
-require('./script/core/playlist.js')(turnStyles)
+require('./data/session.js')(turnStyles)
+require('./data/storage.js')(turnStyles)
 
-require('./script/core/panels.js')(turnStyles)
-require('./script/core/attach.js')(turnStyles)
+require('./main/themes.js')(turnStyles)
+require('./main/volume.js')(turnStyles)
+require('./main/profile.js')(turnStyles)
+require('./main/chatbox.js')(turnStyles)
+require('./main/playlist.js')(turnStyles)
 
-require('./script/main/afk.js')(turnStyles)
-require('./script/main/auto.js')(turnStyles)
-require('./script/main/stats.js')(turnStyles)
-require('./script/main/alerts.js')(turnStyles)
+require('./core/panels.js')(turnStyles)
+require('./core/attach.js')(turnStyles)
+
+require('./main/afk.js')(turnStyles)
+require('./main/auto.js')(turnStyles)
+require('./main/stats.js')(turnStyles)
+require('./main/alerts.js')(turnStyles)
 
 // attach to the room
 turnStyles.attach()

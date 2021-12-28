@@ -1,31 +1,6 @@
-// notify.js | send notifications / fake chat messages
+// notify.js | manage notifications
 
 module.exports = app => {
-
-  // "Silent" messages posted in chat
-  app.Post = function (alert) {
-    // Alerts post in the chat
-    // but are only visible to the user
-    let { head, body, type } = alert
-    $('.chat .messages').append(`
-      <div class="message ${type}"><em>
-        <span class="subject">${head}</span>
-        <span class="text">${body}</span>
-      </em></div>
-    `)
-    this.$View().updateChatScroll()
-  }
-
-  // send a full chat message to the room
-  app.Speak = function (text) {
-    // Speak sends a message to chat
-    // for all the users in the room
-    let roomid = this.$View().roomId
-    let section = this.$View().section
-    window.turntable.sendMessage({
-      text, api: 'room.speak', roomid, section
-    })
-  }
 
   // send a desktop notification
   app.Notify = function (alert) {

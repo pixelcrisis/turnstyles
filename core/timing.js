@@ -2,6 +2,11 @@
 
 module.exports = app => {
 
+	app.bindTimer = function () {
+		this.holding = {}
+		this.heart = setInterval(app.beat.bind(this), 60 * 1000)
+	}
+
 	// delay a function from firing if fired recently
 	app.delay = function (func, delay, key) {
 		// suspend func for delay seconds
@@ -27,9 +32,6 @@ module.exports = app => {
 	}
 
 	// start loop and delay storage on attach
-	app.on('attach', function () {
-		this.holding = {}
-		this.heart = setInterval(app.beat.bind(this), 60 * 1000)
-	})
+	app.on('attach', app.bindTimer)
 
 }
