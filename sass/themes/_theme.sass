@@ -1,0 +1,44 @@
+// style blocks
+.ts-content
+	color: $text
+	background: $back
+
+.ts-content-alt
+	color: $text
+	background: $bg-other
+
+.ts-content-mute
+	color: $mute
+	background: $back
+
+.ts-gradient
+	@include gradient($main)
+
+.ts-text-input
+	color: $text
+	border: none
+	outline: none
+	background: $bg-inset
+	box-shadow: 0 0 0 1px $back !important
+
+	&::placeholder
+		color: $mute
+
+.ts-striped-list
+	&:nth-child(odd)
+		@extend .ts-content
+	&:nth-child(even)
+		@extend .ts-content-alt
+	border-bottom: 1px solid $bg-faded
+
+@import "base/lobby"
+@import "base/panel"
+@import "base/header"
+@import "base/popups"
+@import "base/modals"
+@import "base/setting"
+@import "base/content"
+@import "base/roominfo"
+@import "base/roomchat"
+@import "base/songlist"
+@import "base/messages"

@@ -1,46 +1,45 @@
 #transition-modal,
 #mainPanelLoadOverlay
-	background: $base-faded
+	background: $bg-faded
 
 // main overlay structure
 #overlay .modal
-	background: $base-inset
-	box-shadow: 0 0 0 1px $base-faded
+	background: $bg-inset
+	box-shadow: 0 0 0 1px $bg-faded
 	
 	.title
 		color: $text
 		text-shadow: none
-		background: $base-inset
+		background: $bg-inset
 	
 	.content-container
 		border-radius: 0px
-		border-color: $base-hover
+		border-color: $bg-hover
 		@extend .ts-content
 	
 		.section
-			border-color: $base-inset
+			border-color: $bg-inset
 	
 		input, textarea
 			color: $text
 			border: none
 			box-shadow: none
-			background: $base-hover
+			background: $bg-hover
 
 // custom close button
 #overlay .modal .close-x
 	top: -10px
 	left: -12px
-	width: 25px
-	height: 25px
-	color: $text-alt
+	color: $mute
 	border: 2px solid
 	border-radius: 50%
 	text-align: center
-	background-color: $base
+	background-color: $back
 	background-image: none
+	@include box(25px)
 
 	&:after
-		content: $end
+		content: $close-icon
 		display: block
 		font-size: 16px
 		margin: 3px 0 0 1px
@@ -50,18 +49,18 @@
 
 // profile edit buttons, etc
 .modal button
-	color: $text-alt
-	background: $base-hover
+	color: $mute
+	background: $bg-hover
 	border: none !important
 	box-shadow: none !important
 	text-shadow: none !important
 	
 	&:hover
 		color: $text
-		background: lighten($base-hover, 5%)
+		background: lighten($bg-hover, 5%)
 	
 	&.submit
-		color: $base-inset
+		color: $bg-inset
 	
 		&:hover
 			filter: brightness(1.2)
@@ -73,14 +72,14 @@
 .new-modal
 	text-shadow: none
 	.title
-		color: $base-inset
+		color: $bg-inset
 		box-shadow: none
 		text-shadow: none
-		border-bottom-color: $base-faded
+		border-bottom-color: $bg-faded
 		@extend .ts-gradient
 
 	.close-x
-		@extend .ts-shift-main
+		@extend .ts-main-filter
 
 	.content
 		@extend .ts-content
@@ -90,24 +89,24 @@
 		text-shadow: none
 
 	.avatar
-		border: 1px solid $base
+		border: 1px solid $back
 
 		&:hover, &.current-avatar
 			box-shadow: none
-			background: $base-inset
-			border-color: $base-hover
+			background: $bg-inset
+			border-color: $bg-hover
 
 	.footer
-		background: $base-faded
+		background: $bg-faded
 		.level
-			color: $text-alt
+			color: $mute
 
 		.carousel-left,
 		.carousel-right
-			@extend .ts-shift-main
+			@extend .ts-main-filter
 
 		.carousel-indicators li
-			background: $base-hover
+			background: $bg-hover
 
 			&:hover, &.active
 				background: $main
@@ -115,7 +114,7 @@
 //specifically profile edit tweaks
 .profile
 	.edit
-		@extend .ts-shift-main
+		@extend .ts-main-filter
 
 	.social 
 		margin-right: 5px

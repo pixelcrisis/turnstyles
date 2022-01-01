@@ -1,10 +1,9 @@
 body.th-none
   .tab-item:active,
   .tab-item.selected,
-  #turnStyles .ts-tab.active,
   .room-tab .flat-button:hover,
   .floating-menu .option.special:hover
-    background: $color !important
+    background: $main !important
 
   // remove backgrounds
   .options-menu .options .option.checked,
@@ -21,7 +20,6 @@ body.th-none
   .floating-menu .option.special:hover
     color: #ffffff !important
 
-  .ts-tab.active,
   .room-tab .flat-button:hover h3,
   #maindiv .song-list .song .scoregood
     color: #ffffff
@@ -45,4 +43,4 @@ body.th-none
   .header-logo, .logo, .header-logo2, .logo2, 
   .favorite-star:hover, .header-social div:hover, 
   .favorite-star.favorited, .header-bar .header-logo
-    @extend %shift-main
+    @extend %main-filter

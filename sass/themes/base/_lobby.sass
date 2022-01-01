@@ -1,24 +1,19 @@
-// everything not in a room?
-
 #topBG
 	@extend .ts-content
-
+	
 	.header-logo2
-		width: 110px
-		height: 24px
 		margin: 8px 0
 		background-size: contain
+		@include box(24px, 110px)
 
-	.room-search-input
+	.room-search-input 
 		input
 			padding-left: 32px
 			@extend .ts-text-input
-
 		.mag-glass
 			margin: 3px 0 0 2px
-			background-size: 35px
-			background-position: 0 -419px
-			@extend .ts-shift-main
+			@extend .ts-main-filter
+			@include sprite(35px, -419px)
 
 	.header-bar .settings-button
 		margin-top: 3px
@@ -26,33 +21,30 @@
 	#create-room
 		border: none 
 		@extend .ts-gradient
-
 		span
-			color: $base-inset
+			color: $bg-inset
 			text-shadow: none
 			font-weight: bold
-
 		.create-header
 			display: none
-
 		&:hover
 			filter: brightness(1.2)
 
 	.lobby-panel
 		box-shadow: none
-		border: 1px solid $base-inset
+		border: 1px solid $bg-inset
 
 	#newsbox .lobby-panel
-		color: $text-alt
-		background: $base-inset
-		border: 1px solid $base-hover
+		color: $mute
+		background: $bg-inset
+		border: 1px solid $bg-hover
 		a
 			color: $main !important
 
 	#mainPanelHeader
 		color: $text
 		box-shadow: none
-		background: $base-faded
+		background: $bg-faded
 
 	#subNav, #mainNav
 		box-shadow: none
@@ -61,17 +53,17 @@
 		li.selected
 			font-weight: normal
 			box-shadow: none !important
-			background: $base !important
-			border-color: $base !important
+			background: $back !important
+			border-color: $back !important
 
 	#subNav
 		margin: 0 -1px
-		background: $base-inset
+		background: $bg-inset
 		li.selected
-			background: $base-faded
+			background: $bg-faded
 
 	.room-list
-		background: $base-inset
+		background: $bg-inset
 		.roomListItem
 			@extend .ts-striped-list
 			margin: 0
@@ -82,52 +74,51 @@
 			.songName,
 			.roomListeners,
 			.moreRoomBuddies
-				color: $text-alt
+				color: $mute
 			.roomListBuddyIcon
-				border-color: $base-hover
-				background-color: $base-faded
+				border-color: $bg-hover
+				background-color: $bg-faded
 			.roomListeners .icon,
 			.roomDJs:not(.needed) .icon
-				@extend .ts-shift-mute
+				@extend .ts-mute-filter
 			.roomDJs.needed 
 				.icon
-					@extend .ts-shift-invert
+					@extend .ts-full-filter
 				.count
 					color: $main
 			.roomAlbumArt[style*='empty-record.png']
-				@extend .ts-shift-main
-
+				@extend .ts-main-filter
 
 			.listenNow
 				@extend .ts-gradient
 				border: none
-				color: $base-inset
+				color: $bg-inset
 				box-shadow: none
 				text-shadow: none
 				&:hover
 					filter: brightness(1.2)
 
 	#buddyList
-		background: $base-inset
-		border: 1px solid $base-hover
+		background: $bg-inset
+		border: 1px solid $bg-hover
 		
 		#buddyListHeader
 			text-shadow: none !important
-			background: $base-inset !important
+			background: $bg-inset !important
 			.myName
 				color: $text
 			.myStats span
 				color: $main
 				font-weight: bold
 			.myStats
-				color: $text-alt
+				color: $mute
 
 		#buddyListContent
 			margin-top: -2px
 
 		.buddyListTitle
 			box-shadow: none
-			background: $base-faded
+			background: $bg-faded
 			.buddyListTitleText
 				color: $text
 				text-shadow: none
@@ -143,8 +134,8 @@
 		.buddyListRoom
 			border-top: none
 			box-shadow: none
-			background: $base-inset
-			border-bottom: 1px solid $base-faded
+			background: $bg-inset
+			border-bottom: 1px solid $bg-faded
 			.buddyRoomName
 				color: $text
 			.joinRoomButton
@@ -161,10 +152,10 @@
 	#footerMainNav
 		border: none
 	#footerCopyright
-		color: $text-alt
+		color: $mute
 		text-shadow: none
 	#content #footer a
-		@extend .ts-shift-main
+		@extend .ts-main-filter
 		color: $text
 		border: none !important
 		text-shadow: none !important

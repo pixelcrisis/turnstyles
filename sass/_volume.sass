@@ -1,43 +1,30 @@
 // style our custom volume controls
 
-// hide the current one
-.ts_vol .dropdown-volume-container
-	display: none !important
-
-// container
 #tsVolume
-	top: 0
-	right: 120px
-	z-index: 6000
-	position: absolute
-	user-select: none
 	width: 160px
+	z-index: 6000
+	user-select: none
+	@include abs(0, 120px)
 
-// mute/unmute button
 #tsMute
-	width: 20px
-	height: 20px
 	cursor: pointer
 	margin-right: 5px
 	display: inline-block
 	vertical-align: middle
-	background-size: 35px
-	background-position: 0 -229px
-	background-image: url(https://s3.amazonaws.com/assets.turntable.fm/images/sprites/chrome-sprite@2x.png)
+	@include box(20px)
+	@include sprite(35px, -229px)
 
-// the actual volume slider
 #tsSlider
-	height: 5px
-	width: 130px
-	margin-top: -4px
-	border-radius: 5px
-	background: gold
 	outline: none
+	margin-top: -4px
+	background: $main
+	border-radius: 5px
 	-webkit-appearance: none
+	@include box(5px, 130px)
 
 	&::-webkit-slider-thumb
-	  width: 15px
-	  height: 15px
+		height: 15px
+		width: 15px
 	  cursor: pointer
 	  border-radius: 50%
 	  background: #ffffff
@@ -45,21 +32,19 @@
 	  -webkit-appearance: none
 
 	&::-moz-range-thumb
-	  width: 15px
 	  height: 15px
+	  width: 15px
 	  cursor: pointer
 	  border-radius: 50%
 	  background: #ffffff
 
-// the muted message
 #tsMuted
 	display: none
 	width: 130px
-	color: #ffffff
+	color: $text
 	line-height: 1em
 	text-align: left
 
-// toggle visibility of mute state
 .ts_muted
 	#tsSlider
 		display: none

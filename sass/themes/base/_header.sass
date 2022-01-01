@@ -11,25 +11,21 @@ div#header,
 .header-social div:hover,
 .favorite-star.favorited,
 .header-bar .header-logo
-	@extend .ts-shift-main
+	@extend .ts-main-filter
 
 .header-social div
-	@extend .ts-shift-mute
+	@extend .ts-mute-filter
 
-// the random header nav
 #headerNav a
 	color: $main
 	font-weight: bold
 
-// the main header bar
 .header-bar
 	box-sizing: border-box
-	border-bottom: 2px solid $base-hover
+	border-bottom: 2px solid $bg-hover
 
-	// restructure for left align
 	.header-room
 		padding: 0 0 0 57px
-
 	.header-room-name
 		color: $text
 		text-shadow: none
@@ -40,18 +36,17 @@ div#header,
 		padding: 0 5px
 
 	.header-logo
-		width: 39px
-		height: 25px
 		padding: 2px 10px 0
-		@include ico-bg(38px, -540px)
+		@include box(25px, 39px)
+		@include sprite(38px, -540px)
 
 	.header-search
 		height: 24px
-		@include ico-bg(35px, -419px)
+		@include sprite(35px, -419px)
 
 	.settings-button
 		height: 22px
-		@include ico-bg(35px, -519px)
+		@include sprite(35px, -519px)
 
 // our volume slider
 #tsSlider
@@ -64,13 +59,13 @@ div#header,
 		background: $text
 
 #tsMuted
-	color: $text-alt
+	color: $mute
 
 // room tabs
 .tab-item
 	box-shadow: none
 	box-sizing: border-box
-	border-bottom: 2px solid $base-hover
+	border-bottom: 2px solid $bg-hover
 	@extend .ts-content-mute
 
 	.tab-icon
@@ -78,11 +73,11 @@ div#header,
 		margin-right: 2px
 
 	.chat-icon
-		@include ico-bg(40px, -239px)
+		@include sprite(40px, -239px)
 	.room-icon
-		@include ico-bg(40px, -200px)
+		@include sprite(40px, -200px)
 	.queue-icon
-		@include ico-bg(40px, -160px)
+		@include sprite(40px, -160px)
 
 	.tab-title
 		margin-top: -3px
@@ -96,17 +91,17 @@ div#header,
 
 		.tab-icon
 			opacity: 1
-			@extend .ts-shift-main
+			@extend .ts-main-filter
 
 	&:not(.selected):hover
 		@extend .ts-content
-		border-color: $text-alt
+		border-color: $mute
 
 		.tab-icon
-			@extend .ts-shift-main
+			@extend .ts-main-filter
 			opacity: 0.75
 
 	&:not(.selected):not(:hover)
 		.tab-icon
-			@extend .ts-shift-mute
+			@extend .ts-mute-filter
 			opacity: 0.75

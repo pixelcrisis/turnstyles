@@ -1,29 +1,30 @@
-@import "../mixins"
+$main: #47a7ff
+
+$text: #c6c7d0
+$base: #1e2746
+
+$snag: #e853a6
+$join: #4abf54
+$left: #e64f4f
+$mods: #e64f4f
 
 $tint: 120deg
 
-$base: #1e2746
-$main: #47a7ff
-$text: #c6c7d0
+@import "../import"
 
-$snag: #e853a6 // pink
-$join: #4abf54 // green
-$left: #e64f4f // red
-$mods: #e64f4f // red (removed from decks, etc)
+.ts-vote-filter
+	@include shift($tint, 1, 0.9)
 
-.ts-tint-vote
-	@include tint($tint, 1, 0.9)
+.ts-room-filter
+	@include gloss($tint + 50deg, 4)
 
-.ts-tint-back
-	@include shift($tint + 50deg, 4)
+.ts-main-filter
+	@include paint($tint + 70deg, 3, 0.65)
 
-.ts-shift-main
-	@include recolor($tint + 70deg, 3, 0.65)
+.ts-full-filter
+	@include paint($tint + 70deg, 2.7, 0.45, 1)
 
-.ts-shift-invert
-	@include recolor($tint + 70deg, 2.7, 0.45, 1)
+.ts-mute-filter
+	@include paint($tint + 50deg, 1.4, 0.4)
 
-.ts-shift-mute
-	@include recolor($tint + 50deg, 1.4, 0.4)
-
-@import "base/theme"
+@import "theme"

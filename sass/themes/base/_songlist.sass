@@ -11,24 +11,24 @@
 	top: 7px
 	opacity: 1
 	height: 22px
-	@extend .ts-shift-main
-	@include ico-bg(35px, -519px)
+	@extend .ts-main-filter
+	@include sprite(35px, -519px)
 #queue-header,
 #playlist-header
-	background: $base-faded
+	background: $bg-faded
 	box-sizing: border-box
 	border-top: none
-	border-bottom: 1px solid $base-inset
+	border-bottom: 1px solid $bg-inset
 
 #queue-header 
 	.done
 		color: $text
 		box-shadow: none
 		text-shadow: none
-		background: $base-inset
-		border: 1px solid $base-faded
+		background: $bg-inset
+		border: 1px solid $bg-faded
 		&:hover
-			background: $base-hover
+			background: $bg-hover
 
 	.divider
 		display: none
@@ -71,13 +71,13 @@
 	.playlist-move-bottom,
 	.playlist-right-arrow,
 	.playlist-queue-plus-inset
-		@extend .ts-shift-main
+		@extend .ts-main-filter
 
 	// remove hover animated background
 	.playlist-edit
 		height: 13px
 		margin-top: 5px
-		@include ico-bg(15px, -215px)
+		@include sprite(15px, -215px)
 	.playlist-queue
 		width: 16px
 		background-position: 0 -180px
@@ -108,9 +108,9 @@
 		.inner-arrow
 			display: none
 		.outer-arrow
-			border-left-color: $base-faded !important
+			border-left-color: $bg-faded !important
 		.content-scroller
-			background: $base-faded
+			background: $bg-faded
 
 	#playlist-display .text
 		padding-left: 28px
@@ -121,35 +121,35 @@
 	.song
 		&.selected
 			box-shadow: none !important
-			background: $base-hover !important
+			background: $bg-hover !important
 
 		.playlist-go-top,
 		.playlist-open-options
 			background: transparent
 			&::after
-				color: $text-alt
+				color: $mute
 				display: block
 		.playlist-go-top::after
-			content: $top
+			content: $top-icon
 			font-size: 19px
 		.playlist-open-options::after
-			content: $cog
+			content: $open-menu
 			font-size: 22px
 			margin: -5px 0 0 1px
 
 		.playlist-checkbox
-			@extend .ts-shift-main
+			@extend .ts-main-filter
 
 #maindiv .song-list
 	.separator
-		color: $text-alt
+		color: $mute
 		border: none
 		box-shadow: none
 		text-shadow: none
-		background: $base-faded
+		background: $bg-faded
 
 	> ul > *
-		border-bottom: 1px solid $base-faded
+		border-bottom: 1px solid $bg-faded
 
 	ul.songs
 		background: transparent
@@ -161,7 +161,7 @@
 			@extend .ts-content-alt
 		&.nth-child-even:hover,
 		&:not(.nth-child-even):hover
-			background: $base-hover !important
+			background: $bg-hover !important
 
 		&:not(:hover) .score
 			opacity: 0.5
@@ -169,17 +169,17 @@
 	.title
 		color: $text
 	.vinyl
-		@extend .ts-shift-main
+		@extend .ts-main-filter
 	.details
-		color: $text-alt
+		color: $mute
 	.progress
 		background: rgba($main, 0.2)
 	.scorebad
-		color: $text-alt
+		color: $mute
 		background-color: transparent
 	.scoregood
-		color: $base-inset
+		color: $bg-inset
 		background-color: $main
 
 	&.current-song
-		background: $base-hover !important
+		background: $bg-hover !important

@@ -1,29 +1,30 @@
-@import "../mixins"
+$main: #bfa206
+
+$text: #adadad
+$base: #191919
+
+$snag: #a0629e
+$join: #69966b
+$left: #a74646
+$mods: #a74646
 
 $tint: 0deg
 
-$base: #191919
-$main: #bfa206
-$text: #adadad
+@import "../import"
 
-$snag: #a0629e // pink
-$join: #69966b // green
-$left: #a74646 // red
-$mods: #a74646 // red (removed from decks, etc)
-
-.ts-tint-vote
-	@include tint($tint, 2, 0.7)
-
-.ts-tint-back
+.ts-vote-filter
 	@include shift($tint, 2, 0.7)
 
-.ts-shift-main
-	@include recolor($tint, 2, 0.7)
+.ts-room-filter
+	@include gloss($tint, 2, 0.7)
 
-.ts-shift-invert
-	@include recolor($tint, 2, 0.7, 1)
+.ts-main-filter
+	@include paint($tint, 2, 0.7)
 
-.ts-shift-mute
-	@include recolor($tint, 2, 0.7)
+.ts-full-filter
+	@include paint($tint, 2, 0.7, 1)
 
-@import "base/theme"
+.ts-mute-filter
+	@include paint($tint, 2, 0.7)
+
+@import "theme"

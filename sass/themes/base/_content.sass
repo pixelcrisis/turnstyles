@@ -14,24 +14,24 @@ body,
 
 .queue-message,
 .default-message
-	color: $text-alt
+	color: $mute
 	text-shadow: none
 
 // background lights
 #room-view > canvas:nth-child(2)
-  @extend .ts-tint-back
+  @extend .ts-room-filter
 
 // voting buttons
 .board .lame-button
   filter: grayscale(1)
 
 .board .awesome-button
-  @extend .ts-tint-vote
+  @extend .ts-vote-filter
 
 .become-dj,
 .invite-dj
 	border: none
-	color: $base-inset
+	color: $bg-inset
 	box-shadow: none
 
 	&:hover
@@ -46,7 +46,7 @@ body,
 // miniplayer
 #mainNav li:not(.selected) .nav-text,
 #subNav li:not(.selected) .subnav-text
-  color: $text-alt !important
+  color: $mute !important
 
 .mini-room-view
   background-color: transparent !important
@@ -64,29 +64,29 @@ body,
 	@extend .ts-content
 
 	img[src*="arrow"]
-		@extend .ts-shift-main
+		@extend .ts-main-filter
 	
 	h2
 		color: $text
 		+ div
-			color: $text-alt
+			color: $mute
 	
 	.btn
-		color: $base-inset
+		color: $bg-inset
 		@extend .ts-gradient
 	
 	.charity-btn
-		background: $base-inset
-		border: 1px solid $base-faded
+		background: $bg-inset
+		border: 1px solid $bg-faded
 		a
-			color: $text-alt
+			color: $mute
 
 // scrollbar
 ::-webkit-scrollbar
   width: 7px
 ::-webkit-scrollbar-track
-  background: $base-inset
+  background: $bg-inset
 ::-webkit-scrollbar-thumb
-  background: $base-hover
+  background: $bg-hover
 ::-webkit-scrollbar-thumb:hover
-  background: $text-alt
+  background: $mute

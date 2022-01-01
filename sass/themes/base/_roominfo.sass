@@ -23,7 +23,7 @@
 	.edit-description
 		color: $text
 		margin-top: 15px
-		background: $base-faded
+		background: $bg-faded
 
 	.save-description-btn 
 		opacity: 1
@@ -31,27 +31,27 @@
 		&:hover
 			filter: brightness(2)
 		.icon
-			@extend .ts-shift-main
+			@extend .ts-main-filter
 
 	.flat-button
 		border: none
-		background: $base-faded
+		background: $bg-faded
 		h3
-			color: $text-alt
+			color: $mute
 
 		&:hover
-			background: $base-faded
+			background: $bg-faded
 			h3
 				color: $main
 
 		&:after
-			@extend .ts-shift-main
+			@extend .ts-main-filter
 
 .sliding-nav
 	.sliding-nav-pane-header
 		border: none
 		box-shadow: none
-		background: $base-faded
+		background: $bg-faded
 	.sliding-nav-pane-title
 		color: $text
 		text-shadow: none
@@ -64,13 +64,13 @@ button.sliding-nav-pane-back.back
   &::after
     left: 0
     top: -9px
-    content: $end
+    content: $close-icon
     display: block
     text-indent: 0
     font-size: 1.3em
     font-weight: bold
     position: relative
-    color: $text-alt
+    color: $mute
 
 .guest-list
 	@extend .ts-content
@@ -78,9 +78,9 @@ button.sliding-nav-pane-back.back
 	.separator
 		color: $text
 		text-shadow: none
-		background: $base-faded
+		background: $bg-faded
 		box-shadow: none
-		border-color: $base-inset
+		border-color: $bg-inset
 
 	.guest
 		@extend .ts-striped-list

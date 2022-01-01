@@ -1,29 +1,30 @@
-@import "../mixins"
+$main: #f3cc12
+
+$text: #cccccc
+$base: #2f2f2f
+
+$snag: #e853a6
+$join: #4abf54
+$left: #e64f4f
+$mods: #e64f4f
 
 $tint: 0deg
 
-$base: #2f2f2f
-$main: #f3cc12
-$text: #cccccc
+@import "../import"
 
-$snag: #e853a6 // pink
-$join: #4abf54 // green
-$left: #e64f4f // red
-$mods: #e64f4f // red (removed from decks, etc)
-
-.ts-tint-vote
+.ts-vote-filter
 	opacity: 1
 
-.ts-tint-back
+.ts-room-filter
 	opacity: 1
 
-.ts-shift-main
+.ts-main-filter
 	opacity: 1
 
-.ts-shift-invert
+.ts-full-filter
 	opacity: 1
 
-.ts-shift-mute
+.ts-mute-filter
 	opacity: 1
 
-@import "base/theme"
+@import "theme"

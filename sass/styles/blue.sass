@@ -1,21 +1,23 @@
-@import "../mixins"
+@import "../import"
 
-$color: #008ddd
-$shift: 110deg
+$main: #008ddd
+$tint: 110deg
 
-%tint-vote
-	@include tint($shift, 2, 0.8)
+%vote-filter
+	@include shift($tint, 2, 0.8)
 
-%tint-back
-	@include shift($shift + 80deg, 4)
+%room-filter
+	@include gloss($tint + 80deg, 4)
 
-%shift-main
-	@include recolor($shift + 50deg, 4, 0.55)
+%main-filter
+	@include paint($tint + 50deg, 4, 0.55)
 
-%shift-invert
-	@include recolor($shift + 50deg, 4, 0.55, 1)
+%full-filter
+	@include paint($tint + 50deg, 4, 0.55, 1)
 
-%shift-mute
-	@include recolor($shift + 70deg, 2, 0.4)
+%mute-filter
+	@include paint($tint + 70deg, 2, 0.4)
 
-@import "base/style"
+@import "list"
+@import "none"
+@import "base"

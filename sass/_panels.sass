@@ -1,0 +1,139 @@
+// panels - the option menus
+
+// structural support changes
+.chrome .header-bar
+  font-size: 13px
+  line-height: 42px
+
+.chrome .header-bar .header-room
+  display: block
+  padding: 0 0 0 75px
+
+.chrome .header-bar .header-room > div
+  margin: -2px 10px 0 0 !important
+  position: initial !important
+  vertical-align: top !important
+  display: inline-block !important
+
+// the panels
+#tsPanels
+  @extend %basic
+
+#tsPanels.active
+  #tsHotBar .ts-toggle
+    @extend %hidden
+  #tsMenu:after
+    content: $close-icon
+
+#tsPanels:not(.active)
+  #tsHotBar .ts-tab
+    @extend %hidden
+  #tsMenu
+    @include gear-icon(-1px)
+
+#tsPanels.active > div,
+.header-bar:hover #tsHotBar
+  display: flex
+
+#tsHotBar,
+#tsOptions
+  display: none
+  flex-wrap: wrap
+  margin: 0 auto
+  padding: 10px 20px
+  line-height: 1em
+  max-width: 960px
+
+#tsHotBar .ts-toggle
+  width: initial
+  margin-bottom: 0
+
+#tsOptions
+  padding-top: 0
+
+#tsMenu
+  display: block
+  cursor: pointer
+  font-size: 18px
+  margin: 2px 15px 0 0
+  padding: 2px 0 0 4px
+  box-sizing: border-box
+  @include box(20px, 20px)
+
+.ts-tab,
+.ts-toggle,
+.ts-button,
+.ts-inputs,
+.ts-choice,
+#tsOptions a
+  border: none
+  outline: none
+  display: block
+  font-size: 0.9em
+  font-weight: bold
+  padding: 5px 10px
+  margin-right: 5px
+  margin-bottom: 5px
+  border-radius: 5px
+  box-sizing: border-box
+  @extend %button
+
+.ts-tab
+  margin-right: 0
+  border-radius: 0
+.ts-tab.active
+  color: $main
+.ts-tab:first-of-type
+  border-top-left-radius: 5px
+  border-bottom-left-radius: 5px
+.ts-tab:last-of-type
+  border-top-right-radius: 5px
+  border-bottom-right-radius: 5px
+.ts-tabbed.active
+  width: 100%
+  display: flex
+.ts-tabbed:not(.active)
+  @extend %hidden
+
+.ts-col
+  width: 100%
+  max-width: 200px
+  margin-right: 10px
+.ts-col.full
+  max-width: 400px
+.ts-col p 
+  text-align: center
+  line-height: 1.1em
+  @extend %faded
+.ts-links p
+  margin: 10px 0 5px
+
+.ts-toggle,
+.ts-button,
+.ts-inputs,
+.ts-choice
+  width: 100%
+
+.ts-inputs
+  font-weight: normal
+  background: $bg-faded
+  border-left: 5px solid rgba($text, $faded)
+  border-bottom: 1px solid $bg-faded
+
+.ts-toggle span
+  width: 12px
+  font-size: 12px
+  display: inline-block
+.ts-toggle input
+  display: none
+.ts-toggle input:checked + span:after
+  color: $main
+  content: $toggle-on
+.ts-toggle input:not(:checked) + span:after
+  content: $toggle-off
+  @extend %faded
+
+#tsOptions a
+  color: $main
+  text-align: center
+  text-decoration: none

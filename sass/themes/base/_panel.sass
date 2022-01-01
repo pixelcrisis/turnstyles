@@ -1,44 +1,35 @@
-#hotBar,
-#fullView
-	padding: 10px
-
-#turnStyles
-	border-top: 2px solid $base-hover
+#tsPanels
 	@extend .ts-content
 
-	h1
-		@extend .ts-shift-main
-		opacity: 1
+#tsMenu
+	@extend .ts-main-filter
 
-	p
-		color: $text-alt
+#tsHotBar .ts-tab
+	color: $mute
+	background: $bg-faded
+#tsHotBar .ts-tab.active
+	color: $text
+	background: $bg-faded
 
-	a
+#tsOptions p
+	color: $text
+
+#tsOptions a
+	color: $main
+
+.ts-toggle,
+.ts-button,
+.ts-choice,
+#tsOptions a
+	background: $bg-hover
+
+.ts-inputs
+	background: $bg-faded
+	border-left-color: $bg-hover
+	border-bottom-color: $bg-faded
+
+.ts-toggle
+	input:checked + span:after
 		color: $main
-
-	label,
-	select,
-	button
-		color: $text
-		background-color: $base-faded
-
-	textarea,
-	input[type="text"]
-		background: transparent
-		border-color: $base-hover
-
-	label
-		input:checked + span:after
-			color: $main
-		input:not(:checked) + span
-			color: $text-alt
-
-	.ts-tab
-		color: $text-alt
-		background: $base-faded
-		&.active
-			color: $text
-			background: $base-faded
-
-	&.active
-		border-color: $main
+	input:not(:checked) + span
+		color: $mute
