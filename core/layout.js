@@ -42,12 +42,17 @@ module.exports = app => {
 
   app.$_string = function (item, name) { return `
     <input type="text" class="ts-inputs"
-      id="ts-${ item }" value="${ this.config[item] }" />
+      id="ts_${ item }" value="${ this.config[item] }" />
+    ${ this.$_button(item, name) }`
+  }
+
+  app.$_field = function (item, name, rows) { return `
+    <textarea class="ts-inputs" id="ts_${ item }" rows="${ rows }">${ this.config[item] }</textarea>
     ${ this.$_button(item, name) }`
   }
 
   app.$_select = function (list) { return `
-    <select class="ts-choice ts-switch">
+    <select data-for="${list}" class="ts-choice ts_switch">
       <option value="">No ${ this._cap(list) }</option>
       ${ Object.keys(this.options[list]).map(key => `
           <option value="${ key }" 
@@ -60,7 +65,7 @@ module.exports = app => {
 
   app.$_toggle = function (item, name) { return `
     <label class="ts-toggle">
-      <input type="checkbox" className="ts-switch"
+      <input type="checkbox" class="ts_switch"
         data-for="${ item }" ${ this.config[item] ? 'checked' : '' } />
       <span class="ts-state"></span> ${ name }
     </label>`
