@@ -2,6 +2,7 @@ body.th-none
   .tab-item:active,
   .tab-item.selected,
   .room-tab .flat-button:hover,
+  .floating-menu .option:hover,
   .floating-menu .option.special:hover
     background: $main !important
 
@@ -12,17 +13,18 @@ body.th-none
   .floating-menu .option.selected,
   .floating-menu .option.site-add,
   .floating-menu .option.switch-menu.second .text
-    background: #ffffff
+    background: #ffffff !important
   
   .floating-menu .option.special
-    color: #000000
+    color: $main !important
 
-  .floating-menu .option.special:hover
+  .floating-menu .option.special:hover,
+  .floating-menu .option:hover .description
     color: #ffffff !important
 
   .room-tab .flat-button:hover h3,
   #maindiv .song-list .song .scoregood
-    color: #ffffff
+    color: #ffffff !important
 
   // pm headers
   #buddyListHeader,
