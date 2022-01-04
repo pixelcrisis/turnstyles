@@ -838,19 +838,19 @@ module.exports = app => {
   }
 
   app.alertSnags = function (e) {
-    if (this.config.chat_snag) this.Post({
+    if (this.config.chat_snag) this.$Post({
       head: e.$name, body: `has snagged this track!`, type: 'snag'
     })
   }
 
   app.alertJoin = function (e) {
-    if (this.config.chat_join) for (let user of e.user) this.Post({
+    if (this.config.chat_join) for (let user of e.user) this.$Post({
       head: user.name, body: 'joined.', type: 'join'
     })
   }
 
   app.alertLeft = function (e) {
-    if (this.config.chat_left) for (let user of e.user) this.Post({
+    if (this.config.chat_left) for (let user of e.user) this.$Post({
       head: user.name, body: 'left.', type: 'left'
     })
   }
