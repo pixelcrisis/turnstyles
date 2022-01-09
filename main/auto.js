@@ -4,7 +4,7 @@ module.exports = app => {
 
   app.autoBop = function () {
     if (this.bop) clearTimeout(this.bop)
-    if (!this.config.autobop) return
+    if (!this.config.auto_b) return
 
     const delay = (Math.random() * 7) * 100
     const click = () => this._click('.awesome-button')
@@ -33,22 +33,22 @@ module.exports = app => {
   // autoqueue - jump on queue ping
   app.autoQueue = function (e) {
     if (!this.config.auto_q) return
-    if (this.config.q_ping == e.text) this.$View().becomeDj()
+    if (this.config.q_text == e.text) this.$View().becomeDj()
   }
 
   // automatic timed reminders
   app.autoRemind = function (ran) {
-    if (!this.config.reminder) return
-    let freq = parseInt(this.config.remind)
-    let text = `[${this.$Room().name}] ${this.config.reminder}`
+    if (!this.config.timing.text) return
+    let freq = parseInt(this.config.timing.post)
+    let text = `[${this.$Room().name}] ${this.config.timing.text}`
     // ran divisible by freq (eg, on 120 ran for every 60 freq)
-    if ((ran % freq) === 0 && this.config.reminder) this.$Send(text)
+    if ((ran % freq) === 0 && this.config.timing.text) this.$Send(text)
   }
 
   app.on(['attach', 'newsong'], app.autoBop)
   app.on(['attach', 'update', 'rem_dj'], app.autoJump)
+  app.on(['speak', 'pmmed'], app.autoQueue)
   app.on('add_dj', app.spinning)
-  app.on('speak', app.autoQueue)
   app.on('heartbeat', app.autoRemind)
 
 }

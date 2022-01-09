@@ -25,50 +25,72 @@ module.exports = app => {
     </a>
   `
 
-  // ts UI
-  app.$_tab = (name, on) => `
-    <span data-tab="${ name }" class="ts-tab ${ on ? 'active' : '' }">
-      ${ name }
-    </span>
-  `
+  // panel ui
+  app.$_toggle = function (item, name, group, id) { 
+    let value = group ? this.config[group][item] : this.config[item]
+    return `
+    <label class="ts-toggle" ${ id ? `id="${ id }"` : '' }>
+      <input type="checkbox"
+        data-opt="${ item }" 
+        data-cat="${ group || "" }"
+        ${ value ? 'checked' : '' } />
+      <span></span> ${ name }
+    </label>`
+  }
 
-  app.$_button = (item, name) => `
-    <button class="ts-button" data-for="ts_${ item }">${ name }</button>
-  `
-
-  app.$_firing = (func, name) => `
-    <button class="ts-button" onclick="$tS.${func}()">${ name }</button>
-  `
-
-  app.$_string = function (item, name) { return `
+  app.$_string = function (item, name, group) { 
+    let value = group ? this.config[group][item] : this.config[item]
+    return `
     <input type="text" class="ts-inputs"
-      id="ts_${ item }" value="${ this.config[item] }" />
-    ${ this.$_button(item, name) }`
+      data-opt="${ item }" 
+      data-cat="${ group || "" }" 
+      value="${ value }" />
+    ${ this.$_button(name, item) }`
   }
 
-  app.$_field = function (item, name, rows) { return `
-    <textarea class="ts-inputs" id="ts_${ item }" rows="${ rows }">${ this.config[item] }</textarea>
-    ${ this.$_button(item, name) }`
+  app.$_bigtxt = function (item, name, group) {
+    let value = group ? this.config[group][item] : this.config[item]
+    return `
+    <textarea class="ts-inputs" rows="10" 
+      data-opt="${ item }" data-cat="${ group || "" }">${ value }</textarea>
+    ${ this.$_button(name, item) }`
   }
 
-  app.$_select = function (list) { return `
-    <select data-for="${list}" class="ts-choice ts_switch">
+  app.$_select = function (list, group) {
+    let options = this.options[list]
+    let current = group ? this.config[group][list] : this.config[list]
+    return `
+    <select class="ts-choice"
+      data-opt="${ list }" data-cat="${ group || "" }">
       <option value="">No ${ this._cap(list) }</option>
-      ${ Object.keys(this.options[list]).map(key => `
-          <option value="${ key }" 
-            ${ this.config[list] == key ? 'selected' : ''}>
-            ${ this.options[list][key] }
-          </option>
-        `).join('') }
+      ${ Object.keys(options).map(opt => `
+        <option value="${ opt }" ${ current == opt ? 'selected' : ''}>
+          ${ options[opt] }
+        </option>
+      `).join('') }
     </select>`
   }
 
-  app.$_toggle = function (item, name) { return `
-    <label class="ts-toggle">
-      <input type="checkbox" class="ts_switch"
-        data-for="${ item }" ${ this.config[item] ? 'checked' : '' } />
-      <span class="ts-state"></span> ${ name }
-    </label>`
+  app.$_qt_btn = function (i) { 
+    let which = `qtbtn${i}`
+    let qtext = this.config.qtbtns[which]
+    let label = qtext.indexOf('||') > -1
+    if (label) {
+      qtext = qtext.split('||')
+      label = qtext.shift()
+      qtext = qtext.join(' ')
+    } else {
+      label = `QT${i}`
+    }
+    return this.$_button(label, false, which, which)
+  }
+
+  app.$_button = function (name, item, id, func) { return `
+    <button class="ts-button" ${ id ? `id="${ id }"` : `` }
+      ${ item ? `data-for="${ item }"` : `` }
+      ${ func ? `onclick="$tS.${ func }()"` : `` }>
+      ${ name }
+    </button>`
   }
 
 }

@@ -2,6 +2,19 @@
 
 module.exports = app => {
 
+  app.qtbtn1 = function () { this.qtbtns('1') }
+  app.qtbtn2 = function () { this.qtbtns('2') }
+  app.qtbtn3 = function () { this.qtbtns('3') }
+  app.qtbtns = function (i) {
+    let text = this.config.qtbtns[`qtbtn${i}`]
+    if (text) {
+      if (text.indexOf('||') > -1) {
+        text = text.split('||')[1].trim()
+      }
+      this.$Send(text)
+    }
+  }
+
   // fade out 'started playing' 
   app.fadeNewSong = function (el) {  
     let last = $(el).children('.message').last()

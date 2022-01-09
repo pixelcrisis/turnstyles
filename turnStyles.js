@@ -1,4 +1,4 @@
-let turnStyles = {}
+let turnStyles = window.$tS = {}
 // a thing by pixelcrisis
 
 require('./data/config.js')(turnStyles)
@@ -13,6 +13,7 @@ require('./core/notify.js')(turnStyles)
 
 require('./data/session.js')(turnStyles)
 require('./data/storage.js')(turnStyles)
+require('./data/updates.js')(turnStyles)
 
 require('./main/themes.js')(turnStyles)
 require('./main/volume.js')(turnStyles)

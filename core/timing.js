@@ -27,8 +27,8 @@ module.exports = app => {
 	// the heartbeat fired every minute
 	app.beat = function () {
 		// emit 'heartbeat' every minute
-		this.config.beats = parseInt(this.config.beats) + 1
-		this.Emit('heartbeat', this.config.beats)
+		this.config.timing.beat = parseInt(this.config.timing.beat) + 1
+		this.Emit('heartbeat', this.config.timing.beat)
 	}
 
 	// start loop and delay storage on attach

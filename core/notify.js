@@ -19,10 +19,10 @@ module.exports = app => {
 
   // get desktop notificaiton permissions
   app.canNotify = function () {
-    let cfg = this.config
+    let cfg = this.config.notify
     // if we need to send notifications,
     // get the browser permission for it
-    let has = cfg.ping_pm || cfg.ping_song || cfg.ping_chat
+    let has = cfg.chat || cfg.song || cfg.ding
     // return if no notifications possible
     if (!has || !('Notification' in window)) return false
     if (Notification.permission === 'denied') return false

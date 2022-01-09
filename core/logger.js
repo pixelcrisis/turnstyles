@@ -30,6 +30,10 @@ module.exports = app => {
 	})
 
 	// automatic event logs
+	app.on('update', function (key, val) {
+		this.Log(`update: [${ key }] to (${ val })`)
+	})
+	
 	app.on('registered', function joinLog (e) {
 		for (let u of e.user) this.Log(`[${u.name}](${u.userid}) joined.`)
 	})

@@ -13,7 +13,7 @@ module.exports = app => {
 
 	// load volume functionality
 	app.loadVolume = function () {
-		let opt = this.config.has_vol
+		let opt = this.config.volume
 		let has = $('body').hasClass('ts_vol')
 		this._class('ts_vol', opt)
 
@@ -47,7 +47,7 @@ module.exports = app => {
 		vol = vol.target ? vol.target.value : vol
 		let volume = vol > 0 ? convertVol(vol) : -3
 		// turntable doesn't natively go lower than 7
-		let volFunc = volume < 7 ? currentVol() : this.realVolume
+		let volFunc = volume < 7 ? currentVol : this.realVolume
 		window.turntablePlayer.realVolume = volFunc
 		window.turntablePlayer.setVolume(volume)
 		window.util.setSetting('volume', volume)

@@ -3,44 +3,66 @@
 module.exports = app => {
 
 	app.default = {
-		logging: false,
-		played: false,
-		
 		theme: "dark",
 		style: "",
-
-		autobop: true,
-
-		nextdj: false,
-		auto_q: false,
-		q_ping: `Hey @user - it's your turn!`,
-
-		has_vol: false,
-		stamps: false,
-
-		no_aud: false,
-		no_vid: false,
-		no_bub: false,
-
-		ping_pm: false,
-		ping_song: false,
-		ping_chat: false,
-		hot_words: "",
-
-		chat_song: false,
-		chat_spun: false,
-		chat_snag: false,
-		chat_join: false,
-		chat_left: false,
+		u_css: "",
 
 		is_afk: false,
-		afk_ping: `I'm AFK - Back in a sec!`,
+		afkstr: "I'm AFK - Back in a sec!",
 
-		beats: 0,
-		remind: 0,
-		reminder: `Today's theme is: Cool.`,
+		people: true,
+		player: true,
+		bubble: true,
 
-		user_css: ''
+		logger: false,
+		volume: false,
+		played: false,
+		stamps: false,
+
+		auto_b: true,
+		nextdj: false,
+		auto_q: false,
+		q_text: "Hey @user - it's your turn!",
+
+		notify: {
+			song: false,
+			ding: false,
+			chat: false,
+			text: ""
+		},
+
+		alerts: {
+			song: false,
+			spun: false,
+			snag: false,
+			join: false,
+			left: false
+		},
+
+		hotbar: {
+			is_afk: true,
+			auto_b: true,
+			auto_q: true,
+			nextdj: true,
+			bubble: false,
+			people: false,
+			player: false,
+			qtbtn1: false,
+			qtbtn2: false,
+			qtbtn3: false
+		},
+
+		qtbtns: {
+			qtbtn1: "",
+			qtbtn2: "",
+			qtbtn3: ""
+		},
+
+		timing: {
+			beat: 0,
+			post: 0,
+			text: "Today's theme is: Cool."
+		},
 	}
 
 	app.options = {

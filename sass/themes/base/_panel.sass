@@ -1,15 +1,10 @@
-#tsPanels
+#tsHotBar,
+#tsConfig,
+#tsConfig nav
 	@extend .ts-content
 
-#tsMenu
-	@extend .ts-main-filter
-
-#tsHotBar .ts-tab
-	color: $mute
-	background: $bg-faded
-#tsHotBar .ts-tab.active
-	color: $text
-	background: $bg-faded
+#tsConfig .ts-tab.active
+	color: $main
 
 #tsOptions p
 	color: $text
@@ -17,19 +12,13 @@
 #tsOptions a
 	color: $main
 
-.ts-toggle,
-.ts-button,
-.ts-choice,
-#tsOptions a
-	background: $bg-hover
-
-.ts-inputs
-	background: $bg-faded
-	border-left-color: $bg-hover
-	border-bottom-color: $bg-faded
+#tsConfig .ts-choice,
+#tsConfig .ts-inputs,
+#tsConfig .ts-button,
+#tsHotBar .ts-button,
+#tsHotBar .ts-toggle
+	@extend %button
 
 .ts-toggle
 	input:checked + span:after
 		color: $main
-	input:not(:checked) + span
-		color: $mute

@@ -15,41 +15,41 @@ module.exports = app => {
 		// load and apply our defaults
 		let is_afk  = false // can't be afk if we're loading
 		this.config = { ...this.default, ...configs, version, is_afk }
+		this.update()
 
 		this.Emit('loaded', this.config)
 	}
 
 	// save config to local storage
 	app.saveConfig = function (e) {
-		// when an option is changed, save it
-		let which = e.target.dataset.for
-		let check = e.target.type == 'checkbox'
-		let value = check ? e.target.checked : e.target.value
+		let self = e.target
+		let data = self.dataset
+		if (!data.opt && !data.for) return
 
-		// check for a button function
-		if (which.indexOf('ts_') === 0) {
-			value = $(`#${which}`).val()
-			which = which.split('ts_').join('')
-		}
+		let which = data.for || data.opt
+		let check = self.type == 'checkbox'
+		let value = check ? self.checked : self.value
+		if (data.for) value = $(`*[data-opt="${ which }"]`).val()
 
 		// save the updated config 
-		this.setConfig(which, value)
+		this.setConfig(which, value, data.cat)
 		// emit that the change was updated
 		let visual = [ 'style', 'theme', 'user_css' ].includes(which)
-		if (visual || !this.lobby) this.Emit('update', which, value)
+		if (visual || !this.lobby) this.Emit('update', which, value, data.cat)
 		// only emit visual changes in the lobby
 	}
 
 	// update a config item
-	app.setConfig = function (opt, val) {
+	app.setConfig = function (opt, val, group) {
 		// update config object
-		this.config[opt] = val
+		if (!group) this.config[opt] = val
+		else this.config[group][opt] = val
 		// save the updated config locally
 		let stored = JSON.stringify(this.config)
 		window.localStorage.setItem('tsdb', stored)
 		// mirror the option between window/hotbar
 		let toggle = typeof val === 'boolean'
-		let mirror = $(`*[data-for="${opt}"]`)
+		let mirror = $(`*[data-opt="${opt}"][data-cat="${ group || ""}"]`)
 		mirror.prop(toggle ? 'checked' : 'value', val)
 	}
 

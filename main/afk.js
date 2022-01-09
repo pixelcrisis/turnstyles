@@ -3,10 +3,10 @@
 module.exports = app => {
 
   // set afk status on update
-  app.setAfk = function (key, val) {
-    if (key != 'is_afk') return
+  app.setAfk = function (key, val, grp) {
+    if (key != 'is_afk' || grp) return
     // send our afk ping if enabled
-    let msg = this.config.afk_ping
+    let msg = this.config.afkstr
     if (val && msg) this.$Send(msg)
   }
 
