@@ -44,7 +44,7 @@
 #topBG .room-list .roomListItem .roomDJs:not(.needed) .icon, .header-social div, .tab-item:not(.selected):not(:hover) .tab-icon, #settings.settings-dropdown .dropdown .option .option:before {
   filter: invert(0) brightness(0.4) grayscale(1) sepia(1) hue-rotate(170deg) saturate(1.4); }
 
-.ts-content, .ts-striped-list:nth-child(odd), #topBG .room-list .roomListItem:nth-child(odd), .guest-list .guest:nth-child(odd), .chat .message:nth-child(odd), #buddyListMain .conversations-list .conversation-item:nth-child(odd), .message-history li:nth-child(odd), #topBG, #tsHotBar,
+.ts-content, .ts-striped-list:nth-child(odd), #topBG .room-list .roomListItem:nth-child(odd), .guest-list .guest:nth-child(odd), .chat .message:nth-child(odd), #buddyListMain .conversations-list .conversation-item:nth-child(odd), .message-history li.message-view:nth-child(odd), #topBG, #tsHotBar,
 #tsConfig,
 #tsConfig nav, div#header,
 .header-bar, .tab-item.selected, .tab-item:not(.selected):hover, #overlay .modal .content-container, .new-modal .content, body,
@@ -55,7 +55,7 @@
   color: #c6c7d0;
   background: #1e2746; }
 
-.ts-content-alt, .ts-striped-list:nth-child(even), #topBG .room-list .roomListItem:nth-child(even), .guest-list .guest:nth-child(even), .chat .message:nth-child(even), #buddyListMain .conversations-list .conversation-item:nth-child(even), .message-history li:nth-child(even), .tipsy-inner, #maindiv .song-list .song:not(.nth-child-even) {
+.ts-content-alt, .ts-striped-list:nth-child(even), #topBG .room-list .roomListItem:nth-child(even), .guest-list .guest:nth-child(even), .chat .message:nth-child(even), #buddyListMain .conversations-list .conversation-item:nth-child(even), .message-history li.message-view:nth-child(even), .tipsy-inner, #maindiv .song-list .song:not(.nth-child-even) {
   color: #c6c7d0;
   background: #212b4d; }
 
@@ -78,7 +78,7 @@
   .ts-text-input::placeholder, #topBG .room-search-input input::placeholder, .chat-bar #chat-input::placeholder, #queue-header #song-search-input::placeholder, #playlist .edit .playlist-input input::placeholder, .message-input::placeholder {
     color: #72778b; }
 
-.ts-striped-list, #topBG .room-list .roomListItem, .guest-list .guest, .chat .message, #buddyListMain .conversations-list .conversation-item, .message-history li {
+.ts-striped-list, #topBG .room-list .roomListItem, .guest-list .guest, .chat .message, #buddyListMain .conversations-list .conversation-item, .message-history li.message-view {
   border-bottom: 1px solid #19213b; }
 
 #topBG .header-logo2 {
@@ -224,6 +224,9 @@
   text-shadow: none !important; }
   #topBG #content #footer a:not(:hover) {
     opacity: 0.8; }
+
+#tsHotBar {
+  border-top: 2px solid #27335b; }
 
 #tsConfig .ts-tab.active {
   color: #47a7ff; }

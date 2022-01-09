@@ -44,7 +44,7 @@
 #topBG .room-list .roomListItem .roomDJs:not(.needed) .icon, .header-social div, .tab-item:not(.selected):not(:hover) .tab-icon, #settings.settings-dropdown .dropdown .option .option:before {
   filter: invert(0) brightness(0.7) grayscale(1) sepia(1) hue-rotate(0deg) saturate(2); }
 
-.ts-content, .ts-striped-list:nth-child(odd), #topBG .room-list .roomListItem:nth-child(odd), .guest-list .guest:nth-child(odd), .chat .message:nth-child(odd), #buddyListMain .conversations-list .conversation-item:nth-child(odd), .message-history li:nth-child(odd), #topBG, #tsHotBar,
+.ts-content, .ts-striped-list:nth-child(odd), #topBG .room-list .roomListItem:nth-child(odd), .guest-list .guest:nth-child(odd), .chat .message:nth-child(odd), #buddyListMain .conversations-list .conversation-item:nth-child(odd), .message-history li.message-view:nth-child(odd), #topBG, #tsHotBar,
 #tsConfig,
 #tsConfig nav, div#header,
 .header-bar, .tab-item.selected, .tab-item:not(.selected):hover, #overlay .modal .content-container, .new-modal .content, body,
@@ -55,7 +55,7 @@
   color: #adadad;
   background: #191919; }
 
-.ts-content-alt, .ts-striped-list:nth-child(even), #topBG .room-list .roomListItem:nth-child(even), .guest-list .guest:nth-child(even), .chat .message:nth-child(even), #buddyListMain .conversations-list .conversation-item:nth-child(even), .message-history li:nth-child(even), .tipsy-inner, #maindiv .song-list .song:not(.nth-child-even) {
+.ts-content-alt, .ts-striped-list:nth-child(even), #topBG .room-list .roomListItem:nth-child(even), .guest-list .guest:nth-child(even), .chat .message:nth-child(even), #buddyListMain .conversations-list .conversation-item:nth-child(even), .message-history li.message-view:nth-child(even), .tipsy-inner, #maindiv .song-list .song:not(.nth-child-even) {
   color: #adadad;
   background: #1e1e1e; }
 
@@ -78,7 +78,7 @@
   .ts-text-input::placeholder, #topBG .room-search-input input::placeholder, .chat-bar #chat-input::placeholder, #queue-header #song-search-input::placeholder, #playlist .edit .playlist-input input::placeholder, .message-input::placeholder {
     color: #636363; }
 
-.ts-striped-list, #topBG .room-list .roomListItem, .guest-list .guest, .chat .message, #buddyListMain .conversations-list .conversation-item, .message-history li {
+.ts-striped-list, #topBG .room-list .roomListItem, .guest-list .guest, .chat .message, #buddyListMain .conversations-list .conversation-item, .message-history li.message-view {
   border-bottom: 1px solid #111111; }
 
 #topBG .header-logo2 {
@@ -224,6 +224,9 @@
   text-shadow: none !important; }
   #topBG #content #footer a:not(:hover) {
     opacity: 0.8; }
+
+#tsHotBar {
+  border-top: 2px solid #282828; }
 
 #tsConfig .ts-tab.active {
   color: #bfa206; }

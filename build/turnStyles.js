@@ -12,7 +12,7 @@ module.exports = app => {
 
 		// we can't attach if we're in the lobby
 		this.lobby = $('#turntable #topBG').length
-		if (this.lobby) return this.addPanel()
+		if (this.lobby) return this.bindPanels()
 
 		// we loop until the window has loaded the room fully
 		const again = () => setTimeout(app.attach.bind(this), 150)
@@ -372,31 +372,35 @@ module.exports = app => {
 
   app.bindPanels = function () {
     this.drawHotBar()
-
-    $('#tsWindow').remove()
-    $('body').append(Options())
-
-    // panel toggle bind
-    $('#tsOpen').on('click', () => $('#tsWindow').addClass('active'))
-    $('#tsClose').on('click', () => $('#tsWindow').removeClass('active'))
-    $('#tsWindow').on('click', function (e) {
-      if (e.target == this) $('#tsWindow').removeClass('active')
-    })
-
-    // bind tab switcher
-    $('.ts-tab').on('click', (e) => {
-      $('#tsWindow .active').removeClass('active')
-      $(`*[data-tab="${e.target.dataset.tab}"]`).addClass('active')
-    })
-
-    // bind config changes
-    $('*[data-for]').on('click',  this.saveConfig.bind(this))
-    $('*[data-opt]').on('change', this.saveConfig.bind(this))
+    this.drawWindow()
   }
 
   app.drawHotBar = function () {
     $('#tsHotBar').remove()
     $('.header-bar').append(HotBar())
+
+    $('#tsOpen').on('click', () => $('#tsWindow').addClass('active'))
+    
+    $('#tsHotBar *[data-for]').on('click',  this.saveConfig.bind(this))
+    $('#tsHotBar *[data-opt]').on('change', this.saveConfig.bind(this))
+  }
+
+  app.drawWindow = function () {
+    $('#tsWindow').remove()
+    $('body').append(Options())
+
+    $('#tsClose').on('click', () => $('#tsWindow').removeClass('active'))
+    $('#tsWindow').on('click', function (e) {
+      if (e.target == this) $('#tsWindow').removeClass('active')
+    })
+
+    $('.ts-tab').on('click', (e) => {
+      $('#tsWindow .active').removeClass('active')
+      $(`*[data-tab="${e.target.dataset.tab}"]`).addClass('active')
+    })
+    
+    $('#tsWindow *[data-for]').on('click',  this.saveConfig.bind(this))
+    $('#tsWindow *[data-opt]').on('change', this.saveConfig.bind(this))
   }
 
   const HotBar = () => `
@@ -851,6 +855,7 @@ module.exports = app => {
 		this.setConfig(which, value, data.cat)
 		// emit that the change was updated
 		let visual = [ 'style', 'theme', 'user_css' ].includes(which)
+		if ([ 'hotbar', 'macros'].includes(data.cat)) visual = true
 		if (visual || !this.lobby) this.Emit('update', which, value, data.cat)
 		// only emit visual changes in the lobby
 	}
@@ -1271,6 +1276,9 @@ module.exports = app => {
       if (key == "qtbtn1") this._class('hb-qtbtn1', !val)
       if (key == "qtbtn2") this._class('hb-qtbtn2', !val)
       if (key == "qtbtn3") this._class('hb-qtbtn3', !val)
+    }
+
+    if (grp == "hotbar" || grp == "qtbtns") {
       this.drawHotBar()
     }
   }
