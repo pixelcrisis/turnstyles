@@ -4,31 +4,35 @@ module.exports = app => {
 
   app.bindPanels = function () {
     this.drawHotBar()
-
-    $('#tsWindow').remove()
-    $('body').append(Options())
-
-    // panel toggle bind
-    $('#tsOpen').on('click', () => $('#tsWindow').addClass('active'))
-    $('#tsClose').on('click', () => $('#tsWindow').removeClass('active'))
-    $('#tsWindow').on('click', function (e) {
-      if (e.target == this) $('#tsWindow').removeClass('active')
-    })
-
-    // bind tab switcher
-    $('.ts-tab').on('click', (e) => {
-      $('#tsWindow .active').removeClass('active')
-      $(`*[data-tab="${e.target.dataset.tab}"]`).addClass('active')
-    })
-
-    // bind config changes
-    $('*[data-for]').on('click',  this.saveConfig.bind(this))
-    $('*[data-opt]').on('change', this.saveConfig.bind(this))
+    this.drawWindow()
   }
 
   app.drawHotBar = function () {
     $('#tsHotBar').remove()
     $('.header-bar').append(HotBar())
+
+    $('#tsOpen').on('click', () => $('#tsWindow').addClass('active'))
+    
+    $('#tsHotBar *[data-for]').on('click',  this.saveConfig.bind(this))
+    $('#tsHotBar *[data-opt]').on('change', this.saveConfig.bind(this))
+  }
+
+  app.drawWindow = function () {
+    $('#tsWindow').remove()
+    $('body').append(Options())
+
+    $('#tsClose').on('click', () => $('#tsWindow').removeClass('active'))
+    $('#tsWindow').on('click', function (e) {
+      if (e.target == this) $('#tsWindow').removeClass('active')
+    })
+
+    $('.ts-tab').on('click', (e) => {
+      $('#tsWindow .active').removeClass('active')
+      $(`*[data-tab="${e.target.dataset.tab}"]`).addClass('active')
+    })
+    
+    $('#tsWindow *[data-for]').on('click',  this.saveConfig.bind(this))
+    $('#tsWindow *[data-opt]').on('change', this.saveConfig.bind(this))
   }
 
   const HotBar = () => `

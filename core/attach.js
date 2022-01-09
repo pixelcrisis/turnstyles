@@ -11,7 +11,7 @@ module.exports = app => {
 
 		// we can't attach if we're in the lobby
 		this.lobby = $('#turntable #topBG').length
-		if (this.lobby) return this.addPanel()
+		if (this.lobby) return this.bindPanels()
 
 		// we loop until the window has loaded the room fully
 		const again = () => setTimeout(app.attach.bind(this), 150)

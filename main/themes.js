@@ -51,6 +51,9 @@ module.exports = app => {
       if (key == "qtbtn1") this._class('hb-qtbtn1', !val)
       if (key == "qtbtn2") this._class('hb-qtbtn2', !val)
       if (key == "qtbtn3") this._class('hb-qtbtn3', !val)
+    }
+
+    if (grp == "hotbar" || grp == "qtbtns") {
       this.drawHotBar()
     }
   }
