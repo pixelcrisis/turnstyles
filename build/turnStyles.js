@@ -191,50 +191,72 @@ module.exports = app => {
     </a>
   `
 
-  // ts UI
-  app.$_tab = (name, on) => `
-    <span data-tab="${ name }" class="ts-tab ${ on ? 'active' : '' }">
-      ${ name }
-    </span>
-  `
+  // panel ui
+  app.$_toggle = function (item, name, group, id) { 
+    let value = group ? this.config[group][item] : this.config[item]
+    return `
+    <label class="ts-toggle" ${ id ? `id="${ id }"` : '' }>
+      <input type="checkbox"
+        data-opt="${ item }" 
+        data-cat="${ group || "" }"
+        ${ value ? 'checked' : '' } />
+      <span></span> ${ name }
+    </label>`
+  }
 
-  app.$_button = (item, name) => `
-    <button class="ts-button" data-for="ts_${ item }">${ name }</button>
-  `
-
-  app.$_firing = (func, name) => `
-    <button class="ts-button" onclick="$tS.${func}()">${ name }</button>
-  `
-
-  app.$_string = function (item, name) { return `
+  app.$_string = function (item, name, group) { 
+    let value = group ? this.config[group][item] : this.config[item]
+    return `
     <input type="text" class="ts-inputs"
-      id="ts_${ item }" value="${ this.config[item] }" />
-    ${ this.$_button(item, name) }`
+      data-opt="${ item }" 
+      data-cat="${ group || "" }" 
+      value="${ value }" />
+    ${ this.$_button(name, item) }`
   }
 
-  app.$_field = function (item, name, rows) { return `
-    <textarea class="ts-inputs" id="ts_${ item }" rows="${ rows }">${ this.config[item] }</textarea>
-    ${ this.$_button(item, name) }`
+  app.$_bigtxt = function (item, name, group) {
+    let value = group ? this.config[group][item] : this.config[item]
+    return `
+    <textarea class="ts-inputs" rows="10" 
+      data-opt="${ item }" data-cat="${ group || "" }">${ value }</textarea>
+    ${ this.$_button(name, item) }`
   }
 
-  app.$_select = function (list) { return `
-    <select data-for="${list}" class="ts-choice ts_switch">
+  app.$_select = function (list, group) {
+    let options = this.options[list]
+    let current = group ? this.config[group][list] : this.config[list]
+    return `
+    <select class="ts-choice"
+      data-opt="${ list }" data-cat="${ group || "" }">
       <option value="">No ${ this._cap(list) }</option>
-      ${ Object.keys(this.options[list]).map(key => `
-          <option value="${ key }" 
-            ${ this.config[list] == key ? 'selected' : ''}>
-            ${ this.options[list][key] }
-          </option>
-        `).join('') }
+      ${ Object.keys(options).map(opt => `
+        <option value="${ opt }" ${ current == opt ? 'selected' : ''}>
+          ${ options[opt] }
+        </option>
+      `).join('') }
     </select>`
   }
 
-  app.$_toggle = function (item, name) { return `
-    <label class="ts-toggle">
-      <input type="checkbox" class="ts_switch"
-        data-for="${ item }" ${ this.config[item] ? 'checked' : '' } />
-      <span class="ts-state"></span> ${ name }
-    </label>`
+  app.$_qt_btn = function (i) { 
+    let which = `qtbtn${i}`
+    let qtext = this.config.qtbtns[which]
+    let label = qtext.indexOf('||') > -1
+    if (label) {
+      qtext = qtext.split('||')
+      label = qtext.shift()
+      qtext = qtext.join(' ')
+    } else {
+      label = `QT${i}`
+    }
+    return this.$_button(label, false, which, which)
+  }
+
+  app.$_button = function (name, item, id, func) { return `
+    <button class="ts-button" ${ id ? `id="${ id }"` : `` }
+      ${ item ? `data-for="${ item }"` : `` }
+      ${ func ? `onclick="$tS.${ func }()"` : `` }>
+      ${ name }
+    </button>`
   }
 
 }
@@ -271,6 +293,10 @@ module.exports = app => {
 	})
 
 	// automatic event logs
+	app.on('update', function (key, val) {
+		this.Log(`update: [${ key }] to (${ val })`)
+	})
+	
 	app.on('registered', function joinLog (e) {
 		for (let u of e.user) this.Log(`[${u.name}](${u.userid}) joined.`)
 	})
@@ -318,10 +344,10 @@ module.exports = app => {
 
   // get desktop notificaiton permissions
   app.canNotify = function () {
-    let cfg = this.config
+    let cfg = this.config.notify
     // if we need to send notifications,
     // get the browser permission for it
-    let has = cfg.ping_pm || cfg.ping_song || cfg.ping_chat
+    let has = cfg.chat || cfg.song || cfg.ding
     // return if no notifications possible
     if (!has || !('Notification' in window)) return false
     if (Notification.permission === 'denied') return false
@@ -345,144 +371,187 @@ module.exports = app => {
 module.exports = app => {
 
   app.bindPanels = function () {
-    $('#tsPanels').remove()
-    $('.header-bar').append(panels())
+    this.drawHotBar()
+
+    $('#tsWindow').remove()
+    $('body').append(Options())
 
     // panel toggle bind
-    $('#tsMenu').on('click', () => $('#tsPanels').toggleClass('active'))
+    $('#tsOpen').on('click', () => $('#tsWindow').addClass('active'))
+    $('#tsClose').on('click', () => $('#tsWindow').removeClass('active'))
+    $('#tsWindow').on('click', function (e) {
+      if (e.target == this) $('#tsWindow').removeClass('active')
+    })
 
     // bind tab switcher
     $('.ts-tab').on('click', (e) => {
-      $('#tsPanels .active').removeClass('active')
+      $('#tsWindow .active').removeClass('active')
       $(`*[data-tab="${e.target.dataset.tab}"]`).addClass('active')
     })
 
     // bind config changes
-    $('.ts-button').on('click',  this.saveConfig.bind(this))
-    $('.ts_switch').on('change', this.saveConfig.bind(this))
+    $('*[data-for]').on('click',  this.saveConfig.bind(this))
+    $('*[data-opt]').on('change', this.saveConfig.bind(this))
   }
 
-  const panels = () => `
-    <div id="tsPanels">
-      <div id="tsHotBar">
-        <h1 id="tsMenu"></h1>
-        ${ app.$_toggle('is_afk', 'AFK') }
-        ${ app.$_toggle('autobop', 'AutoBop') }
-        ${ app.$_toggle('auto_q', 'AutoQueue') }
-        ${ app.$_toggle('nextdj', 'Next DJ') }
+  app.drawHotBar = function () {
+    $('#tsHotBar').remove()
+    $('.header-bar').append(HotBar())
+  }
 
-        ${ app.$_tab('General', true) }
-        ${ app.$_tab('Visual') }
-        ${ app.$_tab('CSS') }
-        ${ app.$_tab('Alerts') }
-        ${ app.$_tab('About') }
-      </div>
-      <div id="tsOptions">
-        ${ general() }
-        ${ visual() }
-        ${ alerts() }
-        ${ about() }
-      </div>
-    </div>
-  `
-  const general = () => `
-    <div data-tab="General" class="ts-tabbed active">
-      <div class="ts-col">
-        ${ app.$_toggle('autobop', 'Autobop') }
-        ${ app.$_toggle('nextdj', 'Next DJ Spot') }
-        ${ app.$_toggle('has_vol', 'Control Volume') }
-      </div>
-      <div class="ts-col">
-        ${ app.$_toggle('auto_q', 'Enable AutoQueue') }
-        ${ app.$_string('q_ping', 'Save Queue Ping') }
-        <p>Paste your bot's queue message above to hop on deck when called up.</p>
-      </div>
-      <div class="ts-col">
-        ${ app.$_toggle('is_afk', 'Go AFK') }
-        ${ app.$_string('afk_ping', 'Save AFK Response') }
-        <p>Sends your response when you mark as AFK, and if pinged while gone.</p>
-      </div>
-    </div>
-  `
-  const visual = () => `
-    <div data-tab="Visual" class="ts-tabbed">
-      <div class="ts-col">
-        ${ app.$_select('theme') }
-        ${ app.$_select('style') }
-        ${ app.$_toggle('played', 'Show Recently Played') }
-        <p>Add A Red Glow To Songs Played Recently In The Room</p>
-      </div>
-      <div class="ts-col">
-        ${ app.$_toggle('no_bub', 'Hide Chat Bubbles') }
-        ${ app.$_toggle('no_vid', 'Hide Video Player') }
-        ${ app.$_toggle('no_aud', 'Hide Room Audience') }
-        ${ app.$_toggle('stamps', 'Add Timestamps To Chat') }
-        <p>Toggle Visual Elements</p>
-      </div>
-    </div>
-    <div data-tab="CSS" class="ts-tabbed">
-      <div class="ts-col full">
-        ${ app.$_field('user_css', 'Save & Apply Styles!', '10') }
-        <p>Add your own custom CSS snippets to turntable!</p>
-      </div>
-    </div>
-  `
-  const alerts = () => `
-    <div data-tab="Alerts" class="ts-tabbed">
-      <div class="ts-col">
-        ${ app.$_toggle('chat_song', 'Last Song Stats') }
-        ${ app.$_toggle('chat_spun', 'Dropped DJ Stats') }
-        ${ app.$_toggle('chat_snag', 'User Snags') }
-        ${ app.$_toggle('chat_join', 'User Joins') }
-        ${ app.$_toggle('chat_left', 'User Leaves') }
-        <p>Added To Chat (Just For You)</p>
-      </div>
-      <div class="ts-col">
-        ${ app.$_toggle('ping_pm', 'On DMs') }
-        ${ app.$_toggle('ping_chat', 'On Mentions') }
-        ${ app.$_toggle('ping_song', 'On New Songs') }
-        <p>Desktop Notifications</p>
-      </div>
-      <div class="ts-col">
-        ${ app.$_field('hot_words', 'Save Hot Words', '3') }
-        <p>Notifies / highlights word match in chat. Use multiple words in a comma separated list.</p>
-      </div>
-    </div>
-  `
-  const about = () => `
-    <div data-tab="About" class="ts-tabbed ts-links">
-      <div class="ts-col">
-        ${ app.$_toggle('logging',     'Show Logs In Room Tab') } 
-        ${ app.$_firing('reloadMusic', 'Fix Glitched Players') }
-        ${ app.$_firing('reload',      'Reload turnStyles') }
+  const HotBar = () => `
+    <div id="tsHotBar">
+      ${ app.$_button('☰', false, 'tsOpen') }
+      ${ app.$_toggle('is_afk', 'AFK', false, 'hbIsAfk') }
+      ${ app.$_toggle('auto_b', 'AutoBop', false, 'hbAutoB') }
+      ${ app.$_toggle('auto_q', 'AutoQueue', false, 'hbAutoQ') }
+      ${ app.$_toggle('nextdj', 'Next DJ', false, 'hbNextDJ') }
 
-        <p>Get Support On Discord</p>
-        <a href="https://discord.gg/wqmAVvgSbE" target="_blank">
-          turnStyles Discord</a>
-        <a href="https://discord.gg/jnRs4WnPjM" target="_blank">
-          Turntable.fm Discord</a>
-      </div>
-      <div class="ts-col">
-        <a href="https://chrome.google.com/webstore/detail/turntable-tweaks/pmlkackfnbbnjfejpddpakallilkbdme" target="_blank">Chrome Store</a>
-        <a href="https://addons.mozilla.org/en-US/firefox/addon/turnstyles-for-turntable-fm/" target="_blank">Firefox Addon</a>
-        <a href="https://ts.pixelcrisis.co" target="_blank">Bookmarklet</a>
-        
-        <p>Running turnStyles v${ app.config.version }</p>
-        
-        <a href="https://github.com/pixelcrisis/turnstyles" target="_blank">turnStyles Source</a>
-        <a href=""https://github.com/fluteds/ttscripts target="_blank">ttscripts (themes + more)</a>
-      </div>
-      <div class="ts-col">
-        <a href="https://patreon.com/pixelcrisis">Make Requests On Patreon!</a>
-        <p>Patrons can get features and themes added!</p>
+      ${ app.$_qt_btn('1') }
+      ${ app.$_qt_btn('2') }
+      ${ app.$_qt_btn('3') }
 
-        <p>Finding The Developer</p>
-        <div style="text-align: center">
-          <strong>@crisis</strong> on Discord<br>
-          <strong>@crisis</strong> on Turntable<br>
-          <strong>turntable.fm/pixelcrisis</strong>
-        </div>
+      ${ app.$_toggle('bubble', 'Bubbles', false, 'hbBubbles') }
+      ${ app.$_toggle('people', 'People', false, 'hbPeople') }
+      ${ app.$_toggle('player', 'Player', false, 'hbPlayer') }
+    </div>
+  `
+
+  const Options = () => `
+    <div id="tsWindow">
+      <div id="tsConfig">
+        <nav>
+          <h2><span id="tsClose">✖</span>turnStyles</h2>
+          <div class="ts-tab active" data-tab="general">General</div>
+          <div class="ts-tab" data-tab="visual">Visual</div>
+          <div class="ts-tab" data-tab="hotbar">HotBar</div>
+          <div class="ts-tab" data-tab="alerts">Alerts</div>
+          <div class="ts-tab" data-tab="support">Help / About</div>
+        </nav>
+
+        ${ General() }
+        ${ Visuals() }
+        ${ HBarTab() }
+        ${ Alerts() }
+        ${ Support() }
       </div>
+    </div>
+  `
+  const General = () => `
+    <div data-tab="general" class="ts-tabbed active">
+      <h3>Automate</h3>
+
+      <h5>${ app.$_toggle('auto_b', 'Enable Autobop') }</h5>
+      <p>Vote "Awesome" after every new song starts, automatically!</p>
+
+      <h5>${ app.$_toggle('nextdj', 'Take Next DJ Spot') }</h5>
+      <p>With this selected, turnStyles will attempt to automatically add you as a DJ when a spot becomes available.</p>
+
+      <h5>${ app.$_toggle('auto_q', 'Enable AutoQueue') }</h5>
+      ${ app.$_string('q_text', 'Save Ping')}
+      <p>Have a bot in your room that uses a queue? Copy/paste your queue ping above to automatically jump on deck when you're called!</p>
+
+      <h3>General</h3>
+
+      <h5>${ app.$_toggle('is_afk', 'Currently AFK') }</h5>
+      ${ app.$_string('afkstr', 'Save AFK Text') }
+      <p>When you've marked yourself as AFK, it will send the AFK Text above, and it will send it again whenever you're pinged while AFK.</p>
+
+      <h5>${ app.$_toggle('volume', 'Override Volume') }</h5>
+      <p>Move the volume controls to the main header (out of the menu), and add Temporary Mute (until the next song).</p>
+    </div>
+  `
+  const Visuals = () => `
+    <div data-tab="visual" class="ts-tabbed">
+      <h3>Theme/Style</h3>
+      ${ app.$_select('theme') }
+      ${ app.$_select('style') }
+
+      <h3>Visual Tweaks</h3>
+      <h5>${ app.$_toggle('played', 'Show Recently Played') }</h5>
+      <p>Checks your playlist and highlights songs recently played in the current room.</p>
+      <h5>${ app.$_toggle('stamps', 'Add Timestamps To Chat') }</h5>
+      <p>Adds a timestamp to the top right of room chat messages.</p>
+
+      <h3>Turntable</h3>
+      ${ app.$_toggle('bubble', 'Show Chat Bubbles') }
+      ${ app.$_toggle('people', 'Show Room Audience') }
+      ${ app.$_toggle('player', 'Show Video Player') }
+
+      <h3>Custom CSS</h3>
+      ${ app.$_bigtxt('u_css', 'Save & Apply Styles!') }
+      <p>Add your own custom CSS snippets to turntable!</p>
+    </div>
+  `
+  const HBarTab = () => `
+    <div data-tab="hotbar" class="ts-tabbed">
+      <h3>QuickText</h3>
+      <h5>${ app.$_toggle('qtbtn1', 'Enable QT 1', 'hotbar') }</h5>
+      ${ app.$_string('qtbtn1', 'Save QT', 'qtbtns')}
+      <h5>${ app.$_toggle('qtbtn2', 'Enable QT 2', 'hotbar') }</h5>
+      ${ app.$_string('qtbtn2', 'Save QT', 'qtbtns')}
+      <h5>${ app.$_toggle('qtbtn3', 'Enable QT 3', 'hotbar') }</h5>
+      ${ app.$_string('qtbtn3', 'Save QT', 'qtbtns')}
+      <p>Add text to your hot bar to send your most common messages at the push of a button! Add a label by splitting your message with <strong>||</strong>. For example, <kbd>Hello || Hey! Welcome to the room! Read the rules and have fun!</kbd></p>
+
+      <h3>Default</h3>
+      ${ app.$_toggle('is_afk', 'AFK in Hot Bar', 'hotbar') }
+      ${ app.$_toggle('auto_b', 'Autobop in Hot Bar', 'hotbar') }
+      ${ app.$_toggle('auto_q', 'AutoQueue in Hot Bar', 'hotbar') }
+      ${ app.$_toggle('nextdj', 'Next DJ in Hot Bar', 'hotbar') }
+      ${ app.$_toggle('bubble', 'Chat Bubble Toggle in Hot Bar', 'hotbar') }
+      ${ app.$_toggle('people', 'Audience Toggle in Hot Bar', 'hotbar') }
+      ${ app.$_toggle('player', 'Player Toggle in Hot Bar', 'hotbar') }
+    </div>
+  `
+  const Alerts = () => `
+    <div data-tab="alerts" class="ts-tabbed">
+      <h3>Hot Words</h3>
+      ${ app.$_string('text', 'Save Hot Words', 'notify') }
+      <p>Sends Desktop Notifications/Highlights word match in chat. Use multiple words as a comma separated list.</p>
+
+      <h3>Notify</h3>
+      ${ app.$_toggle('song', 'Notify On New Songs', 'notify') }
+      ${ app.$_toggle('chat', 'Notify On New DMs', 'notify') }
+      ${ app.$_toggle('ding', 'Notify On Mentions', 'notify') }
+      <p>Sends Desktop Notifications.</p>
+
+      <h3>Alert</h3>
+      ${ app.$_toggle('song', 'Last Song Stats', 'alerts') }
+      ${ app.$_toggle('spun', 'Last DJ Stats', 'alerts') }
+      ${ app.$_toggle('snag', 'For User Snags', 'alerts') }
+      ${ app.$_toggle('join', 'On User Joins', 'alerts') }
+      ${ app.$_toggle('left', 'On User Leave', 'alerts') }
+      <p>These alerts show up in the room chat and are only visible to you, not for everyone to see.</p>
+    </div>
+  `
+  const Support = () => `
+    <div data-tab="support" class="ts-tabbed ts-about">
+      <h3>Debug</h3>
+      ${ app.$_toggle('logger', 'Show Logs In Room Tab') }
+      ${ app.$_button('Reload turnStyles', false, false, 'reload') }
+      ${ app.$_button('Reload Players', false, false, 'reloadMusic') }
+
+      <h3>Support</h3>
+      <a class="ts-button" target="_blank" href="https://discord.gg/wqmAVvgSbE">
+        turnStyles Discord
+      </a>
+      <a class="ts-button" target="_blank" href="https://discord.gg/jnRs4WnPjM">
+        turntable.fm Discord
+      </a>
+
+      <h3>Sharing</h3>
+      <a class="ts-button" target="_blank" href="https://chrome.google.com/webstore/detail/turntable-tweaks/pmlkackfnbbnjfejpddpakallilkbdme">Chrome / Opera</a>
+      <a class="ts-button" target="_blank" href="https://addons.mozilla.org/en-US/firefox/addon/turnstyles-for-turntable-fm/">Firefox</a>
+      <a class="ts-button" target="_blank" href="https://ts.pixelcrisis.co">Bookmarklet</a>
+      <a class="ts-button" target="_blank" href="https://ts.pixelcrisis.co">Beta</a>
+
+      <h3>Author</h3>
+      <em>turnStyles v${ app.config.version }<em><br />
+      <strong>@crisis</strong> on Discord<br />
+      <strong>@crisis</strong> on Turntable<br />
+      <a target="_blank" href="https://patreon.com/pixelcrisis">patreon.com/pixelcrisis</a><br />
+      <em>Request Themes & More on Patreon!</em>
     </div>
   `
 
@@ -519,8 +588,8 @@ module.exports = app => {
 	// the heartbeat fired every minute
 	app.beat = function () {
 		// emit 'heartbeat' every minute
-		this.config.beats = parseInt(this.config.beats) + 1
-		this.Emit('heartbeat', this.config.beats)
+		this.config.timing.beat = parseInt(this.config.timing.beat) + 1
+		this.Emit('heartbeat', this.config.timing.beat)
 	}
 
 	// start loop and delay storage on attach
@@ -578,44 +647,66 @@ module.exports = app => {
 module.exports = app => {
 
 	app.default = {
-		logging: false,
-		played: false,
-		
 		theme: "dark",
 		style: "",
-
-		autobop: true,
-
-		nextdj: false,
-		auto_q: false,
-		q_ping: `Hey @user - it's your turn!`,
-
-		has_vol: false,
-		stamps: false,
-
-		no_aud: false,
-		no_vid: false,
-		no_bub: false,
-
-		ping_pm: false,
-		ping_song: false,
-		ping_chat: false,
-		hot_words: "",
-
-		chat_song: false,
-		chat_spun: false,
-		chat_snag: false,
-		chat_join: false,
-		chat_left: false,
+		u_css: "",
 
 		is_afk: false,
-		afk_ping: `I'm AFK - Back in a sec!`,
+		afkstr: "I'm AFK - Back in a sec!",
 
-		beats: 0,
-		remind: 0,
-		reminder: `Today's theme is: Cool.`,
+		people: true,
+		player: true,
+		bubble: true,
 
-		user_css: ''
+		logger: false,
+		volume: false,
+		played: false,
+		stamps: false,
+
+		auto_b: true,
+		nextdj: false,
+		auto_q: false,
+		q_text: "Hey @user - it's your turn!",
+
+		notify: {
+			song: false,
+			ding: false,
+			chat: false,
+			text: ""
+		},
+
+		alerts: {
+			song: false,
+			spun: false,
+			snag: false,
+			join: false,
+			left: false
+		},
+
+		hotbar: {
+			is_afk: true,
+			auto_b: true,
+			auto_q: true,
+			nextdj: true,
+			bubble: false,
+			people: false,
+			player: false,
+			qtbtn1: false,
+			qtbtn2: false,
+			qtbtn3: false
+		},
+
+		qtbtns: {
+			qtbtn1: "",
+			qtbtn2: "",
+			qtbtn3: ""
+		},
+
+		timing: {
+			beat: 0,
+			post: 0,
+			text: "Today's theme is: Cool."
+		},
 	}
 
 	app.options = {
@@ -740,55 +831,110 @@ module.exports = app => {
 		// load and apply our defaults
 		let is_afk  = false // can't be afk if we're loading
 		this.config = { ...this.default, ...configs, version, is_afk }
+		this.update()
 
 		this.Emit('loaded', this.config)
 	}
 
 	// save config to local storage
 	app.saveConfig = function (e) {
-		// when an option is changed, save it
-		let which = e.target.dataset.for
-		let check = e.target.type == 'checkbox'
-		let value = check ? e.target.checked : e.target.value
+		let self = e.target
+		let data = self.dataset
+		if (!data.opt && !data.for) return
 
-		// check for a button function
-		if (which.indexOf('ts_') === 0) {
-			value = $(`#${which}`).val()
-			which = which.split('ts_').join('')
-		}
+		let which = data.for || data.opt
+		let check = self.type == 'checkbox'
+		let value = check ? self.checked : self.value
+		if (data.for) value = $(`*[data-opt="${ which }"]`).val()
 
 		// save the updated config 
-		this.setConfig(which, value)
+		this.setConfig(which, value, data.cat)
 		// emit that the change was updated
 		let visual = [ 'style', 'theme', 'user_css' ].includes(which)
-		if (visual || !this.lobby) this.Emit('update', which, value)
+		if (visual || !this.lobby) this.Emit('update', which, value, data.cat)
 		// only emit visual changes in the lobby
 	}
 
 	// update a config item
-	app.setConfig = function (opt, val) {
+	app.setConfig = function (opt, val, group) {
 		// update config object
-		this.config[opt] = val
+		if (!group) this.config[opt] = val
+		else this.config[group][opt] = val
 		// save the updated config locally
 		let stored = JSON.stringify(this.config)
 		window.localStorage.setItem('tsdb', stored)
 		// mirror the option between window/hotbar
 		let toggle = typeof val === 'boolean'
-		let mirror = $(`*[data-for="${opt}"]`)
+		let mirror = $(`*[data-opt="${opt}"][data-cat="${ group || ""}"]`)
 		mirror.prop(toggle ? 'checked' : 'value', val)
 	}
 
 }
-},{"../package.json":22}],13:[function(require,module,exports){
+},{"../package.json":23}],13:[function(require,module,exports){
+// updates.js | config layout migrations
+
+module.exports = app => {
+
+	const updates = [
+		function UpgradeV10 (config) {
+			// update old values to new mapped values
+			const update = (old, map, deep, flip) => {
+				if (old in config) {
+					if (!deep) config[map] = flip ? !config[old] : config[old]
+					else config[map][deep] = flip ? !config[old] : config[old]
+					delete config[old]
+				}
+			}
+
+			update('user_css', 'u_css')
+
+			update('autobop', 'auto_b')
+			update('logging', 'logger')
+			update('has_vol', 'volume')
+
+			update('q_ping', 'q_text')
+			update('afk_ping', 'afkstr')
+
+			update('no_aud', 'people', false, true)
+			update('no_vid', 'player', false, true)
+			update('no_bub', 'bubble', false, true)
+
+			update('ping_pm',   'notify', 'chat')
+			update('ping_song', 'notify', 'song')
+			update('ping_chat', 'notify', 'ding')
+			update('hot_words', 'notify', 'text')
+
+			update('chat_song', 'alerts', 'song')
+			update('chat_spun', 'alerts', 'spun')
+			update('chat_snag', 'alerts', 'snag')
+			update('chat_join', 'alerts', 'join')
+			update('chat_left', 'alerts', 'left')
+
+			update('beats',    'timing', 'beat')
+			update('remind',   'timing', 'post')
+			update('reminder', 'timing', 'text')
+
+			return config
+		}
+	]
+
+	app.update = function () {
+		for (let update of updates) {
+			this.config = update(this.config)
+		}
+	}
+
+}
+},{}],14:[function(require,module,exports){
 // afk.js | respond to dings with an AFK message
 
 module.exports = app => {
 
   // set afk status on update
-  app.setAfk = function (key, val) {
-    if (key != 'is_afk') return
+  app.setAfk = function (key, val, grp) {
+    if (key != 'is_afk' || grp) return
     // send our afk ping if enabled
-    let msg = this.config.afk_ping
+    let msg = this.config.afkstr
     if (val && msg) this.$Send(msg)
   }
 
@@ -811,46 +957,55 @@ module.exports = app => {
   app.on('update', app.setAfk)
 
 }
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 // alerts.js | sending data to chat/notifications
 
 module.exports = app => {
 
   app.notifyPMs = function (e) {
-    if (this.config.ping_pm) this.Notify({
+    if (this.config.notify.chat) this.Notify({
       head: `New PM ${e.$from ? `from: ${e.$from}` : ''}`,
       body: e.text, type: 'pm_ping'
     })
   }
 
   app.notifyDings = function (e) {
-    if (this.config.ping_chat && e.$ping) this.Notify({
+    if (this.config.notify.ding && e.$ping) this.Notify({
       head: `[${this.view().roomData.name}] @${e.name}`,
       body: e.text, type: 'chat_ping'
     })
+    this.notifyText(e)
   }
 
   app.notifySong = function () {
     let curr = this.now_playing
-    if (this.config.ping_song && curr.song) this.Notify({
+    if (this.config.notify.song && curr.song) this.Notify({
       head: `Now Playing: ${curr.song}`, body: `By: ${curr.artist}`
     })
   }
 
+  app.notifyText = function (e) {
+    let match = e.text.toLowerCase()
+    let words = this.config.notify.text.toLowerCase().split(",")
+    for (let word of words) if (match.indexOf(word.trim()) > -1) {
+      return this.Notify({ head: `Hot Word: "${ word }"`, body: e.text })
+    }
+  }
+
   app.alertSnags = function (e) {
-    if (this.config.chat_snag) this.$Post({
+    if (this.config.alerts.snag) this.$Post({
       head: e.$name, body: `has snagged this track!`, type: 'snag'
     })
   }
 
   app.alertJoin = function (e) {
-    if (this.config.chat_join) for (let user of e.user) this.$Post({
+    if (this.config.alerts.join) for (let user of e.user) this.$Post({
       head: user.name, body: 'joined.', type: 'join'
     })
   }
 
   app.alertLeft = function (e) {
-    if (this.config.chat_left) for (let user of e.user) this.$Post({
+    if (this.config.alerts.left) for (let user of e.user) this.$Post({
       head: user.name, body: 'left.', type: 'left'
     })
   }
@@ -863,14 +1018,14 @@ module.exports = app => {
   app.on('deregistered', app.alertLeft)
 
 }
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 // auto.js | our automatic functions
 
 module.exports = app => {
 
   app.autoBop = function () {
     if (this.bop) clearTimeout(this.bop)
-    if (!this.config.autobop) return
+    if (!this.config.auto_b) return
 
     const delay = (Math.random() * 7) * 100
     const click = () => this._click('.awesome-button')
@@ -899,29 +1054,42 @@ module.exports = app => {
   // autoqueue - jump on queue ping
   app.autoQueue = function (e) {
     if (!this.config.auto_q) return
-    if (this.config.q_ping == e.text) this.$View().becomeDj()
+    if (this.config.q_text == e.text) this.$View().becomeDj()
   }
 
   // automatic timed reminders
   app.autoRemind = function (ran) {
-    if (!this.config.reminder) return
-    let freq = parseInt(this.config.remind)
-    let text = `[${this.$Room().name}] ${this.config.reminder}`
+    if (!this.config.timing.text) return
+    let freq = parseInt(this.config.timing.post)
+    let text = `[${this.$Room().name}] ${this.config.timing.text}`
     // ran divisible by freq (eg, on 120 ran for every 60 freq)
-    if ((ran % freq) === 0 && this.config.reminder) this.$Send(text)
+    if ((ran % freq) === 0 && this.config.timing.text) this.$Send(text)
   }
 
   app.on(['attach', 'newsong'], app.autoBop)
   app.on(['attach', 'update', 'rem_dj'], app.autoJump)
+  app.on(['speak', 'pmmed'], app.autoQueue)
   app.on('add_dj', app.spinning)
-  app.on('speak', app.autoQueue)
   app.on('heartbeat', app.autoRemind)
 
 }
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 // chatbox.js | modifying the chatbox
 
 module.exports = app => {
+
+  app.qtbtn1 = function () { this.qtbtns('1') }
+  app.qtbtn2 = function () { this.qtbtns('2') }
+  app.qtbtn3 = function () { this.qtbtns('3') }
+  app.qtbtns = function (i) {
+    let text = this.config.qtbtns[`qtbtn${i}`]
+    if (text) {
+      if (text.indexOf('||') > -1) {
+        text = text.split('||')[1].trim()
+      }
+      this.$Send(text)
+    }
+  }
 
   // fade out 'started playing' 
   app.fadeNewSong = function (el) {  
@@ -950,7 +1118,7 @@ module.exports = app => {
   app.on('speak', app.addTimeStamp)
 
 }
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 // playlist.js | modifying the playlist
 
 module.exports = app => {
@@ -1007,7 +1175,7 @@ module.exports = app => {
   app.on('playlist', app.countPlaylist)
   app.on(['tracked', 'playlist'], app.checkPlaylist)
 }
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 // profile.js | modifying the user profile
 
 module.exports = app => {
@@ -1023,14 +1191,14 @@ module.exports = app => {
   app.on('profile', app.linkUserStats)
 
 }
-},{}],19:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 // stats.js | tracking and posting song/dj stats
 
 module.exports = app => {
 
   app.songStats = function (stat) {
     let last = this.last_played
-    if (this.config.chat_song && stat) this.$Post({
+    if (this.config.alerts.song && stat) this.$Post({
       head: stat,
       body: `${last.song} by ${last.artist}`,
       type: 'stat'
@@ -1038,7 +1206,7 @@ module.exports = app => {
   }
 
   app.djStats = function (name, stat) {
-    if (this.config.chat_spun) this.$Post({
+    if (this.config.alerts.spun) this.$Post({
       head: `${name} - ${stat}`,
       body: ` - is done spinning!`,
       type: 'stat'
@@ -1049,7 +1217,7 @@ module.exports = app => {
   app.on('dropped', app.djStats)
 
 }
-},{}],20:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 // themes.js | handles loading/reloading themes/styles
 
 module.exports = app => {
@@ -1061,25 +1229,50 @@ module.exports = app => {
     this.insert('turnStyles')
     this.insert(config.theme, 'themes')
     this.insert(config.style, 'styles')
-    this.inject(config.user_css)
+    this.inject(config.u_css)
     this.themed(config.theme)
 
-    this._class('no_bub', config.no_bub)
-    this._class('no_vid', config.no_vid)
-    this._class('no_aud', config.no_aud)
-    this._class('logging', config.logging)
+    this._class('logger', config.logger)
+    this._class('no_bub', !config.bubble)
+    this._class('no_vid', !config.player)
+    this._class('no_aud', !config.people)
+
+    this._class('hb-is_afk', !config.hotbar.is_afk)
+    this._class('hb-auto_b', !config.hotbar.auto_b)
+    this._class('hb-auto_q', !config.hotbar.auto_q)
+    this._class('hb-nextdj', !config.hotbar.nextdj)
+    this._class('hb-bubble', !config.hotbar.bubble)
+    this._class('hb-people', !config.hotbar.people)
+    this._class('hb-player', !config.hotbar.player)
+    this._class('hb-qtbtn1', !config.hotbar.qtbtn1)
+    this._class('hb-qtbtn2', !config.hotbar.qtbtn2)
+    this._class('hb-qtbtn3', !config.hotbar.qtbtn3)
   }
 
-  app.updateThemes = function (key, val) {
+  app.updateThemes = function (key, val, grp) {
     if (key == 'theme') this.themed(val)
     if (key == 'theme') this.insert(val, 'themes')
     if (key == 'style') this.insert(val, 'styles')
-    if (key == 'user_css') this.inject(val)
+    if (key == 'u_css') this.inject(val)
       
-    if (key == 'no_bub') this._class('no_bub', val)
-    if (key == 'no_vid') this._class('no_vid', val)
-    if (key == 'no_aud') this._class('no_aud', val)
-    if (key == 'logging') this._class('logging', val)
+    if (key == 'bubble') this._class('no_bub', !val)
+    if (key == 'player') this._class('no_vid', !val)
+    if (key == 'people') this._class('no_aud', !val)
+    if (key == 'logger') this._class('logger', val)
+
+    if (grp == "hotbar") {
+      if (key == "is_afk") this._class('hb-is_afk', !val)
+      if (key == "auto_b") this._class('hb-auto_b', !val)
+      if (key == "auto_q") this._class('hb-auto_q', !val)
+      if (key == "nextdj") this._class('hb-nextdj', !val)
+      if (key == "bubble") this._class('hb-bubble', !val)
+      if (key == "people") this._class('hb-people', !val)
+      if (key == "player") this._class('hb-player', !val)
+      if (key == "qtbtn1") this._class('hb-qtbtn1', !val)
+      if (key == "qtbtn2") this._class('hb-qtbtn2', !val)
+      if (key == "qtbtn3") this._class('hb-qtbtn3', !val)
+      this.drawHotBar()
+    }
   }
 
   // inject css styles into the DOM
@@ -1118,7 +1311,7 @@ module.exports = app => {
   app.on('update', app.updateThemes)
 
 }
-},{}],21:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 // volume.js | replace the turntable volume
 
 module.exports = app => {
@@ -1134,7 +1327,7 @@ module.exports = app => {
 
 	// load volume functionality
 	app.loadVolume = function () {
-		let opt = this.config.has_vol
+		let opt = this.config.volume
 		let has = $('body').hasClass('ts_vol')
 		this._class('ts_vol', opt)
 
@@ -1168,7 +1361,7 @@ module.exports = app => {
 		vol = vol.target ? vol.target.value : vol
 		let volume = vol > 0 ? convertVol(vol) : -3
 		// turntable doesn't natively go lower than 7
-		let volFunc = volume < 7 ? currentVol() : this.realVolume
+		let volFunc = volume < 7 ? currentVol : this.realVolume
 		window.turntablePlayer.realVolume = volFunc
 		window.turntablePlayer.setVolume(volume)
 		window.util.setSetting('volume', volume)
@@ -1234,7 +1427,7 @@ module.exports = app => {
 	app.on('newsong', app.checkMuted)
 
 }
-},{}],22:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 module.exports={
   "name": "turnStyles",
   "version": "9.9.9",
@@ -1278,8 +1471,8 @@ module.exports={
   "dependencies": {}
 }
 
-},{}],23:[function(require,module,exports){
-let turnStyles = {}
+},{}],24:[function(require,module,exports){
+let turnStyles = window.$tS = {}
 // a thing by pixelcrisis
 
 require('./data/config.js')(turnStyles)
@@ -1294,6 +1487,7 @@ require('./core/notify.js')(turnStyles)
 
 require('./data/session.js')(turnStyles)
 require('./data/storage.js')(turnStyles)
+require('./data/updates.js')(turnStyles)
 
 require('./main/themes.js')(turnStyles)
 require('./main/volume.js')(turnStyles)
@@ -1311,4 +1505,4 @@ require('./main/alerts.js')(turnStyles)
 
 // attach to the room
 turnStyles.attach()
-},{"./core/attach.js":1,"./core/events.js":2,"./core/global.js":3,"./core/layout.js":4,"./core/logger.js":5,"./core/notify.js":6,"./core/panels.js":7,"./core/timing.js":8,"./core/ttlink.js":9,"./data/config.js":10,"./data/session.js":11,"./data/storage.js":12,"./main/afk.js":13,"./main/alerts.js":14,"./main/auto.js":15,"./main/chatbox.js":16,"./main/playlist.js":17,"./main/profile.js":18,"./main/stats.js":19,"./main/themes.js":20,"./main/volume.js":21}]},{},[23]);
+},{"./core/attach.js":1,"./core/events.js":2,"./core/global.js":3,"./core/layout.js":4,"./core/logger.js":5,"./core/notify.js":6,"./core/panels.js":7,"./core/timing.js":8,"./core/ttlink.js":9,"./data/config.js":10,"./data/session.js":11,"./data/storage.js":12,"./data/updates.js":13,"./main/afk.js":14,"./main/alerts.js":15,"./main/auto.js":16,"./main/chatbox.js":17,"./main/playlist.js":18,"./main/profile.js":19,"./main/stats.js":20,"./main/themes.js":21,"./main/volume.js":22}]},{},[24]);
