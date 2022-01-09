@@ -128,7 +128,7 @@ module.exports = app => {
       ${ app.$_string('qtbtn2', 'Save QT', 'qtbtns')}
       <h5>${ app.$_toggle('qtbtn3', 'Enable QT 3', 'hotbar') }</h5>
       ${ app.$_string('qtbtn3', 'Save QT', 'qtbtns')}
-      <p>Add text to your hot bar to send your most common messages at the push of a button! Add a label by splitting your message with <strong>||</strong>. For example, <kbd>Hello || Hey! Welcome to the room! Read the rules and have fun!</kbd></p>
+      <p>Add text to your hot bar to send your most common messages at the push of a button! Add a label by splitting your message with <strong>||</strong>. Send multiple messages by splitting with <strong>;;</strong>. For example, <kbd>Hello || Hey! Welcome to the room! ;; Read the rules and have fun!</kbd></p>
 
       <h3>Default</h3>
       ${ app.$_toggle('is_afk', 'AFK in Hot Bar', 'hotbar') }

@@ -11,7 +11,8 @@ module.exports = app => {
       if (text.indexOf('||') > -1) {
         text = text.split('||')[1].trim()
       }
-      this.$Send(text)
+      text = text.split(';;')
+      for (let msg of text) this.$Send(msg.trim())
     }
   }
 
