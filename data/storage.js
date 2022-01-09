@@ -35,6 +35,7 @@ module.exports = app => {
 		this.setConfig(which, value, data.cat)
 		// emit that the change was updated
 		let visual = [ 'style', 'theme', 'user_css' ].includes(which)
+		if ([ 'hotbar', 'macros'].includes(data.cat)) visual = true
 		if (visual || !this.lobby) this.Emit('update', which, value, data.cat)
 		// only emit visual changes in the lobby
 	}
