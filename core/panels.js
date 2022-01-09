@@ -123,13 +123,17 @@ module.exports = app => {
     <div data-tab="hotbar" class="ts-tabbed">
       <h3>QuickText</h3>
       <h5>${ app.$_toggle('qtbtn1', 'Enable QT 1', 'hotbar') }</h5>
-      ${ app.$_string('qtbtn1', 'Save QT', 'qtbtns')}
-      <h5>${ app.$_toggle('qtbtn2', 'Enable QT 2', 'hotbar') }</h5>
-      ${ app.$_string('qtbtn2', 'Save QT', 'qtbtns')}
-      <h5>${ app.$_toggle('qtbtn3', 'Enable QT 3', 'hotbar') }</h5>
-      ${ app.$_string('qtbtn3', 'Save QT', 'qtbtns')}
-      <p>Add text to your hot bar to send your most common messages at the push of a button! Add a label by splitting your message with <strong>||</strong>. Send multiple messages by splitting with <strong>;;</strong>. For example, <kbd>Hello || Hey! Welcome to the room! ;; Read the rules and have fun!</kbd></p>
+      ${ app.$_string('qtbtn1', 'Save QT 1', 'qtbtns')}
+      <p>Send your most common messages at the push of a button!</p>
 
+      <h5>${ app.$_toggle('qtbtn2', 'Enable QT 2', 'hotbar') }</h5>
+      ${ app.$_string('qtbtn2', 'Save QT 2', 'qtbtns')}
+      <p>Add a button label by splitting your message with <strong>||</strong>.<br />e.g. <kbd>Hello || Hello There</kbd></p>
+
+      <h5>${ app.$_toggle('qtbtn3', 'Enable QT 3', 'hotbar') }</h5>
+      ${ app.$_string('qtbtn3', 'Save QT 3', 'qtbtns')}
+      <p>Send multiple messages by splitting with <strong>;;</strong>.<br />e.g. <kbd>Welcome || (Hello!) ;; (Rules!) ;; (Gif!)</kbd><br /><em>(Only 3 messages may be sent per QuickText)</em></p>
+        
       <h3>Default</h3>
       ${ app.$_toggle('is_afk', 'AFK in Hot Bar', 'hotbar') }
       ${ app.$_toggle('auto_b', 'Autobop in Hot Bar', 'hotbar') }
