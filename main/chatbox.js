@@ -7,13 +7,23 @@ module.exports = app => {
   app.qtbtn3 = function () { this.qtbtns('3') }
   app.qtbtns = function (i) {
     let text = this.config.qtbtns[`qtbtn${i}`]
-    if (text) {
-      if (text.indexOf('||') > -1) {
-        text = text.split('||')[1].trim()
-      }
-      text = text.split(';;')
-      for (let msg of text) this.$Send(msg.trim())
+    let name = `QT${i}`
+    if (!text) return
+
+    if (text.indexOf('||') > -1) {
+      name = text.shift().trim()
+      text = text.join('').trim()
     }
+
+    text = text.split(';;')
+
+    if (text.length > 3) {
+      let head = "QuickText Error!"
+      let body = `${name} message contains ${text.length}/3 messages.`
+      this.$Post({ head, body })
+    }
+    
+    else for (let msg of text) this.$Send(msg.trim())
   }
 
   // fade out 'started playing' 
