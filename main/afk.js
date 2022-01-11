@@ -12,11 +12,11 @@ module.exports = app => {
 
   // handle user being afk/active
   app.getAfk = function (e) {
-    let { is_afk, afk_ping } = this.config
-    if (!is_afk || !afk_ping) return
+    let { is_afk, afkstr } = this.config
+    if (!is_afk || !afkstr) return
 
-    if (!e.$self && e.$ping) this.$Send(afk_ping)
-    else if (e.$self && e.text != afk_ping) {
+    if (!e.$self && e.$ping) this.$Send(afkstr)
+    else if (e.$self && e.text != afkstr) {
       this.setConfig('is_afk', false)
       this.$Post({
         head: `Welcome Back!`,
