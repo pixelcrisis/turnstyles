@@ -11,6 +11,7 @@ module.exports = app => {
     if (!text) return
 
     if (text.indexOf('||') > -1) {
+      text = text.split('||')
       name = text.shift().trim()
       text = text.join('').trim()
     }
