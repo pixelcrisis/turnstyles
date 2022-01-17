@@ -12,6 +12,14 @@ module.exports = app => {
   app.getAfk = function (e) {
     if (!this.config.is_afk) return
     if (!e.$self && e.$ping) this.isAfk()
+      
+    else if (e.$self && e.text != afkstr) {
+      this.setConfig('is_afk', false)
+      this.$Post({
+        head: `Welcome Back!`,
+        body: `You're no longer AFK!`
+      })
+    }
   }
 
   // end out afk ping
