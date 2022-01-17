@@ -101,5 +101,11 @@
 .message-history
 	color: $text
 	background: $bg-inset
-	li.message-view
+	li.message-view,
+	li.status-message
 		@extend .ts-striped-list
+	li.status-message
+		background: $bg-faded !important
+	+ .error-message
+		border-top: 1px solid $bg-inset
+		@extend .ts-content
