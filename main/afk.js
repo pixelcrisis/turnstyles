@@ -11,7 +11,7 @@ module.exports = app => {
   // handle user being afk/active
   app.getAfk = function (e) {
     if (!this.config.is_afk) return
-    let check = this.config.afk.str.split(';;')
+    let check = this.config.afkstr.split(';;').map(s => s.trim())
     if (!e.$self && e.$ping) this.isAfk()
 
     else if (e.$self && !check.includes(e.text)) {
@@ -23,7 +23,7 @@ module.exports = app => {
     }
   }
 
-  // end out afk ping
+  // send out afk ping
   app.isAfk = function () {
     if (!this.config.afkstr) return
     let text = this.config.afkstr.split(';;')
