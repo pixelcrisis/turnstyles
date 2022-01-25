@@ -28,6 +28,7 @@ module.exports = app => {
     let match = e.text.toLowerCase()
     let words = this.config.notify.text.toLowerCase().split(",")
     for (let word of words) if (match.indexOf(word.trim()) > -1) {
+      $('.chat .messages .message:last-child').addClass('mention')
       return this.Notify({ head: `Hot Word: "${ word }"`, body: e.text })
     }
   }
