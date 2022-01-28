@@ -26,6 +26,7 @@ module.exports = app => {
 
   app.notifyText = function (e) {
     let match = e.text.toLowerCase()
+    if (this.config.notify.text.length < 3) return
     let words = this.config.notify.text.toLowerCase().split(",")
     for (let word of words) if (match.indexOf(word.trim()) > -1) {
       $('.chat .messages .message:last-child').addClass('mention')
