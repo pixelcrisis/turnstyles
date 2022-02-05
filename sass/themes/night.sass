@@ -1,9 +1,30 @@
-$color-bg: #141414 // dark green
+$main: #bfa206
 
-$color-main: #bd9e0e // turntable gold
-$color-snag: #b74e88 // pink
-$color-join: #4a9a4d // green
-$color-left: #a73c3c // red
-$color-mods: #a73c3c // red (removed from decks, etc)
+$text: #adadad
+$back: #191919
+
+$snag: #a0629e
+$join: #69966b
+$left: #a74646
+$mods: #a74646
+
+$tint: 0deg
+
+@import "../import"
+
+.ts-vote-filter
+	@include shift($tint, 2, 0.7)
+
+.ts-room-filter
+	@include gloss($tint, 2, 0.7)
+
+.ts-main-filter
+	@include paint($tint, 2, 0.7)
+
+.ts-full-filter
+	@include paint($tint, 2, 0.7, 1)
+
+.ts-mute-filter
+	@include paint($tint, 2, 0.7)
 
 @import "theme"

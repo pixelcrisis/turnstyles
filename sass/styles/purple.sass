@@ -1,8 +1,23 @@
-$accent: #9075ff
+@import "../import"
 
-$button: hue-rotate(160deg) brightness(0.8) saturate(2)
-$others: hue-rotate(195deg) brightness(0.7) saturate(2)
-$lights: sepia(0.5) hue-rotate(245deg) saturate(4)
-$grayed: sepia(1) hue-rotate(245deg) saturate(4)
+$main: #9274ea
+$tint: 145deg
 
-@import 'style'
+%vote-filter
+	@include shift($tint, 2, 0.8)
+
+%room-filter
+	@include gloss($tint + 80deg, 4)
+
+%main-filter
+	@include paint($tint + 50deg, 4, 0.55)
+
+%full-filter
+	@include paint($tint + 50deg, 4, 0.55, 1)
+
+%mute-filter
+	@include paint($tint + 70deg, 2, 0.4)
+
+@import "list"
+@import "base"
+@import "none"

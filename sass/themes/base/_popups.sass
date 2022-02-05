@@ -1,98 +1,97 @@
-#settings
-  .dropdown
-    background: $color-bg-0
+// tooltips
+.tipsy-inner
+	border: 1px solid $bg-inset
+	@extend .ts-content-alt
 
-  .option
-    font-weight: bold
-    background: $color-bg-1
-    @extend %border-x
+.tipsy-arrow
+	border: 7px dashed $bg-inset
+.tipsy-arrow-n
+	border-bottom-color: $bg-other
+.tipsy-arrow-e
+	border-left-color: $bg-other
+.tipsy-arrow-s
+	border-top-color: $bg-other
+.tipsy-arrow-w
+	border-right-color: $bg-other
+.outer.tipsy-arrow-n
+	border-bottom-color: $bg-inset
+.outer.tipsy-arrow-e
+	border-left-color: $bg-inset
+.outer.tipsy-arrow-s
+	border-top-color: $bg-inset
+.outer.tipsy-arrow-w
+	border-right-color: $bg-inset
 
-    a, .description
-      color: $color-text
-    
-    &:hover,
-    &.selected
-      a, .description
-        color: $color-bg-0
+// floating menus
+#ding-menu, .floating-menu
+	box-shadow: none
+	background: $bg-inset
+	border: 1px solid $bg-faded
 
-  .logout
-    color: $color-subtle
+	.option
+		color: $text
+		box-shadow: inset 0 0 0 1px $bg-faded !important
+		@extend .ts-content-mute
 
-    &:before
-      @include recolor($color-bg-2)
+		&.active, &.selected,
+		&.special, &.site-add
+			color: $text
+			background: $bg-faded !important
 
-.options-menu
-  &:not(.closed) .nib
-    filter: invert(1) brightness(0.6)
-    border-color: invert($color-bg-3)
-    background-color: invert($color-bg-2)
+		&.special:not(.disabled):hover
+			color: $main
+			background: $bg-other
 
-  .options
-    @extend %border-x
-    background: $color-bg-2
-    border-color: $color-bg-3
+		&:not(.site-add):not(.special):not(.switch-menu.second):hover
+			color: $text
+			background: $bg-hover
 
-    .option
-      font-weight: bold
-      color: $color-text
+		&.switch-menu.second
+			background: $bg-inset !important
+			.text
+				top: 7px !important
+				color: $mute
+			&:hover .text
+				color: $main
+			.left-arrow
+				@extend .ts-main-filter
 
-      &:hover,
-      &.active
-        color: $color-bg-0
+// options menu
+.options-menu 
+	.nib
+		background-image: none
+		background-color: transparent
 
-.floating-menu
-  background: $color-bg-0
-  border: 1px solid $color-bg-1
+	.nib:after
+		top: -4px
+		position: absolute
+		font-size: 22px
+		color: $mute
+		content: $open-menu
 
-  .option
-    @extend %border-x
-    color: $color-text
-    background: $color-bg
+	&:not(.closed) .nib
+		border-color: $bg-inset
+		background-color: $bg-faded
 
-    &.special
-      background: $color-bg-0
+	&not(.closed) .nib:after
+		color: $main
 
-    &.active,
-    &.selected,
-    &:not(.split-option):not(.disabled):hover
-      color: $color-bg-0
+	.options
+		background: $bg-faded
+		border: 1px solid $bg-inset
+		box-shadow: none !important
 
-#playlist 
-  .switch-menu.second
-    background: $color-bg-0
+	.options .option
+		color: $mute
 
-    .left-arrow
-      @include recolor($color-bg-3)
+		&:after
+			@extend .ts-main-filter
+			background-position: bottom left
 
-    &:hover
-      color: $color-subtle
+		&.checked
+			color: $main
+			background: $bg-faded
 
-  .floating-menu .option
-    @extend %border-x
-    
-    &:not(:hover)
-      color: $color-subtle
-
-    &.site-add
-      background: $color-bg
-
-    .playlist-queue,
-    .playlist-trash,
-    .queue-plus-icon,
-    .playlist-move-bottom,
-    .playlist-right-arrow
-      @include recolor($color-bg-3)
-
-    &:hover
-      .playlist-queue,
-      .playlist-trash,
-      .queue-plus-icon,
-      .playlist-move-bottom,
-      .playlist-right-arrow
-        @include recolor($color-bg-0)
-
-    .playlist-move-bottom
-      background-position: 0 -270px
-      width: 18px
-      height: 18px
-      left: 8px
+		&:hover
+			color: $text
+			background: $bg-hover

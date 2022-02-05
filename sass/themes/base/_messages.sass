@@ -1,0 +1,111 @@
+.pmGsreyTop
+	&, &:hover, &.hover
+		border: none
+		box-shadow: none
+		background: $bg-faded
+		box-sizing: border-box
+
+	&:hover, &.hover
+		filter: brightness(1.2)
+
+#privateChatIcon 
+	border: 1px solid $bg-faded
+	
+	.chatIcon
+		@extend .ts-main-filter
+
+#buddyListHeader .options-menu 
+	.nib
+		top: -2px
+
+	&.closed .nib::after
+		color: $bg-inset
+
+.pm-become-available
+	@extend .ts-main-filter
+
+.pm-unavailable-warning
+	color: $main
+	background: $bg-faded
+	border-bottom: 1px solid $bg-inset
+
+#buddyList
+	background: $main
+	overflow-y: hidden
+
+#buddyListHeader
+	border: none
+	box-shadow: none
+	@extend .ts-gradient
+
+#buddyListTitle
+	color: $bg-inset
+	text-shadow: none
+	border-bottom: none
+
+#buddyListNipple
+	opacity: 0
+
+.pmGreyTop
+	border-top-color: $bg-inset
+
+	&, &:hover
+		background: $bg-faded
+
+	.username
+		color: $text
+		text-shadow: none
+
+	.pmWindowIcon,
+	.options-menu.closed .nib
+		opacity: 1
+		background-color: transparent
+	
+	.pmWindowIcon
+		@extend .ts-main-filter
+	
+	.options-menu
+		top: 4px
+		&.closed .nib::after
+			color: $bg-inset
+
+	&.new-message
+		&, &:hover
+			border-top-color: $main
+			@extend .ts-gradient
+
+		.username
+			color: $bg-inset
+
+.message-input
+	@extend .ts-text-input
+
+.message-input-view
+	box-shadow: none
+	background: $bg-faded
+	border-top: 1px solid $bg-inset
+
+#buddyListMain
+	.conversations-list
+		@extend .ts-content
+
+		.conversation-item
+			@extend .ts-striped-list
+
+			.conversation-username
+				color: $text
+			.conversation-user-room
+				&, .conversation-user-room-link
+					color: $mute
+
+.message-history
+	color: $text
+	background: $bg-inset
+	li.message-view,
+	li.status-message
+		@extend .ts-striped-list
+	li.status-message
+		background: $bg-faded !important
+	+ .error-message
+		border-top: 1px solid $bg-inset
+		@extend .ts-content

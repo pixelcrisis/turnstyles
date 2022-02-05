@@ -1,0 +1,55 @@
+// style our custom volume controls
+
+#tsVolume
+	width: 160px
+	z-index: 6000
+	user-select: none
+	@include abs(0, 120px)
+
+#tsMute
+	cursor: pointer
+	margin-right: 5px
+	display: inline-block
+	vertical-align: middle
+	@include box(20px)
+	@include sprite(35px, -229px)
+
+#tsSlider
+	height: 5px
+	width: 130px
+	outline: none
+	margin-top: -4px
+	background: $main
+	border-radius: 5px
+	-webkit-appearance: none
+
+	&::-webkit-slider-thumb
+		height: 15px
+		width: 15px
+	  cursor: pointer
+	  border-radius: 50%
+	  background: #ffffff
+	  appearance: none
+	  -webkit-appearance: none
+
+	&::-moz-range-thumb
+	  height: 15px
+	  width: 15px
+	  cursor: pointer
+	  border-radius: 50%
+	  background: #ffffff
+
+#tsMuted
+	display: none
+	width: 130px
+	color: $text
+	line-height: 1em
+	text-align: left
+
+.ts_muted
+	#tsSlider
+		display: none
+	#tsMuted
+		display: inline-block
+	#tsMute
+		background-position: 0 -316px

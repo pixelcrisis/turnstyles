@@ -1,59 +1,185 @@
+#songs, 
+.songs, 
+.song-list
+	@extend .ts-content
+
+// the playlist headers
 .song-search
-  left: 36px
+	left: 33px
 
-#playlist .panel-button
-  border: none
-  box-shadow: none
-  text-shadow: none
-  color: $color-text
-  background: transparent
+#tsUpload
+	top: 7px
+	opacity: 1
+	height: 22px
+	@extend .ts-main-filter
+	@include sprite(35px, -519px)
+#queue-header,
+#playlist-header
+	background: $bg-faded
+	box-sizing: border-box
+	border-top: none
+	border-bottom: 1px solid $bg-inset
 
-  &:hover
-    background: $color-bg-2
+#queue-header 
+	.done
+		color: $text
+		box-shadow: none
+		text-shadow: none
+		background: $bg-inset
+		border: 1px solid $bg-faded
+		&:hover
+			background: $bg-hover
 
-  .down-arrow,
-  .playlist-queue-inset
-    @include recolor($color-text)
+	.divider
+		display: none
+	.btn-group
+		top: 10px
+	#song-search-input
+		@extend .ts-text-input
 
-#maindiv .song-list .song
-  .title 
-    color: $color-text
+	.disabled 
+		.text,
+		.down-arrow,
+		.playlist-trash,
+		.playlist-queue-plus-inset
+			opacity: 0.5
 
-  .vinyl
-    opacity: 0.5
+.search-focused #songs-wrapper
+	top: 98px
 
-  .details
-    color: $color-subtle
+// the header button and all icons
+#playlist
+	.panel-button
+		color: $text
+		border: none
+		margin: 3px 0
+		box-shadow: none
+		text-shadow: none
+		background: transparent
+		&.filter.btn.selected
+			color: $main
+			outline: none
 
-  .scorebad
-    color: $color-subtle
-    background-color: transparent
+	.mag-glass,
+	.down-arrow,
+	.playlist-edit,
+	.playlist-trash,
+	.playlist-queue,
+	.queue-plus-icon,
+	.playlist-queue-plus,
+	.playlist-queue-inset,
+	.playlist-move-bottom,
+	.playlist-right-arrow,
+	.playlist-queue-plus-inset
+		@extend .ts-main-filter
 
-  .scoregood
-    color: $color-bg-0
+	// remove hover animated background
+	.playlist-edit
+		height: 13px
+		margin-top: 5px
+		@include sprite(15px, -215px)
+	.playlist-queue
+		width: 16px
+		background-position: 0 -180px
+	.playlist-queue-plus
+		width: 21px
+		background-position: 0 -145px
+	.playlist-queue-inset
+		height: 12px
+		margin-top: 3px
+		background-size: 21px
+		background-position: 0 -140px
+	.queue-plus-icon
+		width: 21px
+		background-position: 0 -145px
+	.playlist-trash
+		left: 10px
+		width: 22px
+		background-position: 0 -28px
+	.playlist-move-bottom
+		left: 8px
+		width: 21px
+		background-position: 0 -270px
+	.playlist-right-arrow
+		width: 10px 
+		background-position: 0 -66px
 
-  &:not(:hover) .score
-    opacity: 0.5
+	.song-options 
+		.inner-arrow
+			display: none
+		.outer-arrow
+			border-left-color: $bg-faded !important
+		.content-scroller
+			background: $bg-faded
 
-  &.current-song
-    background-color: $color-bg-3
+	#playlist-display .text
+		padding-left: 28px
 
-  .playlist-go-top,
-  .playlist-open-options
-    background: transparent
-    &::after 
-      display: block
-      color: $color-bg-0
+	.edit .playlist-input input
+		@extend .ts-text-input
 
-  .playlist-go-top::after
-    content: "⌃"
-    font-size: 20px
+	.song
+		&.selected
+			box-shadow: none !important
+			background: $bg-hover !important
 
-  .playlist-open-options::after
-    content: "⚙"
-    font-size: 22px
-    margin: -5px 0 0 1px
+		.playlist-go-top,
+		.playlist-open-options
+			background: transparent
+			&::after
+				color: $mute
+				display: block
+		.playlist-go-top::after
+			content: $top-icon
+			font-size: 19px
+		.playlist-open-options::after
+			content: $open-menu
+			font-size: 22px
+			margin: -5px 0 0 1px
 
-#queue-header
-  .btn-group
-    top: 10px
+		.playlist-checkbox
+			@extend .ts-main-filter
+
+#maindiv .song-list
+	.separator
+		color: $mute
+		border: none
+		box-shadow: none
+		text-shadow: none
+		background: $bg-faded
+
+	> ul > *
+		border-bottom: 1px solid $bg-faded
+
+	ul.songs
+		background: transparent
+
+	.song
+		&.nth-child-even
+			@extend .ts-content
+		&:not(.nth-child-even)
+			@extend .ts-content-alt
+		&.nth-child-even:hover,
+		&:not(.nth-child-even):hover
+			background: $bg-hover !important
+
+		&:not(:hover) .score
+			opacity: 0.5
+
+	.title
+		color: $text
+	.vinyl
+		@extend .ts-main-filter
+	.details
+		color: $mute
+	.progress
+		background: rgba($main, 0.2)
+	.scorebad
+		color: $mute
+		background-color: transparent
+	.scoregood
+		color: $bg-inset
+		background-color: $main
+
+	&.current-song
+		background: $bg-hover !important

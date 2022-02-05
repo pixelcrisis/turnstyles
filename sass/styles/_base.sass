@@ -1,0 +1,42 @@
+body.th-none,
+body.th-dark,
+body.th-night,
+body.th-cosmic,
+body.th-midnight
+  #{$text-color}
+    color: $main !important
+
+  #{$border-color}
+    border-color: $main !important
+
+  #{$background-color}
+    background: $main !important
+
+  #{$gradient-bg}
+    @include gradient($main)
+
+  .chat .message.mention
+    border-right-color: $main
+    background: rgba($main, 0.2)
+
+  .board .lame-button
+    filter: grayscale(1) !important
+
+  .board .awesome-button
+    @extend %vote-filter
+
+  #room-view > canvas:nth-child(2)
+    @extend %room-filter
+
+body.th-dark,
+body.th-night,
+body.th-cosmic,
+body.th-midnight
+  #{$filter-main}
+    @extend %main-filter
+
+  #{$filter-full}
+    @extend %full-filter
+
+  #{$filter-mute}
+    @extend %mute-filter
