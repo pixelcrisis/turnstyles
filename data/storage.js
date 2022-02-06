@@ -6,7 +6,7 @@ module.exports = app => {
 	app.getConfig = function () {
 		// only load the base config once
 		if (this.__base) return
-		this.__base = window.tsBase || 'https://ts.pixelcrsis.co/build'
+		this.__base = window.tsBase || 'https://ts.pixelcrisis.co/build'
 		this.__logo = `${this.__base}/images/icon128.png`
 		// load any saved user configs
 		let storage = window.localStorage.getItem('tsdb')
