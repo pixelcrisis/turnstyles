@@ -1,6 +1,6 @@
 // Bookmarklet Access To Plugin
 
-const path = "https://etc.pixelcrisis.co"
+const path = "https://etc.pixelcrisis.co/build"
 const base = document.createElement('script')
 base.textContent = `window.tsBase = "${path}"`
 base.type = 'text/javascript'
