@@ -1,9 +1,21 @@
 // attach.js | connect app to the turntable room
 
+let error = "Oops! Something went wrong with turnStyles - if this is a bookmarklet, please go to https://ts.pixelcrisis.co to update your bookmarklet!"
+let check = () => {
+	if (this.__base) return true
+	if (window.confirm(error)) {
+		window.open('https://ts.pixelcrisis.co/', '_blank')
+	}
+	return false
+}
+
 module.exports = app => {
 
 	// attach (init) into the turntable room
 	app.attach = function () {
+		// Make sure we've been injected
+		if (!check()) return false
+
 		this.getConfig()
 		const core = window.turntable
 		if (!core) return this.Log('no room')
