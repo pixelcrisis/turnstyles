@@ -1,0 +1,30 @@
+$main: #5b9f60
+
+$text: #d7e8da
+$back: #335936
+
+$snag: #e853a6
+$join: #4abf54
+$left: #e64f4f
+$mods: #e64f4f
+
+$tint: 20deg
+
+@import "../import"
+
+.ts-vote-filter
+	@include shift($tint, 2, 0.7)
+
+.ts-room-filter
+	@include gloss($tint + 30deg, 4)
+
+.ts-main-filter
+	@include paint($tint + 70deg, 2.7, 0.5)
+
+.ts-full-filter
+	@include paint($tint + 70deg, 2.7, 0.45, 1)
+
+.ts-mute-filter
+	@include paint($tint + 20deg, 1.4, 0.4)
+
+@import "theme"

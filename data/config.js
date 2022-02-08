@@ -70,11 +70,13 @@ module.exports = app => {
 			dark: "Dark Mode",
 			night: "Night Mode",
 			cosmic: "Cosmic",
+			forest: "Forest",
 			midnight: "Midnight"
 		},
 		style: {
 			blue: "Blue",
 			pink: "Pink",
+			green: "Green",
 			purple: "Purple",
 			teal: "Teal"
 		},
