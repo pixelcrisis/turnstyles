@@ -163,6 +163,11 @@ module.exports = app => {
       ${ app.$_toggle('join', 'On User Joins', 'alerts') }
       ${ app.$_toggle('left', 'On User Leave', 'alerts') }
       <p>These alerts show up in the room chat and are only visible to you, not for everyone to see.</p>
+
+      <h3>Reminder</h3>
+      ${ app.$_select('remind', 'timing') }
+      ${ app.$_string('text', 'Save Reminder', 'timing') }
+      <p>Send a Reminder to Chat at your selected interval! Useful for themes, rules, whatever you like!</p>
     </div>
   `
   const Support = () => `
