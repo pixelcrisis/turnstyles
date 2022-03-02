@@ -54,4 +54,10 @@ module.exports = app => {
 		mirror.prop(toggle ? 'checked' : 'value', val)
 	}
 
+	app.purgeData = function () {
+		for (let prop in this.default) this.config[prop] = this.default[prop]
+		window.localStorage.setItem('tsdb', JSON.stringify(this.config))
+		this.reload()
+	}
+
 }

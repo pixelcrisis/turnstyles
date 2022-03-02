@@ -173,9 +173,10 @@ module.exports = app => {
   const Support = () => `
     <div data-tab="support" class="ts-tabbed ts-about">
       <h3>Debug</h3>
-      ${ app.$_toggle('logger', 'Show Logs In Room Tab') }
       ${ app.$_button('Reload turnStyles', false, false, 'reload') }
       ${ app.$_button('Reload Players', false, false, 'reloadMusic') }
+      ${ app.$_button('Purge Data', false, false, 'purgeData')}
+      ${ app.$_toggle('logger', 'Show Logs In Room Tab') }
 
       <h3>Support</h3>
       <a class="ts-button" target="_blank" href="https://discord.gg/wqmAVvgSbE">
