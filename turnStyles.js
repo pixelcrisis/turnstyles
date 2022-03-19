@@ -14,6 +14,7 @@ require('./core/notify.js')(turnStyles)
 require('./data/session.js')(turnStyles)
 require('./data/storage.js')(turnStyles)
 require('./data/updates.js')(turnStyles)
+require('./data/backups.js')(turnStyles)
 
 require('./main/themes.js')(turnStyles)
 require('./main/volume.js')(turnStyles)

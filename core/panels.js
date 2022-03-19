@@ -33,6 +33,8 @@ module.exports = app => {
     
     $('#tsWindow *[data-for]').on('click',  this.saveConfig.bind(this))
     $('#tsWindow *[data-opt]').on('change', this.saveConfig.bind(this))
+
+    $('#tsBackup input').on('change', this.uploadData)
   }
 
   const HotBar = () => `
@@ -62,7 +64,7 @@ module.exports = app => {
           <div class="ts-tab" data-tab="visual">Visual</div>
           <div class="ts-tab" data-tab="hotbar">HotBar</div>
           <div class="ts-tab" data-tab="alerts">Alerts</div>
-          <div class="ts-tab" data-tab="support">Help / About</div>
+          <div class="ts-tab" data-tab="support">More</div>
         </nav>
 
         ${ General() }
@@ -173,10 +175,19 @@ module.exports = app => {
   const Support = () => `
     <div data-tab="support" class="ts-tabbed ts-about">
       <h3>Debug</h3>
+      <div style="margin-bottom: 10px">
+        ${ app.$_toggle('logger', 'Show Logs In Room Tab') }
+      </div>
       ${ app.$_button('Reload turnStyles', false, false, 'reload') }
       ${ app.$_button('Reload Players', false, false, 'reloadMusic') }
-      ${ app.$_button('Purge Data', false, false, 'purgeData')}
-      ${ app.$_toggle('logger', 'Show Logs In Room Tab') }
+      ${ app.$_button('Reset Data', false, false, 'resetData')}
+
+      <h3>Backup</h3>
+      ${ app.$_button('Download Backup', false, false, 'backupData') }
+      <label id="tsBackup" class="ts-button" style="margin-right: 10px">
+        <input type="file" id="tsBackup">
+        Restore Backup
+      </label>
 
       <h3>Support</h3>
       <a class="ts-button" target="_blank" href="https://discord.gg/wqmAVvgSbE">
