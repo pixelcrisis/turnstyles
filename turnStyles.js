@@ -1,34 +1,25 @@
 let turnStyles = window.$tS = {}
 // a thing by pixelcrisis
 
-require('./data/config.js')(turnStyles)
+require("./utility/utility.js")(turnStyles)
+require("./storage/storage.js")(turnStyles)
+require("./options/options.js")(turnStyles)
+require("./plugins/plugins.js")(turnStyles)
 
-require('./core/global.js')(turnStyles)
-require('./core/layout.js')(turnStyles)
-require('./core/ttlink.js')(turnStyles)
-require('./core/events.js')(turnStyles)
-require('./core/logger.js')(turnStyles)
-require('./core/timing.js')(turnStyles)
-require('./core/notify.js')(turnStyles)
-
-require('./data/session.js')(turnStyles)
-require('./data/storage.js')(turnStyles)
-require('./data/updates.js')(turnStyles)
-require('./data/backups.js')(turnStyles)
-
-require('./main/themes.js')(turnStyles)
-require('./main/volume.js')(turnStyles)
-require('./main/profile.js')(turnStyles)
-require('./main/chatbox.js')(turnStyles)
-require('./main/playlist.js')(turnStyles)
-
-require('./core/panels.js')(turnStyles)
-require('./core/attach.js')(turnStyles)
-
-require('./main/afk.js')(turnStyles)
-require('./main/auto.js')(turnStyles)
-require('./main/stats.js')(turnStyles)
-require('./main/alerts.js')(turnStyles)
+const init = () => {
+	// throw errors for older plugins
+	if (!window.tsBase) {
+		let ts_url = "https://ts.pixelcrisis.co"
+		let issues = `Oops! Something went wrong with turnStyles! 
+		If this is a bookmarklet, you may need to update it.
+		To update, view the ts website at ${ ts_url } 
+		Clicking OK will attempt to open the turnStyles website in a new tab.`
+		let update = () => window.open(ts_url, "_blank")
+		
+		if (window.confirm(issues)) update()
+	}
+	else turnStyles.attach()
+}
 
 // attach to the room
 turnStyles.attach()

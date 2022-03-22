@@ -1,4 +1,4 @@
-// backups.js | backup/restore/delete the data
+// restore.js | backup / restore / reset
 
 module.exports = App => {
 
@@ -11,22 +11,22 @@ module.exports = App => {
 		}
 		// save the new settings and reload
 		let store = JSON.stringify(this.config)
-		window.localStorage.setItem('tsdb', store)
+		window.localStorage.setItem("tsdb", store)
 		this.reload()
 	}
 
 	App.backupData = function () {
 		let config = JSON.stringify(this.config)
-		let backup = new Blob([ config ], { type: 'text/json' })
+		let backup = new Blob([ config ], { type: "text/json" })
 		// special use case for windows
 		if (window.navigator.msSaveOrOpenBlob) {
-			window.navigator.msSaveBlob(backup, 'tsdb.json')
+			window.navigator.msSaveBlob(backup, "tsdb.json")
 		}
 		// otherwise go the HTML5 route
 		else {
-			let el = window.document.createElement('a')
+			let el = window.document.createElement("a")
 			el.href = window.URL.createObjectURL(backup)
-			el.download = 'tsdb.json'
+			el.download = "tsdb.json"
 			document.body.appendChild(el)
 			el.click()
 			document.body.removeChild(el)
@@ -34,7 +34,7 @@ module.exports = App => {
 	}
 
 	App.uploadData = function () {
-		let file = $('#tsBackup input')[0].files[0]
+		let file = $("#tsBackup input")[0].files[0]
 		if (!file) return alert("Select Backup File First")
 		
 		let Read = new FileReader()

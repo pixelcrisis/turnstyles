@@ -1,8 +1,8 @@
-// config.js | the default config objects
+// configs.js | the default config objects
 
-module.exports = app => {
+module.exports = App => {
 
-	app.default = {
+	App.default = {
 		theme: "dark",
 		style: "",
 		u_css: "",
@@ -65,7 +65,7 @@ module.exports = app => {
 		},
 	}
 
-	app.options = {
+	App.options = {
 		theme: {
 			dark: "Dark Mode",
 			night: "Night Mode",
