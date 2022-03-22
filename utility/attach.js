@@ -24,7 +24,7 @@ module.exports = App => {
 		if (!full) return again()
 
 		// fully loaded!
-		this.lisener = this.listen.bind(this)
+		this.listener = this.listen.bind(this)
 		window.turntable.addEventListener("message", this.listener)
 		this.Emit("attach", room)
 		this.Log("loaded room")
