@@ -7,7 +7,7 @@ module.exports = App => {
     
     this.insert("turnStyles")
     this.insert(config.theme, "themes")
-    this.insert(config.style, "style")
+    this.insert(config.style, "styles")
     this.inject(config.u_css)
     this.themed(config.theme)
   }
