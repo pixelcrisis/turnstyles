@@ -27,7 +27,7 @@ module.exports = App => {
       ${ App.$string("afkstr", "Save AFK Response") }
       <p>Sends the AFK Response when you go AFK, and when you're pinged while AFK.</p>
 
-      <h5>${ App.$toggle("volume", "Overrie Volume") }</h5>
+      <h5>${ App.$toggle("volume", "Override Volume") }</h5>
       <p>Move volume controls out of the menu, and adds Mute For One Song.</p>
     `, true),
 
