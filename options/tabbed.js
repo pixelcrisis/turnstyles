@@ -104,7 +104,7 @@ module.exports = App => {
       <p>Sends Reminder to room at the selected interval! Useful for themes, rules, whatever you like!</p>
     `),
 
-    Support: () => tabContent("support", `
+    Support: () => tabContent("Support", `
       <h3>Debug</h3>
       ${ App.$toggle("logger", "Show Logs In Room Tab") }
       <div style="width: 0px;height: 10px;"></div>
