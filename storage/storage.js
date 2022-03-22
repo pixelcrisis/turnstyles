@@ -7,16 +7,16 @@ module.exports = App => {
 	require("./restore.js")(App)
 	require("./session.js")(App)
 
-	App.db = window.localStorage
-
 	App.readConfig = function () {
-		let store = window.localStorage.getItem("tsdb")
-		return store ? JSON.parse(store) : {}
+		let store = this.__sync || {}
+		let local = window.localStorage.getItem("tsdb")
+		local = local ? JSON.parse(local) : {}
+		return { ...local, ...store }
 	}
 
 	App.writeConfig = function () {
-		let store = JSON.stringify(this.config)
-		this.db.setItem("tsdb", store)
+		let local = JSON.stringify(this.config)
+		window.localStorage.setItem("tsdb", local)
 	}
 
 	App.initConfig = function () {
@@ -24,6 +24,7 @@ module.exports = App => {
 		// but only do it once
 		if (this.__base) return
 		this.__base = window.tsBase
+		this.__sync = window.tsSync
 		this.__logo = `${ this.__base }/images/icon128.png`
 
 		let storage = this.readConfig()

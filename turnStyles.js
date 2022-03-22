@@ -17,9 +17,10 @@ const init = () => {
 		let update = () => window.open(ts_url, "_blank")
 		
 		if (window.confirm(issues)) update()
+		return false
 	}
-	else turnStyles.attach()
+
+	turnStyles.attach()
 }
 
-// attach to the room
-turnStyles.attach()
+init()

@@ -1,13 +1,13 @@
 {
   "name": "turnStyles for turntable.fm",
-  "version": "10.4.0",
+  "version": "10.5.0",
   "description": "Apply tweaks to turntable.fm - autobop, autodj, themes, styles, and more!",
   "manifest_version": 2,
   "icons": {
     "48": "images/icon48.png",
     "128": "images/icon128.png"
   },
-  "permissions": [ "notifications" ],
+  "permissions": [ "notifications", "storage" ],
   "content_scripts": [
     {
       "exclude_globs": [
