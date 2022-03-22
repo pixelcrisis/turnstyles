@@ -39,7 +39,7 @@ module.exports = App => {
 		// check if attaching song (e) or new song (metadata)
 		let song = e && e.room ? e.room.metadata.current_song : e
 		let love = e && e.upvoters ? e.upvoters.length : 0
-		let djid = song ? dong.djid : false
+		let djid = song ? song.djid : false
 
 		let last = { ...this.now_playing }
 		let base = { djid, love, hate: 0, snag: 0 }
