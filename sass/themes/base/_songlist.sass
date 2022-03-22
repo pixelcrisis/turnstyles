@@ -4,16 +4,26 @@
 	@extend .ts-content
 
 // the playlist headers
+.song-search
+	left: 33px
+
+#upload-button
+	top: 7px
+	left: 7px
+
+#upload-button button
+	opacity: 1
+	height: 22px
+	width: 22px
+	@extend .ts-dark-filter
+	@include sprite(45px, -736px)
+
 #queue-header,
 #playlist-header
 	background: $bg-faded
 	box-sizing: border-box
 	border-top: none
 	border-bottom: 1px solid $bg-inset
-
-#upload-button
-	opacity: 0.4 !important
-	@extend .ts-mute-filter
 
 #queue-header 
 	.done
