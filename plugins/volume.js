@@ -71,7 +71,7 @@ module.exports = App => {
 	App.muteVolume = function () {
 		// toggle mute on/off
 		this.muted = !this.muted
-		this._class("ts_muted", this.muted)
+		this.classes("ts_muted", this.muted)
 		let vol = this.muted ? -3 : naturalVol()
 		window.turntablePlayer.setVolume(vol)
 
