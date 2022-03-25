@@ -45,7 +45,7 @@ module.exports = App => {
 	// update volume on ts volume change
 	App.saveVolume = function (vol) {
 		vol = vol.target ? vol.target.value : vol
-		let volume = vol > 0 ? convertVol(vol) : -3
+		let volume = vol > 0 ? convertVol(vol) : -7
 		// turntable doesn"t natively go lower than 7
 		let volFunc = volume < 7 ? currentVol : this.realVolume
 		window.turntablePlayer.realVolume = volFunc
