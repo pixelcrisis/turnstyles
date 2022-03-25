@@ -20,6 +20,7 @@ module.exports = App => {
       <p>turnStyles will attempt to add you as a DJ when a spot becomes available.</p>
 
       <h5>${ App.$toggle("auto_q", "Enable AutoQueue") }</h5>
+      ${ App.$string("q_text", "Save Queue Ping") }
       <p>For bots with a queue: Paste your queue ping above to auto DJ on ping!</p>
 
       <h3>General</h3>
