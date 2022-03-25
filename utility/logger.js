@@ -3,7 +3,9 @@
 module.exports = App => {
 
 	App.Log = function (str) {
-		console.info(`[${ this.now() }] turnStyles :: ${ str }`)
+		if (this.config.debug) {
+			console.info(`[${ this.now() }] turnStyles :: ${ str }`)
+		}
 		str = clean(str)
 
 		if (!this.logbook) this.logbook = []

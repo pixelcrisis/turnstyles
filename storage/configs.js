@@ -3,6 +3,7 @@
 module.exports = App => {
 
 	App.default = {
+		debug: false,
 		theme: "dark",
 		style: "",
 		u_css: "",

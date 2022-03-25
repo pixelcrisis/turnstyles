@@ -107,6 +107,7 @@ module.exports = App => {
 
     Support: () => tabContent("Support", `
       <h3>Debug</h3>
+      ${ App.$toggle("debug", "Print Logs In Console") }
       ${ App.$toggle("logger", "Show Logs In Room Tab") }
       <div style="width: 0px;height: 10px;"></div>
       ${ App.$button("Reload turnStyles", false, false, "reload") }
