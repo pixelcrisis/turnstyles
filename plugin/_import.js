@@ -1,5 +1,3 @@
-// plugins.js | getting our "features"
-
 module.exports = App => {
 	
 	require("./themes.js")(App)

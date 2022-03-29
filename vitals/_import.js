@@ -1,5 +1,3 @@
-// utility.js | our core utilities
-
 module.exports = App => {
 
   App.now = () => new Date().toLocaleTimeString("en-us")

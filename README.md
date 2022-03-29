@@ -118,14 +118,18 @@ Welcome](https://img.shields.io/badge/PRs-welcome-green.svg?style=for-the-badge)
 - Use the `dev` branch for changes
 - Submit a pull request!
 
-## Build
-
-Install dependancies with Yarn
+## Building
 
 ```sh
+# Install devDependencies
+# Necessary for compiling
 yarn install
-yarn watch
-yarn build
+
+yarn build # To Build All Changes
+yarn watch # Auto-Builds On File Changes
+yarn start # Builds, Then Watches All Files
+yarn quick # Builds & Watches Scripts
+yarn style # Builds & Watches Themes/Styles
 ```
 
 ## Privacy

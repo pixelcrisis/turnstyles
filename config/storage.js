@@ -2,12 +2,6 @@
 
 module.exports = App => {
 
-	require("./configs.js")(App)
-	require("./iconids.js")(App)
-	require("./migrate.js")(App)
-	require("./restore.js")(App)
-	require("./session.js")(App)
-
 	App.readConfig = function () {
 		let store = this.__sync || {}
 		let local = window.localStorage.getItem("tsdb")

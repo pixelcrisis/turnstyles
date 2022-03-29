@@ -1,5 +1,3 @@
-// options.js | handle the hotbar/options panel
-
 module.exports = App => {
 
   require("./layout.js")(App)

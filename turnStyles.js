@@ -1,10 +1,10 @@
 let turnStyles = window.$tS = {}
 // a thing by pixelcrisis
 
-require("./utility/utility.js")(turnStyles)
-require("./storage/storage.js")(turnStyles)
-require("./options/options.js")(turnStyles)
-require("./plugins/plugins.js")(turnStyles)
+require("./vitals/_import.js")(turnStyles)
+require("./config/_import.js")(turnStyles)
+require("./window/_import.js")(turnStyles)
+require("./plugin/_import.js")(turnStyles)
 
 const init = () => {
 	// throw errors for older plugins
