@@ -9,7 +9,8 @@
     "build": "sh scripts/build.sh",
     "watch": "sh scripts/watch.sh",
     "start": "sh scripts/start.sh",
-    "quick": "sh scripts/quick.sh"
+    "quick": "sh scripts/quick.sh",
+    "style": "sh scripts/style.sh"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.5",
