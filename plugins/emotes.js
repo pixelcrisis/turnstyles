@@ -3,6 +3,7 @@
 module.exports = App => {
 
 	App.findEmote = function (event) {
+		if (!this.config.emojis) return
 		let done = false
 		let text = event.text.split(" ")
 		for (let i = 0; i < text.length; i++) {

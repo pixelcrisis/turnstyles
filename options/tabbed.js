@@ -44,6 +44,10 @@ module.exports = App => {
       <h5>${ App.$toggle("stamps", "Add Timestamps To Chat") }</h5>
       <p>Adds a timestamp to the right of room chat messages.</p>
 
+      <h5>${ App.$toggle("emojis", "Use Twitch/BTTV Emojis")}</h5>
+      <p>Use the <strong>:emoji:</strong> format to access external emojis.<br>
+      <em>( note: can only be seen by other turnStyles users! )</em></p>
+
       <h3>Turntable</h3>
       ${ App.$toggle("bubble", "Show Chat Bubbles") }
       ${ App.$toggle("people", "Show Room Audience") }

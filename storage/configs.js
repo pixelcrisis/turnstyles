@@ -19,6 +19,7 @@ module.exports = App => {
 		volume: false,
 		played: false,
 		stamps: false,
+		emojis: true,
 
 		auto_b: true,
 		nextdj: false,
