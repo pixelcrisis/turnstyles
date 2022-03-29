@@ -3,19 +3,19 @@
 module.exports = App => {
 
 	App.Log = function (str) {
-		if (this.config.debug) {
-			console.info(`[${ this.now() }] turnStyles :: ${ str }`)
-		}
-		str = clean(str)
+		let perm = this.config ? this.config.debug : true
+		if (perm) console.info(`[${ this.now() }] turnStyles :: ${ str }`)
+		this.addLog(`[tS - ${ this.now() }]<span>${ clean(str) }</span>`)
+	}
 
-		if (!this.logbook) this.logbook = []
-		this.logbook.push(`[tS - ${ this.now() }] <span>${ str }</span>`)
-		if (this.logbook.length > 50) this.logbook.shift()
-
-		let print = $("#tsLogs")[0]
-		if (print) {
-			print.innerHTML = this.logbook.reverse().join("<br>")
-			print.scrollTop = print.scrollHeight
+	App.addLog = function (log) {
+		this.logBook.push(log)
+		let book = $("#tsLogs")[0]
+		let logs = this.logBook.length
+		if (logs > 50) this.logBook.shift()
+		if (book) {
+			book.innerHTML = this.logBook.reverse().join("<br />")
+			book.scrollTop = book.scrollHeight
 		}
 	}
 
@@ -56,6 +56,8 @@ module.exports = App => {
 		let last = list[list.length - 1]
 		this.Log(`[${ this.findName(last[0]) }] voted: ${ last[1] }`)
 	})
+
+	App.logBook = []
 
 }
 
