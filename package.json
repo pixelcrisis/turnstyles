@@ -6,11 +6,11 @@
   "author": "pixelcrisis <pxcrisis@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "sh scripts/build.sh",
-    "watch": "sh scripts/watch.sh",
-    "start": "sh scripts/start.sh",
-    "quick": "sh scripts/quick.sh",
-    "style": "sh scripts/style.sh"
+    "build": "sh bash/build.sh",
+    "watch": "sh bash/watch.sh",
+    "start": "sh bash/start.sh",
+    "quick": "sh bash/quick.sh",
+    "style": "sh bash/style.sh"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.5",

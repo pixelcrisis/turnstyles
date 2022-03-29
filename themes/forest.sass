@@ -1,16 +1,16 @@
-$main: #e668b9
+$main: #5b9f60
 
-$text: #dad7e8
-$back: #393359
+$text: #d7e8da
+$back: #244026
 
 $snag: #e853a6
 $join: #4abf54
 $left: #e64f4f
 $mods: #e64f4f
 
-$tint: 200deg
+$tint: 20deg
 
-@import "../import"
+@import "../sass/import"
 
 .ts-vote-filter
 	@include shift($tint, 2, 0.7)
@@ -30,4 +30,4 @@ $tint: 200deg
 .ts-mute-filter
 	@include paint($tint + 20deg, 1.4, 0.4)
 
-@import "theme"
+@import "../sass/theme"

@@ -1,7 +1,7 @@
-@import "../import"
+@import "../sass/import"
 
-$main: #9274ea
-$tint: 145deg
+$main: #54bfb4
+$tint: 75deg
 
 %vote-filter
 	@include shift($tint, 2, 0.8)
@@ -21,6 +21,4 @@ $tint: 145deg
 %mute-filter
 	@include paint($tint + 70deg, 2, 0.4)
 
-@import "list"
-@import "base"
-@import "none"
+@import "../sass/style"
