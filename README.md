@@ -125,6 +125,12 @@ Welcome](https://img.shields.io/badge/PRs-welcome-green.svg?style=for-the-badge)
 # Necessary for compiling
 yarn install
 
+# Optional: Install JQ
+# Allows yarn build 0.0.0
+# Updates version number in
+# package.json and manifest.json
+# https://stedolan.github.io/jq/download/
+
 yarn build # To Build All Changes
 yarn watch # Auto-Builds On File Changes
 yarn start # Builds, Then Watches All Files

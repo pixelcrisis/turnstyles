@@ -30,9 +30,9 @@ echo "${TEXT}Observing ${CODE}turnStyles.js"
 echo "${TEXT}Observing ${CODE}turnStyles.sass"
 echo "${TEXT}Observing ${CODE}themes/"
 echo "${TEXT}Observing ${CODE}styles/"
-echo "${TEXT}Observing ${CODE}package/*.js*"
+echo "${TEXT}Observing ${CODE}chrome/*.js*"
 watchify turnStyles.js -o build/turnStyles.js &
 node-sass turnStyles.sass -wo build &
 node-sass themes -wo build/themes &
 node-sass styles -wo build/styles &
-copy-and-watch --watch package/*.js* build/ && fg
+copy-and-watch --watch chrome/*.js* build/ && fg

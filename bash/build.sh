@@ -2,6 +2,7 @@
 HEAD='\033[0;32m'
 CODE='\033[0;34m'
 TEXT='\033[0;33m'
+
 # Added Some Color
 
 echo "${TEXT}Compiling ${CODE}turnStyles.js"
@@ -19,7 +20,18 @@ echo "${TEXT}Compiling ${CODE}styles/"
 node-sass styles -o build/styles > /dev/null
 postcss build/styles/*.css --use autoprefixer --d build/styles/
 
-echo "${TEXT}Migrating ${CODE}package/"
-cp -R package/. build/
+if [ $# -eq 1 ] 
+then
+	echo "${HEAD}Updating Versions"
+	echo "${TEXT}Updating ${CODE}package.json"
+	jq ".version = \"$1\"" package.json > package.temp.json
+	mv package.temp.json package.json
+	echo "${TEXT}Updating ${CODE}chrome/manifest.json"
+	jq ".version = \"$1\"" chrome/manifest.json > manifest.temp.json
+	mv manifest.temp.json chrome/manifest.json
+fi
+
+echo "${TEXT}Migrating ${CODE}chrome/"
+cp -R chrome/. build/
 
 echo "${HEAD}Finished Build"
