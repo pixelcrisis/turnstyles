@@ -15,8 +15,12 @@ module.exports = App => {
 	}
 
 	App.getEmote = function (str) {
-		let icon = this.findEmote(str)
-		if (icon) return this.makeEmote(icon)
+		let find = this.findEmote(str)
+		if (!find) return false
+
+		let icon = this.findTwitchEmote(find)
+		if (!icon) icon = this.findBTTVEmote(find)
+		return icon
 	}
 
 	App.addEmote = function (find, replace) {
@@ -28,11 +32,21 @@ module.exports = App => {
 	App.findEmote = function (str) {
 		let raw = str.split(":").join("").toLowerCase()
 		let has = str[0] === ":" && str[str.length - 1] === ":"
-		return has ? this.icons[raw] : false
+		return has ? raw : false
 	}
 
-	App.makeEmote = function (icon) {
-		return `<img src="${ this.icon_base}/${ icon }/1x">`
+	App.findTwitchEmote = function (name) {
+		let icon = this.twitchIcons[name]
+		if (!icon) return false
+		let base = `https://static-cdn.jtvnw.net/emoticons/v2/`
+		return `<img src="${ base }/${ icon }/static/light/1.0">`
+	}
+
+	App.findBTTVEmote = function (name) {
+		let icon = this.bttvIcons[name]
+		if (!icon) return false
+		let base = `https://cdn.betterttv.net/emote`
+		return `<img src="${ base }/${ icon }/1x">`
 	}
 
 	App.on("speak", App.runEmote)
