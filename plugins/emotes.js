@@ -2,41 +2,42 @@
 
 module.exports = App => {
 
-	App.findEmote = function (event) {
+	App.runEmote = function (event) {
 		if (!this.config.emojis) return
-		let done = false
 		let text = event.text.split(" ")
-		for (let i = 0; i < text.length; i++) {
-			let word = text[i]
-			// match words beginning and ending with ":"
-			if (word[0] === ":" && word[word.length - 1] == ":") {
-				let test = word.split(":").join("")
-				// then see if we have a matching emote
-				for (let icon of emote) {
-					if (test == icon.code.toLowerCase()) {
-						done = true
-						text[i] = image(icon)
-					}
-				}
-			}
+		for (var i = 0; i < text.length; i++) {
+			let icon = this.getEmote(text[i])
+			if (icon) text[i] = icon
 		}
-		if (done) App.addEmotes(event.text, text.join(" "))
+		if (event.text !== text.join(" ")) {
+			this.addEmote(event.text, text.join(" "))
+		}
 	}
 
-	App.addEmotes = function (find, replace) {
-		let message = $(".chat .messages .message:last-of-type")
-		let content = message[0].innerHTML
-		let matches = content.indexOf(find) > -1
-		if (matches) message[0].innerHTML = content.split(find).join(replace)
+	App.getEmote = function (str) {
+		let icon = this.findEmote(str)
+		if (icon) return this.makeEmote(icon)
 	}
 
-	App.on("speak", App.findEmote)
+	App.addEmote = function (find, replace) {
+		let $el = $(".chat .messages .message:last-of-type")[0]
+		if ($el.innerHTML.indexOf(find) < 0) return
+		let html = `<span>${ replace }</span>`
+		let trim = html.split("<span></span>").join("")
+		$el.innerHTML = $el.innerHTML.split(find).join(trim)
+	}
 
-}
+	App.findEmote = function (str) {
+		let raw = str.split(":").join("").toLowerCase()
+		let has = str[0] === ":" && str[str.length - 1] === ":"
+		return has ? this.icons[raw] : false
+	}
 
-const { main, bttv } = require("./emotes.json")
-const emote = [ ...main, ...bttv ]
-const image = icon => {
-	let base = `https://cdn.betterttv.net/emote`
-	return `<img src="${base}/${icon.id}/1x.${icon.imageType}">`
+	App.makeEmote = function (icon) {
+		let link = `${ this.icon_base}/${ icon }/1x`
+		return `</span><img class="ts-emote" src="${ link }"><span>`
+	}
+
+	App.on("speak", App.runEmote)
+
 }
