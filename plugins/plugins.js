@@ -14,6 +14,7 @@ module.exports = App => {
 	require("./autobop.js")(App)
 	require("./reminder.js")(App)
 	require("./nextdj.js")(App)
+	require("./emotes.js")(App)
 
 	App.on("loaded", function (config) {
 		this.loadThemes(config)
