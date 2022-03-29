@@ -9,6 +9,7 @@
     "start": "yarn build && yarn watch",
     "build": "yarn b:core && yarn b:theme && yarn b:style && yarn b:static",
     "watch": "concurrently \"yarn w:1\" \"yarn w:2\" \"yarn w:3\" \"yarn w:4\"",
+    "quick": "yarn b:core && yarn w:1",
     "b:core": "yarn b:core:1 && yarn b:core:2 && yarn b:core:3",
     "b:core:1": "browserify -p tinyify turnStyles.js -o build/turnStyles.js",
     "b:core:2": "node-sass turnStyles.sass -o build",
