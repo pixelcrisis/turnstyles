@@ -1,38 +1,37 @@
-const ext = chrome || browser
-const url = ext.runtime.getURL("turnStyles.js")
+let core = chrome || browser
+let tsdb = window.localStorage.getItem("tsdb")
+let wipe = window.localStorage.getItem("ts-reset")
+let sync = core.storage ? core.storage.sync : false
+if (sync && wipe) window.localStorage.removeItem("ts-reset")
 
-const inject = () => {
-	// inject url base into the window
-	// this tells the script we're an extension
-	const path = url.split("/turnStyles.js")[0]
-	const base = document.createElement("script")
-	base.textContent = `window.tsBase = "${path}"`
-	base.type = "text/javascript"
-	document.body.append(base)
-
-	// inject the main turnStyles script
-	const main = document.createElement("script")
-	main.type = "text/javascript"
-	main.src = url
-	document.body.append(main)
+const append = js => {
+	let file = js.indexOf(".js") > -1
+	let elem = document.createElement("script")
+	if (file) elem.src = js
+	else elem.textContent = js
+	elem.type = "text/javascript"
+	document.body.append(elem)
 }
 
-const sync = () => {
-	let local = window.localStorage.getItem("tsdb")
-	if (local) ext.storage.sync.set({ tsdb: JSON.parse(local) })
-	ext.storage.sync.get([ "tsdb" ], result => {
-		let store = result.tsdb ? JSON.stringify(result.tsdb) : ""
-		const data = document.createElement("script")
-		data.textContent = `window.tsSync = ${ store }`
-		data.type = "text/javascript"
-		document.body.append(data)
-		inject()
-	})
+const inject = sync => {
+	let file = core.runtime.getURL("turnStyles.js")
+	let base = file.split("/turnStyles.js")[0]
+	// inject link base into the window
+	// tells the script we're an extension
+	append(`window.tsBase = "${ base }"`)
+	// if we got a backup, inject that too
+	if (sync) append(`window.tsSync = ${ sync }`)
+	append(file)
+}
+
+const backup = () => {
+	if (tsdb) sync.set({ tsdb: JSON.parse(tsdb) })
+	if (wipe) sync.remove([ "tsdb" ], db => inject())
+	else sync.get([ "tsdb" ], db => inject(JSON.stringify(db.tsdb || {})))
 }
 
 const init = () => {
-	if (!ext.storage) inject()
-	else sync()
+	return sync ? backup() : inject()
 }
 
 init()
