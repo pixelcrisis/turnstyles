@@ -4,6 +4,7 @@ module.exports = App => {
 	require("./iconids.js")(App)
 	require("./migrate.js")(App)
 	require("./restore.js")(App)
+	require("./removal.js")(App)
 	require("./session.js")(App)
 	require("./storage.js")(App)	
 

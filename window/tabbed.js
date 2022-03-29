@@ -116,11 +116,12 @@ module.exports = App => {
       <div style="width: 0px;height: 10px;"></div>
       ${ App.$button("Reload turnStyles", false, false, "reload") }
       ${ App.$button("Reload Players", false, false, "reloadMusic") }
-      ${ App.$button("Reset Data", false, false, "resetData") }
 
-      <h3>Backup</h3>
-      ${ App.$button("Download Backup", false, false, "backupData") }
-      <label id="tsBackup" class="ts-button"><input type="file">Restore Backup</label>
+      <h3>turnStyles Data</h3>
+      ${ App.$button("Backup", false, false, "backupData") }
+      <label id="tsBackup" class="ts-button"><input type="file">Restore</label>
+      ${ App.$button("Reset", false, false, "resetData") }
+      ${ App.$button("Delete", false, false, "deleteData") }
 
       <h3>Support</h3>
       <a href="https://discord.gg/wqmAVvgSbE" class="ts-button" target="_blank">turnStyles Discord</a>
