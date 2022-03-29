@@ -31,8 +31,21 @@ module.exports = App => {
 
 	App.restoreData = function (event) {
 		let data = JSON.parse(event.target.result)
-		if (data.hotbar && data.people) App.resetData(data)
+		if (data.hotbar && data.people) App.updateData(data)
 		else alert("Error Reading Backup File")
+	}
+
+	App.updateData = function (data) {
+		// use data if given, otherwise
+		// reset all values to default
+		data = data || {}
+		for (let prop in data) {
+			this.config[prop] = data[prop]
+		}
+		// save the new settings and reload
+		let store = JSON.stringify(this.config)
+		window.localStorage.setItem("tsdb", store)
+		this.reload()
 	}
 
 }

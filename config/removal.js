@@ -2,23 +2,27 @@
 
 module.exports = App => {
 
-	App.deleteData = function () {
-		window.localStorage.removeItem("tsdb")
-		window.localStorage.setItem("ts-reset", true)
-		window.location.reload()
+	App.resetData = function () {
+		if (window.confirm(warnReset)) {
+			this.updateData(this.default)
+		}
 	}
 
-	App.resetData = function (data) {
-		// use data if given, otherwise
-		// reset all values to default
-		data = data || this.default
-		for (let prop in data) {
-			this.config[prop] = data[prop]
+	App.deleteData = function () {
+		if (window.confirm(warnDelete)) {
+			window.localStorage.removeItem("tsdb")
+			window.localStorage.setItem("ts-reset", true)
+			window.location.reload()
 		}
-		// save the new settings and reload
-		let store = JSON.stringify(this.config)
-		window.localStorage.setItem("tsdb", store)
-		this.reload()
 	}
 
 }
+
+const warnReset = `WARNING: You're about to reset your turnStyles Data! 
+Clicking "OK" will reset turnStyles to default and reload the extension!
+Click "CANCEL" if this is not what you intended to do!`
+
+const warnDelete = `WARNING: You're about to DELETE the turnStyles DATABASE!
+THIS WILL RELOAD THE WEB PAGE! USE AS A LAST RESORT!
+Click "OK" to delete the turnStyles DB and start over!
+Click "CANCEL" to go back to turntable!`
