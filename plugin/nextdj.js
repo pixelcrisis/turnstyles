@@ -23,7 +23,8 @@ module.exports = App => {
 
   App.autoQueue = function (event) {
     if (!this.config.auto_q) return
-    if (event.text == this.config.q_text) this.View().becomeDj()
+    let matches = this.config.q_text
+    if (event.text.indexOf(matches) > -1) this.View().becomeDj()
   }
 
   App.on("add_dj", App.spinning)
