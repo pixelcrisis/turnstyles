@@ -22,9 +22,7 @@ module.exports = App => {
 	App.addEmote = function (find, replace) {
 		let $el = $(".chat .messages .message:last-of-type")[0]
 		if ($el.innerHTML.indexOf(find) < 0) return
-		let html = `<span>${ replace }</span>`
-		let trim = html.split("<span></span>").join("")
-		$el.innerHTML = $el.innerHTML.split(find).join(trim)
+		$el.innerHTML = $el.innerHTML.split(find).join(replace)
 	}
 
 	App.findEmote = function (str) {
@@ -34,8 +32,7 @@ module.exports = App => {
 	}
 
 	App.makeEmote = function (icon) {
-		let link = `${ this.icon_base}/${ icon }/1x`
-		return `</span><img class="ts-emote" src="${ link }"><span>`
+		return `<img src="${ this.icon_base}/${ icon }/1x">`
 	}
 
 	App.on("speak", App.runEmote)
