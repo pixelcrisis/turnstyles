@@ -23,10 +23,12 @@ module.exports = App => {
 		return icon
 	}
 
-	App.addEmote = function (find, replace) {
-		let $el = $(".chat .messages .message:last-of-type")[0]
-		if ($el.innerHTML.indexOf(find) < 0) return
-		$el.innerHTML = $el.innerHTML.split(find).join(replace)
+	App.addEmote = async function (find, replace) {
+		// check for replaced :P smileys
+		if (find.indexOf(":p") > -1) find = find.split(":p")[0]
+		let $el = $(".chat .messages .message:last-of-type .text")[0]
+		if (!$el.innerHTML.indexOf(find) < 0) return
+		$el.innerHTML = replace
 	}
 
 	App.findEmote = function (str) {

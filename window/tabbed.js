@@ -46,7 +46,8 @@ module.exports = App => {
 
       <h5>${ App.$toggle("emojis", "Use Twitch/BTTV Emojis")}</h5>
       <p>Use the <strong>:emoji:</strong> format to access external emojis.<br>
-      <em>( note: can only be seen by other turnStyles users! )</em></p>
+      <em>note: can only be seen by other turnStyles users!</em><br>
+      <em>note: using this disables the :P emoji!</em></p>
 
       <h3>Turntable</h3>
       ${ App.$toggle("bubble", "Show Chat Bubbles") }
