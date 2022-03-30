@@ -14,6 +14,7 @@ module.exports = App => {
 	App.writeConfig = function () {
 		let local = JSON.stringify(this.config)
 		window.localStorage.setItem("tsdb", local)
+		window.postMessage({ tsdb: this.config })
 	}
 
 	App.initConfig = function () {

@@ -1,37 +1,59 @@
-let core = chrome || browser
-let tsdb = window.localStorage.getItem("tsdb")
-let wipe = window.localStorage.getItem("ts-reset")
-let sync = core.storage ? core.storage.sync : false
-if (sync && wipe) window.localStorage.removeItem("ts-reset")
+const target = chrome || browser
+const stored = window.localStorage.getItem("tsdb")
+const remove = window.localStorage.getItem("ts-reset")
+const bridge = target.storage ? target.storage.sync : false
 
-const append = js => {
-	let file = js.indexOf(".js") > -1
-	let elem = document.createElement("script")
-	if (file) elem.src = js
-	else elem.textContent = js
-	elem.type = "text/javascript"
-	document.body.append(elem)
+const Attach = () => {
+	if (remove) return Format()
+	if (bridge) return Backup()
+	else return Inject()
 }
 
-const inject = sync => {
-	let file = core.runtime.getURL("turnStyles.js")
-	let base = file.split("/turnStyles.js")[0]
-	// inject link base into the window
-	// tells the script we're an extension
-	append(`window.tsBase = "${ base }"`)
-	// if we got a backup, inject that too
-	if (sync) append(`window.tsSync = ${ sync }`)
-	append(file)
+const Format = () => {
+	// wipe out all tS data
+	window.localStorage.removeItem("tsdb")
+	window.localStorage.removeItem("ts-reset")
+	if (bridge) bridge.remove([ "tsdb" ], () => Backup())
+	else Inject()
 }
 
-const backup = () => {
-	if (tsdb) sync.set({ tsdb: JSON.parse(tsdb) })
-	if (wipe) sync.remove([ "tsdb" ], db => inject())
-	else sync.get([ "tsdb" ], db => inject(JSON.stringify(db.tsdb || {})))
+const Backup = () => {
+	// save to bridge (addon db)
+	let save = stored && !remove
+	let tsdb = save ? JSON.parse(stored) : false
+	if (tsdb) bridge.set({ tsdb })
+	// listen for db update messages
+	window.addEventListener("message", Update)
+	// fetch and inject our app data 
+	bridge.get([ "tsdb" ], db => Inject(db))
 }
 
-const init = () => {
-	return sync ? backup() : inject()
+const Update = ev => {
+	let tsdb = ev.data.tsdb
+	if (tsdb) bridge.set({ tsdb: tsdb })
 }
 
-init()
+const Inject = db => {
+	// inject tS data and scripts
+	let backup = db ? JSON.stringify(db.tsdb || {}) : false
+	let script = target.runtime.getURL("turnStyles.js")
+	let extURL = script.split("/turnStyles.js")[0]
+	// inject the base URL for links
+	Append(`window.tsBase = "${ extURL }"`)
+	// inject any synced data we received
+	Append(`window.tsSync = ${ backup }`)
+	// the main script gets us started
+	Append(script)
+}
+
+const Append = js => {
+	// append JS file/code to DOM
+	let isFile = js.indexOf(".js") > -1
+	let script = document.createElement("script")
+	if (isFile) script.src = js
+	else script.textContent = js
+	script.type = "text/javascript"
+	document.body.append(script)
+}
+
+Attach()
