@@ -802,7 +802,7 @@ module.exports = App => {
 },{"../package.json":9}],9:[function(require,module,exports){
 module.exports={
   "name": "turnStyles",
-  "version": "10.6.2",
+  "version": "10.6.3",
   "main": "turnStyles.js",
   "repository": "git@github.com:pixelcrisis/turntable-tweaks.git",
   "author": "pixelcrisis <pxcrisis@gmail.com>",
@@ -1033,10 +1033,12 @@ module.exports = App => {
 		return icon
 	}
 
-	App.addEmote = function (find, replace) {
-		let $el = $(".chat .messages .message:last-of-type")[0]
-		if ($el.innerHTML.indexOf(find) < 0) return
-		$el.innerHTML = $el.innerHTML.split(find).join(replace)
+	App.addEmote = async function (find, replace) {
+		// check for replaced :P smileys
+		if (find.indexOf(":p") > -1) find = find.split(":p")[0]
+		let $el = $(".chat .messages .message:last-of-type .text")[0]
+		if (!$el.innerHTML.indexOf(find) < 0) return
+		$el.innerHTML = replace
 	}
 
 	App.findEmote = function (str) {
@@ -1971,7 +1973,8 @@ module.exports = App => {
 
       <h5>${ App.$toggle("emojis", "Use Twitch/BTTV Emojis")}</h5>
       <p>Use the <strong>:emoji:</strong> format to access external emojis.<br>
-      <em>( note: can only be seen by other turnStyles users! )</em></p>
+      <em>note: can only be seen by other turnStyles users!</em><br>
+      <em>note: using this disables the :P emoji!</em></p>
 
       <h3>Turntable</h3>
       ${ App.$toggle("bubble", "Show Chat Bubbles") }
