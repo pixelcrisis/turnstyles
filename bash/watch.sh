@@ -10,6 +10,8 @@ echo "${TEXT}Observing turnStyles.sass"
 echo "${TEXT}Observing themes/"
 echo "${TEXT}Observing styles/"
 echo "${TEXT}Observing chrome/*.js*"
+
+trap 'kill %1; kill %2; kill %3; kill %4' SIGINT
 watchify turnStyles.js -o build/turnStyles.js &
 node-sass turnStyles.sass -wo build &
 node-sass themes -wo build/themes &
