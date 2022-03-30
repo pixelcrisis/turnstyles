@@ -46,12 +46,13 @@ module.exports = App => {
 			auto_b: true,
 			auto_q: true,
 			nextdj: true,
+			shared: true,
 			bubble: false,
 			people: false,
 			player: false,
 			qtbtn1: false,
 			qtbtn2: false,
-			qtbtn3: false
+			qtbtn3: false,
 		},
 
 		qtbtns: {

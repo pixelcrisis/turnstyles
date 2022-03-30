@@ -45,6 +45,17 @@ module.exports = App => {
 		else for (let msg of text) this.Chat(msg.trim())
 	}
 
+	App.Share = () => {
+		if (window.confirm("Share turnStyles in the room chat?")) {
+			App.Batch([
+				`Check out turnStyles!`,
+				`Autobop, Emotes, Themes, & More!`,
+				`Get it @ https://ts.pixelcrisis.co`
+			].join(";;"))
+			$("#tsWindow").removeClass("active")
+		}
+	}
+
 }
 
 const $post = obj => `

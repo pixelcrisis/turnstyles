@@ -24,6 +24,7 @@ module.exports = App => {
       ${ App.$toggle("bubble", "Bubbles", false, "hbBubbles") }
       ${ App.$toggle("people", "People", false, "hbPeople") }
       ${ App.$toggle("player", "Player", false, "hbPlayer") }
+      ${ App.$button("Share", false, "hbShare", "Share") }
     </div>
   `
 

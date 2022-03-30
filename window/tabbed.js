@@ -7,7 +7,8 @@ module.exports = App => {
     "Visual",
     "Hotbar",
     "Alerts",
-    "Support" 
+    "Support",
+    "Share"
   ]
 
   App.tabbed = {
@@ -83,6 +84,7 @@ module.exports = App => {
       ${ App.$toggle("bubble", "Chat Bubble Toggle", "hotbar") }
       ${ App.$toggle("people", "Audience Toggle", "hotbar") }
       ${ App.$toggle("player", "Player Toggle", "hotbar") }
+      ${ App.$toggle("shared", "Share turnStyles", "hotbar") }
     `),
 
     Alerts: () => tabContent("Alerts", `
@@ -128,7 +130,19 @@ module.exports = App => {
       <a href="https://discord.gg/wqmAVvgSbE" class="ts-button" target="_blank">turnStyles Discord</a>
       <a href="https://discord.gg/jnRs4WnPjM" class="ts-button" target="_blank">turntable.fm Discord</a>
 
-      <h3>Sharing</h3>
+      <h3>Author</h3>
+      <em>turnStyles v${ App.config.version }<em><br />
+      <strong>@crisis</strong> on Discord<br />
+      <strong>@crisis</strong> on Turntable<br />
+      <a target="_blank" href="https://patreon.com/pixelcrisis">patreon.com/pixelcrisis</a><br />
+      <em>Request Themes & More on Patreon!</em>
+    `),
+
+    Share: () => tabContent("Share", `
+      <h3>Post To Chat</h3>
+      ${ App.$button("Share turnStyles in chat!", false, false, "Share") }
+
+      <h3>Links</h3>
       <a href="https://chrome.google.com/webstore/detail/turntable-tweaks/pmlkackfnbbnjfejpddpakallilkbdme" class="ts-button" target="_blank">Chrome / Opera</a>
       <a href="https://addons.mozilla.org/en-US/firefox/addon/turnstyles-for-turntable-fm/" class="ts-button" target="_blank">Firefox</a>
       <a href="https://ts.pixelcrisis.co" class="ts-button" target="_blank">Bookmarklet</a>

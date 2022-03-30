@@ -3,7 +3,7 @@
 module.exports = App => {
 
   App.setAfk = function (key, val, grp) {
-    if (key != "is_afk" || grp) return
+    if (grp || key != "is_afk") return
     if (val && this.config.afkstr) this.isAfk()
   }
 
