@@ -26,7 +26,7 @@ module.exports = App => {
 	App.addEmote = async function (find, replace) {
 		// check for replaced :P smileys
 		if (find.indexOf(":p") > -1) find = find.split(":p")[0]
-		let $el = $(".chat .messages .message:last-of-type .text")[0]
+		let $el = $(".chat .message:last-of-type .text:last-of-type")[0]
 		if (!$el.innerHTML.indexOf(find) < 0) return
 		$el.innerHTML = replace
 	}
