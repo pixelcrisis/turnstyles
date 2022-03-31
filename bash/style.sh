@@ -27,7 +27,7 @@ echo "${TEXT}Observing ${CODE}turnStyles.sass"
 echo "${TEXT}Observing ${CODE}themes/"
 echo "${TEXT}Observing ${CODE}styles/"
 
-trap 'kill %1; kill %2' SIGINT
-node-sass turnStyles.sass -wo build &
-node-sass themes -wo build/themes &
-node-sass styles -wo build/styles && fg
+concurrently \
+	"node-sass turnStyles.sass -wo build" \
+	"node-sass themes -wo build/themes" \
+	"node-sass styles -wo build/styles"

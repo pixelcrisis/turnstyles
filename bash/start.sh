@@ -32,9 +32,9 @@ echo "${TEXT}Observing ${CODE}themes/"
 echo "${TEXT}Observing ${CODE}styles/"
 echo "${TEXT}Observing ${CODE}chrome/*.js*"
 
-trap 'kill %1; kill %2; kill %3; kill %4' SIGINT
-watchify turnStyles.js -o build/turnStyles.js &
-node-sass turnStyles.sass -wo build &
-node-sass themes -wo build/themes &
-node-sass styles -wo build/styles &
-copy-and-watch --watch chrome/*.js* build/
+concurrently \
+	"watchify turnStyles.js -o build/turnStyles.js" \
+	"node-sass turnStyles.sass -wo build" \
+	"node-sass themes -wo build/themes" \
+	"node-sass styles -wo build/styles" \
+	"copy-and-watch --watch chrome/*.js* build/"
