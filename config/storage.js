@@ -49,7 +49,7 @@ module.exports = App => {
 		// only emit visual changes in the lobby
 		let visual = [ "style", "theme", "u_css", "hotbar", "macros" ]
 		let update = !this.lobby || visual.includes(name)
-		if (update) this.Emit("update", name, data, data.cat)
+		if (update) this.Emit("update", name, data, item.cat)
 	}
 
 	App.setConfig = function (name, data, cat) {
