@@ -27,6 +27,11 @@ module.exports = App => {
     return true
   }
 
+  App.Bully = function (alert) {
+    this.Post(alert)
+    this.Notify(alert)
+  }
+
   App.on("update", App.canNotify)
 
 }

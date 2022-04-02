@@ -11,7 +11,7 @@ module.exports = App => {
 	require("./away.js")(App)
 	require("./autobop.js")(App)
 	require("./reminder.js")(App)
-	require("./nextdj.js")(App)
+	require("./ondeck.js")(App)
 	require("./emotes.js")(App)
 
 	App.on("loaded", function (config) {
