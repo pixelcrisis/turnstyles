@@ -45,26 +45,6 @@ module.exports = App => {
 		}
 	}
 
-	App.runEmote = function (event) {
-		if (!this.config.emojis) return
-		let text = event.text.split(" ")
-		for (var i = 0; i < text.length; i++) {
-			let icon = this.getEmote(text[i])
-			if (icon) text[i] = icon
-		}
-		if (event.text !== text.join(" ")) {
-			this.addEmote(event.text, text.join(" "))
-		}
-	}
-
-	App.addEmote = async function (find, replace) {
-		// check for replaced :P smileys
-		if (find.indexOf(":p") > -1) find = find.split(":p")[0]
-		let $el = $(".chat .message:last-of-type .text:last-of-type")[0]
-		if (!$el.innerHTML.indexOf(find) < 0) return
-		$el.innerHTML = replace
-	}
-
 	App.on("speak", App.checkEmotes)
 
 }
