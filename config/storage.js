@@ -14,26 +14,8 @@ module.exports = App => {
 	App.writeConfig = function () {
 		let local = JSON.stringify(this.config)
 		window.localStorage.setItem("tsdb", local)
+		// send a message to app to sync database
 		window.postMessage({ tsdb: this.config })
-	}
-
-	App.initConfig = function () {
-		// load and build config
-		// but only do it once
-		if (this.__base) return
-		this.__base = window.tsBase
-		this.__sync = window.tsSync
-		this.__logo = `${ this.__base }/images/icon128.png`
-
-		let storage = this.readConfig()
-		let configs = { ...this.default, ...storage }
-		let version = require("../package.json").version
-
-		this.config = this.migrate(configs)
-		this.config.version = version
-		this.config.is_afk = false
-
-		this.Emit("loaded", this.config)
 	}
 
 	App.saveConfig = function (e) {
@@ -60,6 +42,11 @@ module.exports = App => {
 		let toggle = typeof data == "boolean"
 		let mirror = $(`*[data-opt="${ name }"][data-cat="${ cat || "" }"]`)
 		mirror.prop(toggle ? "checked" : "value", data)
+	}
+
+	App.getConfig = function (name, cat) {
+		if (!cat) return this.config[name]
+		else return this.config[cat][name]
 	}
 
 }

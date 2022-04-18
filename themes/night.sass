@@ -1,33 +1,47 @@
-$main: #bfa206
+$accent: #bfa206
 
-$text: #adadad
-$back: #191919
+$c-text: #adadad
+$c-back: #191919
 
-$snag: #a0629e
-$join: #69966b
-$left: #a74646
-$mods: #a74646
+// event based
+// chat alert colors
+$c-snag: #a0629e
+$c-join: #69966b
+$c-left: #a74646
 
-$tint: 0deg
+// action: mod removed
+// recent: recently played text
+$action: #a74646
+$recent: #a74646
 
-@import "../sass/import"
+// hue shift amount
+// on gold elements
+$tinted: 10deg
 
+// generate our variables
+@import "../visual/basics"
+
+// define filters
+// to apply color shifts
+// to images / elements
+// ( off - opacity: 1 )
 .ts-vote-filter
-	@include shift($tint, 2, 0.7)
+	@include shift($tinted, 2, 0.7)
 
 .ts-room-filter
-	@include gloss($tint, 2, 0.7)
+	@include gloss($tinted, 2, 0.7)
 
 .ts-main-filter
-	@include paint($tint, 2, 0.7)
+	@include paint($tinted, 3, 0.5)
 
-.ts-full-filter
-	@include paint($tint, 2, 0.7, 1)
-
-.ts-dark-filter
-	@include paint($tint, 2, 0.25, 1)
+.ts-hard-filter
+	@include paint($tinted, 3, 0.7, 1)
 
 .ts-mute-filter
-	@include paint($tint, 2, 0.7)
+	opacity: 0.75
 
-@import "../sass/theme"
+.ts-fade-filter
+	opacity: 0.5
+
+// build out the theme
+@import "engine/import"

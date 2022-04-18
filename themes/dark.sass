@@ -1,17 +1,30 @@
-$main: #f3cc12
+$accent: #eabd2f
 
-$text: #cccccc
-$back: #2f2f2f
+$c-text: #cccccc
+$c-back: #2f2f2f
 
-$snag: #e853a6
-$join: #4abf54
-$left: #e64f4f
-$mods: #e64f4f
+// event based
+// chat alert colors
+$c-snag: #e853a6
+$c-join: #4abf54
+$c-left: #e64f4f
 
-$tint: 0deg
+// action: mod removed
+// recent: recently played text
+$action: #e64f4f
+$recent: #e64f4f
 
-@import "../sass/import"
+// hue shift amount
+// on gold elements
+$tinted: 10deg
 
+// generate our variables
+@import "../visual/basics"
+
+// define filters
+// to apply color shifts
+// to images / elements
+// ( off - opacity: 1 )
 .ts-vote-filter
 	opacity: 1
 
@@ -19,15 +32,16 @@ $tint: 0deg
 	opacity: 1
 
 .ts-main-filter
-	opacity: 1
+	@include paint($tinted, 3, 0.7)
 
-.ts-full-filter
-	opacity: 1
-
-.ts-dark-filter
-	@include paint($tint, 1, 0.25, 1)
+.ts-hard-filter
+	@include paint($tinted, 3, 0.7, 1)
 
 .ts-mute-filter
-	opacity: 1
+	opacity: 0.75
 
-@import "../sass/theme"
+.ts-fade-filter
+	opacity: 0.5
+
+// build out the theme
+@import "engine/import"

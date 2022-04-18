@@ -2,50 +2,48 @@
 
 module.exports = App => {
 
-	App.loadClasses = function (config) {
-		this.classes("logger", config.logger)
-		this.classes("no_bub", !config.bubble)
-		this.classes("no_aud", !config.people)
-		this.classes("no_vid", !config.player)
+	App.loadClass = function (config) {
+		this.bodyClass("ts-logger", config.logger)
+		this.bodyClass("ts-no-bub", !config.bubble)
+		this.bodyClass("ts-no-ppl", !config.people)
+		this.bodyClass("ts-no-vid", !config.player)
 
-    this.classes("hb-is_afk", !config.hotbar.is_afk)
-    this.classes("hb-auto_b", !config.hotbar.auto_b)
-    this.classes("hb-auto_q", !config.hotbar.auto_q)
-    this.classes("hb-nextdj", !config.hotbar.nextdj)
-    this.classes("hb-bubble", !config.hotbar.bubble)
-    this.classes("hb-people", !config.hotbar.people)
-    this.classes("hb-shared", !config.hotbar.shared)
-    this.classes("hb-player", !config.hotbar.player)
-    this.classes("hb-qtbtn1", !config.hotbar.qtbtn1)
-    this.classes("hb-qtbtn2", !config.hotbar.qtbtn2)
-    this.classes("hb-qtbtn3", !config.hotbar.qtbtn3)
+    this.bodyClass("hb-is-afk", !config.hotbar.is_afk)
+    this.bodyClass("hb-auto-b", !config.hotbar.auto_b)
+    this.bodyClass("hb-auto-q", !config.hotbar.auto_q)
+    this.bodyClass("hb-nextdj", !config.hotbar.nextdj)
+    this.bodyClass("hb-bubble", !config.hotbar.bubble)
+    this.bodyClass("hb-people", !config.hotbar.people)
+    this.bodyClass("hb-shared", !config.hotbar.shared)
+    this.bodyClass("hb-player", !config.hotbar.player)
+    this.bodyClass("hb-qtbtn1", !config.hotbar.qtbtn1)
+    this.bodyClass("hb-qtbtn2", !config.hotbar.qtbtn2)
+    this.bodyClass("hb-qtbtn3", !config.hotbar.qtbtn3)
 	}
 
-	App.updateClasses = function (key, val, grp) {
-    if (key == 'bubble') this.classes('no_bub', !val)
-    if (key == 'player') this.classes('no_vid', !val)
-    if (key == 'people') this.classes('no_aud', !val)
-    if (key == 'logger') this.classes('logger', val)
+  App.bindClass = function () {
+    this.Bind("update", function (key, val, grp) {
+      if (key == "bubble") this.bodyClass("ts-no-bub", !val)
+      if (key == "player") this.bodyClass("ts-no-vid", !val)
+      if (key == "people") this.bodyClass("ts-no-ppl", !val)
+      if (key == "logger") this.bodyClass("ts-logger", val)
 
-    if (grp == "hotbar") {
-      if (key == "is_afk") this.classes('hb-is_afk', !val)
-      if (key == "auto_b") this.classes('hb-auto_b', !val)
-      if (key == "auto_q") this.classes('hb-auto_q', !val)
-      if (key == "nextdj") this.classes('hb-nextdj', !val)
-      if (key == "bubble") this.classes('hb-bubble', !val)
-      if (key == "people") this.classes('hb-people', !val)
-      if (key == "shared") this.classes('hb-shared', !val)
-      if (key == "player") this.classes('hb-player', !val)
-      if (key == "qtbtn1") this.classes('hb-qtbtn1', !val)
-      if (key == "qtbtn2") this.classes('hb-qtbtn2', !val)
-      if (key == "qtbtn3") this.classes('hb-qtbtn3', !val)
-    }
+      if (grp == "hotbar") {
+        if (key == "is_afk") this.bodyClass("hb-is-afk", !val)
+        if (key == "auto_b") this.bodyClass("hb-auto-b", !val)
+        if (key == "auto_q") this.bodyClass("hb-auto-q", !val)
+        if (key == "nextdj") this.bodyClass("hb-nextdj", !val)
+        if (key == "bubble") this.bodyClass("hb-bubble", !val)
+        if (key == "people") this.bodyClass("hb-people", !val)
+        if (key == "shared") this.bodyClass("hb-shared", !val)
+        if (key == "player") this.bodyClass("hb-player", !val)
+        if (key == "qtbtn1") this.bodyClass("hb-qtbtn1", !val)
+        if (key == "qtbtn2") this.bodyClass("hb-qtbtn2", !val)
+        if (key == "qtbtn3") this.bodyClass("hb-qtbtn3", !val)
+      }
 
-    if (grp == "hotbar" || grp == "qtbtns") {
-      this.bindHotBar()
-    }
-	}
-
-	App.on("update", App.updateClasses)
+      if (grp == "hotbar" || grp == "qtbtns") this.bindInputs()
+    })
+  }
 
 }

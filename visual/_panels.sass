@@ -1,0 +1,125 @@
+// the main options panels
+
+#tsPanels
+	width: 100%
+	padding: 10px
+	max-width: 700px
+	overflow-y: auto
+	position: relative
+	@include box(80%)
+	@extend .ts-content
+
+.ts-tab
+	cursor: pointer
+	font-size: 14px
+	font-weight: bold
+	margin-right: 10px
+	display: inline-block
+	text-transform: uppercase
+	opacity: 0.7
+
+	&.active
+		color: $accent
+	&:hover,
+	&.active
+		opacity: 1
+
+.ts-tabbed
+	display: none
+	flex-wrap: wrap
+	margin-left: -10px
+.ts-tabbed.active
+	display: flex
+
+#tsBackup input
+	display: none
+
+#tsPanels
+	nav
+		margin: 15px 0
+
+	section
+		padding: 10px
+		margin: 0 0 10px 10px
+		@extend .ts-content-hover
+	section:not(.full)
+		width: calc(50% - 10px)
+	section.full
+		width: calc(100% - 10px)
+
+	.ts-toggle,
+	.ts-inputs,
+	.ts-button,
+	.ts-choice,
+	section h3
+		display: block
+		border-radius: 0
+
+	section h3
+		padding: 10px
+		font-size: 16px
+		margin: -10px -10px 5px -10px
+		border-bottom: 2px solid $bg-light-1
+	section h3 small
+		float: right
+	section h3 .ts-toggle, 
+	section h3 .ts-toggle span
+		font-size: 16px
+	section h3 .ts-toggle
+		margin: 0
+		padding: 0
+		background: transparent
+	section h3 .ts-toggle span
+		margin-right: 10px
+	section h3 + .ts-choice,
+	section h3 + .ts-button
+		margin-top: 10px
+
+	section kbd
+		padding: 0 3px
+		border-radius: 3px
+		border: 1px solid $c-back
+		@extend .ts-content-alt
+
+	section .ts-choice,
+	section .ts-inputs,
+	section .ts-button,
+	section .ts-toggle
+		width: 100%
+		padding: 10px
+		font-size: 1em
+		margin-bottom: 5px
+		@extend .ts-content-alt
+
+	section .ts-toggle,
+	section .ts-inputs
+		margin: 10px 0 5px
+
+	section .ts-button
+		text-align: center
+		text-decoration: none
+
+	section .ts-toggle span
+		margin-right: 5px
+
+	section .ts-inputs
+		cursor: initial
+		font-weight: normal
+		border-bottom: 2px solid $bg-dark-1
+
+	.ts-toggle + .ts-toggle,
+	.ts-toggle + .ts-inputs,
+	.ts-choice + .ts-inputs
+		margin-top: 0
+
+	.ts-button + p
+		margin: 10px 0
+
+	p
+		color: $c-mute
+		font-weight: bold
+	p + .ts-toggle
+		margin-bottom: 5px
+	p + .ts-button,
+	p + .ts-choice
+		margin-top: 10px

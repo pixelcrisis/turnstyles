@@ -1,0 +1,99 @@
+.pmGreyTop,
+.pmGreyTop:hover,
+.pmGreyTop.hover
+	@extend .ts-no-shadow
+	@extend .ts-content-hover
+	border: none
+	box-sizing: border-box
+.pmGreyTop:hover,
+.pmGreyTop.hover
+	@extend .ts-brighten
+
+#privateChatIcon
+	border: 1px solid $bg-dark-2
+#privateChatIcon .chatIcon
+	@extend .ts-main-filter
+
+#buddyList
+	@extend .ts-content-dark
+	overflow-y: hidden
+
+#buddyListContainer
+	#buddyListHeader
+		@extend .ts-no-shadow
+		@extend .ts-content-dark
+		border: none
+	#buddyListTitle
+		@extend .ts-co-main
+		@extend .ts-no-shadow
+		border-bottom: none
+	#buddyListNipple
+		opacity: 0
+	.pm-options-menu
+		top: 4px
+	.pm-unavailable-warning
+		@extend .ts-co-main
+		background: $bg-dark-1
+		border-bottom: 1px solid $bg-dark-3
+	.pm-become-available:hover
+		@extend .ts-main-filter
+	.pm-become-available:not(:hover)
+		@extend .ts-tiny-filter
+
+#buddyListMain .avatar-head
+	background-size: 42px !important
+	background-color: transparent !important
+
+#buddyListMain .conversations-list
+	@extend .ts-content
+#buddyListMain .conversations-list .conversation-item
+	@extend .ts-striped-list
+	.conversation-username
+		color: $c-text
+	.conversation-user-room,
+	.conversation-user-room .conversation-user-room-link
+		color: $c-mute
+	.available
+		@extend .ts-fade-filter
+
+.pmGreyTop
+	.username
+		@extend .ts-no-shadow
+		color: $c-text
+	.pmWindowIcon,
+	.options-menu.closed .nib
+		opacity: 1
+		background-color: transparent
+	.pmWindowIcon
+		@extend .ts-main-filter
+	.options-menu
+		top: 3px
+	.options-menu.closed .nib:after
+		color: $bg-dark-2
+
+.pmGreyTop.new-message,
+.pmGreyTop.new-message:hover
+	@extend .ts-gradient
+	.username
+		color: $bg-dark-3
+
+.message-history
+	@extend .ts-content-dim
+	li.message-view,
+	li.status-message
+		@extend .ts-striped-list
+	li.status-message
+		background: $bg-dark-1 !important
+	.avatar-head
+		background-size: 42px !important
+		background-color: transparent !important
+	+ .error-message
+		@extend .ts-content
+		border-top: 1px solid $bg-dark-2
+
+.message-input-view
+	@extend .ts-no-shadow
+	@extend .ts-content-dark
+	border-top: 1px solid $bg-dark-2
+.message-input
+	@extend .ts-text-flush

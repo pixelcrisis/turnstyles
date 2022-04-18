@@ -26,9 +26,11 @@ module.exports = App => {
     $(".profile.modal .website").append(statLink(id))
   }
 
-  App.on("tracked", App.songStats)
-  App.on("dropped", App.djStats)
-  App.on("profile", App.userStats)
+  App.bindStats = function () {
+    this.Bind("tracked", this.songStats)
+    this.Bind("dropped", this.djStats)
+    this.Bind("profile", this.userStats)
+  }
 
 }
 

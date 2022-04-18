@@ -1,0 +1,54 @@
+body, .tab-pane
+	@extend .ts-content
+	.queue-message,
+	.default-message
+		@extend .ts-no-shadow
+		color: $c-mute
+
+body #pmWindows a
+body .tabbed-panel a,
+body #topBG #content a
+	&, &:hover, &:visited
+		@extend .ts-co-main
+		text-decoration: none
+	&:hover
+		border-bottom: 1px dotted
+
+::-webkit-scrollbar
+	width: 7px
+::-webkit-scrollbar-track
+	background: $bg-dark-3
+::-webkit-scrollbar-thumb
+	background: $bg-light-2
+::-webkit-scrollbar-thumb:hover
+	background: $c-mute
+
+.board .lame-button
+	filter: grayscale(1)
+.board .awesome-button
+	@extend .ts-vote-filter
+// room background lights
+#room-view > canvas:nth-child(2)
+	@extend .ts-room-filter
+
+.invite-dj, .become-dj
+	@extend .ts-no-shadow
+	border: none
+	color: $bg-dark-3
+	&, &:hover
+		@extend .ts-gradient
+	&:before, &:after
+		@extend .ts-hidden
+
+// miniplayer
+#mainNav li:not(.selected):not(:hover) .nav-text,
+#subNav li:not(.selected):not(:hover) .subnav-text
+	color: $c-mute !important
+.mini-room-view
+	background-color: transparent !important
+.miniplayer .songboard
+	filter: grayscale(1)
+.song-playing .songboard-time,
+.song-playing .songboard-time-left,
+.song-playing .songboard-progress-bar
+	bottom: -59px

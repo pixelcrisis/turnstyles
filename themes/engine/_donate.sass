@@ -1,0 +1,28 @@
+#maindiv > #header
+	background: transparent
+
+	#headerNav li a
+		font-weight: bold
+		color: $c-text
+	#headerNav li a:hover
+		@extend .ts-co-main
+		border: none
+
+#maindiv #readybox
+	@extend .ts-content
+	h2
+		color: $c-text
+	h2 + div
+		color: $c-mute
+	.btn
+		@extend .ts-gradient
+	.charity-btn
+		@extend .ts-content-dark
+		border: 1px solid $bg-light-1
+	.charity-btn a
+		color: $c-mute
+	.charity-btn a:hover
+		@extend .ts-co-main
+		text-decoration: none
+	img[src*="arrow"]
+		@extend .ts-main-filter

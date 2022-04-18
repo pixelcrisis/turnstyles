@@ -1,0 +1,48 @@
+.ts-co-main
+	color: $accent
+.ts-bg-main
+	background: $accent
+.ts-bg-curr
+	background: $bg-active
+.ts-br-main
+	border-right: 5px solid $accent
+.ts-bb-main
+	border-bottom: 2px solid $accent
+
+.ts-text-input
+	border: none
+	outline: none
+	color: $c-text
+	background: $bg-dark-3
+	&::placeholder
+		color: $c-mute
+		
+.ts-text-flush
+	border: none
+	outline: none
+	box-shadow: none
+	color: $c-text
+	background: transparent
+	&::placeholder
+		color: $c-mute
+
+.ts-striped-list
+	border-bottom: 1px solid $bg-dark-1
+	&:hover
+		@extend .ts-content-hover
+	&:nth-child(odd)
+		@extend .ts-content
+	&:nth-child(even)
+		@extend .ts-content-alt
+
+.ts-gradient
+	@include gradient($accent)
+	color: $bg-dark-3
+
+.ts-half-filter
+	@extend .ts-hard-filter
+	@extend .ts-fade-filter
+
+.ts-tiny-filter
+	@extend .ts-main-filter
+	@extend .ts-fade-filter

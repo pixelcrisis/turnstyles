@@ -2,26 +2,24 @@
 
 module.exports = App => {
 
-	App.on = function (keys, ...list) {
-		// bind list of functions to event list
+	// make keyed list of functions
+	App.Bind = function (key, func) {
+		// define events list if undefined
 		if (!this.events) this.events = {}
-		if (!Array.isArray(keys)) keys = [ keys ]
-
-		for (let key of keys) {
-			if (!this.events[key]) this.events[key] = []
-			for (let f of list) this.events[key].push(f.bind(this))
-		}
+		if (!this.events[key]) this.events[key] = []
+		this.events[key].push(func.bind(this))
 	}
 
+	// fire list of keyed functions
 	App.Emit = function (key, ...args) {
-		// fire functions bound to events
 		let list = this.events[key]
-		if (list) for (let f of list) f(...args)
+		// fire every function bound to keyed event
+		if (list) for (let func of list) func(...args)
 	}
 
+	// parse turntable events
 	App.listen = function (event) {
 		if (!event.command) return
-		// listen to/parse turntable events
 		event.$ping = this.findPing(event.text)
 		event.$name = this.findName(event.userid)
 		event.$from = this.findName(event.senderid)
@@ -29,23 +27,31 @@ module.exports = App => {
 		this.Emit(event.command, event)
 	}
 
-	App.watcher = function () {
-		let Observe = window.MutationObserver || window.WebKitMutationObserver
-		let Watcher = new Observe(function (mutations) {
-			for (let changed of mutations) {
-				let el = changed.target
+	// fire events on DOM changes
+	App.watcher = function (mutations) {
+		for (let changed of mutations) {
+			let element = changed.target
+			let byClass = element.className
+			let byTitle = element.nodeName == "TITLE"
 
-				if (el.className == "songs") App.Emit("playlist")
-				if (el.className == "messages") App.Emit("newchat", el)
+			if (byClass == "songs") App.Emit("playlist")
+			if (byClass == "messages") App.Emit("newchat", element)
 
-				if (el.nodeName == "TITLE" && el.baseURI.indexOf("profile/") > -1) {
-					App.Emit("profile", el.baseURI.split("profile/")[1])
-				}
+			if (byTitle && element.baseURI.indexOf("profile/") > -1) {
+				let user = element.baseURI.split("profile/")[1]
+				App.Emit("profile", user)
 			}
-		})
-		Watcher.observe(document, { subtree: true, childList: true })
+		}
 	}
 
-	App.on("attach", App.watcher)
+	// bind DOM observer
+	App.bindWatcher = function () {
+		// find proper MutationObserver
+		let Observe = window.MutationObserver
+		if (!Observe) Observe = window.WebKitMutationObserver
+		// define our DOM Mutations Observer
+		let Watcher = new Observe(this.watcher)
+		Watcher.observe(document, { subtree: true, childList: true })
+	}
 
 }

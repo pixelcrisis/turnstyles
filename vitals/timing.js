@@ -2,25 +2,34 @@
 
 module.exports = App => {
 
-	App.beat = function () {
-		let beat = parseInt(this.config.timing.beat) + 1
+	App.Loop = function () {
+		let curr = this.config.timing.beat
+		let beat = parseInt(curr) + 1
 		this.config.timing.beat = beat
-		this.Emit("heartbeat", beat)
+		this.Emit("loop", beat)
 	}
 
-	App.bindTimer = function () {
-		this.holding = {}
-		this.heart = setInterval(App.beat.bind(this), 60 * 1000)
+	// the loop fires every minute
+	// and emits the minute number
+	// for "every x minutes" funcs
+
+	App.bindLoop = function () {
+		let loop = this.Loop.bind(this)
+		let time = 60 * 1000 // 1 minute
+		this.looping = setInterval(loop, time)
 	}
 
-	App.delay = function (func, delay, key) {
+	App.Delay = function (func, type) {
+		// define holding list if undefined
 		if (!this.holding) this.holding = {}
-		if (this.holding[key]) return
-
-		let timeout = delay * 1000
-		let cleared = () => { delete this.holding[key] }
-		this.holding[key] = setTimeout(cleared.bind(this), timeout)
-
+		// ignore the function if we're holding
+		if (this.holding[type]) return false
+		// otherwise set the delay
+		let timeout = 5 * 1000 // 5 seconds
+		// it works by self destructing the held type
+		let cleared = () => { delete this.holding[type] }
+		this.holding[type] = setTimeout(cleared.bind(this), timeout)
+		// fire any function since we weren't holding
 		if (func) func()
 	}
 

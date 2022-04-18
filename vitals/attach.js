@@ -2,45 +2,42 @@
 
 module.exports = App => {
 
-	App.attach = function () {
-		this.initConfig()
+	App.initConfig = function () {
+		this.__base = window.tsBase
+		this.__sync = window.tsSync
+		this.__logo = window.tsBase + "/images/icon128.png"
+
+		let configs = this.readConfig()
+		this.config = { ...this.default, ...configs }
+		this.config.version = require("../package.json").version
+		this.config.is_afk = false
+
+		this.Emit("loaded", this.config)
+	}
+
+	App.Attach = function () {
+		if (!this.config) this.initConfig()
 		const core = window.turntable
-		if (!core) return this.Log("No room")
-		const user = window.turntable.user
+		if (!core) return this.Err("no room")
 
 		this.lobby = $("#turntable #topBG").length
-		if (this.lobby) {
-			this.bindHotBar()
-			this.bindWindow()
-			return false
-		}
-		// loop and check until the room is fully loaded
-		const again = () => setTimeout(App.attach.bind(this), 150)
+		if (this.lobby) return this.Emit("lobby")
 
-		if (!user) return again()
+		// timeout to wait until the room fully loads 
+		const wait = () => setTimeout(App.Attach.bind(this), 150)
+
+		let user = window.turntable.user
+		if (!user) return wait()
 		let room = findKey(core, "roomId")
-		if (!room) return again()
-		let full = findKey(room, "roomData")
-		if (!full) return again()
+		if (!room) return wait()
+		let data = findKey(room, "roomData")
+		if (!data) return wait()
 
-		// fully loaded!
+		// bind our event listener
 		this.listener = this.listen.bind(this)
 		window.turntable.addEventListener("message", this.listener)
 		this.Emit("attach", room)
-		this.Log("loaded room")
-	}
-
-	App.reload = function () {
-		clearInterval(this.heart)
-		window.turntable.removeEventListener("message", this.listener)
-		$(`script[src*="turnStyles.js"]`).remove()
-
-		const script = document.createElement("script")
-		script.src = `${ this.__base }/turnStyles.js?v=${ Math.random() }`
-		script.type = "text/javascript"
-
-		this.Log("reloading")
-		document.body.append(script)
+		this.Ran("attached turnStyles")
 	}
 
 }

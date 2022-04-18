@@ -1,0 +1,135 @@
+#maindiv .floating-menu,
+ul#ding-menu.floating-menu, 
+#settings.settings-dropdown .dropdown
+	@extend .ts-content-dim
+	box-shadow: none
+	border: 1px solid $bg-light-2
+
+	.split-option .option
+		@extend .ts-content
+		box-shadow: 0 0 0 1px $bg-dark-1
+		&:before
+			@extend .ts-mute-filter
+		&.selected
+			@extend .ts-bg-curr
+		&.selected:before
+			@extend .ts-main-filter
+		&:not(.selected):hover
+			background: $bg-light-1
+
+#maindiv .floating-menu .option,
+ul#ding-menu.floating-menu li.option, 
+#settings.settings-dropdown .dropdown .option a,
+#settings.settings-dropdown .dropdown .split-option
+	@extend .ts-no-shadow
+	@extend .ts-content-hover
+	font-weight: bold
+	border: 1px solid $bg-dark-1
+
+	&:not(.active):hover
+		background: $bg-light-3
+
+	&.special:hover
+		@extend .ts-gradient
+
+	&.active, &.selected
+		@extend .ts-bg-curr
+	&.active .text,
+	&.selected .text,
+	&.active .playlist-label,
+	&.selected .playlist-label
+		@extend .ts-co-main
+
+	&.site-add
+		background: $bg-light-2 !important
+	&.switch-menu.second
+		background: $c-back !important
+
+	.text,
+	.playlist-label
+		color: $c-text
+	.playlist-trash
+		@extend .ts-hard-filter
+		opacity: 1
+
+#songs .song-options.floating-menu
+	.inner-arrow
+		display: none
+	.outer-arrow
+		border-left-color: $bg-dark-1
+	.content-scrollbar
+		background: $bg-dark-1
+
+#settings.settings-dropdown .dropdown
+	&:before, &:after
+		border-bottom-color: $bg-dark-2
+
+	.logout
+		@extend .ts-co-main
+	.logout:before
+		@include box(16px, 16px)
+		@include sprite(30px, -412px)
+		@extend .ts-hard-filter
+		margin: -1px 5px 0 7px
+
+	.volume-icon
+		@extend .ts-mute-filter
+		height: 27px
+	.volume-icon.volume-level-0
+		@include sprite(35px, -290px)
+	.volume-icon.volume-level-1
+		@include sprite(35px, -268px)
+	.volume-icon.volume-level-2
+		@include sprite(35px, -246px)
+
+	.volume-slider
+		right: 20px
+	.volume-slider-fill
+		background: $c-mute
+
+	.volume-slider-knob,
+	.volume-slider-knob:before,
+	.volume-slider-knob:after
+		@extend .ts-no-shadow
+	.volume-slider-knob
+		@extend .ts-gradient
+	.volume-slider-knob:after
+		background: $bg-dark-2
+
+.options-menu .nib
+	background-image: none
+	background-color: transparent
+.options-menu .nib:after
+	top: -4px
+	font-size: 22px
+	color: $c-mute
+	position: absolute
+	content: $i-menus
+.guestOptionsContainer .nib,
+.options-menu:not(.closed) .nib
+	border-color: $bg-light-2
+	background-color: $bg-dark-2
+.options-menu:not(.closed) .nib:after
+	@extend .ts-co-main
+
+.guestOptionsContainer
+	@extend .ts-no-shadow
+	border: none !important
+	background: none !important
+.guestOptionsContainer a:hover
+	border: none !important
+
+.options-menu .options,
+.guestOptionsContainer .options
+	@extend .ts-no-shadow
+	border-color: $bg-light-2
+	background-color: $bg-dark-2
+	.option
+		color: $c-text
+	.option:not(:checked):hover
+		background: $bg-dark-1
+	.option:after
+		@extend .ts-main-filter
+		background-position: bottom left
+	.option.checked
+		@extend .ts-co-main

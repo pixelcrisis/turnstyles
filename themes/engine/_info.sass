@@ -1,0 +1,61 @@
+.room-tab
+	.room-info-wrap,
+	.room-info-intro
+		@extend .ts-content
+		border: none
+	.room-info-nav,
+	.room-info-wrap
+		padding-top: 0
+	.room-info-intro
+		padding-bottom: 0
+
+	.room-name,
+	.description-wrap
+		color: $c-text
+	.num-listeners
+		@extend .ts-co-main
+		font-weight: bold
+
+.room-tab .flat-button
+	background: $bg-light-1
+	border-color: $bg-light-3
+	h3
+		color: $c-text
+	&:hover
+		background: $bg-light-2
+
+.room-tab .edit-description
+	@extend .ts-content-dim
+	margin-top: 15px
+	margin-bottom: 10px
+.room-tab .save-description-btn
+	opacity: 1
+	filter: brightness(1.5)
+	&:hover
+		filter: brightness(2)
+.room-tab .save-description-btn .icon
+	@extend .ts-main-filter
+
+.sliding-nav
+	@extend .ts-no-shadow
+	.sliding-nav-pane-header
+		@extend .ts-no-shadow
+		@extend .ts-content-dim
+		border: none
+	.sliding-nav-pane-title
+		@extend .ts-no-shadow
+		color: $c-text
+	.sliding-nav-pane-content
+		@extend .ts-content
+button.sliding-nav-pane-back.back
+	width: 41px
+	outline: none
+	background-image: none
+button.sliding-nav-pane-back.back:after
+	@include rel(-9px, false, false, 0)
+	display: block
+	text-indent: 0
+	font-size: 1.3em
+	font-weight: bold
+	color: $c-mute
+	content: $i-close

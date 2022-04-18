@@ -1,0 +1,56 @@
+// style our custom volume controls
+
+#tsVolWrap
+	width: 160px
+	z-index: 6000
+	user-select: none
+	@include abs(0, 120px)
+
+#tsMuteBtn
+	cursor: pointer
+	margin-right: 5px
+	display: inline-block
+	vertical-align: middle
+	@include box(20px)
+	@include sprite(35px, -229px)
+
+#tsVolSlide
+	height: 5px
+	width: 130px
+	outline: none
+	cursor: pointer
+	margin-top: -4px
+	background: $accent
+	border-radius: 5px
+	-webkit-appearance: none
+
+#tsVolSlide::-webkit-slider-thumb
+  border-radius: 50%
+  background: #ffffff
+  -webkit-appearance: none
+  appearance: none
+  border: 3px solid $c-back
+  @include box(18px, 18px)
+
+#tsVolSlide::-moz-range-thumb
+  border-radius: 50%
+  background: #ffffff
+  -webkit-appearance: none
+  appearance: none
+  border: 3px solid $c-back
+  @include box(18px, 18px)
+
+#tsMutedMsg
+	display: none
+	width: 130px
+	color: $c-text
+	line-height: 1em
+	text-align: left
+
+.ts-muted
+	#tsVolSlide
+		display: none
+	#tsMutedMsg
+		display: inline-block
+	#tsMuteBtn
+		background-position: 0 -316px

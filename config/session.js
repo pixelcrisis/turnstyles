@@ -2,16 +2,6 @@
 
 module.exports = App => {
 
-	App.initCache = function (room) {
-		// define session
-		this.current_djs = {}
-		this.now_playing = {}
-		this.last_played = {}
-		// cache current activity
-		this.cacheSong(room.currentSong)
-		for (let id of room.djids) this.cacheDJ(id)
-	}
-
 	App.cacheDJ = function (e) {
 		// find user by id (e) or event (e.user)
 		let user = e.user ? e.user[0].userid : e
@@ -66,12 +56,22 @@ module.exports = App => {
 		this.now_playing.snag += 1
 	}
 
-	App.on("attach", App.initCache)
-	App.on("add_dj", App.cacheDJ)
-	App.on("rem_dj", App.resetDJ)
-	App.on("snagged", App.cacheSnag)
-	App.on("update_votes", App.cacheVote)
-	App.on([ "nosong", "newsong" ], App.cacheSong)
+	App.bindSession = function (room) {
+		// define our cache
+		this.current_djs = {}
+		this.now_playing = {}
+		this.last_played = {}
+		// bind our caching events
+		this.Bind("add_dj", this.cacheDJ)
+		this.Bind("rem_dj", this.resetDJ)
+		this.Bind("nosong", this.cacheSong)
+		this.Bind("newsong", this.cacheSong)
+		this.Bind("snagged", this.cacheSnag)
+		this.Bind("update_votes", this.cacheVote)
+		// and cache our initial data
+		for (let id of room.djids) this.cacheDJ(id)
+		this.cacheSong(room.currentSong)
+	}
 
 }
 

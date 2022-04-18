@@ -1,24 +1,27 @@
-@import "../sass/import"
+$accent: #ca5dc8
+$tinted: 200deg
 
-$main: #ca5dc8
-$tint: 200deg
+// generate our variables
+@import "../visual/basics"
 
+// define filters
+// to apply color shifts
+// to images / elements
+// ( off - opacity: 1 )
 %vote-filter
-	@include shift($tint, 2, 0.8)
+	@include shift($tinted, 2, 0.8)
 
 %room-filter
-	@include gloss($tint + 80deg, 3)
+	@include gloss($tinted + 80deg, 3)
 
 %main-filter
-	@include paint($tint + 50deg, 3, 0.55)
+	@include paint($tinted + 50deg, 3, 0.55)
 
-%full-filter
-	@include paint($tint + 50deg, 3, 0.55, 1)
-
-%dark-filter
-	@include paint($tint + 50deg, 3, 0.25, 1)
+%hard-filter
+	@include paint($tinted + 50deg, 3, 0.55, 1)
 
 %mute-filter
-	@include paint($tint + 70deg, 1.5, 0.4)
+	@include paint($tinted + 70deg, 1.5, 0.4)
 
-@import "../sass/style"
+@import "engine/extends"
+@import "engine/colorize"

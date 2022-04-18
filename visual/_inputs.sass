@@ -1,0 +1,67 @@
+// the options menus
+
+#tsWindow
+	display: none
+	z-index: 1000
+	align-items: center
+	justify-content: center
+	background: rgba(0, 0, 0, 0.75)
+	@include fix(0, 0, 0, 0)
+
+#tsHotBar
+	display: none
+	flex-wrap: wrap
+	margin: 0 auto
+	padding: 10px 20px
+	line-height: 1em
+	max-width: 960px
+	@extend .ts-content
+
+#tsWindow *, #tsHotBar *
+	box-sizing: border-box
+
+#tsWindow.active,
+.header-bar:hover #tsHotBar
+  display: flex
+
+#tsOpenBtn
+	color: $accent
+	padding-top: 0
+	font-size: 1.2em
+
+#tsCloseBtn
+	cursor: pointer
+	margin-right: 10px
+
+.ts-button,
+.ts-toggle,
+.ts-inputs,
+.ts-choice
+	border: none
+	outline: none
+	font-size: 0.9em
+	font-weight: bold
+	border-radius: 5px
+	margin-right: 5px
+	padding: 5px 10px 4px
+	display: inline-flex
+	cursor: pointer
+	@extend .ts-content-hover
+
+.ts-button
+	font-size: 1em
+	padding-top: 5px
+
+.ts-toggle span
+	width: 12px
+	min-width: 12px
+	font-size: 12px
+	display: inline-block
+.ts-toggle input
+	display: none
+.ts-toggle input:checked + span:after
+	color: $accent
+	content: $i-check
+.ts-toggle input:not(:checked) + span:after
+	content: $i-cross
+	@extend .ts-faded

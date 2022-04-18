@@ -2,12 +2,6 @@
 
 module.exports = App => {
 
-  App.bindPlaylist = function () {
-    this.countPlaylist()
-    this.checkPlaylist()
-    this.classes("played", this.config.played)
-  }
-
   App.countPlaylist = function () {
     let head = $("#playlist-header .text")[0]
     let data = window.playlist.fileids.length
@@ -16,7 +10,17 @@ module.exports = App => {
   }
 
   App.checkPlaylist = function () {
-    $(".song.ts_played").removeClass("ts_played")
+    if (this.waitForPlaylist) {
+      clearTimeout(this.waitForPlaylist)
+      delete this.waitForPlaylist
+    }
+    let search = this.searchPlaylist
+    // only run the search if playlist isn't loading
+    this.waitForPlaylist = setTimeout(search.bind(this), 250)
+  }
+
+  App.searchPlaylist = function () {
+    $(".song.ts-recent").removeClass("ts-recent")
     if (!this.config.played) return
 
     let list = this.Room().metadata.songlog
@@ -26,17 +30,25 @@ module.exports = App => {
       let band = el.find(".details").text().split(" • ")[0]
       for (let item of list) {
         let { song, artist } = item.metadata
-        if (song == name && artist == band) el.addClass("ts_played")
+        if (song == name && artist == band) el.addClass("ts-recent")
       }
     })
   }
 
   App.updatePlaylist = function (key, val) {
-    if (key == "played") this.classes("played", val)
+    this.checkPlaylist()
+    if (key == "played") this.bodyClass("ts-played", val)
   }
 
-  App.on("update", App.updatePlaylist)
-  App.on("playlist", App.countPlaylist)
-  App.on([ "tracked", "playlist" ], App.checkPlaylist)
+  App.bindPlaylist = function () {
+    this.countPlaylist()
+    this.checkPlaylist()
+    this.bodyClass("ts-played", this.config.played)
+
+    this.Bind("update", this.updatePlaylist)
+    this.Bind("tracked", this.checkPlaylist)
+    this.Bind("playlist", this.checkPlaylist)
+    this.Bind("playlist", this.countPlaylist)
+  }
 
 }

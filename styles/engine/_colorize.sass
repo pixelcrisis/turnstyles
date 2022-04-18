@@ -1,0 +1,52 @@
+body.th-none,
+body:not(.th-none)
+	.board .lame-button
+		filter: grayscale(1)
+	.board .awesome-button
+		@extend %vote-filter
+	#room-view > canvas:nth-child(2)
+		@extend %room-filter
+	#{$ts-gradient}
+		@include gradient($accent)
+	#{$ts-co-main}
+		color: $accent !important
+	#{$ts-bg-main}
+		background: $accent !important
+	#{$ts-bb-main}
+		border-bottom: 2px solid $accent !important
+	#{$ts-br-main}
+		border-right: 5px solid $accent !important
+
+body:not(.th-none)
+	#{$filter-main}
+		@extend %main-filter
+	#{$filter-mute}
+		@extend %mute-filter
+	#{$filter-hard}
+		@extend %mute-filter
+	#{$ts-bg-curr}
+		background: $bg-active !important
+
+body.th-none
+	#buddyListHeader,
+	#topBG #mainNav .nav.selected
+		border: none !important
+  	box-shadow: none !important
+
+	#{$tt-co-lite}
+		color: #ffffff !important
+		text-shadow: none !important
+	#{$tt-co-dark}
+		color: #000000 !important
+		text-shadow: none !important
+	#{$tt-co-main}
+		color: $accent !important
+		text-shadow: none !important
+	#{$tt-bg-main}
+		background: $accent !important
+	#{$tt-gradient}
+		@include gradient($accent)
+	#{$tt-filter-main}
+		@extend %main-filter
+	#{$tt-filter-hard}
+		@extend %hard-filter

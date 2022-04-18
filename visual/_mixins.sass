@@ -1,0 +1,67 @@
+// mixins: the mutations
+
+// recolor filter mixin
+@mixin hsbpig($h: 0deg, $s: 1, $b: 1, $p: 0, $i: 0, $g: 0)
+	$part-1: invert($i) brightness($b) 
+	$part-2: grayscale($g) sepia($p)
+	$part-3: hue-rotate($h) saturate($s)
+	filter: $part-1 $part-2 $part-3
+
+// recolor access points
+@mixin shift($h, $s: 1, $b: 1)
+	@include hsbpig($h, $s, $b)
+
+@mixin gloss($h, $s: 1, $b: 1)
+	@include hsbpig($h, $s, $b, 0.7)
+
+@mixin paint($h, $s: 1, $b: 1, $i: 0)
+	@include hsbpig($h, $s, $b, 1, $i, 1)
+
+// sizing / positioning
+@mixin rel($t: false, $r: false, $b: false, $l: false)
+	position: relative !important
+	@include pos($t, $r, $b, $l)
+
+@mixin abs($t: false, $r: false, $b: false, $l: false)
+	position: absolute !important
+	@include pos($t, $r, $b, $l)
+
+@mixin fix($t: false, $r: false, $b: false, $l: false)
+	position: fixed !important
+	@include pos($t, $r, $b, $l)
+
+@mixin pos($t: false, $r: false, $b: false, $l: false)
+	@if $t
+		top: $t
+	@if $r
+		right: $r
+	@if $b
+		bottom: $b
+	@if $l
+		left: $l
+
+// setting height/width
+@mixin box($height, $width: false)
+	height: $height !important
+	@if $width
+		width: $width !important
+	@else
+		width: $height !important
+
+// sprite management
+@mixin sprite($size, $position)
+	background-size: $size !important
+	background-position: 0 $position !important
+	background-image: url('https://s3.amazonaws.com/assets.turntable.fm/images/sprites/chrome-sprite@2x.png') !important
+
+@mixin gear-icon($diff: 0px)
+	$size: 38px + $diff
+	$position: -($diff * 14) - 563px
+	@include sprite($size, $position)
+	
+
+// other colors
+@mixin gradient($color)
+	$c-1: lighten($color, 8%)
+	$c-2: darken($color, 8%)
+	background: linear-gradient(to bottom right, $c-1, $c-2) !important

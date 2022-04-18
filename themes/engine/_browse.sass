@@ -1,0 +1,90 @@
+#topBG #mainPanelHeader
+	@extend .ts-content-dim
+	height: 78px
+	
+#topBG #subNav,
+#topBG #mainNav
+	@extend .ts-no-shadow
+
+#topBG #mainNav
+	height: 39px
+	padding-left: 4px
+	.nav-text
+		font-size: 0.8em
+		font-weight: bold
+		padding-top: 10px
+		text-transform: uppercase
+	.nav-icon
+		vertical-align: top
+	.nav-icon.allRooms
+		@include box(13px, 16px)
+		margin-top: 12px
+		background-size: 35px
+	.nav-icon.DJsNeeded
+		@include box(14px, 15px)
+		margin-top: 11px
+		background-size: 145px
+		background-position: 0 -8px
+	.nav-icon.favorites
+		@include box(14px, 17px)
+		margin-top: 10px
+		background-size: 41px
+		background-position: 0 -31px
+	li
+		margin: 0 5px
+		color: $c-mute
+	li.selected
+		@extend .ts-bb-main
+		@extend .ts-no-shadow
+		border-radius: 0
+		color: $c-text
+		background: transparent
+	li:not(.selected):hover .nav-text
+		color: $c-text
+	li:not(.selected) .nav-icon
+		@extend .ts-fade-filter
+
+#topBG #subNav
+	border-top: 1px solid $bg-light-1
+	li
+		@extend .ts-no-shadow
+		border: none
+		font-weight: bold
+	li.selected
+		@extend .ts-co-main
+		background: transparent
+
+#topBG .room-list
+	@extend .ts-content-dark
+
+#topBG .roomListItem
+	@extend .ts-striped-list
+	margin: 0
+	.roomName
+		color: $c-text
+		text-decoration: none
+	.rooomDJs,
+	.songName,
+	.roomStats,
+	.roomListeners,
+	.moreRoomBuddies
+		color: $c-mute
+	.roomListBuddyIcon
+		border-color: $bg-light-2
+		background-color: $bg-dark-1
+	.roomDJs.needed .count
+		@extend .ts-co-main
+	.roomDJs.needed .icon
+		@extend .ts-hard-filter
+	.roomListeners .icon,
+	.roomDJs:not(.needed,) .icon,
+	.roomAlbumArt[style*="empty-record.png"]
+		@extend .ts-half-filter
+	.listenNow
+		@extend .ts-co-main
+		@extend .ts-no-shadow
+		border: none
+		background: $bg-dark-1
+		border: 1px solid $bg-light-2
+	&:hover .listenNow
+		@extend .ts-gradient

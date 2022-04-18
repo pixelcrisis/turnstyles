@@ -1,0 +1,96 @@
+div#header, 
+#maindiv .header-bar
+	@extend .ts-content
+
+.header-bar .header-search,
+.header-bar .settings-button
+	@extend .ts-mute-filter
+
+.header-social div
+	@extend .ts-fade-filter
+
+#headerMid .logo,
+#headerMid .logo2,
+.favorite-star:hover,
+.favorite-star.favorited,
+.header-bar .header-logo,
+.header-bar .header-logo2
+	@extend .ts-main-filter
+
+#maindiv .header-bar
+	box-sizing: border-box
+	border-bottom: 2px solid $bg-light-2
+	#tsHotBar
+		margin-top: 2px
+	.header-room
+		padding: 0 0 0 57px
+	.header-room-name
+		color: $c-text
+		@extend .ts-no-shadow
+	.header-buttons
+		right: 0
+	.header-buttons > div
+		padding: 0 5px
+
+#maindiv .header-bar
+	.header-logo
+		@include box(25px, 39px)
+		@include sprite(38px, -540px)
+		padding: 2px 10px 0
+
+	.header-search
+		@include box(24px)
+		@include sprite(35px, -419px)
+
+	.settings-button
+		@include box(22px)
+		@include sprite(35px, -519px)
+
+.tab-item
+	@extend .ts-no-shadow
+	@extend .ts-content-mute
+	box-sizing: border-box
+	border-bottom: 2px solid $bg-light-2
+
+	&.selected,
+	&:not(.selected):hover
+		@extend .ts-content
+
+	&.selected
+		@extend .ts-bb-main
+
+	.tab-title
+		@extend .ts-no-shadow
+		margin-top: -3px
+		font-weight: bold
+
+	.tab-icon
+		opacity: 0.75
+		margin-top: -3px
+		margin-right: 2px
+
+	&.selected .tab-icon
+		@extend .ts-tiny-filter
+
+	&:not(.selected) .tab-icon
+		@extend .ts-fade-filter
+
+	&.selected .tab-icon,
+	&:not(.selected):hover .tab-icon
+		opacity: 1
+
+	.chat-icon
+		@include sprite(40px, -239px)
+	.room-icon
+		@include sprite(40px, -200px)
+	.queue-icon
+		@include sprite(40px, -160px)
+
+#tsVolWrap
+	right: 80px
+	#tsVolSlide
+		@extend .ts-bg-main
+	#tsVolSlide::-moz-range-thumb
+		background: $c-text
+	#tsVolSlide::-webkit-slider-thumb
+		background: $c-text

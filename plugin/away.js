@@ -2,31 +2,31 @@
 
 module.exports = App => {
 
-  App.setAfk = function (key, val, grp) {
-    if (grp || key != "is_afk") return
-    if (val && this.config.afkstr) this.isAfk()
-  }
-
-  App.isAfk = function () {
-    if (!this.config.afkstr) return
-    this.Batch(this.config.afkstr)
-  }
-
-  App.getAfk = function (event) {
-    if (!this.config.is_afk) return
-    let check = this.config.afkstr.split(";;").map(s => s.trim())
-    if (!event.$self && event.$ping) this.isAfk()
-
-    else if (event.$self && !check.includes(event.text)) {
+  App.isAway = function (e) {
+    let conf = this.config.afkstr
+    if (!this.config.is_afk) return false
+    if (e.$ping && !e.$self) return this.Batch(conf)
+    // check if we're no longer away
+    let list = conf.split(";;").map(s => s.trim())
+    if (e.$self && !list.includes(e.text)) {
       this.setConfig("is_afk", false)
-      this.Post({
-        head: "Welcome Back!",
-        body: "You're no longer AFK!"
-      })
+      return this.Post(welcomeBack)
     }
   }
 
-  App.on("speak", App.getAfk)
-  App.on("update", App.setAfk)
+  App.goAway = function (key, val, grp) {
+    if (grp || key != "is_afk") return false
+    if (val) return this.isAway()
+  }
 
+  App.bindAway = function () {
+    this.Bind("speak", App.isAway)
+    this.Bind("update", App.goAway)
+  }
+
+}
+
+const welcomeBack = {
+  head: "Welcome Back!",
+  body: "You're no longer AFK!"
 }

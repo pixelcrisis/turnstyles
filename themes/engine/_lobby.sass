@@ -1,0 +1,118 @@
+#topBG
+	@extend .ts-content-dark
+
+#newsbox a
+	color: $accent !important
+
+#topBG .header-bar
+	border-bottom-color: $c-back
+
+	.header-logo2
+		@include box(24px, 110px)
+		margin: 8px 0 8px 10px
+		background-size: contain
+
+	.room-search-input input
+		@extend .ts-text-input
+		padding-left: 32px
+	.room-search-input .mag-glass
+		@include sprite(35px, -419px)
+		@extend .ts-mute-filter
+		margin: 3px 0 0 2px
+
+	.settings-button
+		margin-top: 3px
+
+	#create-room
+		@extend .ts-no-shadow
+		border: none
+		background: $bg-dark-1
+	#create-room span
+		@extend .ts-co-main
+		@extend .ts-no-shadow
+		font-weight: bold
+	#create-room:hover
+		@extend .ts-gradient
+	#create-room:hover span
+		color: $bg-dark-3
+	#create-room .create-header
+		display: none
+
+#topBG .lobby-panel
+	@extend .ts-no-shadow
+	border: none
+	.lobby-panel-header
+		@extend .ts-no-shadow
+		@extend .ts-content-dim
+		border: none
+	a
+		text-decoration: none
+		@extend .ts-co-main
+
+#topBG #buddyList
+	@extend .ts-no-shadow
+	@extend .ts-content-dim
+	#myInfo span
+		@extend .ts-no-shadow
+	.myName
+		color: $c-text
+	.myStats
+		color: $c-mute
+	.myName:hover,
+	.myFans:hover
+		@extend .ts-co-main
+	.buddyListTitle
+		@extend .ts-no-shadow
+		@extend .ts-content-hover
+		border: none
+		margin: 0 -1px
+	.buddyListTitleText
+		color: $c-text
+	.buddyCount
+		margin-top: 5px
+		background: transparent
+	.buddyCountMid
+		@extend .ts-co-main
+	.buddyCountIcon
+		@extend .ts-hidden
+	#buddyListContent
+
+#topBG .buddyListRoom
+	@extend .ts-no-shadow
+	border-top: none
+	background: $bg-dark-2
+	border-bottom: 1px solid $bg-dark-1
+	&:hover
+		background: $bg-dark-1
+	.buddyRoomName
+		color: $c-text
+		margin-left: 12px
+	.joinRoomButton
+		margin-top: -2px
+		text-align: right
+		background: none
+	.joinRoomButton::after
+		@extend .ts-co-main
+		font-size: 10px
+		font-weight: bold
+		text-align: right
+		content: "Join Room ➜"
+
+#topBG #footer
+	font-weight: bold
+	text-transform: uppercase
+	a
+		color: $c-mute
+		text-decoration: none
+	a:hover
+		@extend .ts-co-main
+	p
+		border: none
+		font-size: 12px
+		color: $c-mute
+	#footerTwitter a,
+	#footerFacebook a
+		border: none
+		padding-left: 0
+		background: none
+		text-align: center

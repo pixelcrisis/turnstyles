@@ -2,64 +2,78 @@
 
 module.exports = App => {
 
-	App.Log = function (str) {
+	// shortcuts to log types
+	App.Log = log => App.Logger(log)
+	App.Ran = log => App.Logger(log, "ran")
+	App.Err = log => App.Logger(log, "error")
+
+	App.Logger = function (log, type) {
+		let time = this.time()
+		// make sure that we have permissions to debug
 		let perm = this.config ? this.config.debug : true
-		if (perm) console.info(`[${ this.now() }] turnStyles :: ${ str }`)
-		this.addLog(`[tS - ${ this.now() }]<span>${ clean(str) }</span>`)
+		if (perm) console.info(`[${ time }] tS - ${ log }`)
+		if (perm || type) this.printLog(time, log, type)
 	}
 
-	App.addLog = function (log) {
-		this.logBook.push(log)
-		let book = $("#tsLogs")[0]
-		let logs = this.logBook.length
-		if (logs > 50) this.logBook.shift()
+	App.printLog = function (time, log, type) {
+		// add log to the logbook
+		let book = $("#tsLogBook")[0]
+		if (!this.logBook) this.logBook = []
+		this.logBook.push( loggerHTML(time, log, type) )
+		if (this.logBook.length > 50) this.logBook.shift()
 		if (book) {
-			book.innerHTML = this.logBook.reverse().join("<br />")
+			book.innerHTML = this.logBook.reverse().join("<br>")
 			book.scrollTop = book.scrollHeight
 		}
 	}
 
-	App.bindLogs = function () {
-		$("#tsLogs").remove()
-		$(".room-info-nav").after(`<div id="tsLogs"></div>`)
+	App.bindLogger = function () {
+		// build logbook
+		this.logBook = []
+		$("#tsLogBook").remove()
+		$(".room-info-nav").after(`<div id="tsLogBook"></div>`)
+
+		// bind all of our debug log events
+		this.Bind("update", function (key, val) {
+			this.Log(`update: [${key}] to (${ val })`)
+		})
+
+		this.Bind("add_dj", function (event) {
+			let id = event.user[0].userid
+			this.Log(`add dj: [${ this.findName(id) }](${ id })`)
+		})
+
+		this.Bind("rem_dj", function (event) {
+			let id = event.user[0].userid
+			this.Log(`rem dj: [${ this.findName(id) }](${ id })`)
+		})
+
+		this.Bind("update_votes", function (event) {
+			let list = event.room.metadata.votelog
+			let last = list[list.length - 1]
+			this.Log(`[${ this.findName(last[0]) }] voted: ${ last[1] }`)
+		})
+
+		this.Bind("registered", function (event) {
+			for (let user of event.user) {
+				this.Log(`[${ user.name }](${ user.userid }) joined.`)
+			}
+		})
+
+		this.Bind("deregistered", function (event) {
+			for (let user of event.user) {
+				this.Log(`[${ user.name }](${ user.userid }) left.`)
+			}
+		})
 	}
 
-	// log events
-	App.on("update", function (key, val) {
-		this.Log(`update: [${ key }] to (${ val })`)
-	})
-
-	App.on("registered", function (event) {
-		for (let user of event.user) {
-			this.Log(`[${ user.name }](${ user.userid }) joined.`)
-		}
-	})
-
-	App.on("deregistered", function (event) {
-		for (let user of event.user) {
-			this.Log(`[${ user.name }](${ user.userid }) left.`)
-		}
-	})
-
-	App.on("add_dj", function (event) {
-		let id = event.user[0].userid
-		this.Log(`add dj: [${ this.findName(id) }](${ id })`)
-	})
-
-	App.on("rem_dj", function (event) {
-		let id = event.user[0].userid
-		this.Log(`rem dj: [${ this.findName(id) }](${ id })`)
-	})
-
-	App.on("update_votes", function (event) {
-		let list = event.room.metadata.votelog
-		let last = list[list.length - 1]
-		this.Log(`[${ this.findName(last[0]) }] voted: ${ last[1] }`)
-	})
-
-	App.logBook = []
-
 }
+
+const loggerHTML = (time, log, type) => `
+	<div class="ts-log ${ type }">
+		<div>${ time }</div>
+		<span>${ clean(log) }</span>
+	</div>`
 
 const clean = str => {
   // trim inserted URL file paths

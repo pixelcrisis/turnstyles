@@ -1,0 +1,29 @@
+#tsHotBar, #tsPanels
+	@extend .ts-content
+
+#tsHotBar .ts-button,
+#tsHotBar .ts-toggle,
+#tsHotBar .ts-inputs,
+#tsHotBar .ts-choice,
+#tsPanels section
+	@extend .ts-content-hover
+
+#tsHotBar #tsOpenBtn,
+#tsPanels .ts-tab.active,
+.ts-toggle input:checked + span:after,
+	@extend .ts-co-main
+
+#tsPanels section kbd,
+#tsPanels section .ts-button,
+#tsPanels section .ts-toggle,
+#tsPanels section .ts-inputs,
+#tsPanels section .ts-choice
+	@extend .ts-content-alt
+#tsPanels section kbd
+	border-color: $c-back
+#tsPanels section h3
+	border-bottom-color: $bg-light-1
+#tsPanels section p
+	color: $c-mute
+#tsPanels section .ts-inputs
+	border-bottom-color: $bg-dark-1

@@ -1,0 +1,107 @@
+#overlay .modal,
+#transition-modal,
+#mainPanelLoadOverlay
+	@extend .ts-content-dark
+	box-shadow: 0 0 0 1px $bg-dark-1
+
+#overlay .modal .title
+	@extend .ts-no-shadow
+	@extend .ts-content-dark
+
+#overlay .modal .content-container
+	@extend .ts-content
+	border: none
+	.section
+		border-color: $bg-dark-2
+	input, textarea
+		@extend .ts-no-shadow
+		@extend .ts-content-hover
+		border: none
+
+#overlay .modal .close-x
+	@include box(25px, 25px)
+	@extend .ts-content-mute
+	top: -10px
+	left: -12px
+	border: 2px solid
+	border-radius: 50%
+	text-align: center
+	background-image: none
+	&:after
+		display: block
+		font-size: 18px
+		content: $i-close
+		margin: 2px 0 0 1px
+	&:hover
+		color: $c-text
+
+#overlay .modal button
+	@extend .ts-no-shadow
+	color: $c-mute
+	background: $bg-light-2
+	border: none !important
+	&:hover
+		color: $c-text
+		background: $bg-light-3
+#overlay .modal button.submit
+	&, &:hover
+		@extend .ts-gradient
+	&:hover
+		@extend .ts-brighten
+
+#overlay .modal.profile
+	.edit
+		@extend .ts-main-filter
+	.social
+		margin-right: 5px
+	.social a
+		border: none !important
+	.website a
+		padding: 5px 10px
+		border: 1px dotted
+		border-radius: 5px
+		display: inline-block
+		background: transparent
+	.website a:hover
+		@extend .ts-brighten
+		border-style: solid
+	.website a,
+	.fans .stat-number:not(.disabled):hover,
+	.fanofs .stat-number:not(.disabled):hover
+		@extend .ts-co-main
+	.gold-emblem
+		@extend .ts-hidden
+
+.new-modal
+	@extend .ts-no-shadow
+	.title
+		@extend .ts-gradient
+		@extend .ts-no-shadow
+		border-bottom-color: $bg-dark-2
+	.close-x
+		@extend .ts-main-filter
+	.content
+		@extend .ts-content
+	.header
+		@extend .ts-no-shadow
+		color: $c-text
+
+.new-modal .avatar
+	border: 1px solid $c-back
+	&:hover, &.current-avatar
+		@extend .ts-no-shadow
+		background: $bg-dark-2
+		border-color: $bg-light-2
+
+.new-modal .footer
+	@extend .ts-content
+	.level
+		color: $c-mute
+	.carousel-left,
+	.carousel-right
+		@extend .ts-main-filter
+	.carousel-indicators li
+		@extend .ts-content-hover
+	.carousel-indicators li:hover,
+	.carousel-indicators li.active
+		@extend .ts-bg-main
