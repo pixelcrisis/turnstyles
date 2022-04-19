@@ -40,20 +40,20 @@ module.exports = App => {
   App.alertSnag = function (e) {
     let send = this.config.alerts.snag
     let head = e.$name, body = `has snagged this track!`
-    if (send) this.Notify({ head, body, type: "snag_ping" })
+    if (send) this.Notify({ head, body, type: "snag" })
   }
 
   App.alertJoin = function (e) {
     let send = this.config.alerts.join
     if (send) for (let user of e.user) this.Post({
-      head: user.name, body: "joined.", type: "join_ping"
+      head: user.name, body: "joined.", type: "join"
     })
   }
 
   App.alertLeft = function (e) {
     let send = this.config.alerts.left
     if (send) for (let user of e.user) this.Post({
-      head: user.name, body: "left.", type: "join_ping"
+      head: user.name, body: "left.", type: "left"
     })
   }
 
