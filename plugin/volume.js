@@ -16,7 +16,7 @@ module.exports = App => {
 			$(".header-content").append(volumeHTML())
 			let scroll = "DOMMouseScroll mousewheel"
 			$("#tsMuteBtn").on("click", this.toggleMute.bind(this))
-			$("#tsVolSlide").on("click", this.saveVolume.bind(this))
+			$("#tsVolSlide").on("input", this.saveVolume.bind(this))
 			$("#tsVolSlide").on(scroll, this.rollVolume.bind(this))
 		}
 		this.bodyClass("ts-volume", opt)

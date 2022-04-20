@@ -40,7 +40,7 @@ module.exports = App => {
   App.alertSnag = function (e) {
     let send = this.config.alerts.snag
     let head = e.$name, body = `has snagged this track!`
-    if (send) this.Notify({ head, body, type: "snag" })
+    if (send) this.Post({ head, body, type: "snag" })
   }
 
   App.alertJoin = function (e) {

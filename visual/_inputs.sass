@@ -1,29 +1,13 @@
-// the options menus
+// the panel/hotbar inputs
 
-#tsHotBar
-	display: none
-	flex-wrap: wrap
-	margin: 0 auto
-	padding: 10px 20px
-	line-height: 1em
-	max-width: 960px
-	@extend .ts-content
-
-#tsWindow *, #tsHotBar *
-	box-sizing: border-box
-
-#tsWindow.active,
-.header-bar:hover #tsHotBar
-  display: flex
-
-#tsOpenBtn
-	color: $accent
-	padding-top: 0
-	font-size: 1.2em
-
-#tsCloseBtn
-	cursor: pointer
-	margin-right: 10px
+#tsPanels
+	.ts-toggle,
+	.ts-inputs,
+	.ts-button,
+	.ts-choice,
+	section h3
+		display: block
+		border-radius: 0
 
 .ts-button,
 .ts-toggle,
@@ -57,3 +41,15 @@
 .ts-toggle input:not(:checked) + span:after
 	content: $i-cross
 	@extend .ts-faded
+
+#tsOpenBtn
+	color: $accent
+	padding-top: 0
+	font-size: 1.2em
+
+#tsCloseBtn
+	cursor: pointer
+	margin-right: 10px
+
+#tsBackup input
+	display: none

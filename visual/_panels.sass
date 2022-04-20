@@ -17,6 +17,22 @@
 	::-webkit-scrollbar-thumb:hover
 		background: $c-mute
 
+#tsHotBar
+	display: none
+	flex-wrap: wrap
+	margin: 0 auto
+	padding: 10px 20px
+	line-height: 1em
+	max-width: 960px
+	@extend .ts-content
+
+#tsWindow *, #tsHotBar *
+	box-sizing: border-box
+
+#tsWindow.active,
+.header-bar:hover #tsHotBar
+  display: flex
+
 #tsPanels
 	width: 100%
 	padding: 10px
@@ -48,9 +64,6 @@
 .ts-tabbed.active
 	display: flex
 
-#tsBackup input
-	display: none
-
 #tsPanels
 	nav
 		margin: 15px 0
@@ -63,14 +76,6 @@
 		width: calc(50% - 10px)
 	section.full
 		width: calc(100% - 10px)
-
-	.ts-toggle,
-	.ts-inputs,
-	.ts-button,
-	.ts-choice,
-	section h3
-		display: block
-		border-radius: 0
 
 	section h3
 		padding: 10px

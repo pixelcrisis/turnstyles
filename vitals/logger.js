@@ -17,12 +17,12 @@ module.exports = App => {
 
 	App.printLog = function (time, log, type) {
 		// add log to the logbook
-		let book = $("#tsLogBook")[0]
+		let book = $("#tsLogs")[0]
 		if (!this.logBook) this.logBook = []
 		this.logBook.push( loggerHTML(time, log, type) )
 		if (this.logBook.length > 50) this.logBook.shift()
 		if (book) {
-			book.innerHTML = this.logBook.reverse().join("<br>")
+			book.innerHTML = this.logBook.reverse().join("")
 			book.scrollTop = book.scrollHeight
 		}
 	}
@@ -31,7 +31,7 @@ module.exports = App => {
 		// build logbook
 		this.logBook = []
 		$("#tsLogBook").remove()
-		$(".room-info-nav").after(`<div id="tsLogBook"></div>`)
+		$(".room-info-nav").after( logBookHTML )
 
 		// bind all of our debug log events
 		this.Bind("update", function (key, val) {
@@ -69,10 +69,15 @@ module.exports = App => {
 
 }
 
+const logBookHTML = `<div id="tsLogBook">
+	<h3>tS Room Logs</h3>
+	<div id="tsLogs"></div>
+</div>`
+
 const loggerHTML = (time, log, type) => `
 	<div class="ts-log ${ type }">
-		<div>${ time }</div>
-		<span>${ clean(log) }</span>
+		<span class="tl-text">${ clean(log) }</span>
+		<span class="tl-time"> - ${ time }</span>
 	</div>`
 
 const clean = str => {

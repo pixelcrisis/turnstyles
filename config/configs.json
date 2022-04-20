@@ -7,6 +7,8 @@
 
 		"is_afk": false,
 		"afkstr": "I'm AFK - Back in a sec!",
+		"idling": false,
+		"afkmax": 0,
 
 		"people": true,
 		"player": true,
@@ -80,11 +82,19 @@
 			"purple": "Purple",
 			"teal": "Teal"
 		},
-		"remind": {
+		"post": {
 			"15": "Every 15m",
 			"30": "Every 30m",
 			"60": "Every 1h",
 			"120": "Every 2h"
+		},
+		"afkmax": {
+			"5": "After 5 Minutes",
+			"15": "After 15 Minutes",
+			"30": "After 30 Minutes",
+			"60": "After 60 Minutes",
+			"90": "After 90 Minutes",
+			"120": "After 120 Minutes"
 		}
 	}
 

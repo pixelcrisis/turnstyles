@@ -16,13 +16,18 @@ module.exports = App => {
         </section>
         <section>
           <h3>${ App.$toggle("is_afk", "Currently AFK") }</h3>
-          <p>Do you need to step away for a second? When you enable AFK, it will sned your AFK Response to the room chat, and will send it again to remind anyone who pings you while you're away!</p>
+          <p>Do you need to step away for a second? When you enable AFK, it will send your AFK Response to the room chat, and will send it again to remind anyone who pings you while you're away!</p>
           ${ App.$string("afkstr", "Save AFK Response") }
         </section>
         <section>
           <h3>${ App.$toggle("auto_q", "Enable AutoQueue") }</h3>
           <p>Does your room have a bot, and does that bot have a queue? When it's your turn, turnStyles can check for your bot's ping message and attempt to throw you on deck!</p>
           ${ App.$string("q_text", "Save Queue Ping") }
+        </section>
+        <section>
+          <h3>${ App.$toggle("idling", "Auto-AFK Timer") }</h3>
+          <p>Sometimes we get distracted and sit idle in the background, confusing members who think you're still there! turnStyles can detect your activity and mark you afk automatically! </p>
+          ${ App.$select("afkmax", false, "Idle Timer Duration") }
         </section>
         <section>
           <h3>${ App.$toggle("volume", "Override Volume") }</h3>
@@ -113,7 +118,7 @@ module.exports = App => {
         <section>
           <h3>Room Reminder</h3>
           <p>Frequently send the same message over and over? Use a reminder! Send your text to the room and your selected interval!</p>
-          ${ App.$select("remind", "timing", "Don't Remind") }
+          ${ App.$select("post", "timing", "Don't Remind") }
           ${ App.$string("text", "Save Reminder", "timing") }
           <p>Useful for posting recurring information like rules, themes, or whatever!</p>
         </section>
