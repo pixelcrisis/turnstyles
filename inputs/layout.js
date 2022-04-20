@@ -17,7 +17,7 @@ module.exports = App => {
   App.$toggle = function (opt, name, cat = "", id) {
     let data = this.getConfig(opt, cat)
     let main = `class="ts-toggle" ${ id ? `id="${ id }"` : "" }`
-    let flag = `data-opt="${ opt }" data-cat="${ cat }"`
+    let flag = `data-opt="${ opt }" data-cat="${ cat || "" }"`
     let html = `type="checkbox" ${ data ? "checked" : "" }`
     return `<label ${ main }><input ${ html } ${ flag }> <span></span>${ name }</label>`
   }
@@ -25,7 +25,7 @@ module.exports = App => {
   App.$string = function (opt, name, cat = "") {
     let done = this.$button(name, opt)
     let data = this.getConfig(opt, cat)
-    let flag = `data-opt="${ opt }" data-cat="${ cat }" value="${ data }"`
+    let flag = `data-opt="${ opt }" data-cat="${ cat || "" }" value="${ data }"`
     return `<input type="text" class="ts-inputs" ${ flag } /> ${ done }`
   }
 
@@ -33,14 +33,14 @@ module.exports = App => {
     let done = this.$button(name, opt)
     let data = this.getConfig(opt, cat)
     let main = `class="ts-inputs" rows="10"`
-    let flag = `data-opt="${ opt }" data-cat="${ cat }"`
+    let flag = `data-opt="${ opt }" data-cat="${ cat || "" }"`
     return `<textarea ${ main } ${ flag }>${ data }</textarea> ${ done }`
   }
 
   App.$select = function (opt, cat = "", off) {
     let list = this.options[opt]
     let data = this.getConfig(opt, cat)
-    let flag = `data-opt="${ opt }" data-cat="${ cat }"`
+    let flag = `data-opt="${ opt }" data-cat="${ cat || "" }"`
     let none = `<option value="">${ off || `No ${ this.cap(opt) }` }</option>`
     let html = Object.keys( list ).map( item => this.$option(list, item, data) )
     return `<select class="ts-choice" ${ flag }>${ none }${ html }</select>`

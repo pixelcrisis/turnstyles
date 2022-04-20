@@ -54,7 +54,8 @@
 	> .playlist-checkbox
 		@extend .ts-main-filter
 
-body.ts-played #queue .song.ts-recent .details
-	color: $recent
-body.ts-played #queue .song.ts-recent:hover .details::before
-	content: "Recently Played - "
+
+body.ts-played #queue .song.ts-recent 
+	box-shadow: inset -6px 0 0 0px $recent !important
+	.details
+		color: $recent

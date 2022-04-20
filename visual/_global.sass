@@ -21,15 +21,6 @@
 .profile .section.statslink
 	text-align: center !important
 
-::-webkit-scrollbar
-	width: 7px
-::-webkit-scrollbar-track
-	background: $bg-dark-3
-::-webkit-scrollbar-thumb
-	background: $bg-light-2
-::-webkit-scrollbar-thumb:hover
-	background: $c-mute
-
 // song counter
 #playlist-display em 
 	line-height: 27px
@@ -75,5 +66,9 @@ body.ts-no-ppl #room-view > canvas:nth-child(4)
 	@extend .ts-hidden
 
 // Recently Played
-body.ts-played #queue .song.ts-recent .details
-	color: $recent
+body.ts-played #queue .song.ts-recent 
+	box-shadow: inset -6px 0 0 0px $recent
+	.details
+		color: $recent
+	&:hover .details:after
+		content: " (Recent)"

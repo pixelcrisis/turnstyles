@@ -14,14 +14,14 @@ module.exports = App => {
 		let file = $("#tsBackup input")[0].files[0]
 		if (!file) return alert("Select Backup File First!")
 		let Reader = new FileReader()
-		Reader.onload = this.restoreData
+		Reader.onload = App.restoreData
 		Reader.readAsText(file)
 	}
 
 	App.restoreData = function (file) {
 		// parse JSON as a config file
 		let data = JSON.parse(file.target.result)
-		if (data.hotbar && data.people) this.updateData(data)
+		if (data.hotbar && data.people) App.updateData(data)
 		else alert("Error Reading Backup File!")
 	}
 

@@ -7,7 +7,7 @@ module.exports = App => {
 		// define events list if undefined
 		if (!this.events) this.events = {}
 		if (!this.events[key]) this.events[key] = []
-		this.events[key].push(func.bind(this))
+		this.events[key].push( func.bind(this) )
 	}
 
 	// fire list of keyed functions

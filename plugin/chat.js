@@ -8,7 +8,7 @@ module.exports = App => {
     let matches = message[0].innerText.indexOf(e.name) === 0
     let stamped = message.has(".timestamp").length
     if (matches && !stamped) {
-      let stamp = this.now().split(":").slice(0, 2).join(":")
+      let stamp = this.time().split(":").slice(0, 2).join(":")
       message.prepend(`<div class="timestamp">${ stamp }</div>`)
     }
   }
@@ -39,4 +39,4 @@ module.exports = App => {
 
 }
 
-const lastMessage = ".chat .messages .messagelast-of-type"
+const lastMessage = ".chat .messages .message:last-of-type"

@@ -69,4 +69,4 @@ module.exports = App => {
 
 }
 
-const lastMessage = ".chat .messages .messagelast-of-type"
+const lastMessage = ".chat .messages .message:last-of-type"

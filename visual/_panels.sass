@@ -1,5 +1,22 @@
 // the main options panels
 
+#tsWindow
+	display: none
+	z-index: 1000
+	align-items: center
+	justify-content: center
+	background: rgba(0, 0, 0, 0.75)
+	@include fix(0, 0, 0, 0)
+
+	::-webkit-scrollbar
+		width: 7px
+	::-webkit-scrollbar-track
+		background: $bg-dark-3
+	::-webkit-scrollbar-thumb
+		background: $bg-light-2
+	::-webkit-scrollbar-thumb:hover
+		background: $c-mute
+
 #tsPanels
 	width: 100%
 	padding: 10px
