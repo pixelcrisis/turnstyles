@@ -12,6 +12,7 @@ module.exports = App => {
 	require("./remind.js")(App)
 	require("./ondeck.js")(App)
 	require("./emotes.js")(App)
+	require("./suggest.js")(App)
 
 	App.Bind("loaded", function (config) {
 		this.loadTheme(config)
