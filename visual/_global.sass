@@ -59,7 +59,7 @@ body.ts-no-ppl #room-view > canvas:nth-child(4)
 	@extend .ts-hidden
 
 // Recently Played
-body.ts-played #queue .song.ts-recent 
+body.ts-played #queue .song.ts-recent:not(.current-song)
 	box-shadow: inset -6px 0 0 0px $recent
 	.details
 		color: $recent

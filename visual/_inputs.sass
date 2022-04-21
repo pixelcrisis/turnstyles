@@ -53,3 +53,31 @@
 
 #tsBackup input
 	display: none
+
+#tsTyping
+	@include abs(false, 256px, 0px, false)
+	z-index: 10000
+	overflow-y: auto
+	box-sizing: border-box
+	height: calc(100% - 42px)
+	background: #eeeeee
+	border-left: 1px solid #aaa
+	border-right: 1px solid #aaa
+
+#tsTyping .wrap
+	display: flex
+	min-height: 100%
+	box-sizing: border-box
+	flex-direction: column
+	justify-content: flex-end
+	padding: 10px 10px 10px 5px
+
+#tsTyping img
+	width: 20px
+
+#tsTyping div
+	padding: 3px
+	cursor: pointer
+
+#tsTyping .icon:hover
+	background: rgba(0, 0, 0, 0.1)
