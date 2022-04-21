@@ -35,8 +35,8 @@
 
 #tsPanels
 	width: 100%
-	padding: 10px
-	max-width: 700px
+	padding: 20px
+	max-width: 740px
 	overflow-y: auto
 	position: relative
 	@include box(80%)
@@ -72,10 +72,10 @@
 		padding: 10px
 		margin: 0 0 10px 10px
 		@extend .ts-content-hover
-	section:not(.full)
-		width: calc(50% - 10px)
 	section.full
 		width: calc(100% - 10px)
+	section:not(.full)
+		width: calc(50% - 10px)
 
 	section h3
 		padding: 10px

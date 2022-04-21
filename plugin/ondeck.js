@@ -42,7 +42,18 @@ module.exports = App => {
     if (!this.config.nextdj) return
     if (this.User().id != e.user[0].userid) return 
     this.setConfig("nextdj", false)
-    this.Bully(disableNextDJ)
+    this.Bully( disableNextDJ )
+  }
+
+  App.escortMe = function (e) {
+    if (!this.config.escort) return
+    this.setConfig("escort", false)
+    this.View().quitDj()
+  }
+
+  App.escorting = function (e) {
+    if (!this.config.escort) return
+    this.Bully( escortWarning )
   }
 
   App.bindDecks = function () {
@@ -58,4 +69,10 @@ module.exports = App => {
 const disableNextDJ = {
   head: "You've hopped on deck!",
   body: "NextDJ has been disabled."
+}
+
+const escortWarning = {
+  head: "You've started spinning!",
+  body: "(turnStyles will escort you after this song)",
+  type: "action"
 }

@@ -22,6 +22,7 @@
 
 		"auto_b": true,
 		"nextdj": false,
+		"escort": false,
 		"auto_q": false,
 		"q_text": "Hey @user - it's your turn!",
 
@@ -45,6 +46,7 @@
 			"auto_b": true,
 			"auto_q": true,
 			"nextdj": true,
+			"escort": false,
 			"shared": true,
 			"bubble": false,
 			"people": false,

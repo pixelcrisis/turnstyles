@@ -16,6 +16,8 @@ module.exports = App => {
 		let curr = this.current_djs[last.djid]
 		let data = getStats(curr, { ...last, spun: 1 })
 		this.current_djs[last.djid] = data
+		// check if it's us, and if we're escorting
+		if (last.djid == this.User().id) this.escortMe()
 	}
 
 	App.resetDJ = function (e) {
@@ -40,6 +42,8 @@ module.exports = App => {
 		this.last_played = last
 
 		this.updateDJ(last)
+		// check if it's us, warn if we're escorting
+		if (djid == this.User().id) this.escorting()
 
 		let name = curr.song || "none"
 		this.Log(`[new song] ${ name }`)

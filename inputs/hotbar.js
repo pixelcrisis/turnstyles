@@ -18,6 +18,7 @@ module.exports = App => {
       ${ App.$toggle("auto_b", "Autobop", false, 'hbAutoB') }
       ${ App.$toggle("auto_q", "AutoQueue", false, 'hbAutoQ') }
       ${ App.$toggle("nextdj", "Next DJ", false, 'hbNextDJ') }
+      ${ App.$toggle("escort", "Escort", false, 'hbEscort') }
 
       ${ App.$qtbtn("1") } ${ App.$qtbtn("2") } ${ App.$qtbtn("3") }
 

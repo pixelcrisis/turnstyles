@@ -12,6 +12,7 @@ module.exports = App => {
     this.bodyClass("hb-auto-b", !config.hotbar.auto_b)
     this.bodyClass("hb-auto-q", !config.hotbar.auto_q)
     this.bodyClass("hb-nextdj", !config.hotbar.nextdj)
+    this.bodyClass("hb-escort", !config.hotbar.escort)
     this.bodyClass("hb-bubble", !config.hotbar.bubble)
     this.bodyClass("hb-people", !config.hotbar.people)
     this.bodyClass("hb-shared", !config.hotbar.shared)
@@ -33,6 +34,7 @@ module.exports = App => {
         if (key == "auto_b") this.bodyClass("hb-auto-b", !val)
         if (key == "auto_q") this.bodyClass("hb-auto-q", !val)
         if (key == "nextdj") this.bodyClass("hb-nextdj", !val)
+        if (key == "escort") this.bodyClass("hb-escort", !val)
         if (key == "bubble") this.bodyClass("hb-bubble", !val)
         if (key == "people") this.bodyClass("hb-people", !val)
         if (key == "shared") this.bodyClass("hb-shared", !val)
@@ -42,7 +44,7 @@ module.exports = App => {
         if (key == "qtbtn3") this.bodyClass("hb-qtbtn3", !val)
       }
 
-      if (grp == "hotbar" || grp == "qtbtns") this.bindInputs()
+      if (grp == "hotbar" || grp == "qtbtns") this.bindHotBar()
     })
   }
 

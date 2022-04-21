@@ -39,7 +39,6 @@ module.exports = App => {
   }
 
   App.bindDebugs = function () {
-    console.log('hi?')
     this.Bind("add_dj", this.logNewDJ)
     this.Bind("rem_dj", this.logOldDJ)
     this.Bind("update", this.logConfig)
