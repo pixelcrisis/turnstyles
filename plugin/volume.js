@@ -10,14 +10,16 @@ module.exports = App => {
 		if (has && !opt) {
 			$("#tsVolWrap").remove()
 			window.turntablePlayer.realVolume = this.realVolume
+			this.Log(`[volume] removed`)
 		}
 		// or add volume controls
 		if (opt && !has) {
-			$(".header-content").append(volumeHTML())
 			let scroll = "DOMMouseScroll mousewheel"
+			$(".header-content").append( volumeHTML() )
 			$("#tsMuteBtn").on("click", this.toggleMute.bind(this))
 			$("#tsVolSlide").on("input", this.saveVolume.bind(this))
 			$("#tsVolSlide").on(scroll, this.rollVolume.bind(this))
+			this.Log(`[volume] added`)
 		}
 		this.bodyClass("ts-volume", opt)
 	}
@@ -52,7 +54,7 @@ module.exports = App => {
 		this.bodyClass("ts-muted", this.muted)
 		let vol = this.muted ? -7 : trueVolume()
 		window.turntablePlayer.setVolume(vol)
-		this.Ran(`toggled muted ${ this.muted ? "on" : "off" }`)
+		this.Ran(`[mute] ${ this.muted ? "on" : "off" }`)
 	}
 
 	App.checkMuted = function () {

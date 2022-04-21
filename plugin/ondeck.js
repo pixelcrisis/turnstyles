@@ -9,7 +9,7 @@ module.exports = App => {
     // make sure there's an open spot
     let spot = $(".become-dj").length
     if (spot) this.takeSpot()
-    else this.Ran("dj attempt: no spot")
+    else this.Ran("[ondeck] no spot")
     // try again if we aren't already DJing
     let curr = this.current_djs[this.User().id]
     if (!curr && tries) {
@@ -20,20 +20,20 @@ module.exports = App => {
   }
 
   App.takeSpot = function () {
-    this.Ran("dj attempt: jumping...")
+    this.Ran("[ondeck]: jumping...")
     this.View().becomeDj()
   }
 
   App.tryNextDJ = function () {
     if (!this.config.nextdj) return
-    this.Ran("running nextdj...")
+    this.Ran("[nextdj] running...")
     this.attemptDJ()
   }
 
   App.autoQueue = function (e) {
     if (!this.config.auto_q) return
     if (e.text.indexOf(this.config.q_text) > -1) {
-      this.Ran("running autoqueue...")
+      this.Ran("[autoqueue] running...")
       this.attemptDJ(3)
     }
   }

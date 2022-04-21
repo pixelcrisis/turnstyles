@@ -19,6 +19,7 @@ module.exports = App => {
 	}
 
 	App.resetDJ = function (e) {
+		// handle DJ drop/removal
 		let user = e.user[0].userid
 		let stat = statLine(this.current_djs[user])
 		delete this.current_djs[user]
@@ -41,7 +42,7 @@ module.exports = App => {
 		this.updateDJ(last)
 
 		let name = curr.song || "none"
-		this.Log(`new song: ${ name }`)
+		this.Log(`[new song] ${ name }`)
 		this.Emit("tracked", statLine(last))
 	}
 

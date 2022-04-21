@@ -27,7 +27,7 @@ module.exports = App => {
     if (Notification.permission === "denied") return false
     // if default, we need to ask for our permissions
     if (Notification.permission === "default") {
-      this.Ran("requesting notifications")
+      this.Ran(`[notify] asking permission`)
       Notification.requestPermission()
       return false
     }
@@ -36,7 +36,7 @@ module.exports = App => {
   }
 
   App.bindNotify = function () {
-    this.Bind("update", App.canNotify)
+    this.Bind("update", this.canNotify)
     this.canNotify()
   }
 

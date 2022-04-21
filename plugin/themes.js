@@ -8,14 +8,14 @@ module.exports = App => {
     let path = localPath(this.__base, file, folder)
     if (link.length) link.attr("href", path)
     else document.head.append( cssHTML(type, path) )
-    if (path != "#") this.Ran(`inserted: ${ file }`)
+    if (path != "#") this.Log(`[visual] inject: ${ file }`, path)
   }
 
   App.inject = function (style) {
     let el = $("#ts_css")
     if (el.length) el[0].innerHTML = style
     else document.head.append( styleHTML(style) )
-    if (style) this.Ran(`injected user css`)
+    if (style) this.Log(`[user css] injected`, style)
   }
 
   // record theme on the body

@@ -37,7 +37,7 @@ module.exports = App => {
 		this.listener = this.listen.bind(this)
 		window.turntable.addEventListener("message", this.listener)
 		this.Emit("attach", room)
-		this.Ran("attached turnStyles")
+		this.Ran("[turnStyles] attached!")
 	}
 
 }

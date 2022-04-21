@@ -6,8 +6,9 @@ module.exports = App => {
 		if (this.bop) clearTimeout(this.bop)
 		if (!this.config.auto_b) return false
 		// manually click the button after delay
-		const delay = (Math.random() * 7) * 100
 		const press = () => click(".awesome-button")
+		const delay = Math.floor((Math.random() * 7) * 100)
+		this.Log(`[autobop] in ${ delay / 100 } seconds`)
 		this.bop = setTimeout(press, delay)
 	}
 
