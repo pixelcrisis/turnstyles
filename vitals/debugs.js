@@ -3,13 +3,13 @@
 module.exports = App => {
 
   App.logJoin = function (e) {
-    for (let u of e.user) {
+    for (let user of e.user) {
       this.Log(`[join] ${ user.name }`, user.userid)
     }
   }
 
   App.logLeft = function (e) {
-    for (let u of e.user) {
+    for (let user of e.user) {
       this.Log(`[left] ${ user.name }`, user.userid)
     }
   }
