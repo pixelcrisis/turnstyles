@@ -60,7 +60,8 @@ module.exports = App => {
 		if (!this.config.emojis) return
 		let text = e.target.value.split(" ")
 		let word = text[text.length - 1]
-		let test = word.length > 1 && word[0] === ":"
+		let test = word.length > 1 && word[0] == ":"
+		if (word[word.length - 1] == ":") test = false
 
 		if (test) this.addTyping(word)
 		else $("#tsTyping").remove()
