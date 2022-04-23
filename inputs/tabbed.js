@@ -24,14 +24,14 @@ module.exports = App => {
           ${ App.$string("afkstr", "Save AFK Response") }
         </section>
         <section>
-          <h3>${ App.$toggle("idling", "Auto-AFK Timer") }</h3>
-          <p>Sometimes we get distracted and sit idle in the background, confusing members who think you're still there! turnStyles can detect your activity and mark you afk automatically! </p>
-          ${ App.$select("afkmax", false, "Idle Timer Duration") }
-        </section>
-        <section>
           <h3>${ App.$toggle("auto_q", "Enable AutoQueue") }</h3>
           <p>Does your room have a bot, and does that bot have a queue? When it's your turn, turnStyles can check for your bot's ping message and attempt to throw you on deck!</p>
           ${ App.$string("q_text", "Save Queue Ping") }
+        </section>
+        <section>
+          <h3>${ App.$toggle("idling", "Auto-AFK Timer") }</h3>
+          <p>Sometimes we get distracted and sit idle in the background, confusing members who think you're still there! turnStyles can detect your activity and mark you afk automatically! </p>
+          ${ App.$select("afkmax", false, "Idle Timer Duration") }
         </section>
         <section>
           <h3>${ App.$toggle("volume", "Override Volume") }</h3>
