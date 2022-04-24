@@ -55,6 +55,7 @@ module.exports = App => {
 
 	App.bindEmotes = function () {
 		this.Bind("speak", this.checkEmote)
+		this.Bind("typeahead", this.checkSuggest)
 		let onInput = this.checkSuggest.bind(this)
 		$("#chat-input").on("input", onInput)
 	}

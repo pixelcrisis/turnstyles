@@ -36,6 +36,8 @@ module.exports = App => {
 
 			if (byClass == "songs") App.Emit("playlist")
 			if (byClass == "messages") App.Emit("newchat", element)
+			if (byClass == "typeahead") App.Emit("typeahead")
+
 
 			if (byTitle && element.baseURI.indexOf("profile/") > -1) {
 				let user = element.baseURI.split("profile/")[1]

@@ -3,16 +3,17 @@
 module.exports = App => {
 
   App.isAway = function (e) {
+    let active = e ? e.$self : true
+    if (active) this.idleTimer = 0
+
     if (!this.config.is_afk) return false
     let notice = this.config.afkstr
-    let active = e ? e.$self : true
     let pinged = e ? e.$ping && !e.$self : false
     if (pinged && !active || !e) return this.Batch(notice)
     // check if we sent an original message
     let checks = notice.split(";;").map(s => s.trim())
     let unique = e ? !checks.includes(e.text) : false
     if (active && unique) {
-      this.idleTimer = 0
       this.setConfig("is_afk", false)
       return this.Post( welcomeBack )
     }

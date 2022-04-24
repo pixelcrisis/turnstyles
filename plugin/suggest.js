@@ -4,7 +4,7 @@ module.exports = App => {
 
 	App.checkSuggest = function (e) {
 		if (!this.config.emojis) return
-		let text = e.target.value.split(" ")
+		let text = $("#chat-input").val().split(" ")
 		let word = text[text.length - 1]
 		let test = word.length > 1 && word[0] == ":"
 		if (word[word.length - 1] == ":") test = false
@@ -30,11 +30,12 @@ module.exports = App => {
 		let name = e.target.dataset.icon
 		let text = $("#chat-input").val().split(" ")
 		text[text.length - 1] = `${ name } `
-		$("#chat-input").val(text.join(" ")).focus()
+		$("#chat-input").val( text.join(" ") )
 		$("#tsTyping").remove()
 	}
 
 	App.bindSuggest = function (list) {
+		if (!list.length) return false
 		let getIcon = this.emoteParse.bind(this)
 		let onClick = this.suggestThis.bind(this)
 		$("body").append( suggestHTML(getIcon, list) )
