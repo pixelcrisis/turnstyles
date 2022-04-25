@@ -15,7 +15,7 @@ module.exports = App => {
 
 	App.suggestEmotes = function (text) {
 		let icons = []
-		let query = text.split(":").join("")
+		let query = text.split(":").join("").toLowerCase()
 		let found = s => s.indexOf(query) === 0
 		let listA = Object.keys(this.twitchIcons)
 		let listB = Object.keys(this.bttvIcons)

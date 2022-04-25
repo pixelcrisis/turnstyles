@@ -41,12 +41,12 @@ module.exports = App => {
 
 	App.emoteRender = function (emotes, list) {
 		// use the first one to find the messages
-		let first = list[0].split(":p").join("")
+		let first = list[0].split(":p").join("").split(":P").join("")
 		let $text = `.chat .text:contains("${ first }")`
 		$( $text ).each(function() {
 			let html = this.innerHTML
 			for (let icon in emotes) {
-				let name = icon.split(":p").join("")
+				let name = icon.split(":p").join("").split(":P").join("")
 				html = html.split( name ).join( emotes[icon] )
 			}
 			this.innerHTML = html.split(tongue).join("")
