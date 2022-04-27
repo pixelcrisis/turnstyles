@@ -1,10 +1,7 @@
 // Bookmarklet Access To Plugin
 
 const path = "https://ts.pixelcrisis.co/build"
-const base = document.createElement('script')
-base.textContent = `window.tsBase = "${path}"`
-base.type = 'text/javascript'
-document.body.append(base)
+window.localStorage.setItem("tsBase", path)
 
 // inject the main turnStyles script
 const main = document.createElement('script')

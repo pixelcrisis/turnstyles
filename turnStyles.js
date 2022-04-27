@@ -14,7 +14,10 @@ Clicking OK will attempt to open the turnStyles website in a new tab.`
 
 const init = () => {
 	// throw errors for older plugins
-	if (!window.tsBase) {
+	turnStyles.__base = window.localStorage.getItem("tsBase")
+	turnStyles.__sync = window.localStorage.getItem("tsSync")
+
+	if (!turnStyles.__base) {
 		let update = () => window.open(ts_url, "_blank")
 		if (window.confirm(issues)) update()
 		return false

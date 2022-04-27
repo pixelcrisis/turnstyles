@@ -38,10 +38,9 @@ const Inject = db => {
 	let backup = db ? JSON.stringify(db.tsdb || {}) : false
 	let script = target.runtime.getURL("turnStyles.js")
 	let extURL = script.split("/turnStyles.js")[0]
-	// inject the base URL for links
-	Append(`window.tsBase = "${ extURL }"`)
-	// inject any synced data we received
-	Append(`window.tsSync = ${ backup }`)
+	// inject the base URL/sync data
+	window.localStorage.setItem("tsBase", extURL)
+	window.localStorage.setItem("tsSync", backup)
 	// the main script gets us started
 	Append(script)
 }

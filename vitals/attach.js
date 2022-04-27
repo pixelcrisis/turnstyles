@@ -3,9 +3,7 @@
 module.exports = App => {
 
 	App.initConfig = function () {
-		this.__base = window.tsBase
-		this.__sync = window.tsSync
-		this.__logo = window.tsBase + "/images/icon128.png"
+		this.__logo = this.__base + "/images/icon128.png"
 
 		let configs = this.readConfig()
 		this.config = { ...this.default, ...configs }

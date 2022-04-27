@@ -7,8 +7,8 @@ module.exports = App => {
 		let local = window.localStorage.getItem("tsdb")
 		// check for local storage db and synced app db
 		local = local ? JSON.parse(local) : {}
-		if ("theme" in store) this.Log(`[loaded] addon db`)
-		if ("theme" in local) this.Log(`[loaded] local db`)
+		if (store && store.theme) this.Log(`[loaded] addon db`)
+		if (local && local.theme) this.Log(`[loaded] local db`)
 		return { ...store, ...local }
 	}
 
