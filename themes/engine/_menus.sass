@@ -23,14 +23,16 @@ ul#ding-menu.floating-menu li.option,
 #settings.settings-dropdown .dropdown .split-option
 	@extend .ts-no-shadow
 	@extend .ts-content-hover
-	font-weight: bold
 	border: 1px solid $bg-dark-1
 
 	&:not(.active):hover
 		background: $bg-light-3
 
+	&.special
+		background: $bg-dark-3
+
 	&.special:hover
-		@extend .ts-gradient
+		@extend .ts-co-main
 
 	&.active, &.selected
 		@extend .ts-bg-curr
