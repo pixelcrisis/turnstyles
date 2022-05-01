@@ -16,6 +16,10 @@ const init = () => {
 	// throw errors for older plugins
 	turnStyles.__base = window.localStorage.getItem("tsBase")
 	turnStyles.__sync = window.localStorage.getItem("tsSync")
+	if (turnStyles.__sync === "undefined") turnStyles.__sync = "{}"
+
+	window.localStorage.removeItem("tsBase")
+	window.localStorage.removeItem("tsSync")
 
 	if (!turnStyles.__base) {
 		let update = () => window.open(ts_url, "_blank")

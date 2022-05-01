@@ -3,10 +3,11 @@
 module.exports = App => {
 
 	App.readConfig = function () {
-		let store = this.__sync || {}
+		let store = this.__sync
 		let local = window.localStorage.getItem("tsdb")
 		// check for local storage db and synced app db
 		local = local ? JSON.parse(local) : {}
+		store = store ? JSON.parse(store) : {}
 		if (store && store.theme) this.Log(`[loaded] addon db`)
 		if (local && local.theme) this.Log(`[loaded] local db`)
 		return { ...store, ...local }
