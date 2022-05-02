@@ -29,6 +29,7 @@ module.exports = App => {
 		// update the config with other config data
 		for (let prop in data) this.config[prop] = data[prop]
 		let store = JSON.stringify(this.config)
+		window.localStorage.setItem("tsBase", this.__base)
 		window.localStorage.setItem("tsdb", store)
 		return this.Reload()
 	}
