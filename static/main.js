@@ -15,7 +15,7 @@ let Format = () => {
 }
 
 let Backup = () => {
-	if (data) sync.set({ tsdb: JSON.parse(data) })
+	if (data) sync.set({ tsdb: data })
 	window.addEventListener("message", Update)
 	sync.get([ "tsdb" ], db => Inject(db))
 }
@@ -26,8 +26,8 @@ let Update = ev => {
 }
 
 let Inject = db => {
+	let data = db ? db.tsdb : "{}"
 	let base = file.split("/turnStyles.js")[0]
-	let data = JSON.stringify(db ? db.tsdb : {})
 	window.localStorage.setItem("tsBase", base)
 	window.localStorage.setItem("tsSync", data)
 

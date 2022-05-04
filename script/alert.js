@@ -2,14 +2,14 @@
 
 module.exports = App => {
 
+	// send a "fake" message to chat
 	App.Post = function (alert) {
-		// appends a "fake" message to chat
 		$(".chat .messages").append(postHTML(alert))
 		this.View().updateChatScroll()
 	}
 
+	// sends a real message to chat
 	App.Chat = function (text) {
-		// sends a real message to chat
 		window.turntable.sendMessage({
 			text, api: "room.speak",
 			roomid: this.View().roomId,
@@ -17,19 +17,22 @@ module.exports = App => {
 		})
 	}
 
+	// send multiple messages to chat
 	App.Batch = function (text) {
-		// send multiple messages to chat
 		if (!text) return false
 		text = text.split(";;")
 		if (text.length > 3) this.Post(batchError)
 		else for (let msg of text) this.Chat(msg.trim())
 	}
 
+	// Send a Post and Notification
+	// used for big status updates (nextDJ, etc)
   App.Bully = function (alert) {
     this.Post(alert)
     this.Notify(alert)
   }
 
+  // share turnStyles
 	App.Share = () => {
 		if (window.confirm(shareAsk)) {
 			App.Batch(shareMsg.join(";;"))

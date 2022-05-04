@@ -16,13 +16,13 @@ module.exports = App => {
 
   App.logNewDJ = function (e) {
     let user = e.user[0].userid
-    let name = this.findName(user)
+    let name = this.Name(user)
     this.Log(`[new dj] ${ name }`, user)
   }
 
   App.logOldDJ = function (e) {
     let user = e.user[0].userid
-    let name = this.findName(user)
+    let name = this.Name(user)
     this.Log(`[old dj] ${ name }`, user)
   }
 
@@ -30,7 +30,7 @@ module.exports = App => {
     let list = e.room.metadata.votelog
     let last = list[ list.length - 1 ]
     let user = last[0], vote = last[1]
-    let name = this.findName(last[0])
+    let name = this.Name(last[0])
     this.Log(`[vote] ${ name }: ${ vote }`)
   }
 
@@ -38,7 +38,7 @@ module.exports = App => {
     this.Log(`[config] ${ key }: ${ val }`)
   }
 
-  App.bindDebugs = function () {
+  App.bindDebug = function () {
     this.Bind("add_dj", this.logNewDJ)
     this.Bind("rem_dj", this.logOldDJ)
     this.Bind("update", this.logConfig)

@@ -2,10 +2,10 @@
 
 module.exports = App => {
 
+  // send a desktop notification
   App.Notify = function (alert) {
-    let perm = this.canNotify()
-    if (!perm || document.hasFocus()) return
     let { head, body, type } = alert
+    if (!this.canNotify() || document.hasFocus()) return
     // wrap in function in case we need to delay
     let ding = () => {
       let icon = this.__logo
@@ -18,6 +18,7 @@ module.exports = App => {
     else ding()
   }
 
+  // get notification permissions
   App.canNotify = function () {
     let config = this.config.notify
     let notify = config.chat || config.song || config.ding
@@ -33,6 +34,21 @@ module.exports = App => {
     }
     // otherwise we're good!
     return true
+  }
+
+  // don't spam notificaions
+  App.Delay = function (func, type) {
+    // define holding list if undefined
+    if (!this.holding) this.holding = {}
+    // ignore the function if we're holding
+    if (this.holding[type]) return false
+    // otherwise set the delay
+    let timeout = 5 * 1000 // 5 seconds
+    // it works by self destructing the held type
+    let cleared = () => { delete this.holding[type] }
+    this.holding[type] = setTimeout(cleared.bind(this), timeout)
+    // fire any function since we weren't holding
+    if (func) func()
   }
 
   App.bindNotify = function () {

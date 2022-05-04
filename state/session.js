@@ -2,16 +2,17 @@
 
 module.exports = App => {
 
+	// add new DJ to session
 	App.cacheDJ = function (e) {
 		// find user by id (e) or event (e.user)
 		let user = e.user ? e.user[0].userid : e
-		// add them to cache if not there
+		// add them to session if not there
 		let curr = this.current_djs[user]
 		if (!curr) this.current_djs[user] = getStats()
 	}
 
+	// add last song to DJ stats 
 	App.updateDJ = function (last) {
-		// add last song to DJ stats 
 		if (!last.song || !last.djid) return
 		let curr = this.current_djs[last.djid]
 		let data = getStats(curr, { ...last, spun: 1 })
@@ -20,14 +21,15 @@ module.exports = App => {
 		if (last.djid == this.User().id) this.escortMe()
 	}
 
+	// handle DJ drop/removal
 	App.resetDJ = function (e) {
-		// handle DJ drop/removal
 		let user = e.user[0].userid
 		let stat = statLine(this.current_djs[user])
 		delete this.current_djs[user]
 		this.Emit("dropped", e.user[0].name, stat)
 	}
 
+	// update session with new song
 	App.cacheSong = function (e) {
 		// check if attaching song (e) or new song (metadata)
 		let song = e && e.room ? e.room.metadata.current_song : e

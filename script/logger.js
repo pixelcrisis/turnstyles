@@ -7,21 +7,23 @@ module.exports = App => {
 	App.Ran = (text, info) => App.Logger("ran", text, info)
 	App.Err = (text, info) => App.Logger("err", text, info)
 
+	// handle posting our logs
 	App.Logger = function (type, text, info) {
 		let perm = this.config ? this.config.debug : true
 		let post = perm || type != "log"
 
-		let full = `tS [${ this.time() }] ${ text } ${ info || "" }`
+		let full = `tS [${ this.Time() }] ${ text } ${ info || "" }`
 
 		if (perm) console.info(full)
 		if (post) this.postLog(type, text, info)
 	}
 
+	// print logs to the room tab
 	App.postLog = function (type, text, info) {
 		this.logBook = this.logBook || []
 		if (this.logBook.length > 49) this.logBook.shift()
 		
-		let opts = { type, text, info, time: this.time() }
+		let opts = { type, text, info, time: this.Time() }
 		this.logBook.push( loggerHTML(opts) )
 
 		let book = $("#tsLogs")[0] || {}

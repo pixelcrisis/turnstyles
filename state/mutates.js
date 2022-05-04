@@ -2,15 +2,15 @@
 
 module.exports = App => {
 
+	// backup the configs to a JSON file
 	App.backupData = function () {
-		// backup the configs to a JSON file
 		let config = JSON.stringify(this.config)
 		let backup = new Blob([ config ], { type: "text/json" })
 		return downloadFile(backup)
 	}
 
+	// read configs from a JSON file
 	App.uploadData = function () {
-		// read configs from a JSON file
 		let file = $("#tsBackup input")[0].files[0]
 		if (!file) return alert("Select Backup File First!")
 		let Reader = new FileReader()
@@ -18,15 +18,15 @@ module.exports = App => {
 		Reader.readAsText(file)
 	}
 
+	// parse JSON as a config file
 	App.restoreData = function (file) {
-		// parse JSON as a config file
 		let data = JSON.parse(file.target.result)
 		if (data.hotbar && data.people) App.updateData(data)
 		else alert("Error Reading Backup File!")
 	}
 
+	// update config with new config data
 	App.updateData = function (data = {}) {
-		// update the config with other config data
 		for (let prop in data) this.config[prop] = data[prop]
 		let store = JSON.stringify(this.config)
 		window.localStorage.setItem("tsBase", this.__base)
@@ -34,18 +34,18 @@ module.exports = App => {
 		return this.Reload()
 	}
 
+	// reset config to defaults
 	App.resetData = function () {
-		// reset config to defaults
 		if (window.confirm(warnReset)) {
 			this.updateData(this.default)
 		}
 	}
 
+	// destroy database start over
 	App.deleteData = function () {
-		// destroy the database and start over
 		if (window.confirm(warnDelete)) {
+			window.localStorage.setItem("tsWipe", true)
 			window.localStorage.removeItem("tsdb")
-			window.localStorage.setItem("ts-reset", true)
 			window.location.reload()
 		}
 	}

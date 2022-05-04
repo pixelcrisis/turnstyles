@@ -40,7 +40,7 @@ postcss build/turnStyles.css --use autoprefixer --d build/
 echo "${TEXT}Migrating ${CODE}static/"
 cp -R static/. build/
 
-echo "${TEXT}Selecting ${CODE}manifest2.json ${TEXT} AS ${CODE}manifest.json"
+echo "${TEXT}Selecting ${CODE}manifest2.json ${TEXT}AS ${CODE}manifest.json"
 mv build/manifest2.json build/manifest.json
 
 echo "${HEAD}Finished Build"

@@ -4,7 +4,7 @@ module.exports = App => {
 
   App.Reload = function () {
     // remove turnstyles
-    clearInterval(this.looping)
+    clearInterval(this.ran)
     $(`script[src*="turnStyles.js"]`).remove()
     window.turntable.removeEventListener("message", this.listener)
     // re-inject the script
@@ -20,18 +20,22 @@ module.exports = App => {
     let sc = window.soundcloudplayer
     // update the song delay as time of refresh
     // then resume the song to force an update
-    if (sc.song) {
-      sc.songTime = sc.player.currentTime() / 1e3
-      sc.previewStartTime = Date.now() - 1000
-      sc.resumeSong(sc.song)
-    }
-    if (yt.song) {
-      yt.songTime = yt.player[0].getCurrentTime()
-      yt.previewStartTime = Date.now() - 3000
-      yt.resumeSong(yt.song)
-    }
+    if (sc.song) this.reloadSC(sc)
+    if (yt.song) this.reloadYT(yt)
     // close the panel on finish
     $("#tsPanel").removeClass("active")
+  }
+
+  App.reloadSC = function (curr) {
+    curr.songTime = curr.player.currentTime() / 1e3
+    curr.previewStartTime = Date.now() - 1000
+    curr.resumeSong(curr.song)
+  }
+
+  App.reloadYT = function (curr) {
+    curr.songTime = curr.player[0].getCurrentTime()
+    curr.previewStartTime = Date.now() - 3000
+    curr.resumeSong(curr.song)
   }
 
 }

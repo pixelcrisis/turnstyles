@@ -1,12 +1,12 @@
 module.exports = App => {
 
-  // import vital scripts
-  require("./global.js")(App)
+  // import our core scripts
+  require("./tools.js")(App)
   require("./events.js")(App)
-  require("./timing.js")(App)
+  require("./loop.js")(App)
   require("./logger.js")(App)
-  require("./debugs.js")(App)
-  require("./alerts.js")(App)
+  require("./debug.js")(App)
+  require("./alert.js")(App)
   require("./notify.js")(App)
   require("./reload.js")(App)
   require("./attach.js")(App)
@@ -20,7 +20,7 @@ module.exports = App => {
     this.bindWatcher(room)
     this.bindLoop(room)
     this.bindLogger(room)
-    this.bindDebugs(room)
+    this.bindDebug(room)
     this.bindNotify(room)
   })
 
