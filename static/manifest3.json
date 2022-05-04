@@ -22,7 +22,7 @@
         "*://turntable.fm/static/*"
       ],
       "js": [
-        "inject.js"
+        "main.js"
       ],
       "run_at": "document_end",
       "matches": [

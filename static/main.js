@@ -1,60 +1,44 @@
-// turnStyles preloading and injection
+// turnStyles app injection
 
-// what kind of browser are we in
-const target = chrome || browser
-const syncDB = target.storage ? target.storage.sync : false
-const script = target.runtime.getURL("turnStyles.js")
+let self = chrome || browser
+let file = self.runtime.getURL("turnStyles.js")
+let sync = self.storage ? self.storage.sync : false
 
-const stored = window.localStorage.getItem("tsdb")
-const remove = window.localStorage.getItem("ts-reset")
+let data = window.localStorage.getItem("tsdb")
+let wipe = window.localStorage.getItem("tsWipe")
 
-const Attach = () => {
-	if (remove) return Format()
-	if (syncDB) return Backup()
-	else return Inject()
-}
-
-const Format = () => {
-	// wipe out all tS data
+let Format = () => {
+	data = false
 	window.localStorage.removeItem("tsdb")
-	window.localStorage.removeItem("ts-reset")
-	if (syncDB) syncDB.remove([ "tsdb" ], () => Backup())
-	else Inject()
+	window.localStorage.removeItem("tsWipe")
+	if (sync) sync.remove([ "tsdb" ])
 }
 
-const Backup = () => {
-	// save to syncDB (addon db)
-	let save = stored && !remove
-	let tsdb = save ? JSON.parse(stored) : false
-	if (tsdb) syncDB.set({ tsdb })
-	// listen for db update messages
+let Backup = () => {
+	if (data) sync.set({ tsdb: JSON.parse(data) })
 	window.addEventListener("message", Update)
-	// fetch and inject our app data 
-	syncDB.get([ "tsdb" ], db => Inject(db))
+	sync.get([ "tsdb" ], db => Inject(db))
 }
 
-const Update = Event => {
-	let tsdb = Event.data.tsdb
-	if (tsdb) syncDB.set({ tsdb: tsdb })
+let Update = ev => {
+	let tsdb = ev.data.tsdb
+	if (tsdb) sync.set({ tsdb })
 }
 
-const Inject = DB => {
-	// inject tS data and scripts
-	let tsSync = DB ? DB.tsdb : {}
-	let tsBase = script.split("/turnStyles.js")[0]
-	// inject the base URL/sync data
-	if (tsSync) tsSync = JSON.stringify(tsSync)
-	window.localStorage.setItem("tsBase", tsBase)
-	window.localStorage.setItem("tsSync", tsSync)
-	// the main script gets us started
-	Append(script)
-}
+let Inject = db => {
+	let base = file.split("/turnStyles.js")[0]
+	let data = JSON.stringify(db ? db.tsdb : {})
+	window.localStorage.setItem("tsBase", base)
+	window.localStorage.setItem("tsSync", data)
 
-const Append = JS => {
 	let elem = document.createElement("script")
-	elem.src = `${ JS }?v=${ Math.random() }`
+	elem.src = `${ file }?v=${ Math.random() }`
 	elem.type = "text/javascript"
 	document.body.append(elem)
 }
 
-Attach()
+(function () {
+	if (wipe) Format()
+	if (sync) Backup()
+	else return Inject()
+})()

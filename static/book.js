@@ -4,7 +4,7 @@ const path = "https://ts.pixelcrisis.co/build"
 window.localStorage.setItem("tsBase", path)
 
 // inject the main turnStyles script
-const main = document.createElement('script')
-main.type = 'text/javascript'
-main.src = `${ path }/turnStyles.js?v=${ Math.random() }`
-document.body.append(main)
+const book = document.createElement('script')
+book.type = 'text/javascript'
+book.src = `${ path }/turnStyles.js?v=${ Math.random() }`
+document.body.append(book)

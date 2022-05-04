@@ -13,13 +13,13 @@ echo "${TEXT}Compiling ${CODE}turnStyles.sass"
 node-sass turnStyles.sass -o build > /dev/null
 postcss build/turnStyles.css --use autoprefixer --d build/
 
-echo "${TEXT}Compiling ${CODE}themes/"
-node-sass themes -o build/themes > /dev/null
-postcss build/themes/*.css --use autoprefixer --d build/themes/
+# echo "${TEXT}Compiling ${CODE}themes/"
+# node-sass themes -o build/themes > /dev/null
+# postcss build/themes/*.css --use autoprefixer --d build/themes/
 
-echo "${TEXT}Compiling ${CODE}styles/"
-node-sass styles -o build/styles > /dev/null
-postcss build/styles/*.css --use autoprefixer --d build/styles/
+# echo "${TEXT}Compiling ${CODE}styles/"
+# node-sass styles -o build/styles > /dev/null
+# postcss build/styles/*.css --use autoprefixer --d build/styles/
 
 echo "${HEAD}Finished Build"
 
@@ -28,13 +28,13 @@ echo "${HEAD}Finished Build"
 echo "${HEAD}Observing Files..."
 echo "${TEXT}Observing ${CODE}turnStyles.js"
 echo "${TEXT}Observing ${CODE}turnStyles.sass"
-echo "${TEXT}Observing ${CODE}themes/"
-echo "${TEXT}Observing ${CODE}styles/"
-echo "${TEXT}Observing ${CODE}chrome/*.js*"
+# echo "${TEXT}Observing ${CODE}themes/"
+# echo "${TEXT}Observing ${CODE}styles/"
+echo "${TEXT}Observing ${CODE}static/*.js"
 
 concurrently \
 	"watchify turnStyles.js -o build/turnStyles.js" \
 	"node-sass turnStyles.sass -wo build" \
-	"node-sass themes -wo build/themes" \
-	"node-sass styles -wo build/styles" \
-	"copy-and-watch --watch chrome/*.js* build/"
+	"copy-and-watch --watch static/*.js build/"
+	# "node-sass themes -wo build/themes" \
+	# "node-sass styles -wo build/styles" \

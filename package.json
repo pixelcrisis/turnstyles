@@ -7,8 +7,7 @@
   "license": "MIT",
   "scripts": {
     "build": "sh bash/build.sh",
-    "watch": "sh bash/watch.sh",
-    "start": "sh bash/start.sh",
+    "serve": "sh bash/serve.sh",
     "quick": "sh bash/quick.sh",
     "style": "sh bash/style.sh"
   },

@@ -15,8 +15,8 @@ echo "${HEAD}Finished Build${NONE}"
 
 echo "${HEAD}Observing Files..."
 echo "${TEXT}Observing ${CODE}turnstyles.js"
-echo "${TEXT}Observing ${CODE}chrome/*.js*"
+echo "${TEXT}Observing ${CODE}static/*.js"
 
 concurrently \
 	"watchify turnStyles.js -o build/turnStyles.js" \
-	"copy-and-watch --watch chrome/*.js* build/" 
+	"copy-and-watch --watch static/*.js build/" 

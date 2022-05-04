@@ -1,33 +1,37 @@
-let turnStyles = window.$tS = {}
-// a thing by pixelcrisis
+let turnStyles = window.$ts = {}
+// overcomplicated, by pixelcrisis
 
-require("./vitals/_bind.js")(turnStyles)
-require("./config/_bind.js")(turnStyles)
-require("./inputs/_bind.js")(turnStyles)
-require("./plugin/_bind.js")(turnStyles)
+// import and build out the extension
+// require("./script/_import.js")(turnStyles)
+// require("./state/_import.js")(turnStyles)
+// require("./panel/_import.js")(turnStyles)
+// require("./plugin/_import.js")(turnStyles)
 
-const ts_url = "https://ts.pixelcrisis.co"
-const issues = `Oops! Something went wrong with turnStyles! 
+// first we make sure we were injected properly
+// so we look up the base (bookmarklet or app?)
+// and grab the sync db data (if using the app)
+let ts_base = window.localStorage.getItem("tsBase")
+let ts_sync = window.localStorage.getItem("tsSync")
+if (ts_sync == "undefined") ts_sync = "{}"
+// remove base / sync to prevent caching
+window.localStorage.removeItem("tsBase")
+window.localStorage.removeItem("tsSync")
+
+// if we weren't injected properly, check update
+let ts_url = "https://ts.pixelcrisis.co"
+let issues = `Oops! Something went wrong with turnstyles!
 If this is a bookmarklet, you may need to update it.
-To update, view the ts website at ${ ts_url } 
-Clicking OK will attempt to open the turnStyles website in a new tab.`
-
-const init = () => {
-	// throw errors for older plugins
-	turnStyles.__base = window.localStorage.getItem("tsBase")
-	turnStyles.__sync = window.localStorage.getItem("tsSync")
-	if (turnStyles.__sync === "undefined") turnStyles.__sync = "{}"
-
-	window.localStorage.removeItem("tsBase")
-	window.localStorage.removeItem("tsSync")
-
-	if (!turnStyles.__base) {
-		let update = () => window.open(ts_url, "_blank")
-		if (window.confirm(issues)) update()
-		return false
-	}
-
-	turnStyles.Attach()
+Visit the turnStyles website at ${ ts_url } to update!
+Clicking OK will attempt to open the update in a new tab.`
+let update = () => {
+	let popup = () => window.open(ts_url, "_blank")
+	if (window.confirm( issues )) popup()
 }
 
-init()
+// let's attempt to start
+(function () {
+	// if (!ts_base) return update()
+	turnStyles.base = ts_base
+	turnStyles.sync = ts_sync
+	// turnStyles.Attach()
+})()
