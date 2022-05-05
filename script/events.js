@@ -20,9 +20,9 @@ module.exports = App => {
 	// parse turntable events
 	App.listen = function (event) {
 		if (!event.command) return
-		event.$ping = this.findPing(event.text)
-		event.$name = this.findName(event.userid)
-		event.$from = this.findName(event.senderid)
+		event.$ping = this.Ping(event.text)
+		event.$name = this.Name(event.userid)
+		event.$from = this.Name(event.senderid)
 		event.$self = this.User().id == event.userid
 		this.Emit(event.command, event)
 	}

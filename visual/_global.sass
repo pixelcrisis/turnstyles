@@ -36,6 +36,17 @@
 	font-size: 11px
 	@extend .ts-faded
 
+.chat .message.patron
+	box-shadow: inset 5px 0 0 gold
+.chat .message.patron:hover
+	@extend .ts-brighten
+.chat .message.patron .speaker:after
+	font-style: italic
+	font-weight: normal
+	content: " turnstyles patron"
+.chat .message.patron:not(:hover) .speaker:after
+	display: none
+
 // Feature Toggles
 body.ts-logger #tsLogBook
 	display: block

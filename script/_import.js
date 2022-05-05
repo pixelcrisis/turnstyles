@@ -10,6 +10,7 @@ module.exports = App => {
   require("./alert.js")(App)
   require("./notify.js")(App)
   require("./reload.js")(App)
+  require("./patron.js")(App)
   require("./attach.js")(App)
 
   App.Bind("loaded", function (config) {
@@ -28,6 +29,7 @@ module.exports = App => {
     this.bindLogger(room)
     this.bindDebug(room)
     this.bindNotify(room)
+    this.bindPatron(room)
   })
 
 }

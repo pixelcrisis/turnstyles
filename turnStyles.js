@@ -22,6 +22,7 @@ turnStyles.opts = require("./confs/config.json").options
 turnStyles.lang = require("./confs/static.json")
 turnStyles.icoT = require("./confs/emoteT.json")
 turnStyles.icoB = require("./confs/emoteB.json")
+turnStyles.gold = require("./confs/patron.json")
 turnStyles.logo = ts_base + "/images/icon128.png"
 
 // import and build out the extension
