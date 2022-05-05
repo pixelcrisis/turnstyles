@@ -1,5 +1,20 @@
 // the main options panels
 
+#tsLogo
+	width: 30px
+	opacity: 0.5
+	margin-left: 25px
+
+#tsHotBar
+	width: 100%
+	display: none
+	line-height: 1em
+	@extend .ts-content
+	.wrap
+		display: flex
+		flex-wrap: wrap
+		padding: 10px 20px
+
 #tsWindow
 	display: none
 	z-index: 1000
@@ -7,7 +22,6 @@
 	justify-content: center
 	background: rgba(0, 0, 0, 0.75)
 	@include fix(0, 0, 0, 0)
-
 	::-webkit-scrollbar
 		width: 7px
 	::-webkit-scrollbar-track
@@ -16,24 +30,31 @@
 		background: $bg-light-2
 	::-webkit-scrollbar-thumb:hover
 		background: $c-mute
+	&.active
+		display: flex
 
-#tsHotBar
-	display: none
-	flex-wrap: wrap
-	margin: 0 auto
-	padding: 10px 20px
-	line-height: 1em
-	max-width: 960px
-	@extend .ts-content
-
-#tsWindow *, #tsHotBar *
+#tsHotBar *,
+#tsWindow *
 	box-sizing: border-box
 
-#tsWindow.active,
-.header-bar:hover #tsHotBar
-  display: flex
+.header-bar:hover 
+	#tsLogo
+		display: none
+	#tsHotBar
+		display: block
 
-#tsPanels
+#topBG 
+	#tsLogo
+		left: 50%
+		position: relative
+		margin-top: -15px
+		margin-left: -475px
+
+	#tsHotBar .wrap
+		margin: 0 auto
+		max-width: 1000px
+
+#tsxPanels
 	width: 100%
 	padding: 20px
 	max-width: 740px
@@ -42,7 +63,7 @@
 	@include box(80%)
 	@extend .ts-content
 
-.ts-tab
+.tsx-tab
 	cursor: pointer
 	font-size: 14px
 	font-weight: bold
@@ -57,14 +78,14 @@
 	&.active
 		opacity: 1
 
-.ts-tabbed
+.tsx-tabbed
 	display: none
 	flex-wrap: wrap
 	margin-left: -10px
-.ts-tabbed.active
+.tsx-tabbed.active
 	display: flex
 
-#tsPanels
+#tsxPanels
 	nav
 		margin: 15px 0
 

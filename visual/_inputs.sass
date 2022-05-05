@@ -1,46 +1,5 @@
 // the panel/hotbar inputs
 
-#tsPanels
-	.ts-toggle,
-	.ts-inputs,
-	.ts-button,
-	.ts-choice,
-	section h3
-		display: block
-		border-radius: 0
-
-.ts-button,
-.ts-toggle,
-.ts-inputs,
-.ts-choice
-	border: none
-	outline: none
-	font-size: 0.9em
-	font-weight: bold
-	border-radius: 5px
-	margin-right: 5px
-	padding: 5px 10px 4px
-	display: inline-flex
-	cursor: pointer
-	@extend .ts-content-hover
-
-.ts-button
-	font-size: 1em
-	padding-top: 5px
-
-.ts-toggle span
-	width: 12px
-	min-width: 12px
-	font-size: 12px
-	display: inline-block
-.ts-toggle input
-	display: none
-.ts-toggle input:checked + span:after
-	color: $accent
-	content: $i-check
-.ts-toggle input:not(:checked) + span:after
-	content: $i-cross
-	@extend .ts-faded
 
 #tsOpenBtn
 	color: $accent
@@ -50,6 +9,51 @@
 #tsCloseBtn
 	cursor: pointer
 	margin-right: 10px
+
+.ts-button,
+.ts-inputs
+	border: none
+	outline: none
+	font-size: 0.9em
+	font-weight: bold
+	border-radius: 5px
+	margin-right: 5px
+	display: inline-flex
+	padding: 5px 10px 4px
+	cursor: pointer
+	@extend .ts-content-hover
+
+.ts-toggle
+	padding-top: 4px
+	span
+		width: 12px
+		min-width: 12px
+		font-size: 12px
+		display: inline-block
+	input
+		display: none
+	input:checked + span:after
+		color: $accent
+		content: $i-check
+	input:not(:checked) + span:after
+		content: $i-cross
+		@extend .ts-faded
+
+#tsPanels
+	.tss-toggle,
+	.tss-inputs,
+	.tss-button,
+	.tss-choice,
+	section h3
+		display: block
+		border-radius: 0
+
+
+.tss-button
+	font-size: 1em
+	padding-top: 5px
+
+
 
 #tsBackup input
 	display: none

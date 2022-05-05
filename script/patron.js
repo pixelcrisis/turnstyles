@@ -3,15 +3,15 @@
 module.exports = App => {
 
   App.findPatron = function (e) {
-    if (!e.userid in this.gold) return false
-    let message = this.linkMessage(e.name, e.text)
-    if (message) $(message).addClass("patron")
+    if (this.gold.indexOf(e.userid) < 0) return false
+    let $message = this.linkMessage(e.name, e.text)
+    if ($message) $message.addClass("patron")
   }
 
   App.linkMessage = function (name, text) {
-    let find = $(`.message:contains("${ name }"):contains("${ text }")`)
-    if (find.length) find = find[find.length - 1]
-    return find
+    let find = `.message:contains("${ name }")`
+    if (text) find = `${ find }:contains("${ text }")`
+    return $( find ).last()
   }
 
   App.bindPatron = function () {

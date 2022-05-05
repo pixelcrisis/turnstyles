@@ -2,15 +2,15 @@ module.exports = App => {
 
   require("./layout.js")(App)
   require("./hotbar.js")(App)
-  require("./tabbed.js")(App)
-  require("./panels.js")(App)
+  // require("./tabbed.js")(App)
+  // require("./window.js")(App)
 
-  App.openPanels = () => $("#tsWindow").addClass("active")
-  App.closePanels = () => $("#tsWindow").removeClass("active")
+  App.showPanel = () => $("#tsWindow").addClass("active")
+  App.hidePanel = () => $("#tsWindow").removeClass("active")
 
   App.bindInputs = function () {
     this.bindHotBar()
-    this.bindPanels()
+    // this.bindPanels()
   }
 
   App.Bind("lobby", App.bindInputs)

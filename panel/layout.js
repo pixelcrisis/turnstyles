@@ -3,8 +3,8 @@
 module.exports = App => {
 
   App.$button = function (name, opt, id, func) {
-    let does = `${ func ? `onclick="$tS.${ func }()"` : "" }`
     let item = `${ opt ? `data-for="${ opt }"` : "" }`
+    let does = `${ func ? `onclick="$tS.${ func }()"` : "" }`
     let flag = `${ id ? `id="${ id }"` : "" } ${ item } ${ does }`
     return `<button class="ts-button" ${ flag }>${ name }</button>`
   }
@@ -16,7 +16,7 @@ module.exports = App => {
 
   App.$toggle = function (opt, name, cat = "", id) {
     let data = this.getConfig(opt, cat)
-    let main = `class="ts-toggle" ${ id ? `id="${ id }"` : "" }`
+    let main = `class="ts-button ts-toggle" ${ id ? `id="${ id }"` : "" }`
     let flag = `data-opt="${ opt }" data-cat="${ cat || "" }"`
     let html = `type="checkbox" ${ data ? "checked" : "" }`
     return `<label ${ main }><input ${ html } ${ flag }> <span></span>${ name }</label>`
@@ -43,7 +43,7 @@ module.exports = App => {
     let flag = `data-opt="${ opt }" data-cat="${ cat || "" }"`
     let none = `<option value="">${ off || `No ${ this.cap(opt) }` }</option>`
     let html = Object.keys( list ).map( item => this.$option(list, item, data) )
-    return `<select class="ts-choice" ${ flag }>${ none }${ html }</select>`
+    return `<select class="ts-button ts-choice" ${ flag }>${ none }${ html }</select>`
   }
 
   App.$option = function (list, item, data) {

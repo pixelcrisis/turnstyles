@@ -19,7 +19,7 @@ module.exports = App => {
 
   App.Bind("lobby", function () {
     this.bindLogger()
-    this.bindDebugs()
+    this.bindDebug()
   })
 
   App.Bind("attach", function (room) {

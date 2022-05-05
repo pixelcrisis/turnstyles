@@ -36,7 +36,8 @@
         "turnStyles.css",
         "turnStyles.js",
         "themes/*",
-        "styles/*"
+        "styles/*",
+        "images/*"
       ],
       "matches": [
         "*://turntable.fm/*"

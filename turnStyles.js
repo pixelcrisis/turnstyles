@@ -28,7 +28,7 @@ turnStyles.logo = ts_base + "/images/icon128.png"
 // import and build out the extension
 require("./script/_import.js")(turnStyles)
 require("./state/_import.js")(turnStyles)
-// require("./panel/_import.js")(turnStyles)
+require("./panel/_import.js")(turnStyles)
 // require("./plugin/_import.js")(turnStyles)
 
 // if we weren't injected properly, check update
