@@ -1,6 +1,5 @@
 module.exports = App => {
 
-	require("./themes.js")(App)
 	require("./visual.js")(App)
 	require("./volume.js")(App)
 	require("./chat.js")(App)
@@ -15,18 +14,15 @@ module.exports = App => {
 	require("./suggest.js")(App)
 
 	App.Bind("loaded", function (config) {
-		this.loadTheme(config)
-		this.loadClass(config)
+		this.loadVisual(config)
 	})
 
 	App.Bind("lobby", function () {
-		this.bindTheme()
-		this.bindClass()
+		this.bindVisual()
 	})
 
 	App.Bind("attach", function (room) {
-		this.bindTheme(room)
-		this.bindClass(room)
+		this.bindVisual(room)
 		this.bindVolume(room)
 		this.bindChat(room)
 		this.bindPlaylist(room)

@@ -30,7 +30,7 @@ module.exports = App => {
     let list = e.room.metadata.votelog
     let last = list[ list.length - 1 ]
     let user = last[0], vote = last[1]
-    let name = this.Name(last[0])
+    let name = this.Name(user)
     this.Log(`[vote] ${ name }: ${ vote }`)
   }
 
