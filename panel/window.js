@@ -19,7 +19,7 @@ module.exports = App => {
   }
 
   const Window = () => `
-    <div id="tsWindow" class="active">
+    <div id="tsWindow">
       <div id="tsPanels">
         <header>
           <img src="${ App.logo }" id="tsLogo2"> 
