@@ -18,6 +18,7 @@ module.exports = App => {
   })
 
   App.Bind("lobby", function () {
+    this.bindTheme()
     this.bindLogger()
     this.bindDebug()
   })

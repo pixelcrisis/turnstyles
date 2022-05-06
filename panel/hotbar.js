@@ -5,7 +5,7 @@ module.exports = App => {
   App.bindHotBar = function () {
     $("#tsHotBar, .ts-menu").remove()
     $(".header-bar").append( HotBar() )
-    $("#settings #layout-option").before( MenuOption() )
+    $("#settings .dropdown ul li").first().before( MenuOption() )
 
     $("#tsLogo, .ts-menu").on("click", this.showPanel)
     $("#tsHotBar *[data-for]").on("click",  this.saveConfig.bind(this))

@@ -19,7 +19,7 @@ $recent: #a74646
 $tinted: 10deg
 
 // generate our variables
-@import "../visual/basics"
+@import "../visual/import"
 
 // define filters
 // to apply color shifts
@@ -45,3 +45,10 @@ $tinted: 10deg
 
 // build out the theme
 @import "engine/import"
+
+// dim the logo for night
+// as well as other things
+#tsLogo, #tsLogo2,
+.roomAlbumArt,
+.roomDJs.needed
+	@extend .ts-faded

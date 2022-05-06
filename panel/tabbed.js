@@ -234,7 +234,7 @@ module.exports = App => {
             ${ App.$button("Delete All Data", 0, 0, "deleteData") }
           </article>
           <article class="ts-help">
-            <strong>Getting Help via Discords</strong>
+            <strong>On Discord</strong>
             <p>You can find the author and active users in the below discords.</p>
             ${ App.$linkto("turnStyles Discord", App.lang.tsDiscord) }
             ${ App.$linkto("turntable.fm Discord", App.lang.ttDiscord) }
@@ -248,7 +248,7 @@ module.exports = App => {
           <article class="ts-help">
             <strong>turnStyles</strong>
             <p><strong>version: </strong>${ App.version }</p>
-            <p><strong>user id: </strong>${ App.User().id }</p>
+            <p><strong>user id: </strong>${ App.User()?.id }</p>
           </article>
         </section>
         <section>
