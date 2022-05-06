@@ -1,4 +1,5 @@
 let turnStyles = window.$ts = {}
+turnStyles.version = require("./package.json").version
 // overcomplicated, by pixelcrisis
 
 // first we make sure we were injected properly

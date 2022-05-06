@@ -1,15 +1,5 @@
 // the panel/hotbar inputs
 
-
-#tsOpenBtn
-	color: $accent
-	padding-top: 0
-	font-size: 1.2em
-
-#tsCloseBtn
-	cursor: pointer
-	margin-right: 10px
-
 .ts-button,
 .ts-inputs
 	border: none
@@ -19,12 +9,12 @@
 	border-radius: 5px
 	margin-right: 5px
 	display: inline-flex
-	padding: 5px 10px 4px
+	padding: 6px 10px 4px
 	cursor: pointer
 	@extend .ts-content-hover
 
 .ts-toggle
-	padding-top: 4px
+	padding-top: 5px
 	span
 		width: 12px
 		min-width: 12px
@@ -39,22 +29,11 @@
 		content: $i-cross
 		@extend .ts-faded
 
-#tsPanels
-	.tss-toggle,
-	.tss-inputs,
-	.tss-button,
-	.tss-choice,
-	section h3
-		display: block
-		border-radius: 0
+.ts-data .ts-button
+	display: inline-flex !important
 
-
-.tss-button
-	font-size: 1em
-	padding-top: 5px
-
-
-
+#tsBackup
+	vertical-align: middle
 #tsBackup input
 	display: none
 
@@ -67,21 +46,17 @@
 	background: #eeeeee
 	border-left: 1px solid #aaa
 	border-right: 1px solid #aaa
-
-#tsTyping .wrap
-	display: flex
-	min-height: 100%
-	box-sizing: border-box
-	flex-direction: column
-	justify-content: flex-end
-	padding: 10px 10px 10px 5px
-
-#tsTyping img
-	width: 20px
-
-#tsTyping div
-	padding: 3px
-	cursor: pointer
-
-#tsTyping .icon:hover
-	background: rgba(0, 0, 0, 0.1)
+	.wrap
+		display: flex
+		min-height: 100%
+		box-sizing: border-box
+		flex-direction: column
+		justify-content: flex-end
+		padding: 10px 10px 10px 5px
+	img
+		width: 20px
+	div
+		padding: 3px
+		cursor: pointer
+	.icon:hover
+		background: rgba(0, 0, 0, 0.1)

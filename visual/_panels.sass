@@ -1,69 +1,16 @@
-// the main options panels
-
-#tsLogo
-	width: 30px
-	opacity: 0.5
-	margin-left: 25px
-
-#tsHotBar
+// options panel content
+#tsPanels
 	width: 100%
-	display: none
-	line-height: 1em
-	@extend .ts-content
-	.wrap
-		display: flex
-		flex-wrap: wrap
-		padding: 10px 20px
-
-#tsWindow
-	display: none
-	z-index: 1000
-	align-items: center
-	justify-content: center
-	background: rgba(0, 0, 0, 0.75)
-	@include fix(0, 0, 0, 0)
-	::-webkit-scrollbar
-		width: 7px
-	::-webkit-scrollbar-track
-		background: $bg-dark-3
-	::-webkit-scrollbar-thumb
-		background: $bg-light-2
-	::-webkit-scrollbar-thumb:hover
-		background: $c-mute
-	&.active
-		display: flex
-
-#tsHotBar *,
-#tsWindow *
-	box-sizing: border-box
-
-.header-bar:hover 
-	#tsLogo
-		display: none
-	#tsHotBar
-		display: block
-
-#topBG 
-	#tsLogo
-		left: 50%
-		position: relative
-		margin-top: -15px
-		margin-left: -475px
-
-	#tsHotBar .wrap
-		margin: 0 auto
-		max-width: 1000px
-
-#tsxPanels
-	width: 100%
+	height: auto
 	padding: 20px
+	max-height: 80%
 	max-width: 740px
+	margin-top: 42px
 	overflow-y: auto
 	position: relative
-	@include box(80%)
 	@extend .ts-content
 
-.tsx-tab
+.ts-tab
 	cursor: pointer
 	font-size: 14px
 	font-weight: bold
@@ -71,98 +18,87 @@
 	display: inline-block
 	text-transform: uppercase
 	opacity: 0.7
-
 	&.active
 		color: $accent
-	&:hover,
-	&.active
+	&:hover, &.active
 		opacity: 1
 
-.tsx-tabbed
+.ts-tabbed
 	display: none
 	flex-wrap: wrap
 	margin-left: -10px
-.tsx-tabbed.active
-	display: flex
+	&.active
+		display: flex
 
-#tsxPanels
-	nav
-		margin: 15px 0
-
-	section
-		padding: 10px
-		margin: 0 0 10px 10px
-		@extend .ts-content-hover
-	section.full
-		width: calc(100% - 10px)
-	section:not(.full)
-		width: calc(50% - 10px)
-
-	section h3
-		padding: 10px
-		font-size: 16px
-		margin: -10px -10px 5px -10px
-		border-bottom: 2px solid $bg-light-1
-	section h3 small
+#tsPanels	header 
+	margin-top: -15px
+	*
+		display: inline-block
+		vertical-align: middle
+	h2
+		margin-top: 3px
+	span
 		float: right
-	section h3 .ts-toggle, 
-	section h3 .ts-toggle span
-		font-size: 16px
-	section h3 .ts-toggle
-		margin: 0
-		padding: 0
-		background: transparent
-	section h3 .ts-toggle span
-		margin-right: 10px
-	section h3 + .ts-choice,
-	section h3 + .ts-button
-		margin-top: 10px
+		cursor: pointer
+		margin-top: 7px
+		font-size: 1.2rem
 
-	section kbd
-		padding: 0 3px
-		border-radius: 3px
-		border: 1px solid $c-back
-		@extend .ts-content-alt
+#tsPanels	nav
+	margin-top: 5px
+	margin-bottom: 15px
 
-	section .ts-choice,
-	section .ts-inputs,
-	section .ts-button,
-	section .ts-toggle
-		width: 100%
-		padding: 10px
-		font-size: 1em
-		margin-bottom: 5px
-		@extend .ts-content-alt
+#tsPanels section
+	margin-left: 10px
+	&.full
+		width: calc(100% - 10px)
+	&:not(.full)
+		width: calc(50% - 10px)
+	h4
+		margin: 0 0 5px
 
-	section .ts-toggle,
-	section .ts-inputs
-		margin: 10px 0 5px
-
-	section .ts-button
-		text-align: center
-		text-decoration: none
-
-	section .ts-toggle span
-		margin-right: 5px
-
-	section .ts-inputs
-		cursor: initial
-		font-weight: normal
-		border-bottom: 2px solid $bg-dark-1
-
-	.ts-toggle + .ts-toggle,
-	.ts-toggle + .ts-inputs,
-	.ts-choice + .ts-inputs
-		margin-top: 0
-
-	.ts-button + p
-		margin: 10px 0
-
+#tsPanels article
+	padding: 5px
+	position: relative
+	margin-bottom: 5px
+	border-radius: 5px
+	border: 1px solid $bg-light-4
+	@extend .ts-content-hover
 	p
-		color: $c-mute
+		margin: 0
+		display: none
+		padding: 0 10px 5px
+		@extend .ts-faded
+	&.ts-help p
+		display: block
+	p, strong
+		font-size: 0.9em
 		font-weight: bold
-	p + .ts-toggle
-		margin-bottom: 5px
-	p + .ts-button,
-	p + .ts-choice
-		margin-top: 10px
+	strong + p
+		padding-top: 5px
+	strong + .ts-choice
+		display: inline-block
+	strong
+		margin: 0 10px
+	&:before
+		content: "?"
+		color: $c-text
+		display: block
+		cursor: pointer
+		font-weight: bold
+		@include abs(8px, 10px)
+	&.ts-help:before
+		color: $accent
+	.ts-button,
+	.ts-inputs
+		display: block
+	.ts-inputs
+		width: 100%
+		margin: 5px 0
+		padding: 10px
+		@extend .ts-content-alt
+	.ts-choice
+		background: $bg-light-1
+	.ts-toggle span
+		margin-right: 5px
+	.ts-button:not(.ts-toggle):not(.ts-choice)
+		margin-left: auto

@@ -38,10 +38,10 @@ module.exports = App => {
   }
 
   App.$select = function (opt, cat = "", off) {
-    let list = this.options[opt]
+    let list = this.opts[opt]
     let data = this.getConfig(opt, cat)
     let flag = `data-opt="${ opt }" data-cat="${ cat || "" }"`
-    let none = `<option value="">${ off || `No ${ this.cap(opt) }` }</option>`
+    let none = `<option value="">${ off || `No ${ this.Noun(opt) }` }</option>`
     let html = Object.keys( list ).map( item => this.$option(list, item, data) )
     return `<select class="ts-button ts-choice" ${ flag }>${ none }${ html }</select>`
   }

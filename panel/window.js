@@ -2,22 +2,30 @@
 
 module.exports = App => {
 
-  App.bindPanels = function () {
+  App.bindWindow = function () {
     $("#tsWindow").remove()
-    $("body").append( Panels() )
+    $("body").append( Window() )
 
+    $(".ts-tab").on("click", switchTab)
+
+    $("#tsClose").on("click", this.hidePanel)
     $("#tsWindow").on("click", closeFromWindow)
-    $("#tsPanels .ts-tab").on("click", switchTab)
-    $("#tsCloseBtn").on("click", this.closePanels)
-    $("#tsBackup input").on("change", this.uploadData)
+
     $("#tsPanels *[data-for]").on("click", this.saveConfig.bind(this))
     $("#tsPanels *[data-opt]").on("change", this.saveConfig.bind(this))
+    
+    $("#tsBackup input").on("change", this.uploadData)
+    $("#tsPanels article").on("click", toggleHelp)
   }
 
-  const Panels = () => `
-    <div id="tsWindow">
+  const Window = () => `
+    <div id="tsWindow" class="active">
       <div id="tsPanels">
-        <h2><span id="tsCloseBtn">✖</span>turnStyles options</h2>
+        <header>
+          <img src="${ App.logo }" id="tsLogo2"> 
+          <h2>turnStyles Config</h2>
+          <span id="tsClose">✖</span>
+        </header>
         <nav> ${ App.tabs.map( TabHead ).join("") } </nav>
         ${ App.tabs.map( TabBody ).join("") }
       </div>
@@ -48,4 +56,9 @@ const switchTab = function (e) {
   let target = e.target.dataset.tab
   $("#tsPanels .active").removeClass("active")
   $(`*[data-tab="${ target }"]`).addClass("active")
+}
+
+const toggleHelp = function (e) {
+  let target = e.target
+  $(target).toggleClass("ts-help")
 }

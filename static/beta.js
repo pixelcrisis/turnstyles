@@ -1,6 +1,6 @@
 // Bookmarklet Access To Plugin
 
-let path = "https://etc.pixelcrisis.co/build"
+let path = "https://beta.turnstyles.xyz/build"
 window.localStorage.setItem("tsBase", path)
 
 // inject the main turnStyles script
