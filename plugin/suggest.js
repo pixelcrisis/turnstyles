@@ -2,44 +2,49 @@
 
 module.exports = App => {
 
-	App.checkSuggest = function (e) {
+	App.runSuggest = function () {
 		if (!this.config.emojis) return
 		let text = $("#chat-input").val().split(" ")
 		let word = text[text.length - 1]
-		let test = word.length > 1 && word[0] == ":"
-		if (word[word.length - 1] == ":") test = false
-
-		if (test) this.suggestEmotes(word)
-		else $("#tsTyping").remove()
+		let last = word[word.length - 1]
+		let test = word.length > 1 && word[0] == ":" && last == ":"
+		if (test) this.getSuggest(word)
+		else $("#tsSuggest").remove()
 	}
 
-	App.suggestEmotes = function (text) {
-		let icons = []
-		let query = text.split(":").join("").toLowerCase()
-		let found = s => s.indexOf(query) === 0
-		let listA = Object.keys(this.twitchIcons)
-		let listB = Object.keys(this.bttvIcons)
+	App.getSuggest = function (word) {
+		word = word.split(":").join("")
+		let icons = [], query = word.toLowerCase()
+		let listA = Object.keys(this.icoT)
+		let listB = Object.keys(this.icoB)
+
+		let found = str => str.indexOf(query) === 0
 		for (let i of listA) if ( found(i) ) icons.push(i)
 		for (let i of listB) if ( found(i) ) icons.push(i)
-
-		$("#tsTyping").remove()
-		this.bindSuggest( icons.sort() )
+		$("#tsSuggest").remove()
+		this.genSuggest( icons.sort() )
 	}
 
-	App.suggestThis = function (e) {
-		let name = e.target.dataset.icon
-		let text = $("#chat-input").val().split(" ")
-		text[text.length - 1] = `${ name } `
-		$("#chat-input").val( text.join(" ") )
-		$("#tsTyping").remove()
-	}
-
-	App.bindSuggest = function (list) {
+	App.genSuggest = function (list) {
 		if (!list.length) return false
-		let getIcon = this.emoteParse.bind(this)
-		let onClick = this.suggestThis.bind(this)
-		$("body").append( suggestHTML(getIcon, list) )
-		$("#tsTyping .icon").on("click", onClick)
+		let getIcon = this.getEmote.bind(this)
+		let onClick = this.addSuggest.bind(this)
+		let suggest = suggestHTML(getIcon, list)
+		$("body").append( suggest )
+		$("#tsSuggest .icon").on("click", onClick)
+	}
+
+	App.addSuggest = function (e) {
+		let name = e.target.dataset.icon
+		let text = $("chat-input").val().split(" ")
+		text[text.length - 1] = `${ name } `
+		$("#chat-input").val( text.join(' ') )
+		$("#tsSuggest").remove()
+	}
+
+	App.bindSuggest = function () {
+		this.Bind("typeahead", this.runSuggest)
+		$("#chat-input").on("input", this.runSuggest.bind(this))
 	}
 
 }

@@ -2,18 +2,18 @@
 
 module.exports = App => {
 
-  App.addTimeStamp = function (e) {
+  App.timeStamp = function (e) {
     if (!this.config.stamps) return
     let message = $( lastMessage )
     let matches = message[0].innerText.indexOf(e.name) === 0
     let stamped = message.has(".timestamp").length
     if (matches && !stamped) {
-      let stamp = this.time().split(":").slice(0, 2).join(":")
+      let stamp = this.Time().split(":").slice(0, 2).join(":")
       message.prepend(`<div class="timestamp">${ stamp }</div>`)
     }
   }
 
-  App.fadeNewSong = function (el) {
+  App.fadeSong = function (el) {
     let last = $(el).children(".message").last()
     let user = last.has(".avatar").length
     let text = last[0].innerText.includes("started playing")
@@ -29,8 +29,8 @@ module.exports = App => {
   }
 
   App.bindChat = function () {
-    this.Bind("speak", this.addTimeStamp)
-    this.Bind("newchat", this.fadeNewSong)
+    this.Bind("speak", this.timeStamp)
+    this.Bind("newchat", this.fadeSong)
     // easy inline quicktext onlick access
     this.qtbtn1 = function () { this.quickText('qtbtn1') }
     this.qtbtn2 = function () { this.quickText('qtbtn2') }

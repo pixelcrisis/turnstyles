@@ -3,7 +3,8 @@
 module.exports = App => {
 
   App.findPatron = function (e) {
-    if (this.gold.indexOf(e.userid) < 0) return false
+    let list = Object.values(this.gold)
+    if (list.indexOf(e.userid) < 0) return false
     let $message = this.linkMessage(e.name, e.text)
     if ($message) $message.addClass("patron")
   }

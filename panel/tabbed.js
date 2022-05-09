@@ -248,7 +248,7 @@ module.exports = App => {
           <article class="ts-help">
             <strong>turnStyles</strong>
             <p><strong>version: </strong>${ App.version }</p>
-            <p><strong>user id: </strong>${ App.User()?.id }</p>
+            <p><strong>user id: </strong>${ App.MyID() }</p>
           </article>
         </section>
         <section>

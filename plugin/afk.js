@@ -2,7 +2,7 @@
 
 module.exports = App => {
 
-  App.isAway = function (e) {
+  App.getAfk = function (e) {
     let active = e ? e.$self : true
     if (active) this.idleTimer = 0
 
@@ -19,12 +19,12 @@ module.exports = App => {
     }
   }
 
-  App.goAway = function (key, val, cat) {
+  App.setAfk = function (key, val, cat) {
     if (cat || key != "is_afk") return false
-    if (val) this.isAway()
+    if (val) this.getAfk()
   }
 
-  App.goIdle = function () {
+  App.idling = function () {
     if (!this.config.idling) return
     this.idleTimer += 1
     let max = this.config.afkmax
@@ -34,11 +34,11 @@ module.exports = App => {
     this.Post( goneIdle )
   }
 
-  App.bindAway = function () {
+  App.bindAfk = function () {
     this.idleTimer = 0
-    this.Bind("loop", this.goIdle)
-    this.Bind("speak", this.isAway)
-    this.Bind("update", this.goAway)
+    this.Bind("loop", this.idling)
+    this.Bind("speak", this.getAfk)
+    this.Bind("update", this.setAfk)
   }
 
 }

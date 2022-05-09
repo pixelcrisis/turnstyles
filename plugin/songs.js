@@ -2,24 +2,24 @@
 
 module.exports = App => {
 
-  App.countPlaylist = function () {
+  App.countSongs = function () {
     let head = $("#playlist-header .text")[0]
     let data = window.playlist.fileids.length
     let name = head.innerHTML.split("<em>")[0]
     head.innerHTML = `${ name } <em>${ data }</em>`
   }
 
-  App.checkPlaylist = function () {
-    if (this.waitForPlaylist) {
-      clearTimeout(this.waitForPlaylist)
-      delete this.waitForPlaylist
+  App.checkSongs = function () {
+    if (this.delayed) {
+      clearTimeout(this.delayCheck)
+      delete this.delayCheck
     }
-    let search = this.searchPlaylist
+    let checkSongs = this.findPlayed.bind(this)
     // only run the search if playlist isn't loading
-    this.waitForPlaylist = setTimeout(search.bind(this), 250)
+    this.delayCheck = setTimeout(checkSongs, 250)
   }
 
-  App.searchPlaylist = function () {
+  App.findPlayed = function () {
     $(".song.ts-recent").removeClass("ts-recent")
     if (!this.config.played) return
 
@@ -35,20 +35,20 @@ module.exports = App => {
     })
   }
 
-  App.updatePlaylist = function (key, val) {
-    this.checkPlaylist()
-    if (key == "played") this.bodyClass("ts-played", val)
+  App.updateSongs = function (key, val) {
+    this.checkSongs()
+    if (key == "played") this.Body("ts-played", val)
   }
 
-  App.bindPlaylist = function () {
-    this.countPlaylist()
-    this.checkPlaylist()
-    this.bodyClass("ts-played", this.config.played)
+  App.bindSongs = function () {
+    this.countSongs()
+    this.checkSongs()
+    this.Body("ts-played", this.config.played)
 
-    this.Bind("update", this.updatePlaylist)
-    this.Bind("tracked", this.checkPlaylist)
-    this.Bind("playlist", this.checkPlaylist)
-    this.Bind("playlist", this.countPlaylist)
+    this.Bind("update", this.updateSongs)
+    this.Bind("tracked", this.checkSongs)
+    this.Bind("playlist", this.checkSongs)
+    this.Bind("playlist", this.countSongs)
   }
 
 }

@@ -3,7 +3,7 @@
 module.exports = App => {
 
   // insert a stylesheet 
-  App.Insert = function (file, folder) {
+  App.addSheet = function (file, folder) {
     // only have one sheet per type
     let path = getLink(file, folder)
     let type = `ts_${ folder || "core" }`
@@ -17,7 +17,7 @@ module.exports = App => {
   }
 
   // inject style tag css
-  App.Inject = function (style) {
+  App.addStyle = function (style) {
     let curr = $("#ts_css")[0]
     if (curr) curr.innerHTML = style
     else document.head.append( styleHTML(style) )
@@ -25,7 +25,7 @@ module.exports = App => {
   }
 
   // record active theme
-  App.Themed = function (theme) {
+  App.addTheme = function (theme) {
     App.Body("th-none", !theme)
     // remove the last used theme if any
     let last = $("body").data("theme")
@@ -40,19 +40,19 @@ module.exports = App => {
     $("#ts_core, #ts_css").remove()
     $("#ts_styles, #ts_themes").remove()
     // and add current settings
-    this.Insert("turnStyles")
-    this.Insert(config.theme, "themes")
-    this.Insert(config.style, "styles")
-    this.Inject(config.u_css)
-    this.Themed(config.theme)
+    this.addSheet("turnStyles")
+    this.addSheet(config.theme, "themes")
+    this.addSheet(config.style, "styles")
+    this.addStyle(config.u_css)
+    this.addTheme(config.theme)
   }
 
   App.bindTheme = function () {
     this.Bind("update", function (key, val) {
-      if (key == "theme") this.Themed(val)
-      if (key == "theme") this.Insert(val, "themes")
-      if (key == "style") this.Insert(val, "styles")
-      if (key == "u_css") this.Inject(val)
+      if (key == "theme") this.addTheme(val)
+      if (key == "theme") this.addSheet(val, "themes")
+      if (key == "style") this.addSheet(val, "styles")
+      if (key == "u_css") this.addStyle(val)
     })
   }
 

@@ -21,7 +21,7 @@ module.exports = App => {
 			$("#tsVolSlide").on(scroll, this.rollVolume.bind(this))
 			this.Log(`[volume] added`)
 		}
-		this.bodyClass("ts-volume", opt)
+		this.Body("ts-volume", opt)
 	}
 
 	// update window volume on change
@@ -51,7 +51,7 @@ module.exports = App => {
 
 	App.toggleMute = function () {
 		this.muted = !this.muted
-		this.bodyClass("ts-muted", this.muted)
+		this.Body("ts-muted", this.muted)
 		let vol = this.muted ? -7 : trueVolume()
 		window.turntablePlayer.setVolume(vol)
 		this.Ran(`[mute] ${ this.muted ? "on" : "off" }`)

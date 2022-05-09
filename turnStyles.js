@@ -30,7 +30,7 @@ turnStyles.logo = ts_base + "/images/icon128.png"
 require("./script/_import.js")(turnStyles)
 require("./state/_import.js")(turnStyles)
 require("./panel/_import.js")(turnStyles)
-// require("./plugin/_import.js")(turnStyles)
+require("./plugin/_import.js")(turnStyles)
 
 // if we weren't injected properly, check update
 let ts_url = "https://ts.pixelcrisis.co"

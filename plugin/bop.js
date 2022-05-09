@@ -2,19 +2,19 @@
 
 module.exports = App => {
 
-	App.autoBop = function () {
-		if (this.bop) clearTimeout(this.bop)
+	App.Bop = function () {
+		if (this.autobop) clearTimeout(this.autobop)
 		if (!this.config.auto_b) return false
 		// manually click the button after delay
 		const press = () => click(".awesome-button")
 		const delay = Math.floor((Math.random() * 7) * 100)
 		this.Log(`[autobop] in ${ delay / 100 } seconds`)
-		this.bop = setTimeout(press, delay)
+		this.autobop = setTimeout(press, delay)
 	}
 
-	App.bindAutobop = function () {
-		this.autoBop()
-		this.Bind("newsong", this.autoBop)
+	App.bindBop = function () {
+		this.Bop()
+		this.Bind("newsong", this.Bop)
 	}
 
 }

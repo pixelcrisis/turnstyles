@@ -2,19 +2,19 @@
 
 module.exports = App => {
 
-	App.loadClass = function (config) {
-		this.bodyClass("ts-logger", config.logger)
-		this.bodyClass("ts-no-bub", !config.bubble)
-		this.bodyClass("ts-no-ppl", !config.people)
-		this.bodyClass("ts-no-vid", !config.player)
+	App.loadVisual = function (config) {
+		this.Body("ts-logger", config.logger)
+		this.Body("ts-no-bub", !config.bubble)
+		this.Body("ts-no-ppl", !config.people)
+		this.Body("ts-no-vid", !config.player)
 	}
 
-  App.bindClass = function () {
-    this.Bind("update", function (key, val, grp) {
-      if (key == "bubble") this.bodyClass("ts-no-bub", !val)
-      if (key == "player") this.bodyClass("ts-no-vid", !val)
-      if (key == "people") this.bodyClass("ts-no-ppl", !val)
-      if (key == "logger") this.bodyClass("ts-logger", val)
+  App.bindVisual = function () {
+    this.Bind("update", function (key, val) {
+      if (key == "bubble") this.Body("ts-no-bub", !val)
+      if (key == "player") this.Body("ts-no-vid", !val)
+      if (key == "people") this.Body("ts-no-ppl", !val)
+      if (key == "logger") this.Body("ts-logger", val)
     })
   }
 

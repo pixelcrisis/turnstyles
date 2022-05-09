@@ -9,7 +9,7 @@ module.exports = App => {
     if (send) this.Notify({ head, body, type: "pm_ping"})
   }
 
-  App.notifyDing = function (e) {
+  App.notifyPing = function (e) {
     let send = this.config.notify.ding
     let room = `[${ this.View().roomData.name }]`
     let head = `${ room } @${ e.name }`, body = e.text
@@ -57,10 +57,10 @@ module.exports = App => {
     })
   }
 
-  App.bindAlerts = function () {
+  App.bindDings = function () {
     this.Bind("pmmed", this.notifyPMs)
     this.Bind("speak", this.notifyText)
-    this.Bind("speak", this.notifyDing)
+    this.Bind("speak", this.notifyPing)
     this.Bind("tracked", this.notifySong)
     this.Bind("snagged", this.alertSnag)
     this.Bind("registered", this.alertJoin)

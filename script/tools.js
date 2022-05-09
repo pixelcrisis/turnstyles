@@ -4,9 +4,14 @@ module.exports = App => {
 
 	// quick access to turntable data
 	App.User = () => window.turntable.user
+	App.Self = id => window.turntable.user.id == id
+	App.MyID = () => App.User() ? App.User().id : "N/A"
 	App.View = () => window.turntable.topViewController
 	App.Chat = () => window.turntable.buddyList.pmWindows
 	App.Room = () => window.turntable.topViewController.roomData
+	// quick access to some turntable functions
+	App.JumpUp = () => window.turntable.topViewController.becomeDj()
+	App.JumpDown = () => window.turntable.topViewController.quitDj()
 
 	// capitalize a string (proper Noun)
 	App.Noun = str => str[0].toUpperCase() + str.substring(1)
