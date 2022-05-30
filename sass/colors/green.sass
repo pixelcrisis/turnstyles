@@ -1,0 +1,27 @@
+$accent: #71b76f
+$tinted: 20deg
+
+// generate our variables
+@import "../import"
+
+// define filters
+// to apply color shifts
+// to images / elements
+// ( off - opacity: 1 )
+%vote-filter
+	@include shift($tinted, 1, 0.8)
+
+%room-filter
+	@include gloss($tinted + 80deg, 2)
+
+%main-filter
+	@include paint($tinted + 50deg, 2, 0.65)
+
+%hard-filter
+	@include paint($tinted + 50deg, 2, 0.65, 1)
+
+%mute-filter
+	@include paint($tinted + 70deg, 1.5, 0.4)
+
+@import "engine/extends"
+@import "engine/colorize"

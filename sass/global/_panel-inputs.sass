@@ -1,0 +1,57 @@
+// the panel/hotbar inputs
+
+.ts-button,
+.ts-inputs
+	border: none
+	outline: none
+	font-size: 0.9em
+	font-weight: bold
+	border-radius: 5px
+	margin-right: 5px
+	display: inline-flex
+	padding: 6px 10px 4px
+	cursor: pointer
+	@extend .ts-content-hover
+
+.ts-toggle
+	padding-top: 5px
+	span
+		width: 12px
+		min-width: 12px
+		font-size: 12px
+		display: inline-block
+	input
+		display: none
+	input:checked + span:after
+		color: $accent
+		content: $i-check
+	input:not(:checked) + span:after
+		content: $i-cross
+		@extend .ts-faded
+
+.ts-data .ts-button
+	display: inline-flex !important
+
+#tsSuggest
+	@include abs(false, 256px, 0px, false)
+	z-index: 10000
+	overflow-y: auto
+	box-sizing: border-box
+	height: calc(100% - 42px)
+	background: #eeeeee
+	border-left: 1px solid #aaa
+	border-right: 1px solid #aaa
+	.wrap
+		display: flex
+		min-height: 100%
+		box-sizing: border-box
+		flex-direction: column
+		justify-content: flex-end
+		padding: 10px 10px 10px 5px
+	img
+		width: 20px
+	div
+		padding: 3px
+		cursor: pointer
+	.icon:hover
+		background: rgba(0, 0, 0, 0.1)

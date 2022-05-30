@@ -1,0 +1,84 @@
+// our always on elements
+
+// structural supports
+#room-view
+	background: #000000
+
+#turntable #topBG .header-bar:hover
+	margin-bottom: 50px
+
+.chrome .header-bar
+  font-size: 13px
+  line-height: 42px
+
+.chrome .header-bar .header-room
+  display: block
+  padding: 0 0 0 75px
+
+.chrome .header-bar .header-room > div
+  margin: -2px 10px 0 0 !important
+  position: initial !important
+  vertical-align: top !important
+  display: inline-block !important
+
+.profile .section.statslink
+	text-align: center !important
+
+// song counter
+#playlist-display em 
+	line-height: 27px
+	@include abs(0, 25px)
+
+// chat additions
+.chat .message.stat:not(:hover)
+	@extend .ts-faded
+
+.chat .message .ts-time
+	float: right
+	margin-top: -1px
+	font-size: 11px
+	@extend .ts-faded
+
+.chat .message.patron
+	box-shadow: inset 5px 0 0 gold
+.chat .message.patron:hover
+	@extend .ts-brighten
+.chat .message.patron .speaker:after
+	font-style: italic
+	font-weight: normal
+	content: " turnStyles VIP"
+.chat .message.patron:not(:hover) .speaker:after
+	display: none
+
+// Feature Toggles
+body.ts-logger #tsLogBook
+	display: block
+body.ts-volume .dropdown-volume-container
+	@extend .ts-hidden
+
+body.ts-no-bub .speech-bubble,
+body.ts-no-vid .screen-content,
+body.ts-no-ppl #room-view > canvas:nth-child(4)
+	@extend .ts-hidden
+
+body.hb-qtbtn1 #qtbtn1,
+body.hb-qtbtn2 #qtbtn2,
+body.hb-qtbtn3 #qtbtn3,
+body.hb-autobop #hbBop,
+body.hb-afk-idle #hbIdle,
+body.hb-dj-auto #hbAutoDJ,
+body.hb-dj-next #hbNextDJ,
+body.hb-dj-done #hbDoneDJ,
+body.hb-people #hbPeople,
+body.hb-player #hbPlayer,
+body.hb-bubble #hbBubble,
+body.hb-share #hbShare
+	@extend .ts-hidden
+
+// Recently Played
+body.ts-played #queue .song.ts-recent:not(.current-song)
+	box-shadow: inset -6px 0 0 0px $recent
+	.details
+		color: $recent
+	&:hover .details:after
+		content: " (Recent)"

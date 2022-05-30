@@ -1,63 +1,59 @@
-// suggest.js | suggest external emojis
+module.exports = TS => {
 
-module.exports = App => {
+	TS.hideSuggest = () => $("#tsSuggest").remove()
 
-	App.runSuggest = function () {
-		if (!this.config.emojis) return
-		let text = $("#chat-input").val().split(" ")
+	TS.scanSuggest = function () {
+		if (!this.config["use.emojis"]) return
+		let text = this.getWords($("#chat-input").val())
 		let word = text[text.length - 1]
-		let last = word[word.length - 1]
-		let test = word.length > 1 && word[0] == ":" && last == ":"
-		if (test) this.getSuggest(word)
-		else $("#tsSuggest").remove()
+		let icon = word[0] == ":" && word.length > 1
+		if (icon) this.findSuggest(word)
+		else this.hideSuggest()
 	}
 
-	App.getSuggest = function (word) {
-		word = word.split(":").join("")
-		let icons = [], query = word.toLowerCase()
-		let listA = Object.keys(this.icoT)
-		let listB = Object.keys(this.icoB)
-
-		let found = str => str.indexOf(query) === 0
-		for (let i of listA) if ( found(i) ) icons.push(i)
-		for (let i of listB) if ( found(i) ) icons.push(i)
-		$("#tsSuggest").remove()
-		this.genSuggest( icons.sort() )
+	TS.findSuggest = function (word) {
+		let icons = []
+		let match = key => key.indexOf(name) === 0
+		let found = (val, key) => { if (match(key)) icons.push(key) }
+		this.twitchMap.forEach(found)
+		this.bttvMap.forEach(found)
+		this.makeSuggest(icons.sort())
 	}
 
-	App.genSuggest = function (list) {
-		if (!list.length) return false
-		let getIcon = this.getEmote.bind(this)
-		let onClick = this.addSuggest.bind(this)
-		let suggest = suggestHTML(getIcon, list)
-		$("body").append( suggest )
-		$("#tsSuggest .icon").on("click", onClick)
+	TS.makeSuggest = function (list) {
+		if (!list.length) return this.hideSuggest()
+		// func to generate our icon HTML
+		let click = this.sendSuggest.bind(this)
+		let image = name => HTML.ICON( this.getEmote(name), name )
+		$("body").append( HTML.WRAP( list.map( image ) ) )
+		$("#tsSuggest .icon").on("click", click)
 	}
 
-	App.addSuggest = function (e) {
-		let name = e.target.dataset.icon
-		let text = $("chat-input").val().split(" ")
+	TS.sendSuggest = function (event) {
+		let name = event.target.dataset.icon
+		let text = $("#chat-input").val().split(" ")
+		// replace the in progress emoji with complete
 		text[text.length - 1] = `${ name } `
-		$("#chat-input").val( text.join(' ') )
-		$("#tsSuggest").remove()
+		$("#chat-input").val( text.join(" "))
+		this.hideSuggest()
 	}
 
-	App.bindSuggest = function () {
-		this.Bind("typeahead", this.runSuggest)
-		$("#chat-input").on("input", this.runSuggest.bind(this))
-	}
+	TS.$on("attach", function () {
+		this.$on("type", this.scanSuggest)
+		$("#chat-input").on("input", this.scanSuggest.bind(this))
+	})
 
 }
 
-const suggestHTML = (icon, list) => `
-	<div id="tsTyping">
-		<div class="wrap">
-			${ list.map(name => iconHTML(icon, name)).join("") }
+const HTML = {
+	ICON: (ICON, NAME) => `
+		<div class="icon" data-icon=":${ NAME }:">
+			${ ICON } :${ NAME }:
 		</div>
-	</div>
-`
-
-const iconHTML = (icon, name) => `
-	<div class="icon" data-icon=":${ name }:">
-		${ icon(name) } :${ name }:
-	</div>`
+	`,
+	WRAP: LIST => `
+		<div id="tsSuggest">
+			<div class="wrap">${ LIST }</div>
+		</div>
+	`
+}

@@ -1,53 +1,35 @@
-let turnStyles = window.$ts = {}
-turnStyles.version = require("./package.json").version
+// turnStyles for turntable.fm
 // overcomplicated, by pixelcrisis
+let TBA = require("../tt-browser-api/")
 
 // first we make sure we were injected properly
 // so we look up the base (bookmarklet or app?)
 // and grab the sync db data (if using the app)
-let ts_base = window.localStorage.getItem("tsBase")
-let ts_sync = window.localStorage.getItem("tsSync")
-let ts_data = window.localStorage.getItem("tsdb")
+let data = window.localStorage.getItem("tsData")
+let sync = window.localStorage.getItem("tsSync")
+let base = window.localStorage.getItem("tsBase")
 
 // remove base / sync to prevent caching
 window.localStorage.removeItem("tsBase")
 window.localStorage.removeItem("tsSync")
 
 // ensure that we have something for data/sync
-if (!ts_sync || ts_sync == "undefined") ts_sync = "{}"
-if (!ts_data || ts_data == "undefined") ts_data = "{}"
+if (!sync || sync == "undefined") sync = "{}"
+if (!data || data == "undefined") data = "{}"
 
-// import our confs (jsons)
-turnStyles.conf = require("./confs/config.json").default
-turnStyles.opts = require("./confs/config.json").options
-turnStyles.lang = require("./confs/static.json")
-turnStyles.icoT = require("./confs/emoteT.json")
-turnStyles.icoB = require("./confs/emoteB.json")
-turnStyles.gold = require("./confs/patron.json")
-turnStyles.logo = ts_base + "/images/icon128.png"
+// let's define our plugin now
+let turnStyles = window.$ts = new TBA({ 
+	base, data, sync,
+	name: "turnStyles", label: "TS",
+	icon: `${ base }/images/icon128.png`,
+	version: require("./package.json").version, 
+	debugging: true
+})
 
 // import and build out the extension
-require("./script/_import.js")(turnStyles)
-require("./state/_import.js")(turnStyles)
-require("./panel/_import.js")(turnStyles)
+require("./core/_import.js")(turnStyles)
 require("./plugin/_import.js")(turnStyles)
 
-// if we weren't injected properly, check update
-let ts_url = "https://ts.pixelcrisis.co"
-let issues = `Oops! Something went wrong with turnstyles!
-If this is a bookmarklet, you may need to update it.
-Visit the turnStyles website at ${ ts_url } to update!
-Clicking OK will attempt to open the update in a new tab.`
-let update = () => {
-	let popup = () => window.open(ts_url, "_blank")
-	if (window.confirm( issues )) popup()
-}
-
-// let's attempt to start
-(function () {
-	if (!ts_base) return update()
-	turnStyles.base = ts_base
-	turnStyles.sync = ts_sync
-	turnStyles.data = ts_data
-	turnStyles.Attach()
-})()
+// start or die
+if (base) turnStyles.$attach()
+else turnStyles.Update()

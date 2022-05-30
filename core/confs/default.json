@@ -1,0 +1,58 @@
+{
+	"debug": false,
+	"theme": "dark",
+	"color": "",
+	"style": "",
+
+	"autobop": true,
+
+	"use.emojis": true,
+	"use.volume": false,
+	"use.recent": false,
+	"use.stamps": true,
+
+	"afk.auto": 0,
+	"afk.idle": false,
+	"afk.text": "I'm AFK - Back in a sec!",
+
+	"dj.next": false,
+	"dj.done": false,
+	"dj.auto": false,
+	"dj.text": "Hey @user - it's your turn!",
+
+	"on.pm": false,
+	"on.song": false,
+	"on.mention": false,
+	"on.text": "",
+
+	"post.song": false,
+	"post.spun": false,
+	"post.snag": false,
+	"post.join": false,
+	"post.left": false,
+
+	"qtbtn1": "Welcome || Welcome to my room!",
+	"qtbtn2": "Label || Your Message",
+	"qtbtn3": "Label || Message 1 ;; Message 2 ;; Message 3",
+
+	"hb.qtbtn1": false,
+	"hb.qtbtn2": false,
+	"hb.qtbtn3": false,
+	"hb.autobop": true,
+	"hb.afk.idle": true,
+	"hb.dj.next": true,
+	"hb.dj.done": true,
+	"hb.dj.auto": true,
+	"hb.people": false,
+	"hb.player": false,
+	"hb.bubble": false,
+	"hb.share": true,
+
+	"hide.people": false,
+	"hide.player": false,
+	"hide.bubble": false,
+	"show.logger": false,
+
+	"note.on": 0,
+	"note.text": "Today's theme is: Cool."
+}

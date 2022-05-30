@@ -6,10 +6,10 @@
   "author": "pixelcrisis <pxcrisis@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "sh bash/build.sh",
     "serve": "sh bash/serve.sh",
     "quick": "sh bash/quick.sh",
-    "style": "sh bash/style.sh"
+    "style": "sh bash/style.sh",
+    "build": "sh bash/build.sh"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.5",

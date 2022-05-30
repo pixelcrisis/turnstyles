@@ -1,0 +1,26 @@
+{
+	"theme": [
+		{ "label": "Theme: Disabled", "value": "" },
+		{ "label": "Theme: Dark Mode", "value": "dark" },
+		{ "label": "Theme: Night Mode", "value": "night" },
+		{ "label": "Theme: Cosmic", "value": "cosmic" },
+		{ "label": "Theme: Forest", "value": "forest" },
+		{ "label": "Theme: Midnight", "value": "midnight" }
+	],
+	"color": [
+		{ "label": "Color: Disabled", "value": "" },
+		{ "label": "Color: Blue", "value": "blue" },
+		{ "label": "Color: Pink", "value": "pink" },
+		{ "label": "Color: Green", "value": "green" },
+		{ "label": "Color: Purple", "value": "purple" },
+		{ "label": "Color: Teal", "value": "teal" }
+	],
+	"times": [
+		{ "label": "Disabled", "value": 0 },
+		{ "label": "15 Minutes", "value": 15 },
+		{ "label": "30 Minutes", "value": 30 },
+		{ "label": "60 Minutes", "value": 60 },
+		{ "label": "90 Minutes", "value": 90 },
+		{ "label": "120 Minutes", "value": 120 }
+	]
+}

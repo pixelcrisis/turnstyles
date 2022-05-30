@@ -1,16 +1,14 @@
-// remind.js | text at an interval
+module.exports = TS => {
 
-module.exports = App => {
+	TS.$on("loop", function (event) {
+		let perm = this.config["note.on"]
+		let text = this.config["note.text"]
+		// make sure beat is divisble by note.on
+		// e.g - every 15 minutes, on 30th beat is:
+		// 30 % 15 === 0 (31 is not divisible by 15)
+		let time = (event.beat % perm) === 0
+		if (!perm || !text || !time) return
+		this.$chat(`[${ this.$room.name }] ${ text }`)
+	})
 
-	App.Remind = function (ran) {
-		if (!this.config.timing.text) return
-		let freq = parseInt(this.config.timing.post || 0)
-		let text = `[${ this.Room().name }] ${ this.config.timing.text }`
-		if ((ran % freq) === 0 && this.config.timing.text) this.Chat(text)
-	}
-
-	App.bindRemind = function () {
-		this.Bind("loop", this.Remind)
-	}
-	
 }

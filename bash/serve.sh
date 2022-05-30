@@ -1,40 +1,21 @@
 #!/usr/bin/env bash
-HEAD='\033[0;32m'
-CODE='\033[0;34m'
-TEXT='\033[0;33m'
-# Added Some Color
+source bash/_util.sh
 
-# Step One: Do A Full Build Just In Case
+build_main
+build_sass
 
-echo "${TEXT}Compiling ${CODE}turnStyles.js"
-browserify -p tinyify turnStyles.js -o build/turnStyles.js
+log "Finished Build"
 
-echo "${TEXT}Compiling ${CODE}turnStyles.sass"
-node-sass turnStyles.sass -o build > /dev/null
-postcss build/turnStyles.css --use autoprefixer --d build/
+log "Observing Files..."
+log "Observing" "turnStyles.js"
+log "Observing" "sass/turnStyles.sass"
+log "Observing" "sass/themes/"
+log "Observing" "sass/colors/"
 
-echo "${TEXT}Compiling ${CODE}themes/"
-node-sass themes -o build/themes > /dev/null
-postcss build/themes/*.css --use autoprefixer --d build/themes/
-
-echo "${TEXT}Compiling ${CODE}styles/"
-node-sass styles -o build/styles > /dev/null
-postcss build/styles/*.css --use autoprefixer --d build/styles/
-
-echo "${HEAD}Finished Build"
-
-# Step Two: Build When Files Change
-
-echo "${HEAD}Observing Files..."
-echo "${TEXT}Observing ${CODE}turnStyles.js"
-echo "${TEXT}Observing ${CODE}turnStyles.sass"
-# echo "${TEXT}Observing ${CODE}themes/"
-# echo "${TEXT}Observing ${CODE}styles/"
-echo "${TEXT}Observing ${CODE}static/*.js"
+log "Ready To Serve"
 
 concurrently \
 	"watchify turnStyles.js -o build/turnStyles.js" \
-	"node-sass turnStyles.sass -wo build" \
-	"node-sass themes -wo build/themes" \
-	"node-sass styles -wo build/styles" \
-	"copy-and-watch --watch static/*.js build/"
+	"node-sass sass/turnStyles.sass -wo build" \
+	"node-sass sass/themes -wo build/themes" \
+	"node-sass sass/colors -wo build/colors"

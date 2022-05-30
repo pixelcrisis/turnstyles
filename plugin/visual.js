@@ -1,21 +1,31 @@
-// visual.js | changing and toggling elements
+module.exports = TS => {
 
-module.exports = App => {
+  TS.$on("user", function (event) {
+    if ($(".profile.modal .statslink").length) return
+    // force web links section to be visibe
+    $(".profile.modal .section.web-links").show()
+    $(".profile.modal .website").append( STAT_LINK(event.userid) )
+  })
 
-	App.loadVisual = function (config) {
-		this.Body("ts-logger", config.logger)
-		this.Body("ts-no-bub", !config.bubble)
-		this.Body("ts-no-ppl", !config.people)
-		this.Body("ts-no-vid", !config.player)
-	}
+  TS.$on("loaded", function (config) {
+    this.$body("ts-logger", config["show.logger"])
+    this.$body("ts-no-bub", config["hide.bubble"])
+    this.$body("ts-no-ppl", config["hide.people"])
+    this.$body("ts-no-vid", config["hide.player"])
+  })
 
-  App.bindVisual = function () {
-    this.Bind("update", function (key, val) {
-      if (key == "bubble") this.Body("ts-no-bub", !val)
-      if (key == "player") this.Body("ts-no-vid", !val)
-      if (key == "people") this.Body("ts-no-ppl", !val)
-      if (key == "logger") this.Body("ts-logger", val)
-    })
-  }
+  TS.$on("update", function (key, val) {
+    if (key == "show.logger") this.$body("ts-logger", val)
+    if (key == "hide.bubble") this.$body("ts-no-bub", val)
+    if (key == "hide.player") this.$body("ts-no-vid", val)
+    if (key == "hide.people") this.$body("ts-no-ppl", val)
+  })
 
 }
+
+const STAT_LINK = id => `
+  <a target="_blank" class="statslink" onclick="$('.modal .close-x')[0].click()"
+    href="https://thompsn.com/turntable/leaderboard/thing/?id=${ id }">
+    Leaderboard
+  </a>
+`

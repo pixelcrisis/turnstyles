@@ -1,22 +1,14 @@
 #!/usr/bin/env bash
-HEAD='\033[0;32m'
-CODE='\033[0;34m'
-TEXT='\033[0;33m'
-# Added Some Color
+source bash/_util.sh
 
-# Step One: Do A Quick Build Just In Case
+build_main
 
-echo "${TEXT}Compiling ${CODE}turnStyles.js"
-browserify -p tinyify turnStyles.js -o build/turnStyles.js
+log "Finished Build"
 
-echo "${HEAD}Finished Build${NONE}"
-
-# Step Two: Build When Files Change
-
-echo "${HEAD}Observing Files..."
-echo "${TEXT}Observing ${CODE}turnstyles.js"
-echo "${TEXT}Observing ${CODE}static/*.js"
-
-concurrently \
-	"watchify turnStyles.js -o build/turnStyles.js" \
-	"copy-and-watch --watch static/*.js build/" 
+if [ $# -gt 0 ]
+then
+	log "Observing Files..."
+	log "Observing" "turnStyles.js"
+	log "Ready To Serve"
+	watchify turnStyles.js -o build/turnStyles.js
+fi

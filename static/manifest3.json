@@ -22,7 +22,7 @@
         "*://turntable.fm/static/*"
       ],
       "js": [
-        "main.js"
+        "inject.js"
       ],
       "run_at": "document_end",
       "matches": [
@@ -36,7 +36,7 @@
         "turnStyles.css",
         "turnStyles.js",
         "themes/*",
-        "styles/*",
+        "colors/*",
         "images/*"
       ],
       "matches": [

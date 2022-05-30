@@ -1,0 +1,54 @@
+$accent: #bfa206
+
+$c-text: #adadad
+$c-back: #191919
+
+// event based
+// chat alert colors
+$c-snag: #a0629e
+$c-join: #69966b
+$c-left: #a74646
+
+// action: mod removed
+// recent: recently played text
+$action: #a74646
+$recent: #a74646
+
+// hue shift amount
+// on gold elements
+$tinted: 10deg
+
+// generate our variables
+@import "../import"
+
+// define filters
+// to apply color shifts
+// to images / elements
+// ( off - opacity: 1 )
+.ts-vote-filter
+	@include shift($tinted, 2, 0.7)
+
+.ts-room-filter
+	filter: brightness(0.8) saturate(80%)
+
+.ts-main-filter
+	@include paint($tinted, 3, 0.5)
+
+.ts-hard-filter
+	@include paint($tinted, 3, 0.7, 1)
+
+.ts-mute-filter
+	opacity: 0.75
+
+.ts-fade-filter
+	opacity: 0.5
+
+// build out the theme
+@import "engine/import"
+
+// dim the logo for night
+// as well as other things
+#tsLogo, #tsLogo2,
+.roomAlbumArt,
+.roomDJs.needed
+	@extend .ts-faded
