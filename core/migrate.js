@@ -1,14 +1,16 @@
 module.exports = TS => {
 
 	TS.Migrate = function (old) {
-		let version = this.config.version
-		if (!version || old) this.migrate12(old)
+		let ver = this.config.version
+		let tmp = window.localStorage.getItem("tsdb")
+		if (tmp) old = JSON.parse(tmp)
+		if (isNaN(ver)) ver = 11
+		if (ver < 12 || old) this.migrate12(old)
+		if (tmp) window.localStorage.removeItem("tsdb")
 	}
 
 	TS.migrate12 = function(old) {
-		if (!old) old = window.localStorage.getItem("tsdb")
 		if (!old) return false
-		else old = JSON.parse(old)
 
 		if ("debug" in old) this.config["debug"] = old.debug
 		if ("theme" in old) this.config["theme"] = old.theme
@@ -74,7 +76,6 @@ module.exports = TS => {
 		}
 
 		this.$debug("Migrated DB to v12")
-		window.localStorage.removeItem("tsdb")
 		this.config.version = 12
 	}
 

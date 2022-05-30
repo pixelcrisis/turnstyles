@@ -18,12 +18,13 @@ module.exports = TS => {
 	}
 
 	TS.restoreData = function (file) {
-		let data = {}
-		try { data = JSON.parse(file.target.result) }
-		catch (e) { return alert("Backup File Corrupted") }
-		if (!data.theme) return alert("Invalid Backup File")
-		this.Migrate(file.target.result)
-		this.updateData()
+		let data = file.target.result
+		try { data = JSON.parse(data) }
+		catch(e) { return alert("Backup Corrupted") }
+		if (!data.theme) return alert("Invalid Backup")
+		let curr = data.version == 12 ? data : {}
+		if (!curr.version) this.Migrate(data)
+		this.updateData(curr)
 	}
 
 	TS.updateData = function (data = {}) {
