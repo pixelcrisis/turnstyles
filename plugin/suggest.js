@@ -7,13 +7,13 @@ module.exports = TS => {
 		let text = this.getWords($("#chat-input").val())
 		let word = text[text.length - 1]
 		let icon = word[0] == ":" && word.length > 1
-		if (icon) this.findSuggest(word)
+		if (icon) this.findSuggest(word.split(":").join(""))
 		else this.hideSuggest()
 	}
 
 	TS.findSuggest = function (word) {
 		let icons = []
-		let match = key => key.indexOf(name) === 0
+		let match = key => key.indexOf(word) === 0
 		let found = (val, key) => { if (match(key)) icons.push(key) }
 		this.twitchMap.forEach(found)
 		this.bttvMap.forEach(found)
@@ -21,12 +21,14 @@ module.exports = TS => {
 	}
 
 	TS.makeSuggest = function (list) {
-		if (!list.length) return this.hideSuggest()
+		this.hideSuggest()
+		if (!list.length) return 
 		// func to generate our icon HTML
-		let click = this.sendSuggest.bind(this)
-		let image = name => HTML.ICON( this.getEmote(name), name )
-		$("body").append( HTML.WRAP( list.map( image ) ) )
-		$("#tsSuggest .icon").on("click", click)
+		let icon = name => this.getEmoji(`:${ name }:`)
+		let make = name => HTML.ICON( icon(name), name )
+		let html = list.map( make ).join("")
+		$("body").append( HTML.WRAP(html) )
+		$("tsSuggest .icon").on("click", this.sendSuggest.bind(this))
 	}
 
 	TS.sendSuggest = function (event) {
@@ -36,9 +38,10 @@ module.exports = TS => {
 		text[text.length - 1] = `${ name } `
 		$("#chat-input").val( text.join(" "))
 		this.hideSuggest()
+		$("#chat-input").focus()
 	}
 
-	TS.$on("attach", function () {
+	TS.$on("attach", function loadSuggest () {
 		this.$on("type", this.scanSuggest)
 		$("#chat-input").on("input", this.scanSuggest.bind(this))
 	})

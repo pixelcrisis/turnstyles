@@ -1,27 +1,28 @@
 module.exports = TS => {
 
-  TS.$on("chat", function (event) {
+  TS.$on("chat", function timeStamp (event) {
     if (!this.config["use.stamps"]) return
     let chat = event.target, time = this.getTime(true)
     if (!chat || chat.has(".ts-time").length) return
     chat.prepend(`<div class="ts-time">${ time }</div>`)
   })
 
-  TS.$on("text", function (event) {
+  TS.$on("text", function textFade (event) {
     // fade out the new song message
-    let text = event.target[0].innerText
-    let find = text.includes("started playing")
-    if (find && !event.user) event.target.addClass("stat")
+    let flag = `.message:not(.stat)`
+    let find = `${ flag }:contains(' started playing "')`
+    let list = event.target.children(find)
+    list.each((i, msg) => $(msg).addClass("stat"))
   })
 
-  TS.$on("song", function (event) {
+  TS.$on("song", function postSong (event) {
     if (!this.config["post.song"] || !event.last) return
     let head = STAT_LINE(event.last)
-    let text = `${ last.song } by ${ last.artist }`
+    let text = `${ event.last.song } by ${ event.last.artist }`
     if (head) this.$post({ head, text, type: "stat" })
   })
 
-  TS.$on("drop", function (event) {
+  TS.$on("drop", function postDrop (event) {
     if (!this.config["post.spun"]) return
     let head = STAT_LINE(event.stat)
     let text = `<strong>${ event.user.name }</strong> is done spinning!`

@@ -1,6 +1,6 @@
 module.exports = TS => {
 
-	TS.$on("load", function () {
+	TS.$on("load", function loadConfig () {
 		// read our local / addon dbs
 		let local = JSON.parse(this.data)
 		let addon = JSON.parse(this.sync)
@@ -10,6 +10,7 @@ module.exports = TS => {
 		this.config = { ...this.default, ...addon, ...local }
 		this.Migrate()
 
+		this.config["afk.idle"] = false
 		this.$emit("loaded", this.config)
 	})
 

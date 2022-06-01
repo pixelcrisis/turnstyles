@@ -2,13 +2,13 @@ module.exports = TS => {
 
 	TS.loadVolume = function () {
 		// toggle volume control
-		let opt = this.config.volume
+		let opt = this.config["use.volume"]
 		let has = $("body").hasClass("ts-volume")
 		// disable volume controls
 		if (has && !opt) {
 			$("#tsVolWrap").remove()
 			window.turntablePlayer.realVolume = this.realVolume
-			this.$debug(`restored volume`)
+			this.$debug(`Restored Volume`)
 		}
 		// or add volume controls
 		if (opt && !has) {
@@ -17,7 +17,7 @@ module.exports = TS => {
 			$("#tsMuteBtn").on("click", this.toggleMute.bind(this))
 			$("#tsVolSlide").on("input", this.saveVolume.bind(this))
 			$("#tsVolSlide").on(scroll, this.rollVolume.bind(this))
-			this.$debug(`replaced volume`)
+			this.$debug(`Replaced Volume`)
 		}
 		this.$body("ts-volume", opt)
 	}
@@ -52,11 +52,11 @@ module.exports = TS => {
 		this.$body("ts-muted", this.muted)
 		let vol = this.muted ? -7 : VOL.FULL()
 		window.turntablePlayer.setVolume(vol)
-		this.$print(`turned mute ${ this.muted ? "on" : "off" }`)
+		this.$print(`Turned Mute ${ this.muted ? "On" : "Off" }`)
 	}
 
 	TS.$on("update", TS.loadVolume)
-	TS.$on("attach", function () {
+	TS.$on("attach", function bindVolume () {
 		// stash realVolume to replace
 		let rv = window.turntablePlayer.realVolume
 		if (!this.realVolume) this.realVolume = rv

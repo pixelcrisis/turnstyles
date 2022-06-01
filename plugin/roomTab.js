@@ -1,13 +1,13 @@
 module.exports = TS => {
 
-	TS.$on("log", function () {
+	TS.$on("log", function addLog () {
 		let book = $("#tsLogs")[0] || {}
 		let logs = this.logs.map( LOG.ITEM )
 		book.innerHTML = logs.reverse().join("")
 		book.scrollTop = book.scrollHeight
 	})
 
-	TS.$on("attach", function () {
+	TS.$on("attach", function loadLogger () {
 		$("#tsLogBook").remove()
 		$(".room-info-nav").after( LOG.BOOK )
 	})

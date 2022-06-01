@@ -1,6 +1,6 @@
 module.exports = TS => {
 
-  TS.$on("loaded", function (config) {
+  TS.$on("loaded", function loadTheme (config) {
     // remove any leftovers
     $("#ts_core, #ts_style").remove()
     $("#ts_themes, #ts_colors").remove()
@@ -11,7 +11,7 @@ module.exports = TS => {
     this.addStyle(config.style)
   })
 
-  TS.$on("update", function (key, val) {
+  TS.$on("update", function updateTheme (key, val) {
     if (key == "theme") this.addTheme(val)
     if (key == "color") this.addSheet(val, "colors")
     if (key == "style") this.addStyle(val)

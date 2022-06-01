@@ -2,7 +2,7 @@ module.exports = TS => {
 
 	TS.isEmoji = function (str) {
 		// make sure first/last char match syntax
-		let cF = word[0], cL = word[word.length - 1]
+		let cF = str[0], cL = str[str.length - 1]
 		return cF == ":" && cL == ":"
 	}
 
@@ -28,7 +28,7 @@ module.exports = TS => {
 		})
 	}
 
-	TS.$on("chat", function (event) {
+	TS.$on("chat", function findEmojis (event) {
 		if (!this.config["use.emojis"]) return
 		this.getWords(event.text).forEach(word => {
 			let icon = this.getEmoji(word)

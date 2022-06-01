@@ -76,8 +76,8 @@ body.hb-share #hbShare
 	@extend .ts-hidden
 
 // Recently Played
-body.ts-played #queue .song.ts-recent:not(.current-song)
-	box-shadow: inset -6px 0 0 0px $recent
+body.ts-recent #queue .song.ts-played:not(.current-song)
+	box-shadow: inset -3px 0 0 0px $recent !important
 	.details
 		color: $recent
 	&:hover .details:after

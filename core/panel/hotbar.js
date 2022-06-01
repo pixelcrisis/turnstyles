@@ -25,10 +25,11 @@ module.exports = TS => {
 
   TS.$on("lobby", TS.loadHotBar)
   TS.$on("attach", TS.loadHotBar)
-  TS.$on("update", function (key) {
-    if (key.indexOf("qt") !== 0) return
-    if (key.indexOf("hb.") !== 0) return
-    return this.loadHotBar()
+  TS.$on("update", function updateHotBar (key) {
+    let qt = key.indexOf("qt") === 0
+    let hb = key.indexOf("hb") === 0
+    if (!qt && !hb) return false
+    else return this.loadHotBar()
   })
 
   TS.makeHotBar = function () { return `

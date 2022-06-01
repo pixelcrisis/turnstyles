@@ -3,7 +3,7 @@ module.exports = function () { return `
     <article class="ts-help">
       <strong>turnStyles</strong>
       <p><em>version: </em>${ this.version }</p>
-      <p><em>user id: </em>${ this.$user ? this.$user.id : "" }</p>
+      <p><em>user id: </em>${ this.$user() ? this.$user().id : "" }</p>
     </article>
     <article class="ts-help">
       <strong>The Author</strong>

@@ -1,11 +1,14 @@
 module.exports = TS => {
 
-  TS.autoIdle = function (active) {
-    if (!this.config["afk.auto"]) return
-    if (!active) this.idleTimer += 1
+  TS.autoIdle = function (event) {
+    let auto = parseInt(this.config["afk.auto"])
+    if (!auto) return
+    if (!event.active) this.idleTimer += 1
     else this.idleTimer = 0
+    this.$debug(`Idle Timer: ${ this.idleTimer }`)
     if (this.config["afk.idle"]) return
-    if (this.idleTimer < this.config["afk.auto"]) return
+    if (this.idleTimer < auto) return
+    this.$debug("Running Auto AFK...")
     this.setConfig("afk.idle", true)
     return this.$post( IDLE.ON )
   }
@@ -26,8 +29,8 @@ module.exports = TS => {
     return this.$post( IDLE.OFF )
   }
 
-  TS.$on("chat", function (event) {
-    this.autoIdle(event.self)
+  TS.$on("chat", function setIdle (event) {
+    this.autoIdle({ active: event.self })
     let { self, text, ping } = event
     if (!this.config["afk.idle"]) return
     if (self) return this.scanIdle(text)
@@ -35,7 +38,7 @@ module.exports = TS => {
   })
 
   TS.$on("loop", TS.autoIdle)
-  TS.$on("update", function (key, val) {
+  TS.$on("update", function updateIdle (key, val) {
     if (key != "afk.idle") return
     if (val) this.pingIdle()
   })
@@ -47,10 +50,10 @@ module.exports = TS => {
 const IDLE = {
   ON: {
     head: "Still there?",
-    body: "I've marked you as AFK until you get back!"
+    text: "I've marked you as AFK until you get back!"
   },
   OFF: {
     head: "Welcome Back!",
-    body: "You're no longer AFK!"
+    text: "You're no longer AFK!"
   }
 }

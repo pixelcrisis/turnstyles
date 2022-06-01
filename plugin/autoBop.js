@@ -1,6 +1,6 @@
 module.exports = TS => {
 
-	TS.$on([ "attach", "song" ], function () {
+	TS.$on([ "attach", "song" ], function autoBop () {
 		// clear timeout to rest
 		if (this.bopping) clearTimeout(this.bopping)
 		if (!this.config["autobop"]) return false

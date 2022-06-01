@@ -1,6 +1,6 @@
 module.exports = TS => {
 
-  TS.$on([ "lobby", "attach" ], function () {
+  TS.$on([ "lobby", "attach" ], function loadWindow () {
     $("#tsWindow").remove()
     $("body").append( this.makeWindow() )
 

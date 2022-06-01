@@ -2,8 +2,8 @@ module.exports = TS => {
 
   TS.tryJump = function (tries) {
     // try to get on deck
-    let user = this.$user.id
-    let list = this.$room.metadata.djs
+    let user = this.$user().id
+    let list = this.$room().metadata.djs
     let curr = this.$current_djs[user] || list[user]
     let spot = $(".become-dj").length || list.length < 5
     if (curr) return this.$print(`jump: landed on deck.`)
@@ -21,7 +21,7 @@ module.exports = TS => {
     return setTimeout(retry.bind(this), 300)
   }
 
-  TS.$on([ "chat", "mail"], function (event) {
+  TS.$on([ "chat", "mail"], function checkAutoDJ (event) {
     // check all messages for autoqueue
     if (!this.config["dj.auto"]) return
     let data = this.config["dj.text"]
@@ -33,14 +33,14 @@ module.exports = TS => {
     }
   })
 
-  TS.$on([ "drop", "update" ], function () {
+  TS.$on([ "drop", "update" ], function checkDropDJ () {
     // run our next DJ on change or drop
     if (!this.config["dj.next"]) return false
     this.$print(`running next dj...`)
     this.tryJump(3)
   })
 
-  TS.$on("jump", function (event) {
+  TS.$on("jump", function checkJumpDJ (event) {
     // disable next DJ if we jumped
     if (!event.self) return
     if (!this.config["dj.next"]) return
@@ -48,10 +48,10 @@ module.exports = TS => {
     this.$bully( DECK.JUMP )
   })
 
-  TS.$on("song", function (event) {
+  TS.$on("song", function checkDoneDJ (event) {
     if (!this.config["dj.done"]) return
     // escort if user was the last DJ
-    if (event.last.djid == this.$user.id) {
+    if (event.last.djid == this.$user().id) {
       this.setConfig("dj.done", false)
       this.$bully( DECK.DROP )
       return this.$drop()
