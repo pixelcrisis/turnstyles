@@ -2,7 +2,7 @@ module.exports = TS => {
 
 	TS.$on("log", function addLog () {
 		let book = $("#tsLogs")[0] || {}
-		let logs = this.logs.map( LOG.ITEM )
+		let logs = this.$logs.map( LOG.ITEM )
 		book.innerHTML = logs.reverse().join("")
 		book.scrollTop = book.scrollHeight
 	})

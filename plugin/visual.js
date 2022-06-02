@@ -8,6 +8,7 @@ module.exports = TS => {
   })
 
   TS.$on("loaded", function loadVisual (config) {
+    this.debugging = config["debug"]
     this.$body("ts-recent", config["use.recent"])
     this.$body("ts-logger", config["show.logger"])
     this.$body("ts-logger", config["show.logger"])
@@ -17,6 +18,7 @@ module.exports = TS => {
   })
 
   TS.$on("update", function updateVisual (key, val) {
+    if (key == "debug") this.debugging = val
     if (key == "use.recent") this.$body("ts-played", val)
     if (key == "show.logger") this.$body("ts-logger", val)
     if (key == "hide.bubble") this.$body("ts-no-bub", val)

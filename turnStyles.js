@@ -22,8 +22,7 @@ let turnStyles = window.$ts = new TBA({
 	base, data, sync,
 	name: "turnStyles", label: "TS",
 	icon: `${ base }/images/icon128.png`,
-	version: require("./package.json").version, 
-	debugging: true
+	version: require("./package.json").version
 })
 
 // import and build out the extension
