@@ -29,7 +29,7 @@ $tinted: 10deg
 	@include shift($tinted, 2, 0.7)
 
 .ts-room-filter
-	filter: brightness(0.8) saturate(80%)
+	@include gloss($tinted, 2, 0.7)
 
 .ts-main-filter
 	@include paint($tinted, 3, 0.5)

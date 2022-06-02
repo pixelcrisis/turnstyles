@@ -40,6 +40,7 @@ module.exports = TS => {
   TS.$on("update", function updateIdle (key, val) {
     if (key != "afk.idle") return
     if (val) this.pingIdle()
+    this.idleTimer = 0
   })
 
   TS.idleTimer = 0

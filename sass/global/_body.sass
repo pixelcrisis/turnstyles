@@ -24,6 +24,13 @@
 .profile .section.statslink
 	text-align: center !important
 
+// remove nib on dj buttons
+.invite-dj, .become-dj
+	@extend .ts-no-shadow
+	border: none
+	&:before, &:after
+		@extend .ts-hidden
+
 // song counter
 #playlist-display em 
 	line-height: 27px
