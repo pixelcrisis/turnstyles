@@ -2,10 +2,10 @@
 
 // recolor filter mixin
 @mixin hsbpig($h: 0deg, $s: 1, $b: 1, $p: 0, $i: 0, $g: 0)
-	$part-1: invert($i) brightness($b) 
-	$part-2: grayscale($g) sepia($p)
-	$part-3: hue-rotate($h) saturate($s)
-	filter: $part-1 $part-2 $part-3
+	$part1: invert($i) brightness($b) 
+	$part2: grayscale($g) sepia($p)
+	$part3: hue-rotate($h) saturate($s)
+	filter: $part1 $part2 $part3
 
 // recolor access points
 @mixin shift($h, $s: 1, $b: 1)
@@ -62,6 +62,11 @@
 
 // other colors
 @mixin gradient($color)
-	$c-1: lighten($color, 8%)
-	$c-2: darken($color, 8%)
-	background: linear-gradient(to bottom right, $c-1, $c-2) !important
+	$c1: lighten($color, 8%)
+	$c2: darken($color, 8%)
+	background: linear-gradient(to bottom right, $c1, $c2) !important
+
+@mixin striped($c1, $c2, $s1: 10px, $a: 37deg)
+	$s2: $s1 * 2
+	$c3: mix($c1, $c2, 85%)
+	background: repeating-linear-gradient(-($a), $c1, $c1 $s1, $c3 $s1, $c3 $s2)

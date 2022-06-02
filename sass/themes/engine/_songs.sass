@@ -55,7 +55,7 @@
 		@extend .ts-main-filter
 
 
-body.ts-played #queue .song.ts-recent:not(.current-song)
-	box-shadow: inset -6px 0 0 0px $recent !important
-	.details
+body.ts-recent #queue .song.ts-played:not(.current-song)
+	@include striped($c-back, $recent)
+	.title, .details
 		color: $recent
