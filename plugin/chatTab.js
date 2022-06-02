@@ -30,15 +30,15 @@ module.exports = TS => {
   })
 
   TS.quickText = function (btn) {
-    let data = this.config[btn]
+    let data = REMOVE_LABEL(this.config[btn])
     let text = this.getWords(data, ";;")
-    if (text) this.$batch( REMOVE_LABEL(text) )
+    if (text) this.$batch( text )
   }
 
   // easy inline quicktext onlick access
-  this.qtbtn1 = function () { this.quickText('qtbtn1') }
-  this.qtbtn2 = function () { this.quickText('qtbtn2') }
-  this.qtbtn3 = function () { this.quickText('qtbtn3') }
+  TS.qtbtn1 = function () { this.quickText('qtbtn1') }
+  TS.qtbtn2 = function () { this.quickText('qtbtn2') }
+  TS.qtbtn3 = function () { this.quickText('qtbtn3') }
 
 }
 

@@ -20,7 +20,7 @@ module.exports = TS => {
     // check the text for each word in the query
     list.forEach(word => {
       if (text.indexOf(word) > -1) {
-        event.elem.addClass("mention")
+        event.target.addClass("mention")
         let head = `Hot Word: ${ word }`
         return this.$notify({ head, text: event.text, type: "word" })
       }

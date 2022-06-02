@@ -33,7 +33,7 @@ module.exports = function () { return `
     </article>
     <article class="ts-help">
       <strong>On Discord</strong>
-      <p>You can find the author and active users in the below discords.</p>
+      <p>You can find the author (and other active users) in the discords below.</p>
       ${ this._a_("turnStyles Discord", this.static.tsDiscord) }
       ${ this._a_("turntable.fm Discord", this.static.ttDiscord) }
     </article>
