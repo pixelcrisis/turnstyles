@@ -1,7 +1,7 @@
 module.exports = function () { return `
   <section>
     <article>
-      ${ this._bool_("debug", "Print Logs In Console") }
+      ${ this._bool_("debug", "Print Debug Logs In Console") }
       <p>The output of turnStyles will be printed into the dev console of your browser. This is useful for finding out why things aren't working.</p>
     </article>
     <article>
