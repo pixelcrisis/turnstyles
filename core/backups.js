@@ -21,7 +21,7 @@ module.exports = TS => {
 		let data = file.target.result
 		try { data = JSON.parse(data) }
 		catch(e) { return alert("Backup Corrupted") }
-		if (!data.theme) return alert("Invalid Backup")
+		if (!"theme" in data) return alert("Invalid Backup")
 		let curr = data.version == 12 ? data : {}
 		if (!curr.version) this.Migrate(data)
 		this.updateData(curr)

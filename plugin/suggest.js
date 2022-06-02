@@ -28,7 +28,7 @@ module.exports = TS => {
 		let make = name => HTML.ICON( icon(name), name )
 		let html = list.map( make ).join("")
 		$("body").append( HTML.WRAP(html) )
-		$("tsSuggest .icon").on("click", this.sendSuggest.bind(this))
+		$("#tsSuggest .icon").on("click", this.sendSuggest.bind(this))
 	}
 
 	TS.sendSuggest = function (event) {
@@ -36,9 +36,9 @@ module.exports = TS => {
 		let text = $("#chat-input").val().split(" ")
 		// replace the in progress emoji with complete
 		text[text.length - 1] = `${ name } `
-		$("#chat-input").val( text.join(" "))
+		$("#chat-input").val( text.join(" ")).focus()
+		this.$view().typeahead.clearTypeahead()
 		this.hideSuggest()
-		$("#chat-input").focus()
 	}
 
 	TS.$on("attach", function loadSuggest () {
