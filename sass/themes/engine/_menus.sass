@@ -135,3 +135,12 @@ ul#ding-menu.floating-menu li.option,
 		background-position: bottom left
 	.option.checked
 		@extend .ts-co-main
+
+body > .typeahead
+	@extend .ts-no-shadow
+	border-color: $bg-light-1
+	&, & > .suggestion:not(:hover)
+		@extend .ts-content-dark
+	& > .suggestion:hover
+		@extend .ts-content-hover
+	
