@@ -41,7 +41,7 @@ module.exports = TS => {
 		this.hideSuggest()
 	}
 
-	TS.$on("attach", function loadSuggest () {
+	TS.$on("attach", function attachSuggest () {
 		this.$on("type", this.scanSuggest)
 		$("#chat-input").on("input", this.scanSuggest.bind(this))
 	})

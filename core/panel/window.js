@@ -1,17 +1,19 @@
 module.exports = TS => {
 
-  TS.$on([ "lobby", "attach" ], function loadWindow () {
+  TS.$on([ "lobby", "attach" ], function attachWindow () {
     $("#tsWindow").remove()
     $("body").append( this.makeWindow() )
 
+    TS.$on("esc", this.hidePanel)
     $(".ts-tab").on("click", this.tabMove)
     $("#tsClose").on("click", this.hidePanel)
     $("#tsWindow").on("click", CLOSE_FROM_WINDOW)
+    $("#tsPanels article").on("click", TOGGLE_HELP)
+    $("#tsBackup input").on("change", this.uploadData.bind(this))
     $("#tsPanels *[data-for]").on("click", this.savePanel.bind(this))
     $("#tsPanels *[data-opt]").on("change", this.savePanel.bind(this))
-    $("#tsBackup input").on("change", this.uploadData.bind(this))
-    $("#tsPanels article").on("click", TOGGLE_HELP)
   })
+
 
   TS.makeWindow = function () { return `
     <div id="tsWindow">

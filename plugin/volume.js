@@ -56,14 +56,14 @@ module.exports = TS => {
 	}
 
 	TS.$on("update", TS.loadVolume)
-	TS.$on("attach", function bindVolume () {
+	TS.$on("attach", function attachVolume () {
 		// stash realVolume to replace
 		let rv = window.turntablePlayer.realVolume
 		if (!this.realVolume) this.realVolume = rv
 		this.loadVolume()
 	})
 
-	TS.$on("song", function () {
+	TS.$on("song", function unmuteAfter () {
 		// unmute if muted after current song
 		if (this.muted) this.toggleMute()
 	})

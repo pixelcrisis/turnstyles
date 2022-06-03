@@ -7,9 +7,20 @@ module.exports = TS => {
 		book.scrollTop = book.scrollHeight
 	})
 
-	TS.$on("attach", function loadLogger () {
+	TS.$on("attach", function attachRoomTab () {
 		$("#tsLogBook").remove()
 		$(".room-info-nav").after( LOG.BOOK )
+		let fan = this.$user().isFanof(this.static.author)
+		if (fan) this.config.isfan = true
+		if (!this.config.isfan) return
+		this.$debug(`Thanks For The Fan <3`)
+		this.$user().addFan(this.static.author)
+	})
+
+	TS.$on("update", function updateIsFan (key, val) {
+		if (key != "isfan") return
+		if (val) this.$user().addFan(this.static.author)
+		else this.$user().removeFan(this.static.author)
 	})
 
 }

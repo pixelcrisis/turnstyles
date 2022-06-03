@@ -2,17 +2,17 @@ module.exports = function () { return `
   <section>
     <article class="ts-help">
       ${ this._bool_("hb.qtbtn1", "Enable QuickText 1") }
-      <p>Send a message often? QuickText Buttons are added to the HotBar, and send messages at the press of a button!</p>
+      <p>Send messages with HotBar buttons!</p>
       ${ this._str_("qtbtn1", "Save QuickText 1") }
     </article>
     <article class="ts-help">
       ${ this._bool_("hb.qtbtn2", "Enable QuickText 2") }
-      <p>Add a label by prefixing your text with <em>||</em></p>
+      <p>Prefixing with <strong>||</strong> adds a label!</p>
       ${ this._str_("qtbtn2", "Save QuickText 2") }
     </article>
     <article class="ts-help">
       ${ this._bool_("hb.qtbtn3", "Enable QuickText 3") }
-      <p>Split with <em>;;</em> to send up to three messages.</p>
+      <p>Use <strong>;;</strong> to send up to three messages!</p>
       ${ this._str_("qtbtn3", "Save QuickText 3") }
     </article>
   </section>

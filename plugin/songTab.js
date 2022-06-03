@@ -15,7 +15,7 @@ module.exports = TS => {
     this.$room().metadata.songlog.forEach( item => mark(item.metadata) )
   }
 
-  TS.$on([ "attach", "list" ], function loadList () {
+  TS.$on([ "attach", "list" ], function attachSongTab () {
     // count songs in current playlist
     let head = $("#playlist-header .text")[0]
     let data = window.playlist.fileids.length
@@ -23,7 +23,7 @@ module.exports = TS => {
     head.innerHTML = `${ name }<em> ${ data }</em>`
   })
 
-  TS.$on([ "attach", "list", "song" ], function bindList () {
+  TS.$on([ "attach", "list", "song" ], function attachRecents () {
     // check playlist for recently played songs
     // but make sure we wait until done loading
     let holdRecent = this.findRecent.bind(this)

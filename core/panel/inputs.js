@@ -1,8 +1,9 @@
 module.exports = TS => {
 
-  TS._a_ = function (text, path) {
-    let flag = `class="ts-button" target="_blank"`
+  TS._a_ = function (text, path, name) {
     let href = `href="${ path || "#" }"`
+    let flag = `class="ts-button" target="_blank"`
+    if (name) flag += ` id="${ name }"`
     return `<a ${ flag } ${ href }>${ text }</a>`
   }
 
