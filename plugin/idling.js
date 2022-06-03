@@ -30,7 +30,8 @@ module.exports = TS => {
   }
 
   TS.$on("chat", function setIdle (event) {
-    this.autoIdle({ active: event.self })
+    let active = event.self
+    if (active) this.autoIdle({ active })
     let { self, text, ping } = event
     if (!this.config["afk.idle"]) return
     if (self) return this.scanIdle(text)
