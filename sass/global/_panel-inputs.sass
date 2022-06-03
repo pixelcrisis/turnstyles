@@ -13,6 +13,10 @@
 	cursor: pointer
 	@extend .ts-content-hover
 
+@supports (-moz-appearance:none)
+	.ts-button:not(.ts-toggle)
+		padding: 5px 10px 
+
 .ts-toggle
 	padding-top: 5px
 	span

@@ -57,7 +57,13 @@
 .chat .message.patron:not(:hover) .speaker:after
 	display: none
 
-// Feature Toggles
+// firefox emoji spacing fix
+@supports (-moz-appearance:none)
+	.chat .emoji-small
+		margin: -8px
+		-moz-transform-origin: center
+
+// feature toggles
 body.ts-logger #tsLogBook
 	display: block
 body.ts-volume .dropdown-volume-container
