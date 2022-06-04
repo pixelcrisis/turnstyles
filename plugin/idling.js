@@ -2,11 +2,9 @@ module.exports = TS => {
 
   TS.autoIdle = function (event) {
     let auto = parseInt(this.config["afk.auto"])
-    if (!auto) return
+    if (!auto || this.config["afk.idle"]) return
     if (!event.active) this.idleTimer += 1
     else this.idleTimer = 0
-    this.$debug(`Idle: ${ this.idleTimer }/${ auto }`)
-    if (this.config["afk.idle"]) return
     if (this.idleTimer < auto) return
     this.$debug("Running Auto AFK...")
     this.setConfig("afk.idle", true)
