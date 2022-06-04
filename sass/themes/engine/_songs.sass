@@ -35,18 +35,7 @@
 		background: $bg-light-2 !important
 	.playlist-go-top,
 	.playlist-open-options
-		background: transparent
-	.playlist-go-top::after,
-	.playlist-open-options::after
-		color: $c-mute
-		display: block
-	.playlist-go-top::after
-		content: $i-caret
-		font-size: 19px
-	.playlist-open-options::after
-		content: $i-menus
-		font-size: 22px
-		margin: -5px 0 0 1px
+		@extend .ts-icon-filter
 
 #maindiv .song-list .song
 	@extend .ts-striped-list

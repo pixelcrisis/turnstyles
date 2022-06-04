@@ -19,21 +19,15 @@
 		border: none
 
 #overlay .modal .close-x
-	@include box(25px, 25px)
-	@extend .ts-content-mute
+	@extend .ts-room-filter
+	@include box(35px, 35px)
+	background-size: 70px
+	left: -10px
 	top: -10px
-	left: -12px
-	border: 2px solid
-	border-radius: 50%
-	text-align: center
-	background-image: none
-	&:after
-		display: block
-		font-size: 18px
-		content: $i-close
-		margin: 2px 0 0 1px
 	&:hover
-		color: $c-text
+		background-position: initial
+	&:not(:hover)
+		opacity: 0.8
 
 #overlay .modal button
 	@extend .ts-no-shadow
