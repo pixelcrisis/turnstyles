@@ -24,7 +24,8 @@ module.exports = TS => {
     if (list.includes(text)) return
     // otherwise welcome them back
     this.setConfig("afk.idle", false)
-    return this.$post( IDLE.OFF )
+    this.$post( IDLE.OFF )
+    this.idleTimer = 0
   }
 
   TS.$on("chat", function setIdle (event) {
