@@ -38,7 +38,8 @@ $tinted: 10deg
 	@include paint($tinted, 3, 0.7, 1)
 
 .ts-icon-filter
-	@include paint($tinted, 3, 0.7, 1)
+	@extend .ts-mute-filter
+	@include paint($tinted, 0.7, 0.7, 1)
 
 .ts-mute-filter
 	opacity: 0.75
