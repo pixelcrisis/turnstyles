@@ -1,29 +1,35 @@
 {
   "name": "turnstyles",
   "version": "12.0.0-beta.5",
-  "main": "turnStyles.js",
   "repository": "git@github.com:pixelcrisis/turntable-tweaks.git",
   "author": "pixelcrisis <pxcrisis@gmail.com>",
   "license": "MIT",
+  "type": "module",
+  "main": "index.js",
   "scripts": {
-    "serve": "sh bash/serve.sh",
-    "quick": "sh bash/quick.sh",
-    "style": "sh bash/style.sh",
-    "build": "sh bash/build.sh"
+    "build": "NODE_ENV=production gulp build",
+    "serve": "NODE_ENV=development gulp serve",
+    "quick": "NODE_ENV=development gulp quick",
+    "style": "NODE_ENV=development gulp style"
+  },
+  "dependencies": {
+    "tt-browser-api": "https://github.com/pixelcrisis/tt-browser-api"
   },
   "devDependencies": {
-    "autoprefixer": "^10.2.5",
-    "babel-eslint": "^10.1.0",
-    "browserify": "^17.0.0",
-    "concurrently": "^6.0.0",
-    "copy-and-watch": "^0.1.6",
-    "eslint": "^7.22.0",
+    "@babel/core": "^7.18.2",
+    "@babel/preset-env": "^7.18.2",
+    "@babel/register": "^7.17.7",
+    "babel-loader": "^8.2.5",
+    "del": "^6.1.1",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-if": "^3.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-uglify": "^3.0.2",
     "node-sass": "^7.0.1",
-    "postcss": "^8.2.9",
-    "postcss-cli": "^8.3.1",
-    "sass": "^1.32.8",
-    "tinyify": "^3.0.0",
-    "watchify": "^4.0.0"
-  },
-  "dependencies": {}
+    "webpack": "^5.73.0",
+    "webpack-stream": "^7.0.0"
+  }
 }
