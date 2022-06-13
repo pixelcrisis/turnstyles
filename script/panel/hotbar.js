@@ -40,9 +40,9 @@ const hotbarMake = function () { return `
       ${ this.$bool("Next DJ", "dj.next", "hbNextDJ") }
       ${ this.$bool("Escort", "dj.done", "hbDoneDJ") }
       ${ this.$qt("1") } ${ this.$qt("2") } ${ this.$qt("3") }
-      ${ this.$bool("Bubbles", "show.bubble", "hbBubble") }
-      ${ this.$bool("People", "show.people", "hbPeople") }
-      ${ this.$bool("Player", "show.player", "hbPlayer") }
+      ${ this.$bool("Bubbles", "hide.bubble", "hbBubble") }
+      ${ this.$bool("People", "hide.people", "hbPeople") }
+      ${ this.$bool("Player", "hide.player", "hbPlayer") }
     </div>
   </div>
 `}

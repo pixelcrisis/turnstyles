@@ -25,9 +25,9 @@ const migrate12 = function (old) {
 	migrateTo(old, "afkmax", "afk.auto")
 	migrateTo(old, "auto_q", "dj.auto")
 	migrateTo(old, "q_text", "dj.text")
-	migrateTo(old, "people", "show.people")
-	migrateTo(old, "player", "show.player")
-	migrateTo(old, "bubble", "show.bubble")
+	migrateTo(old, "people", "hide.people")
+	migrateTo(old, "player", "hide.player")
+	migrateTo(old, "bubble", "hide.bubble")
 	
 	migrateTo(old, "qtbtn1", "qtbtn1", "qtbnts")
 	migrateTo(old, "qtbtn2", "qtbtn2", "qtbnts")
