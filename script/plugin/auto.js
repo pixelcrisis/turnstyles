@@ -3,7 +3,7 @@ const autobop = function (e) {
 	if (this.bopping) clearTimeout(this.bopping)
 	if (e.self || this.now_playing.none || !conf) return
 	const wait = Math.floor((Math.random() * 7) * 100)
-	this.debug(`Autobop: ${ delay / 100 } Seconds.`)
+	this.debug(`Autobop: ${ wait / 100 } Seconds.`)
 	this.bopping = setTimeout(this.vote(), wait)
 }
 
