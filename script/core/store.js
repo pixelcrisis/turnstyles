@@ -1,8 +1,8 @@
 const get = function (key) {
 	let val = this.config[key]
 	if (typeof val == "boolean") return val
-	let res = isNaN(val) ? val : parseInt(val)
-	return res == "NaN" ? "" : res
+	let nan = val => isNaN(val) || val == ""
+	return nan(val) ? val : parseInt(val)
 }
 
 const set = function (key, val) {
