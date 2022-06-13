@@ -1,7 +1,7 @@
 // add leaderboard link to user profile
 const statLink = function (e) {
   if ($(".profile.modal .statslink").length) return
-  let html = $stat_link(e.userid)
+  let html = $stat_link(e.user.id)
   $(".profile.modal .section.web-links").show()
   $(".profile.modal .website").append(html)
 }

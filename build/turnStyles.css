@@ -103,7 +103,7 @@ body.hb-share #hbShare {
     margin: -8px;
     -moz-transform-origin: center; } }
 
-body.ts-logger #tsLogBook {
+body.ts-logger #tsLog {
   display: block; }
 
 body.ts-recent #maindiv .song.ts-played:not(.current-song) {
