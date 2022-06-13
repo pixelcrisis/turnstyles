@@ -31,7 +31,7 @@ const volLoad = function () {
 // update window volume on change
 const volSave = function (vol) {
 	vol = vol.target ? vol.target.value : vol
-	let volume = vo > 0 ? make_vol(vol) : -7
+	let volume = vol > 0 ? make_vol(vol) : -7
 	// tt doesn't go lower than 7 so we'll do it
 	let getVol = volume < 7 ? curr_vol : this.realVolume
 	window.turntablePlayer.realVolume = getVol
