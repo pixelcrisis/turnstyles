@@ -1,30 +1,39 @@
 import gulp from "gulp"
 import * as b from "./gulpfile.build.js"
-import { paths } from "./gulpfile.confs.js"
+import { paths, files } from "./gulpfile.confs.js"
 
-export const quick = () => b.script(...paths.script)
+export { style, quick, build, basic, serve }
 
-const sass1 = () => b.style(...paths.styles)
-const sass2 = () => b.style(...paths.themes)
-const sass3 = () => b.style(...paths.colors)
+const sass1 = () => b.style(files.styles, "./build")
+const sass2 = () => b.style(paths.themes, "./build/themes")
+const sass3 = () => b.style(paths.colors, "./build/colors")
+const style = gulp.series(sass1, sass2, sass3)
 
-export const style = gulp.series(sass1, sass2, sass3)
+const reset = () => b.rem("./build")
+const copy1 = () => b.copy(files.inject, "./build")
+const copy2 = () => b.copy(paths.images, "./build/images")
+const name1 = () => b.name(files.chrome, "./build", "manifest.json")
+const clean = gulp.series(reset, copy1, copy2, name1)
 
-const clean = () => b.remove("./build")
-const copy1 = () => b.copy(...paths.images)
-const copy2 = () => b.copy(...paths.inject)
-const name1 = () => b.name(...paths.chrome, "manifest.json")
-export const addon = gulp.series(clean, copy1, copy2, name1)
+const quick = () => b.script(files.script, "./build")
+const build = gulp.series(clean, quick, style)
 
-export const build = gulp.series(addon, quick, style)
-
-export const serve = async () => {
-  await gulp.run("build")
-  gulp.watch( paths.script[0], gulp.series("quick") )
-  gulp.watch( paths.styles[0], gulp.series("style") )
-  gulp.watch( paths.themes[0], gulp.series("style") )
-  gulp.watch( paths.colors[0], gulp.series("style") )
-  gulp.watch( paths.images[0], gulp.series("addon") )
-  gulp.watch( paths.inject[0], gulp.series("addon") )
-  gulp.watch( paths.chrome[0], gulp.series("addon") )
+const watch = () => {
+  gulp.watch( paths.script, gulp.series(quick) )
+  gulp.watch( paths.parent, gulp.series(quick) )
+  gulp.watch( paths.styles, gulp.series(style) )
+  gulp.watch( files.chrome, gulp.series(name1) )
+  gulp.watch( files.inject, gulp.series(copy1) )
+  gulp.watch( paths.images, gulp.series(copy2) )
 }
+
+const merge = () => {
+  gulp.watch( paths.script, gulp.series(quick) )
+  gulp.watch( paths.parent, gulp.series(quick) )
+  gulp.watch( files.chrome, gulp.series(name1) )
+  gulp.watch( files.inject, gulp.series(copy1) )
+  gulp.watch( paths.images, gulp.series(copy2) )
+}
+
+const basic = gulp.series(quick, merge)
+const serve = gulp.series(build, watch)

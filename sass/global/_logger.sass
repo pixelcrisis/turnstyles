@@ -1,25 +1,25 @@
 // the core logger style
 
-#tsLogBook
+#tsLog .book
 	display: none
 	margin: 10px 15px 25px
 
-#tsLogBook h3
+#tsLog .book h3
 	padding: 0 0 10px 10px
 
-#tsLogBook h3,
-#tsLogBook .tl-text,
-#tsLogBook .tl-info span
+#tsLog .book h3,
+#tsLog .book .tl-text,
+#tsLog .book .tl-info span
 	font-size: 12px
 	font-weight: bolder
 	text-transform: uppercase
 
-#tsLogs
+#tsLog
 	border-radius: 5px
 	background: #ffffff
 	border: 1px solid #bbbbbb
 
-#tsLogs .ts-log
+#tsLog .ts-log
 	padding: 10px
 	word-break: break-all
 	&:nth-child(even)
@@ -27,8 +27,8 @@
 	&:not(:hover) .tl-info
 		display: none
 
-#tsLogs .tl-info span
+#tsLog .tl-info span
 	padding-right: 5px
 
-#tsLogs .ts-log.log
+#tsLog .ts-log.log
 	opacity: 0.5

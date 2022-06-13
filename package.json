@@ -8,6 +8,7 @@
   "main": "index.js",
   "scripts": {
     "build": "NODE_ENV=production gulp build",
+    "basic": "NODE_ENV=development gulp basic",
     "serve": "NODE_ENV=development gulp serve",
     "quick": "NODE_ENV=development gulp quick",
     "style": "NODE_ENV=development gulp style"

@@ -1,32 +1,35 @@
-// define our paths
-export const paths = {
-  script: [ "./script/index.js", "./build" ],
-  styles:  [ "./sass/index.sass", "./build" ],
-  themes: [ "./sass/themes", "./build/themes" ],
-  colors: [ "./sass/colors", "./build/colors" ],
-  images: [ "./static/images/*", "./build/images" ],
-  inject: [ "./static/inject.js", "./build" ],
-  chrome: [ "./static/manifest2.json", "./build" ]
-}
-
-// define webpack conf
 import path from "path"
-import { env } from "process"
 import { fileURLToPath } from "url"
-const __url = fileURLToPath(import.meta.url)
-const __dir = path.dirname(__url)
-const build = path.resolve(__dir, "build")
-const rules = {
-  test: /\.js$/, exclude: /node_modules/, loader: "babel-loader",
-  options: { presets: [ "@babel/preset-env" ] }
+
+export { files, paths, confs }
+
+const files = { // our build paths
+  script: "./script/turnStyles.js",
+  styles: "./sass/turnStyles.sass",
+  inject: "./static/inject.js",
+  chrome: "./static/manifest2.json"
 }
 
-// define our confs
-export const confs = {
+const paths = { // our watch paths
+  script: "./script/**/*.js",
+  styles: "./sass/**/*.sass",
+  themes: "./sass/themes/*.sass",
+  colors: "./sass/colors/*.sass",
+  images: "./static/images/*",
+  parent: "../tt-browser-api/**/*.js"
+}
+
+// webpack conf
+const __url = fileURLToPath(import.meta.url)
+const __dir = path.resolve(path.dirname(__url), "build")
+const confs = {
   webpack: {
     mode: process.env.NODE_ENV,
-    entry: { main: paths.script[0] },
-    output: { filename: "index.js", path: build },
-    module: { rules: [ rules ] }
+    entry: { main: files.script },
+    output: { filename: "turnStyles.js", path: __dir },
+    module: { rules: [ {
+      test: /\.js$/, exclude: /node_modules/, loader: "babel-loader",
+      options: { presets: [ "@babel/preset-env" ] } } ] 
+    }
   }
 }
