@@ -71,7 +71,7 @@ export default app => {
 // why doesn't turntable use standard linear volumes?
 const make_vol = x => Math.log(x / 100) / Math.LN2 + 4
 const room_vol = x => window.util.getSetting("volume")
-const curr_vol = e => 100 * Math.pow(2, e || room_vol() - 4)
+const curr_vol = e => 100 * Math.pow(2, (e || room_vol()) - 4)
 // get the volume from tt, but make it spicy
 const full_vol = () => make_vol(curr_vol())
 
