@@ -1,4 +1,5 @@
 const autobop = function (e) {
+	let conf = this.get("autobop")
 	if (this.bopping) clearTimeout(this.bopping)
 	if (e.self || this.now_playing.none || !conf) return
 	const wait = Math.floor((Math.random() * 7) * 100)
