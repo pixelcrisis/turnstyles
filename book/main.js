@@ -6,5 +6,5 @@ window.localStorage.setItem("tsBase", path)
 // inject the main turnStyles script
 const book = document.createElement('script')
 book.type = 'text/javascript'
-book.src = `${ path }/index.js?v=${ Math.random() }`
+book.src = `${ path }/turnStyles.js?v=${ Math.random() }`
 document.body.append(book)
