@@ -6,6 +6,17 @@ const idleChat = function (e) {
   if (e.ping) return this.idlePing()
 }
 
+// send idle ping on PM
+const idlePM = function (e) {
+  if (!this.pinged) this.pinged = {}
+  if (!this.get("afk.idle")) return 
+  if (this.pinged[e.user.id]) return
+  this.idlePing(e.user.id)
+  // don't ping again for 30 seconds
+  let clear = () => delete this.pinged[e.user.id]
+  this.pinged[e.user.id] = setTimeout(clear, 30 * 1000)
+}
+
 // increment idle on loop
 const idleLoop = function () {
   if (!this.get("afk.auto") || this.get("afk.idle")) return
@@ -17,10 +28,10 @@ const idleLoop = function () {
 }
 
 // send afk response when pinged
-const idlePing = function () {
+const idlePing = function (id) {
   let conf = this.get("afk.text")
   let list = this.strArr(conf, ";;")
-  return this.batch(list)
+  return this.batch(list, id)
 }
 
 // check for user activity when afk
