@@ -129,7 +129,10 @@ ul#ding-menu.floating-menu .split-option .option:before,
 .ts-co-main, body .tabbed-panel a, body .tabbed-panel a:hover, body .tabbed-panel a:visited,
 body #topBG #content a,
 body #topBG #content a:hover,
-body #topBG #content a:visited, #topBG .header-bar #create-room span, #topBG .lobby-panel a, #topBG #buddyList .myName:hover,
+body #topBG #content a:visited,
+body .conversation-view a,
+body .conversation-view a:hover,
+body .conversation-view a:visited, #topBG .header-bar #create-room span, #topBG .lobby-panel a, #topBG #buddyList .myName:hover,
 #topBG #buddyList .myFans:hover, #topBG #buddyList .buddyCountMid, #topBG .buddyListRoom .joinRoomButton::after, #topBG #footer a:hover, #topBG #subNav li.selected, #topBG .roomListItem .roomDJs.needed .count, #topBG .roomListItem .listenNow, #maindiv > #header #headerNav li a:hover, #maindiv #readybox .charity-btn a:hover, #maindiv .floating-menu .option.special:hover,
 ul#ding-menu.floating-menu li.option.special:hover,
 #settings.settings-dropdown .dropdown .option a.special:hover,
@@ -221,11 +224,15 @@ body .default-message, .tab-pane .queue-message,
 body .tabbed-panel a, body .tabbed-panel a:hover, body .tabbed-panel a:visited,
 body #topBG #content a,
 body #topBG #content a:hover,
-body #topBG #content a:visited {
+body #topBG #content a:visited,
+body .conversation-view a,
+body .conversation-view a:hover,
+body .conversation-view a:visited {
   text-decoration: none; }
 
 body .tabbed-panel a:hover,
-body #topBG #content a:hover {
+body #topBG #content a:hover,
+body .conversation-view a:hover {
   border-bottom: 1px dotted; }
 
 ::-webkit-scrollbar {
