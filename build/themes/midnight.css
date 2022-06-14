@@ -2,11 +2,10 @@
 .ts-faded {
   opacity: 0.7 !important; }
 
-.ts-hidden, #topBG #buddyList .buddyCountIcon, #overlay .modal.profile .gold-emblem, #queue-header .divider, .chat-bar .divider, .chat-bar.chat-focused .chatsound-container {
+.ts-hidden, #topBG #buddyList .buddyCountIcon, .speech-bubble:after, #overlay .modal.profile .gold-emblem, #queue-header .divider, .chat-bar .divider, .chat-bar.chat-focused .chatsound-container {
   display: none !important; }
 
-.ts-brighten, #overlay .modal button.submit:hover, #overlay .modal.profile .website a:hover, .pmGreyTop:hover,
-.pmGreyTop.hover {
+.ts-brighten, #overlay .modal button.submit:hover, #overlay .modal.profile .website a:hover {
   filter: brightness(1.1); }
 
 .ts-no-shadow, body .queue-message,
@@ -18,7 +17,8 @@ ul#ding-menu.floating-menu li.option,
 #settings.settings-dropdown .dropdown .split-option, #settings.settings-dropdown .dropdown .volume-slider-knob,
 #settings.settings-dropdown .dropdown .volume-slider-knob:before,
 #settings.settings-dropdown .dropdown .volume-slider-knob:after, .guestOptionsContainer, .options-menu .options,
-.guestOptionsContainer .options, body > .typeahead, #overlay .modal .title, #overlay .modal .content-container input, #overlay .modal .content-container textarea, #overlay .modal button, .new-modal, .new-modal .title, .new-modal .header, .new-modal .avatar:hover, .new-modal .avatar.current-avatar, #playlist-display, #queue-header .panel-button, #queue-header .done, #maindiv .song-list .separator, #maindiv .song, #queue.batch li.song.selected, .sliding-nav, .sliding-nav .sliding-nav-pane-header, .sliding-nav .sliding-nav-pane-title, .room-tab .guest-list .separator, .chat-bar, .pmGreyTop, .pmGreyTop:hover,
+.guestOptionsContainer .options, body > .typeahead, .speech-bubble, #overlay .modal .title, #overlay .modal .content-container input, #overlay .modal .content-container textarea, #overlay .modal button, .new-modal, .new-modal .title, .new-modal .header, .new-modal .avatar:hover, .new-modal .avatar.current-avatar, #playlist-display, #queue-header .panel-button, #queue-header .done, #maindiv .song-list .separator, #maindiv .song, #queue.batch li.song.selected, .sliding-nav, .sliding-nav .sliding-nav-pane-header, .sliding-nav .sliding-nav-pane-title, .room-tab .guest-list .separator, .chat-bar, .pmGreyTop,
+.pmGreyTop:hover,
 .pmGreyTop.hover, #buddyListContainer #buddyListHeader, #buddyListContainer #buddyListTitle, .pmGreyTop .username, .message-input-view {
   box-shadow: none !important;
   text-shadow: none !important; }
@@ -46,7 +46,7 @@ ul#ding-menu.floating-menu .split-option .option,
 #tsPanels nav, #topBG .lobby-panel .lobby-panel-header, #topBG #buddyList, #topBG #buddyList .buddyListNone,
 #topBG #buddyList #buddyListContent, #topBG #mainPanelHeader, #maindiv .floating-menu,
 ul#ding-menu.floating-menu,
-#settings.settings-dropdown .dropdown, #queue-header,
+#settings.settings-dropdown .dropdown, .speech-bubble, #queue-header,
 #playlist-header, .room-tab .edit-description, .sliding-nav .sliding-nav-pane-header, .room-tab .guest-list .separator, .chat-bar, #tsGuess, .message-history {
   color: #e6e6eb;
   background: #19213b; }
@@ -62,7 +62,8 @@ ul#ding-menu.floating-menu,
 #tsPanels .ts-button, #topBG .header-bar #create-room:hover, #topBG #buddyList .buddyListTitle, #maindiv .floating-menu .option,
 ul#ding-menu.floating-menu li.option,
 #settings.settings-dropdown .dropdown .option a,
-#settings.settings-dropdown .dropdown .split-option, body > .typeahead > .suggestion:hover, #overlay .modal .content-container input, #overlay .modal .content-container textarea, .new-modal .footer .carousel-indicators li, #queue-header .panel-button, #queue-header .done, #maindiv .song, .room-tab .guest-list .guest:not(.separator):hover, .pmGreyTop, .pmGreyTop:hover,
+#settings.settings-dropdown .dropdown .split-option, body > .typeahead > .suggestion:hover, #overlay .modal .content-container input, #overlay .modal .content-container textarea, .new-modal .footer .carousel-indicators li, #queue-header .panel-button, #queue-header .done, #maindiv .song, .room-tab .guest-list .guest:not(.separator):hover, .pmGreyTop,
+.pmGreyTop:hover,
 .pmGreyTop.hover {
   color: #e6e6eb;
   background: #27335b; }
@@ -691,6 +692,9 @@ body > .typeahead {
 .outer.tipsy-arrow-w {
   border-right-color: #27335b; }
 
+.speech-bubble {
+  border-color: #27335b; }
+
 #overlay .modal,
 #transition-modal,
 #mainPanelLoadOverlay {
@@ -740,6 +744,9 @@ body > .typeahead {
 
 .new-modal .title {
   border-bottom-color: #151b31; }
+
+.new-modal .content {
+  max-height: 450px !important; }
 
 .new-modal .header {
   color: #e6e6eb; }
@@ -1005,6 +1012,10 @@ button.sliding-nav-pane-back.back:after {
 .pmGreyTop.hover {
   border: none;
   box-sizing: border-box; }
+
+.pmGreyTop:hover,
+.pmGreyTop.hover {
+  background: #2c3966; }
 
 #privateChatIcon {
   border: 1px solid #151b31; }
