@@ -18,6 +18,7 @@
 
 	"dj.next": false,
 	"dj.done": false,
+	"dj.after": 1,
 	"dj.auto": false,
 	"dj.text": "Hey @user - it's your turn!",
 

@@ -22,5 +22,12 @@
 		{ "label": "60 Minutes", "value": 60 },
 		{ "label": "90 Minutes", "value": 90 },
 		{ "label": "120 Minutes", "value": 120 }
+	],
+	"songs": [
+		{ "label": "Escort After: 1 Song", "value": 1 },
+		{ "label": "Escort After: 2 Songs", "value": 2 },
+		{ "label": "Escort After: 3 Songs", "value": 3 },
+		{ "label": "Escort After: 4 Songs", "value": 4 },
+		{ "label": "Escort After: 5 Songs", "value": 5 }
 	]
 }

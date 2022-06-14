@@ -6,8 +6,9 @@ export default function () { return `
     </article>
 
     <article class="ts-help">
-      ${ this.$bool("Escort After Next", "dj.done") }
-      <p>Auto jump down after your next track!</p>
+      ${ this.$bool("Escort After Play", "dj.done") }
+      <p style="margin-bottom: 5px">Auto jump down after your next x track(s)!</p>
+      ${ this.$list("dj.after", "songs") }
     </article>
     
     <article class="ts-help">

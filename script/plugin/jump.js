@@ -47,8 +47,11 @@ const jumpScan = function () {
 // jump down after song
 const jumpDown = function (e) {
   if (!this.get("dj.done")) return
-  if (e.self) return this.bully(warning)
+  let after = this.after || this.get("dj.after")
+  if (e.self) return this.bully(warning(after))
   if (e.last.djid != this.user.id) return
+  this.after = after - 1
+  if (this.after) return
   this.set("dj.done", false)
   this.bully(off_deck)
   return this.drop()
@@ -80,8 +83,8 @@ const off_deck = {
   type: "action"
 }
 
-const warning = {
+const warning = after => ({
   head: "You've started spinning!",
-  text: "(turnStyles will escort you after this song!)",
+  text: `(turnStyles will escort you after ${ after } song(s)!)`,
   type: "action"
-}
+})
