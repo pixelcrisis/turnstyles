@@ -1,5 +1,6 @@
 // count songs in playlist
-const songCount = function () {
+const songCount = function (e) {
+  if (e.curr) return
   let head = $("#playlist-header .text")[0]
   let data = window.playlist.fileids.length
   let name = head.innerHTML.split("<em>")[0]
