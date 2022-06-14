@@ -12,6 +12,7 @@ const notifyChat = function (e) {
 
 const notifyText = function (e) {
   let conf = this.get("on.text")
+  if (!conf || !conf.length) return
   let list = this.strArr(conf, ",")
   list.forEach(word => this.notifyWord(e, word))
 }
