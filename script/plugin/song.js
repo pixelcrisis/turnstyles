@@ -7,6 +7,11 @@ const songCount = function () {
   return this.debug(`Counted Songs`, data)
 }
 
+// scroll to top on playlist change
+const songScroll = function (e) {
+  if (!e.curr) $("#songs").animate({ scrollTop: 0 })
+}
+
 // scan for recent songs on updates
 const recentScan = function () {
   // send a buffer delay to handle scroll
@@ -43,6 +48,7 @@ const recentSave = function (key, val) {
 
 export default app => {
   app.on("save", recentSave)
+  app.on("list", songScroll)
   app.on([ "attach", "list" ], songCount)
   app.on([ "attach", "list", "song" ], recentScan)
   Object.assign(app, { recentFind, recentMark })
