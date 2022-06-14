@@ -156,7 +156,8 @@ ul#ding-menu.floating-menu li.option.selected .playlist-label,
 #settings.settings-dropdown .dropdown .split-option.selected .playlist-label, #settings.settings-dropdown .dropdown .logout, .options-menu:not(.closed) .nib:after, .options-menu .options .option.checked,
 .guestOptionsContainer .options .option.checked, #overlay .modal.profile .website a,
 #overlay .modal.profile .fans .stat-number:not(.disabled):hover,
-#overlay .modal.profile .fanofs .stat-number:not(.disabled):hover, .room-tab .num-listeners, .chat .message .subject:hover,
+#overlay .modal.profile .fanofs .stat-number:not(.disabled):hover, .room-tab .num-listeners, .chat .message.patron .speaker,
+.chat .message .subject:hover,
 .chat .message .speaker:hover, #buddyListContainer #buddyListTitle, #buddyListContainer .pm-unavailable-warning {
   color: #bfa206; }
 

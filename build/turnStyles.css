@@ -87,8 +87,8 @@ body.hb-share #hbShare {
   margin-top: -1px;
   font-size: 11px; }
 
-.chat .message.patron {
-  box-shadow: inset 5px 0 0 gold; }
+.chat .message.patron .speaker {
+  color: gold; }
 
 .chat .message.patron .speaker:after {
   font-style: italic;
