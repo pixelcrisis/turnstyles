@@ -7,7 +7,7 @@ const idleChat = function (e) {
 }
 
 // send idle ping on PM
-const idlePM = function (e) {
+const idleMail = function (e) {
   if (!this.pinged) this.pinged = {}
   if (!this.get("afk.idle")) return 
   if (this.pinged[e.user.id]) return
@@ -55,6 +55,7 @@ const idleSave = function (key, val) {
 export default app => {
   app.idleTimer = 0
   app.on("chat", idleChat)
+  app.on("mail", idleMail)
   app.on("loop", idleLoop)
   app.on("save", idleSave)
   Object.assign(app, { idlePing, idleScan })
