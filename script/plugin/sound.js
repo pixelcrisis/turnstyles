@@ -11,16 +11,11 @@ const volAdd = function () {
 // disable volume controls
 const volRem = function () {
 	$("#tsVolWrap").remove()
-	window.turntablePlayer.realVolume = this.realVolume
 	return this.debug(`Restored Volume`)
 }
 
 // toggle the volume control
 const volLoad = function () {
-	// stash realVolume to replace
-	let rv = window.turntablePlayer.realVolume
-	if (!this.realVolume) this.realVolume = rv
-	// load or unload our volume control
 	let opt = this.get("use.volume")
 	let has = $("body").hasClass("ts-volume")
 	if (has && !opt) this.volRem()
@@ -31,19 +26,15 @@ const volLoad = function () {
 // update window volume on change
 const volSave = function (vol) {
 	vol = vol.target ? vol.target.value : vol
-	let volume = vol > 0 ? make_vol(vol) : -7
-	// tt doesn't go lower than 7 so we'll do it
-	let getVol = volume < 7 ? curr_vol : this.realVolume
-	window.turntablePlayer.realVolume = getVol
-	window.turntablePlayer.setVolume(volume)
-	window.util.setSetting("volume", volume)
+	window.turntablePlayer.setVolume(vol)
+	window.util.setSetting("volume", vol)
 }
 
 // handle scrolling the volume slider
 const volRoll = function (e) {
-	let curr = curr_vol()
+	let curr = window.util.getSetting("volume")
 	let down = e.originalEvent.deltaY > 0
-	let step = e.originalEvent.shiftKey ? 1 : 5
+	let step = e.originalEvent.shiftKey ? 0.04 : 0.2
 	let save = down ? (curr - step) : (curr + step)
 	$("#tsVolSlide").val(save)
 	this.volSave(save)
@@ -53,8 +44,9 @@ const volRoll = function (e) {
 const volToggle = function () {
 	this.muted = !this.muted
 	this.bodyClass("ts-muted", this.muted)
-	let vol = this.muted ? -7 : full_vol()
-	window.turntablePlayer.setVolume(vol)
+	let curr = window.util.getSetting("volume")
+	let save = this.muted ? -7 : curr
+	window.turntablePlayer.setVolume(save)
 	this.print(`Turned Mute ${ this.muted ? "On" : "Off" }`)
 }
 
@@ -68,17 +60,10 @@ export default app => {
 	Object.assign(app, { volAdd, volRem, volSave, volRoll, volToggle })
 }
 
-// why doesn't turntable use standard linear volumes?
-const make_vol = x => Math.log(x / 100) / Math.LN2 + 4
-const room_vol = x => window.util.getSetting("volume")
-const curr_vol = e => 100 * Math.pow(2, (e || room_vol()) - 4)
-// get the volume from tt, but make it spicy
-const full_vol = () => make_vol(curr_vol())
-
 const $html_vol = () => `
   <div id="tsVolWrap">
     <span id="tsMuteBtn"></span>
-    <input id="tsVolSlide" type="range" min="0" max="100" value="${ curr_vol() }">
+    <input id="tsVolSlide" type="range" min="0" max="4" step="0.04" value="${ window.util.getSetting("volume") }">
     <em id="tsMutedMsg">Muted For One Song</em>
   </div>
 `
