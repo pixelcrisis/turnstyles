@@ -11,7 +11,7 @@ const files = { // our build paths
 }
 
 const paths = { // our watch paths
-  script: "./script/**/*.js",
+  script: "./script/**/*.js*",
   styles: "./sass/**/*.sass",
   themes: "./sass/themes/*.sass",
   colors: "./sass/colors/*.sass",
