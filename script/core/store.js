@@ -16,7 +16,7 @@ const set = function (key, val) {
 }
 
 // simple validate a config 
-const confTry = function (conf) {
+const confScan = function (conf) {
 	try { conf = JSON.parse(conf) }
 	catch (e) {
 		this.debug(`Invalid Conf`, conf)
@@ -29,8 +29,8 @@ const confTry = function (conf) {
 
 // initial read local / addon dbs
 const confLoad = function () {
-	let local = this.confTry(this.data) || {}
-	let addon = this.confTry(this.sync) || {}
+	let local = this.confScan(this.data) || {}
+	let addon = this.confScan(this.sync) || {}
 	this.config = { ...this.default, ...addon, ...local }
 	this.migrate()
 	this.set("afk.idle", false)
@@ -43,7 +43,7 @@ import apply_migrate from "./migrate.js"
 
 export default app => {
 	app.on("load", confLoad)
-	Object.assign(app, { confTry, set, get })
+	Object.assign(app, { confScan, set, get })
 	apply_backups(app)
 	apply_migrate(app)
 }

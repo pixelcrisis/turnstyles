@@ -17,7 +17,7 @@ const dataUpload = function () {
 
 // apply restored JSON configs
 const dataRestore = function (file) {
-	let conf = this.confCheck(file.target.result)
+	let conf = this.confScan(file.target.result)
 	if (!conf) return alert("Invalid Backup File")
 	this.migrate(conf)
 	return this.dataUpdate(conf)
