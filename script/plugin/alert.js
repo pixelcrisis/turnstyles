@@ -18,8 +18,12 @@ const notifyText = function (e) {
 }
 
 const notifyWord = function (e, word) {
+  let conf = this.get("on.exact")
   let text = e.text.toLowerCase()
-  if (text.indexOf(word.toLowerCase()) > -1) {
+  let pass = text.indexOf(word.toLowerCase()) > -1
+  if (conf) pass = text == word.toLowerCase()
+  if (pass) {
+    this.ding()
     e.target.addClass("mention")
     let head = `Hot Word: ${ word }`
     return this.notify({ head, text: e.text, type: "ping" })

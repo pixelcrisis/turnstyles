@@ -25,5 +25,11 @@ export default function () { return `
       ${ this.$bool("Last Song Stats", "post.song") }
       ${ this.$bool("Last DJ's Stats", "post.spun") }
     </article>
+
+    <article class="ts-help">
+      ${ this.$bool("Enable Hot Word Exact Match", "on.exact") }
+      <p>Enabled: "heyy" will not trigger "hey".</p>
+      <p>Disabled: "heyy" will trigger "hey".</p>
+    </article>
   </section>
 `}

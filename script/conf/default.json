@@ -26,6 +26,7 @@
 	"on.song": false,
 	"on.mention": false,
 	"on.text": "",
+	"on.exact": true,
 
 	"post.song": false,
 	"post.spun": false,
