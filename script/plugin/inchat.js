@@ -24,7 +24,7 @@ const events = {
   }
 }
 
-const system_msg = `.message:has(.text):not(.stat)`
+const system_msg = `.message:has(> .text):not(.stat)`
 const now_playing = `${ system_msg }:contains("started playing")`
 const $ts_time = time => `<div class="ts-time">${ time }</div>`
 
