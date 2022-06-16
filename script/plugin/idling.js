@@ -8,10 +8,10 @@ const tools = {
     this.batch(list, id)
   },
 
-  scanIdling (id) { // ignore afk messages
+  scanIdling (msg) { // ignore afk messages
     let text = this.get("afk.text")
     let list = this.strArr(text, ";;")
-    if (list.includes(text)) return // afk message
+    if (list.includes(msg)) return // afk message
     this.set("afk.idle", false)
     this.post(idle_off)
     this.timeIdle = 0
