@@ -34,8 +34,8 @@ const events = {
 
 const ts_panels = "#tsPanels article"
 const ts_backup = "#tsBackup input"
-const ts_option = "#tsHotbar *[data-opt]"
-const ts_button = "#tsHotbar *[data-for]"
+const ts_option = "#tsPanels *[data-opt]"
+const ts_button = "#tsPanels *[data-for]"
 
 const $ts_window = (icon, body) => `
   <div id="tsWindow">
