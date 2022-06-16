@@ -13,6 +13,21 @@ export default function () { return `
     </article>
   </section>
 
+  <section class="small"><article>
+    ${ this.$bool("Hide Chat Bubbles", "hide.bubble") }
+    <p>Toggles speech bubbles from the audience.</p>
+  </article></section>
+
+  <section class="small"><article>
+    ${ this.$bool("Hide Room Audience", "hide.people") }
+    <p>Toggles the avatars on the room floor.</p>
+  </article></section>
+  
+  <section class="small"><article>
+    ${ this.$bool("Hide Video Player", "hide.player") }
+    <p>Toggles the video player in the background.</p>
+  </article></section>
+
   <section class="full">
     <article class="ts-help">
       <strong>Custom CSS</strong>

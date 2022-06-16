@@ -33,20 +33,5 @@ export default function () { return `
       ${ this.$bool("Chat Timestamps", "use.stamps") }
       <p>We all get distracted - turnStyles will add timestamps to all user messages in chat so you know when a message was sent.</p>
     </article>
-
-    <article>
-      ${ this.$bool("Hide Chat Bubbles", "hide.bubble") }
-      <p>Toggles speech bubbles from the audience.</p>
-    </article>
-
-    <article>
-      ${ this.$bool("Hide Room Audience", "hide.people") }
-      <p>Toggles the avatars on the room floor.</p>
-    </article>
-
-    <article>
-      ${ this.$bool("Hide Video Player", "hide.player") }
-      <p>Toggles the video player in the background.</p>
-    </article>
   </section>`
 }
