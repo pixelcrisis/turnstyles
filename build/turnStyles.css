@@ -70,7 +70,7 @@ body.hb-share #hbShare {
   vertical-align: top !important;
   display: inline-block !important; }
 
-.profile .section.statslink {
+.profile .section.ts-stats {
   text-align: center !important; }
 
 .invite-dj, .become-dj {
@@ -147,7 +147,7 @@ body.ts-recent #maindiv .song.ts-played:not(.current-song) {
 #tsLog .ts-log.log {
   opacity: 0.5; }
 
-#tsVolWrap {
+#tsVolume {
   width: 160px;
   z-index: 6000;
   -webkit-user-select: none;
@@ -333,7 +333,7 @@ body.ts-recent #maindiv .song.ts-played:not(.current-song) {
 .ts-data .ts-button {
   display: inline-flex !important; }
 
-#tsGuess {
+#tsHints {
   position: absolute !important;
   right: 256px;
   bottom: 0px;
@@ -344,19 +344,19 @@ body.ts-recent #maindiv .song.ts-played:not(.current-song) {
   background: #eeeeee;
   border-left: 1px solid #aaa;
   border-right: 1px solid #aaa; }
-  #tsGuess .wrap {
+  #tsHints .wrap {
     display: flex;
     min-height: 100%;
     box-sizing: border-box;
     flex-direction: column;
     justify-content: flex-end;
     padding: 10px 10px 10px 5px; }
-  #tsGuess img {
+  #tsHints img {
     width: 20px; }
-  #tsGuess div {
+  #tsHints div {
     padding: 3px;
     cursor: pointer; }
-  #tsGuess .icon:hover {
+  #tsHints .icon:hover {
     background: rgba(0, 0, 0, 0.1); }
 
 .ts-tab {

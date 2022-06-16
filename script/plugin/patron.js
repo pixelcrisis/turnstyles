@@ -1,10 +1,26 @@
-// check for sent patron messages
-const patronScan = function (e) {
-  let sent = e.target
-  let gold = this.patrons[e.user.id]
-  if (gold && sent) sent.addClass("patron")
+const events = {
+	chat: function scanPatron () {
+		let sent = e.target
+		let pass = this.patrons[e.user.id]
+		if (sent && pass) sent.addClass("patron")
+	},
+
+	save: function saveFan (key, val) {
+		if (key != "isfan") return
+		let bro = this.strings.author
+		if (val)  return this.user.removeFan(bro)
+		this.print(`Thanks For The Fan <3`)
+		this.user.addFan(bro)
+	},
+
+	attach: function scanFan () {
+		let bro = this.strings.author
+		let fan = this.user.isFanof(bro)
+		if (fan)  this.set("isfan", true)
+		if (!this.get("isfan")) return
+		this.print(`Thanks For The Fan <3`)
+		this.user.addFan(bro)
+	}
 }
 
-export default app => {
-  app.on("chat", patronScan)
-}
+export default { events }

@@ -47,7 +47,7 @@ ul#ding-menu.floating-menu .split-option .option,
 #topBG #buddyList #buddyListContent, #topBG #mainPanelHeader, #maindiv .floating-menu,
 ul#ding-menu.floating-menu,
 #settings.settings-dropdown .dropdown, .speech-bubble, #queue-header,
-#playlist-header, .room-tab .edit-description, .sliding-nav .sliding-nav-pane-header, .room-tab .guest-list .separator, .chat-bar, #tsGuess, .message-history {
+#playlist-header, .room-tab .edit-description, .sliding-nav .sliding-nav-pane-header, .room-tab .guest-list .separator, .chat-bar, #tsHints, .message-history {
   color: #cecece;
   background: #131f1a; }
 
@@ -161,7 +161,7 @@ ul#ding-menu.floating-menu li.option.selected .playlist-label,
 .ts-co-mute, #tsPanels article p {
   color: #868c89; }
 
-.ts-bg-main, #tsVolWrap #tsVolSlide, .new-modal .footer .carousel-indicators li:hover,
+.ts-bg-main, #tsVolume #tsVolSlide, .new-modal .footer .carousel-indicators li:hover,
 .new-modal .footer .carousel-indicators li.active {
   background: #5b9f60; }
 
@@ -330,11 +330,11 @@ body .conversation-view a:hover {
     background-position: 0 -160px !important;
     background-image: url("https://s3.amazonaws.com/assets.turntable.fm/images/sprites/chrome-sprite@2x.png") !important; }
 
-#tsVolWrap {
+#tsVolume {
   right: 80px; }
-  #tsVolWrap #tsVolSlide::-moz-range-thumb {
+  #tsVolume #tsVolSlide::-moz-range-thumb {
     background: #cecece; }
-  #tsVolWrap #tsVolSlide::-webkit-slider-thumb {
+  #tsVolume #tsVolSlide::-webkit-slider-thumb {
     background: #cecece; }
 
 #tsPanels #tsGold,
@@ -1008,11 +1008,11 @@ button.sliding-nav-pane-back.back:after {
     border: none;
     cursor: pointer; }
 
-#tsGuess {
+#tsHints {
   border-left: 2px solid #1d2e27;
   border-right: 2px solid #1d2e27; }
 
-#tsGuess .icon:hover {
+#tsHints .icon:hover {
   background: #1d2e27; }
 
 .pmGreyTop,

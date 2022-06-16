@@ -46,9 +46,6 @@
 	"hb.dj.next": true,
 	"hb.dj.done": true,
 	"hb.dj.auto": true,
-	"hb.people": false,
-	"hb.player": false,
-	"hb.bubble": false,
 	"hb.share": true,
 
 	"hide.people": false,

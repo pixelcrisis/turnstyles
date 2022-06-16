@@ -1,7 +1,7 @@
 // turnStyles for turntable.fm
 // overcomplicated, by pixelcrisis
+// include the local TBA for bleeding edge
 import TBA from "../../tt-browser-api/index.js"
-import App from "./import.js"
 
 // first we make sure we were injected properly
 // so we look up the base (bookmarklet or app?)
@@ -19,13 +19,23 @@ if (!sync || sync == "undefined") sync = "{}"
 if (!data || data == "undefined") data = "{}"
 
 // now let's define our app
+let name = "turnStyles"
+let icon = `${ base }/images/icon128.png`
 let turnStyles = window.$ts = new TBA({ 
-	base, data, sync, debugging: true,
-	name: "turnStyles", label: "TS",
-	icon: `${ base }/images/icon128.png`
+	name, icon, base, data, sync
 })
 
-// build app
-App(turnStyles)
+// and build it out 
+import Apply_Core from "./core/apply.js"
+import Apply_Store from "./store/apply.js"
+import Apply_Panel from "./panel/apply.js"
+import Apply_Plugin from "./plugin/apply.js"
+
+Apply_Core(turnStyles)
+Apply_Store(turnStyles)
+Apply_Panel(turnStyles)
+Apply_Plugin(turnStyles)
+
+// start or die
 if (base) turnStyles.attach()
 else turnStyles.update()

@@ -128,9 +128,9 @@ body:not(.th-none) #buddyListContainer #buddyListTitle,
 body:not(.th-none) #buddyListContainer .pm-unavailable-warning {
   color: #499bcc !important; }
 
-body.th-none .ts-bg-main, body.th-none #tsVolWrap #tsVolSlide, body.th-none .new-modal .footer .carousel-indicators li:hover, body.th-none .new-modal .footer .carousel-indicators li.active,
+body.th-none .ts-bg-main, body.th-none #tsVolume #tsVolSlide, body.th-none .new-modal .footer .carousel-indicators li:hover, body.th-none .new-modal .footer .carousel-indicators li.active,
 body:not(.th-none) .ts-bg-main,
-body:not(.th-none) #tsVolWrap #tsVolSlide,
+body:not(.th-none) #tsVolume #tsVolSlide,
 body:not(.th-none) .new-modal .footer .carousel-indicators li:hover,
 body:not(.th-none) .new-modal .footer .carousel-indicators li.active {
   background: #499bcc !important; }
