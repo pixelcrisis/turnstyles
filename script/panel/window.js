@@ -43,8 +43,8 @@ const $ts_window = (icon, body) => `
       <header>
         <img id="tsLogo2" src="${ icon }">
         <h2>turnStyles Config</h2><span id="tsClose">✖</span>
-        ${ body }
       </header>
+      ${ body }
     </div>
   </div>
 `

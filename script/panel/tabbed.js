@@ -25,7 +25,8 @@ const tools = {
     return this.tabs.map(tab => {
       let make = tab.make.bind(this)
       let self = `data-tab="${ tab.name }"`
-      let flag = `class="ts-tabbed ${ tab.active && "active"}"`
+      let show = tab.active ? "active" : ""
+      let flag = `class="ts-tabbed ${ show }"`
       return `<div ${ self } ${ flag }>${ make() }</div>`
     }).join("")
   },
