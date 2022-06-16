@@ -21,7 +21,7 @@ const tools = {
   findJump (str) {
     let text = this.get("dj.text")
     let list = this.strArr(text, ";;")
-    let test = word => text.indexOf(word) > -1
+    let test = word => str.indexOf(word) > -1
     for (let word of list) if (test(word)) return true
     return false
   },
