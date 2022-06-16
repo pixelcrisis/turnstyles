@@ -46,7 +46,9 @@
 	margin-left: 5px
 	&.full
 		width: calc(100% - 5px)
-	&:not(.full)
+	&.small
+		width: calc(33% - 3px)
+	&:not(.full):not(.small)
 		width: calc(50% - 5px)
 	h4
 		margin: 0 0 5px
