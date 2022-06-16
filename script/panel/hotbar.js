@@ -31,7 +31,7 @@ const tools = {
       ${ this.$bool("Next DJ", "dj.next", "hbNextDJ") }
       ${ this.$bool("Escort", "dj.done", "hbDoneDJ") }
       ${ this.$qt("1") } ${ this.$qt("2") } ${ this.$qt("3") }
-      ${ this.$bool("Share", "share", "hbShare") }
+      ${ this.$btn("Share", false, "share", "hbShare") }
     `)
   }
 }
