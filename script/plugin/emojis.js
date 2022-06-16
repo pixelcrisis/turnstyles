@@ -13,7 +13,8 @@ const tools = {
 
 	makeEmoji (word, icon) {
 		let name = no_tongue(word)
-		has_emoji().each(function () {
+		let text = has_emoji(name)
+		$(text).each(function () {
 			let html = this.innerHTML.split(name).join(icon)
 			this.innerHTML = no_tongue(html)
 		})
@@ -39,9 +40,8 @@ const twit_base = "https://static-cdn.jtvnw.net/emoticons/v2"
 const twit_link = name => `${ twit_base }/${ name }/static/light/1.0`
 const $twit_icon = name => `<img src="${ twit_link(name) }">`
 
-const no_tongue = str => str
-	.split(":p").join("").split(":P").join("")
-	.split(`<span title="stuck_out_tongue" class="emoji emoji-stuck_out_tongue emoji-small"></span>`).join("")
+const no_tongue = str => str.split(":p").join("")
+	.split(":P").join("").split('<span title="stuck_out_tongue" class="emoji emoji-stuck_out_tongue emoji-small"></span>').join("")
 
 const has_emoji = name => `.chat .text:contains("${ name }")`
 

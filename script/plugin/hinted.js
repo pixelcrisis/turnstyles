@@ -36,7 +36,8 @@ const events = {
 		if (!this.get("use.emojis")) return
 		let list = text.split(" ")
 		let word = list[list.length - 1]
-		let icon = word[0] == ":" && word.length > 1
+		let done = word[word.length - 1] == ":"
+		let icon = word[0] == ":" && !done
 		let name = word.split(":").join("")
 		if (icon)  return this.findHints(name)
 		this.hideHints()
