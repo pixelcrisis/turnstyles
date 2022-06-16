@@ -5,7 +5,8 @@ const tools = {
 		if (e.self || this.now_playing.none || !conf) return
 		let wait = Math.floor((Math.random() * 7) * 1000)
 		this.debug(`Autobop: ${ wait / 1000 } Seconds.`)
-		this.bopping = setTimeout(this.vote(), wait)
+		let vote = this.vote.bind(this)
+		this.bopping = setTimeout(vote, wait)
 	}
 }
 
