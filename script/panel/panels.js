@@ -13,7 +13,7 @@ const tools = {
     this.set(option.key, option.val)
     if (!this.emitPanel(option.key)) return
     // emit save events only in rooms (mostly)
-    this.emit("save", key, val)
+    this.emit("save", option.key, option.val)
   },
 
   findPanel (e) { // find config from element
