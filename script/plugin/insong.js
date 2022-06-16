@@ -19,7 +19,7 @@ const tools = {
     let band = $(song).find(".details").text().split(" • ")[0]
     let both = s => s.song == name && s.artist == band
     let mark = s => both(s) && $(song).addClass("ts-played")
-    list.forEach(item => mark(item.metdata))
+    list.forEach(item => mark(item.metadata))
   },
 
   countSongs (e) {
