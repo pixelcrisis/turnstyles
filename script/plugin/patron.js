@@ -1,5 +1,5 @@
 const events = {
-	chat: function scanPatron () {
+	chat: function scanPatron (e) {
 		let sent = e.target
 		let pass = this.patrons[e.user.id]
 		if (sent && pass) sent.addClass("patron")

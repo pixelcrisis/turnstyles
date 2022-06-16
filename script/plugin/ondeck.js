@@ -54,7 +54,7 @@ const events = {
   },
 
 
-  jump: function landJump () {
+  jump: function landJump (e) {
     if (!e.self || !this.get("dj.next")) return
     this.set("dj.next", false)
     this.bully(on_deck)
