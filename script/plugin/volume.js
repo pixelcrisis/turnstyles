@@ -15,8 +15,8 @@ const tools = {
 	loadVol () {
 		let opt = this.get("use.volume")
 		let has = $("body").hasClass("ts-volume")
-		if (has && !opt) this.showVol()
-		if (opt && !has) this.hideVol()
+		if (opt && !has) this.showVol()
+		if (has && !opt) this.hideVol()
 		this.bodyClass("ts-volume", opt)
 	},
 
