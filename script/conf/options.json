@@ -31,13 +31,9 @@
 		{ "label": "Escort After: 5 Songs", "value": 5 }
 	],
 	"sizes": [
-		{ "value":  "7px" }, { "value":  "8px" }, { "value":  "9px" },
-		{ "value": "10px" }, { "value": "11px" }, { "value": "12px" },
-		{ "value": "13px" }, { "value": "14px" }, { "value": "15px" },
-		{ "value": "16px" }, { "value": "17px" }, { "value": "18px" },
-		{ "value": "19px" }, { "value": "20px" }, { "value": "21px" },
-		{ "value": "22px" }, { "value": "23px" }, { "value": "24px" },
-		{ "value": "25px" }, { "value": "26px" }, { "value": "27px" },
-		{ "value": "28px" }, { "value": "29px" }, { "value": "30px" }
+		{ "value":  "9px" }, { "value": "10px" }, { "value": "11px" },
+		{ "value": "12px" }, { "value": "13px" }, { "value": "14px" },
+		{ "value": "15px" }, { "value": "16px" }, { "value": "17px" },
+		{ "value": "18px" }, { "value": "19px" }, { "value": "20px" }
 	]
 }
