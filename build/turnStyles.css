@@ -115,24 +115,22 @@ body.ts-recent #maindiv .song.ts-played:not(.current-song) {
     content: " (Recent)"; }
 
 #tsDrag {
-  width: 7px;
-  height: 30px;
+  width: 1px;
+  height: 100%;
   z-index: 10;
   cursor: col-resize;
   background: #9f9f9f;
   position: absolute !important;
-  top: 47px; }
+  top: 0; }
   #tsDrag:hover {
-    width: 10px;
     background: #f3cc12; }
 
 body.ts-resizing #tsDrag {
-  height: 100%;
-  margin-top: -47px; }
+  cursor: -webkit-grabbing;
+  cursor: grabbing; }
 
 body.ts-resizing > *:not(#tsDrag) {
-  opacity: 0.8;
-  cursor: col-resize; }
+  opacity: 0.8; }
 
 #tsLog .book {
   display: none;
