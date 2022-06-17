@@ -54,7 +54,7 @@ export const tools = {
     $("body").off("mousemove", this.dragging)
     let opt = this.get("size.chat")
     let val = this.resize_at - e.pageX
-    this.set("size.chat", px_math(opt, val))
+    this.set("size.chat", px_add(opt, val))
     this.resize_at = 0
     this.chatResize()
   }
@@ -96,12 +96,26 @@ const chat_css = size => `
   .chat-image-container .chat-image { width: auto; }
 `
 const text_css = size => `
-  .chat .messages .ts-time {  font-size: ${ px_math(size, -2) }; }
-  .chat .messages .default-message, .chat .messages .message {
+  .chat .messages .message,
+  #songs .songs .song .title,
+  .chat .messages .default-message {
     font-size: ${ size };
     line-height: 1.5em;
   } 
+  #songs .songs .song .title { 
+    height: 1.5em; 
+    margin-top: -${ px_add(px_div(size, 3), -2) };
+  }
+  #songs .songs .song .details {
+    line-height: 1.5em;
+    font-size: ${ px_add(size, -1) };
+    margin-top: -${ px_div(size, 3) };
+  }
+  .chat .messages .ts-time { font-size: ${ px_add(size, -2) }; }
+  #songs .songs .song .details { font-size: ${ px_add(size, -1) }; }
 `
-const px_math = (a,b) => (parseInt(a.replace(/px/,"")) + b) + "px"
+const px_get = (str) => parseInt(str.replace(/px/, ""))
+const px_add = (a,b) => Math.floor(px_get(a) + b) + "px"
+const px_div = (a,b) => Math.floor(px_get(a) / b) + "px"
 
 export default { tools, events }

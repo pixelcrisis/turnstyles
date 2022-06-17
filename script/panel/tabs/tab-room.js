@@ -40,9 +40,9 @@ export default function () { return `
     </article>
 
     <article class="ts-help">
-      <strong>Chat Font Size:</strong>
+      <strong>Room Font Size:</strong>
       ${ this.$list("size.text", "sizes") }
-      <p>Change the font size of the chat area.</p>
+      <p>Change the font size of the room tabs.</p>
     </article>
   </section>`
 }
