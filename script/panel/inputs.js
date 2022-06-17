@@ -57,7 +57,7 @@ const tools = {
     let conf = value == data
     let flag = `value="${ value }"`
     if (conf) flag += ` selected`
-    return `<option ${ flag }>${ label }</option>`
+    return `<option ${ flag }>${ label || value }</option>`
   },
 
   $qt (i) {

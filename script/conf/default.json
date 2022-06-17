@@ -12,6 +12,8 @@
 	"use.recent": false,
 	"use.stamps": true,
 
+	"size.text": "13px",
+
 	"afk.auto": 0,
 	"afk.idle": false,
 	"afk.text": "I'm AFK - Back in a sec!",

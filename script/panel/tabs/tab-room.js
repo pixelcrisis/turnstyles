@@ -33,5 +33,11 @@ export default function () { return `
       ${ this.$bool("Chat Timestamps", "use.stamps") }
       <p>We all get distracted - turnStyles will add timestamps to all user messages in chat so you know when a message was sent.</p>
     </article>
+
+    <article class="ts-help">
+      <strong>Font Size:</strong>
+      ${ this.$list("size.text", "sizes") }
+      <p>Change the font size of the chat area.</p>
+    </article>
   </section>`
 }
