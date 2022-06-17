@@ -98,7 +98,7 @@ body.ts-recent #maindiv .song.ts-played:not(.current-song)
 		content: " (Recent)"
 
 // resize handle
-#tsDrag
+#tsDragR
 	width: 5px
 	height: 100%
 	z-index: 10
@@ -110,10 +110,10 @@ body.ts-recent #maindiv .song.ts-played:not(.current-song)
 		color: $accent
 
 body.ts-resizing
-	#tsDrag
+	#tsDragR
 		cursor: grabbing
-	> *:not(#tsDrag)
+	> *:not(#tsDragR)
 		opacity: 0.8
 
-body.lobby #tsDrag
+body.lobby #tsDragR
 	@extend .ts-hidden

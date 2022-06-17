@@ -7,7 +7,7 @@ export const tools = {
   },
 
   chatResize(e) {
-    let show = $("#tsDrag").length
+    let show = $("#tsDragR").length
     let conf = this.get("use.resize")
     this.bodyClass("ts-resize", conf)
     if (!conf) return this.hideDrag()
@@ -22,11 +22,11 @@ export const tools = {
 
   showDrag() {
     $("body").append($ts_drag)
-    $("#tsDrag").on("mousedown", this.initDrag.bind(this))
+    $("#tsDragR").on("mousedown", this.initDrag.bind(this))
   },
 
   hideDrag() {
-    $("#tsDrag").remove()
+    $("#tsDragR").remove()
     $("#ts_chat_css").remove()
     window.dispatchEvent(new Event("resize"))
   },
@@ -43,12 +43,12 @@ export const tools = {
 
   saveDrag(e) {
     let val = this.resize_at - e.pageX
-    $("#tsDrag").css("margin-right", val)
+    $("#tsDragR").css("margin-right", val)
   },
 
   stopDrag(e) {
     e.preventDefault()
-    $("#tsDrag").css("margin-right", 0)
+    $("#tsDragR").css("margin-right", 0)
     this.bodyClass("ts-resizing", false)
     $("body").off("mouseup", this.drag_end)
     $("body").off("mousemove", this.dragging)
@@ -74,11 +74,11 @@ const events = {
   attach: tools.chatResize
 }
 
-const $ts_drag = `<div id="tsDrag"></div>`
+const $ts_drag = `<div id="tsDragR"></div>`
 
 const chat_css = size => `
   body .chrome .header-bar, 
-  .room-viewport, #tsDrag { right: ${ size }; }
+  .room-viewport, #tsDragR { right: ${ size }; }
   body .chrome .right-panel { width: ${ size }; }
   .chat-image-container .chat-image { width: auto; }
 `
