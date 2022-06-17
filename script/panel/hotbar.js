@@ -19,7 +19,7 @@ const tools = {
 
   saveHotbar (key) {
     if (key.indexOf("qt") !== 0) return
-    if (key.inedxOf("hb") !== 0) return
+    if (key.indexOf("hb") !== 0) return
     this.loadHotbar()
   },
 
