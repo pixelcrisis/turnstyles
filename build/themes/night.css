@@ -1011,6 +1011,11 @@ button.sliding-nav-pane-back.back:after {
     border: none;
     cursor: pointer; }
 
+body #tsDrag {
+  background: #322e16; }
+  body #tsDrag:hover {
+    background: #bfa206; }
+
 #tsHints {
   border-left: 2px solid #1e1e1e;
   border-right: 2px solid #1e1e1e; }
@@ -1091,3 +1096,5 @@ button.sliding-nav-pane-back.back:after {
 
 .message-input-view {
   border-top: 1px solid #0a0a0a; }
+
+/*# sourceMappingURL=night.css.map */

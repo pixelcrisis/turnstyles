@@ -128,11 +128,12 @@ body:not(.th-none) #buddyListContainer #buddyListTitle,
 body:not(.th-none) #buddyListContainer .pm-unavailable-warning {
   color: #499bcc !important; }
 
-body.th-none .ts-bg-main, body.th-none #tsVolume #tsVolSlide, body.th-none .new-modal .footer .carousel-indicators li:hover, body.th-none .new-modal .footer .carousel-indicators li.active,
+body.th-none .ts-bg-main, body.th-none #tsVolume #tsVolSlide, body.th-none .new-modal .footer .carousel-indicators li:hover, body.th-none .new-modal .footer .carousel-indicators li.active, body.th-none #tsDrag:hover,
 body:not(.th-none) .ts-bg-main,
 body:not(.th-none) #tsVolume #tsVolSlide,
 body:not(.th-none) .new-modal .footer .carousel-indicators li:hover,
-body:not(.th-none) .new-modal .footer .carousel-indicators li.active {
+body:not(.th-none) .new-modal .footer .carousel-indicators li.active,
+body:not(.th-none) #tsDrag:hover {
   background: #499bcc !important; }
 
 body.th-none .ts-bb-main, body.th-none .tab-item.selected, body.th-none #topBG #mainNav li.selected,
@@ -184,3 +185,5 @@ body.th-none .chat .message.mention {
 
 body.th-none #buddyListHeader {
   background: linear-gradient(to bottom right, #69add5, #3487b8) !important; }
+
+/*# sourceMappingURL=blue.css.map */

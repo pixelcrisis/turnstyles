@@ -1008,6 +1008,11 @@ button.sliding-nav-pane-back.back:after {
     border: none;
     cursor: pointer; }
 
+body #tsDrag {
+  background: #243a62; }
+  body #tsDrag:hover {
+    background: #47a7ff; }
+
 #tsHints {
   border-left: 2px solid #212b4d;
   border-right: 2px solid #212b4d; }
@@ -1088,3 +1093,5 @@ button.sliding-nav-pane-back.back:after {
 
 .message-input-view {
   border-top: 1px solid #151b31; }
+
+/*# sourceMappingURL=midnight.css.map */

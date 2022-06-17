@@ -1008,6 +1008,11 @@ button.sliding-nav-pane-back.back:after {
     border: none;
     cursor: pointer; }
 
+body #tsDrag {
+  background: #233a2b; }
+  body #tsDrag:hover {
+    background: #5b9f60; }
+
 #tsHints {
   border-left: 2px solid #1d2e27;
   border-right: 2px solid #1d2e27; }
@@ -1088,3 +1093,5 @@ button.sliding-nav-pane-back.back:after {
 
 .message-input-view {
   border-top: 1px solid #0d1512; }
+
+/*# sourceMappingURL=forest.css.map */

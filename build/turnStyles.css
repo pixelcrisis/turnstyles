@@ -15,7 +15,7 @@ body.hb-dj-done #hbDoneDJ,
 body.hb-people #hbPeople,
 body.hb-player #hbPlayer,
 body.hb-bubble #hbBubble,
-body.hb-share #hbShare {
+body.hb-share #hbShare, body.lobby #tsDrag {
   display: none !important; }
 
 .ts-brighten, .chat .message.patron:hover {
@@ -113,6 +113,26 @@ body.ts-recent #maindiv .song.ts-played:not(.current-song) {
   body.ts-recent #maindiv .song.ts-played:not(.current-song):hover .title:after,
   body.ts-recent #maindiv .song.ts-played:not(.current-song):hover .details:after {
     content: " (Recent)"; }
+
+#tsDrag {
+  width: 7px;
+  height: 30px;
+  z-index: 10;
+  cursor: col-resize;
+  background: #9f9f9f;
+  position: absolute !important;
+  top: 47px; }
+  #tsDrag:hover {
+    width: 10px;
+    background: #f3cc12; }
+
+body.ts-resizing #tsDrag {
+  height: 100%;
+  margin-top: -47px; }
+
+body.ts-resizing > *:not(#tsDrag) {
+  opacity: 0.8;
+  cursor: col-resize; }
 
 #tsLog .book {
   display: none;
@@ -404,7 +424,9 @@ body.ts-recent #maindiv .song.ts-played:not(.current-song) {
   margin-left: 5px; }
   #tsPanels section.full {
     width: calc(100% - 5px); }
-  #tsPanels section:not(.full) {
+  #tsPanels section.small {
+    width: calc(33% - 3px); }
+  #tsPanels section:not(.full):not(.small) {
     width: calc(50% - 5px); }
   #tsPanels section h4 {
     margin: 0 0 5px; }
@@ -467,3 +489,5 @@ body.ts-recent #maindiv .song.ts-played:not(.current-song) {
   border: 1px dotted;
   margin-bottom: 5px;
   text-decoration: none; }
+
+/*# sourceMappingURL=turnStyles.css.map */

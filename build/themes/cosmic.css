@@ -1008,6 +1008,11 @@ button.sliding-nav-pane-back.back:after {
     border: none;
     cursor: pointer; }
 
+body #tsDrag {
+  background: #3f3154; }
+  body #tsDrag:hover {
+    background: #c77dde; }
+
 #tsHints {
   border-left: 2px solid #2b2742;
   border-right: 2px solid #2b2742; }
@@ -1088,3 +1093,5 @@ button.sliding-nav-pane-back.back:after {
 
 .message-input-view {
   border-top: 1px solid #1a1829; }
+
+/*# sourceMappingURL=cosmic.css.map */
