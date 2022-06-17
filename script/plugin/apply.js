@@ -1,4 +1,5 @@
 import Visual from "./visual.js"
+import Resize from "./resize.js"
 import Player from "./player.js"
 import Volume from "./volume.js"
 import Notify from "./notify.js"
@@ -15,6 +16,7 @@ import InSong from "./insong.js"
 
 export default App => {
   App.addPlugin(Visual)
+  App.addPlugin(Resize)
   App.addPlugin(Player)
   App.addPlugin(Volume)
   App.addPlugin(Notify)
