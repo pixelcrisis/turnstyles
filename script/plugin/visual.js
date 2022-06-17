@@ -14,6 +14,7 @@ export const tools = {
     if (!has) this.showDrag()
     let css = chat_css(this.get("size.chat"))
     this.injectStyle(css, "ts_chat_css")
+    window.dispatchEvent(new Event("resize"))
   },
 
   showDrag() {
