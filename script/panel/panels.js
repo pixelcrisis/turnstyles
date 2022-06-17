@@ -26,7 +26,7 @@ const tools = {
     return { key, val }
   },
 
-  emitPanel () { // can we emit the save event?
+  emitPanel (key) { // can we emit the save event?
     if (!this.lobby) return true // not in the lobby
     // only emit visual changes in the lobby
     let has = [ "theme", "color", "style" ].includes(key)
