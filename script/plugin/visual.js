@@ -104,7 +104,7 @@ const text_css = size => `
   } 
   #songs .songs .song .title { 
     height: 1.5em; 
-    margin-top: -${ px_add(px_div(size, 3), -2) };
+    margin-top: -${ px_add(px_div(size, 3), px_top(size)) };
   }
   #songs .songs .song .details {
     line-height: 1.5em;
@@ -117,5 +117,6 @@ const text_css = size => `
 const px_get = (str) => parseInt(str.replace(/px/, ""))
 const px_add = (a,b) => Math.floor(px_get(a) + b) + "px"
 const px_div = (a,b) => Math.floor(px_get(a) / b) + "px"
+const px_top = (opt) => px_get(opt) > 18 ? 0 : -2
 
 export default { tools, events }
