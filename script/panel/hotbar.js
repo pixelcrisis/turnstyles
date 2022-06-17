@@ -30,7 +30,8 @@ const tools = {
       ${ this.$bool("AutoQueue", "dj.auto", "hbAutoDJ") }
       ${ this.$bool("Next DJ", "dj.next", "hbNextDJ") }
       ${ this.$bool("Escort", "dj.done", "hbDoneDJ") }
-      ${ this.$qt("1") } ${ this.$qt("2") } ${ this.$qt("3") }
+      ${ this.$qt("1") } ${ this.$qt("2") }
+      ${ this.$qt("3") } ${ this.$qt("4") }
       ${ this.$btn("Share", false, "share", "hbShare") }
     `)
   }

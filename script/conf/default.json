@@ -41,10 +41,12 @@
 	"qtbtn1": "Welcome || Welcome to my room!",
 	"qtbtn2": "Label || Your Message",
 	"qtbtn3": "Label || Message 1 ;; Message 2 ;; Message 3",
+	"qtbtn4": "Hello There || General Kenobi",
 
 	"hb.qtbtn1": false,
 	"hb.qtbtn2": false,
 	"hb.qtbtn3": false,
+	"hb.qtbtn4": false,
 	"hb.autobop": true,
 	"hb.afk.idle": true,
 	"hb.dj.next": true,

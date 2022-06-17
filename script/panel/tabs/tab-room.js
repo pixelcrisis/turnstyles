@@ -35,14 +35,14 @@ export default function () { return `
     </article>
 
     <article class="ts-help">
-      <strong>Font Size:</strong>
-      ${ this.$list("size.text", "sizes") }
-      <p>Change the font size of the chat area.</p>
+      ${ this.$bool("Resize Chat Tab", "use.resize") }
+      <p>Make the chat tab resizable via dragging.</p>
     </article>
 
     <article class="ts-help">
-      ${ this.$bool("Resize Chat Tab", "use.resize") }
-      <p>Makes the chat tab draggable, allowing you to set a custom size.</p>
+      <strong>Chat Font Size:</strong>
+      ${ this.$list("size.text", "sizes") }
+      <p>Change the font size of the chat area.</p>
     </article>
   </section>`
 }
