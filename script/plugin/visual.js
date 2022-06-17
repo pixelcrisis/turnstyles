@@ -7,16 +7,18 @@ export const tools = {
   },
 
   chatResize() {
-    let has = $("#tsDrag").length
-    let use = this.get("use.resize")
-    this.bodyClass("ts-resize", use)
-    if (!use) return this.hideDrag()
-    if (!has) this.showDrag()
-    let opt = this.get("size.chat")
-    let css = chat_css(opt)
-    this.injectStyle(css, "ts_chat_css")
-    this.debug(`Resized Chat Panel`, opt)
-    window.dispatchEvent(new Event("resize"))
+    let show = $("#tsDrag").length
+    let conf = this.get("use.resize")
+    this.bodyClass("ts-resize", conf)
+    if (!conf) return this.hideDrag()
+    if (!show) this.showDrag()
+    let size = this.get("size.chat")
+    let send = chat_css(size)
+    this.injectStyle(send, "ts_chat_css")
+    this.debug(`Resized Chat Panel`, size)
+    setTimeout(() => {
+      window.dispatchEvent(new Event("resize"))
+    }, 500)
   },
 
   showDrag() {
@@ -95,14 +97,11 @@ const chat_css = size => `
   .chat-image-container .chat-image { width: auto; }
 `
 const text_css = size => `
+  .chat .messages .ts-time {  font-size: ${ px_math(size, -2) }; }
   .chat .messages .default-message, .chat .messages .message {
     font-size: ${ size };
-    line-height: ${ px_math(size, 3) };
+    line-height: 1.4em;
   } 
-  .chat .messages .ts-time { 
-    font-size: ${ px_math(size, -2) }; 
-    line-height: ${ px_math(size, 1) };
-  }
 `
 const px_math = (a,b) => (parseInt(a.replace(/px/,"")) + b) + "px"
 
