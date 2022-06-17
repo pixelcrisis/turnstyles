@@ -100,7 +100,7 @@ const text_css = size => `
   .chat .messages .ts-time {  font-size: ${ px_math(size, -2) }; }
   .chat .messages .default-message, .chat .messages .message {
     font-size: ${ size };
-    line-height: 1.4em;
+    line-height: 1.5em;
   } 
 `
 const px_math = (a,b) => (parseInt(a.replace(/px/,"")) + b) + "px"
