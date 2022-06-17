@@ -25,8 +25,8 @@ const tools = {
 
 	refresh (conf) {
 		for (let name in conf) {
-			if (!conf in this.config) return
-			else this.set(name, conf[name])
+			if (!name in this.config) return
+			this.config[name] = conf[name]
 		}
 	}
 }
