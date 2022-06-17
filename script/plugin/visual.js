@@ -95,11 +95,11 @@ const chat_css = size => `
 const text_css = size => `
   .chat .messages .default-message, .chat .messages .message {
     font-size: ${ size };
-    line-height: ${ px_math(size, 2) };
+    line-height: ${ px_math(size, 3) };
   } 
   .chat .messages .ts-time { 
     font-size: ${ px_math(size, -2) }; 
-    line-height: ${ size };
+    line-height: ${ px_math(size, 1) };
   }
 `
 const px_math = (a,b) => (parseInt(a.replace(/px/,"")) + b) + "px"
