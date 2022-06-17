@@ -86,7 +86,7 @@ const text_css = size => `
   .chat .messages .message,
   #songs .songs .song .title,
   .chat .messages .default-message {
-    font-size: ${ size };
+    font-size: ${ px_add(size, 1) };
     line-height: 1.5em;
   } 
   #songs .songs .song .title { 
@@ -95,11 +95,11 @@ const text_css = size => `
   }
   #songs .songs .song .details {
     line-height: 1.5em;
-    font-size: ${ px_add(size, -1) };
+    font-size: ${ size };
     margin-top: -${ px_div(size, 3) };
   }
   .chat .messages .ts-time { font-size: ${ px_add(size, -2) }; }
-  #songs .songs .song .details { font-size: ${ px_add(size, -1) }; }
+  #songs .songs .song .details { font-size: ${ size }; }
 `
 const px_get = (str) => parseInt(str.replace(/px/, ""))
 const px_add = (a,b) => Math.floor(px_get(a) + b) + "px"
