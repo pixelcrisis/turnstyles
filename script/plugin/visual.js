@@ -91,9 +91,14 @@ const chat_css = size => `
   .chat-image-container .chat-image { width: auto; }
 `
 const text_css = size => `
-  .chat .messages .default-message, 
-  .chat .messages .message { font-size: ${ size }; } 
-  .chat .messages .ts-time { font-size: ${ px_math(size, -2) }; }
+  .chat .messages .default-message, .chat .messages .message {
+    font-size: ${ size };
+    line-height: ${ px_math(size, 2) };
+  } 
+  .chat .messages .ts-time { 
+    font-size: ${ px_math(size, -2) }; 
+    line-height: ${ size };
+  }
 `
 const px_math = (a,b) => (parseInt(a.replace(/px/,"")) + b) + "px"
 
