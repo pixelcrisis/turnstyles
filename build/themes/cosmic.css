@@ -1009,9 +1009,9 @@ button.sliding-nav-pane-back.back:after {
     cursor: pointer; }
 
 body #tsDrag {
-  background: #3f3154; }
+  color: #3f3154; }
   body #tsDrag:hover {
-    background: #c77dde; }
+    color: #c77dde; }
 
 #tsHints {
   border-left: 2px solid #2b2742;

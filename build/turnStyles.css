@@ -115,15 +115,16 @@ body.ts-recent #maindiv .song.ts-played:not(.current-song) {
     content: " (Recent)"; }
 
 #tsDrag {
-  width: 1px;
+  width: 5px;
   height: 100%;
   z-index: 10;
+  color: #9f9f9f;
   cursor: col-resize;
-  background: #9f9f9f;
+  border-right: 1px solid;
   position: absolute !important;
   top: 0; }
   #tsDrag:hover {
-    background: #f3cc12; }
+    color: #f3cc12; }
 
 body.ts-resizing #tsDrag {
   cursor: -webkit-grabbing;
