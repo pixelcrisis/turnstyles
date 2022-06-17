@@ -2,6 +2,7 @@ const tools = {
   qtbtn1 () { this.quickText("qtbtn1") },
   qtbtn2 () { this.quickText("qtbtn2") },
   qtbtn3 () { this.quickText("qtbtn3") },
+  qtbtn4 () { this.quickText("qtbtn4") },
 
   quickText (btn) {
     let data = this.get(btn)
