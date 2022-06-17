@@ -25,6 +25,7 @@ export const tools = {
   hideDrag() {
     $("#tsDrag").remove()
     $("#ts_chat_css").remove()
+    window.dispatchEvent(new Event("resize"))
   },
 
   initDrag(e) {
