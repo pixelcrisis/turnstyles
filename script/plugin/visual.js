@@ -6,7 +6,7 @@ export const tools = {
     this.injectStyle(text_css(opt), "ts_text_css")
   },
 
-  chatResize() {
+  chatResize(e) {
     let show = $("#tsDrag").length
     let conf = this.get("use.resize")
     this.bodyClass("ts-resize", conf)
@@ -16,9 +16,8 @@ export const tools = {
     let send = chat_css(size)
     this.injectStyle(send, "ts_chat_css")
     this.debug(`Resized Chat Panel`, size)
-    setTimeout(() => {
-      window.dispatchEvent(new Event("resize"))
-    }, 500)
+    let fire = () => window.dispatchEvent(new Event("resize"))
+    return e && e.room ? setTimeout(fire, 500) : fire()
   },
 
   showDrag() {
