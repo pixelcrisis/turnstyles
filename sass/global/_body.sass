@@ -107,7 +107,9 @@ body.ts-recent #maindiv .song.ts-played:not(.current-song)
 	@include abs(0)
 	&:hover 
 		background: $accent
-
+		
+body.lobby #tsDrag
+	@extend .ts-hidden
 body.ts-resizing > *:not(#tsDrag)
 	opacity: 0.8
 	cursor: col-resize
