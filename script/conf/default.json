@@ -11,8 +11,10 @@
 	"use.volume": false,
 	"use.recent": false,
 	"use.stamps": true,
+	"use.resize": false,
 
 	"size.text": "13px",
+	"size.chat": "256px",
 
 	"afk.auto": 0,
 	"afk.idle": false,

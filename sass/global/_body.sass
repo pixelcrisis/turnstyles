@@ -96,3 +96,18 @@ body.ts-recent #maindiv .song.ts-played:not(.current-song)
 	&:hover .title:after,
 	&:hover .details:after
 		content: " (Recent)"
+
+// resize handle
+#tsDrag
+	width: 5px
+	height: 100%
+	z-index: 10
+	cursor: col-resize
+	background: $c-mute
+	@include abs(0)
+	&:hover 
+		background: $accent
+
+body.ts-resizing > *:not(#tsDrag)
+	opacity: 0.8
+	cursor: col-resize
