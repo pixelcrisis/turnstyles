@@ -12,8 +12,10 @@ export const tools = {
     this.bodyClass("ts-resize", use)
     if (!use) return this.hideDrag()
     if (!has) this.showDrag()
-    let css = chat_css(this.get("size.chat"))
+    let opt = this.get("size.chat")
+    let css = chat_css(opt)
     this.injectStyle(css, "ts_chat_css")
+    this.debug(`Resized Chat Panel`, opt)
     window.dispatchEvent(new Event("resize"))
   },
 
