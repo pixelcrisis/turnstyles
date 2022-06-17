@@ -99,23 +99,20 @@ body.ts-recent #maindiv .song.ts-played:not(.current-song)
 
 // resize handle
 #tsDrag
-	width: 7px
-	height: 30px
+	width: 1px
+	height: 100%
 	z-index: 10
 	cursor: col-resize
 	background: $c-mute
-	@include abs(47px)
+	@include abs(0)
 	&:hover 
-		width: 10px
 		background: $accent
 
-body.ts-resizing 
+body.ts-resizing
 	#tsDrag
-		height: 100%
-		margin-top: -47px
+		cursor: grabbing
 	> *:not(#tsDrag)
 		opacity: 0.8
-		cursor: col-resize
 
 body.lobby #tsDrag
 	@extend .ts-hidden
