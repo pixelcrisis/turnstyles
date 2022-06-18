@@ -98,22 +98,28 @@ body.ts-recent #maindiv .song.ts-played:not(.current-song)
 		content: " (Recent)"
 
 // resize handle
-#tsDragR
+#tsDragL, #tsDragR
 	width: 5px
 	height: 100%
 	z-index: 10
 	color: $c-mute
 	cursor: col-resize
-	border-right: 1px solid
 	@include abs(0)
-	&:hover 
+	&:hover
 		color: $accent
 
+#tsDragL
+	border-left: 1px solid
+#tsDragR
+	border-right: 1px solid
+
 body.ts-resizing
-	#tsDragR
+	#tsDragL, #tsDragR
 		cursor: grabbing
-	> *:not(#tsDragR)
+	> *:not(#tsDragR):not(#tsDragL)
 		opacity: 0.8
 
-body.lobby #tsDragR
+body.lobby #tsDragL,
+body.lobby #tsDragR,
+html[class*="single-panel"] #tsDragL
 	@extend .ts-hidden
