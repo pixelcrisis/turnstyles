@@ -15,7 +15,9 @@ body.hb-dj-done #hbDoneDJ,
 body.hb-people #hbPeople,
 body.hb-player #hbPlayer,
 body.hb-bubble #hbBubble,
-body.hb-share #hbShare, body.lobby #tsDrag {
+body.hb-share #hbShare, body.lobby #tsDragL,
+body.lobby #tsDragR,
+html[class*="single-panel"] #tsDragL {
   display: none !important; }
 
 .ts-brighten, .chat .message.patron:hover {
@@ -114,23 +116,28 @@ body.ts-recent #maindiv .song.ts-played:not(.current-song) {
   body.ts-recent #maindiv .song.ts-played:not(.current-song):hover .details:after {
     content: " (Recent)"; }
 
-#tsDrag {
+#tsDragL, #tsDragR {
   width: 5px;
   height: 100%;
   z-index: 10;
   color: #9f9f9f;
   cursor: col-resize;
-  border-right: 1px solid;
   position: absolute !important;
   top: 0; }
-  #tsDrag:hover {
+  #tsDragL:hover, #tsDragR:hover {
     color: #f3cc12; }
 
-body.ts-resizing #tsDrag {
+#tsDragL {
+  border-left: 1px solid; }
+
+#tsDragR {
+  border-right: 1px solid; }
+
+body.ts-resizing #tsDragL, body.ts-resizing #tsDragR {
   cursor: -webkit-grabbing;
   cursor: grabbing; }
 
-body.ts-resizing > *:not(#tsDrag) {
+body.ts-resizing > *:not(#tsDragR):not(#tsDragL) {
   opacity: 0.8; }
 
 #tsLog .book {
