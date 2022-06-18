@@ -14,7 +14,8 @@
 	"use.resize": false,
 
 	"size.text": "13px",
-	"size.chat": "256px",
+	"size.tab1": "256px",
+	"size.tab2": "256px",
 
 	"afk.auto": 0,
 	"afk.idle": false,

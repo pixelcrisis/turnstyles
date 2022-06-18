@@ -1,88 +1,102 @@
 export const tools = {
   resize_at: 0,
+  drag_left: 0,
 
-  textResize() {
-    let opt = this.get("size.text")
-    this.injectStyle(text_css(opt), "ts_text_css")
+  resizeText () {
+    let data = css_text(this.get("size.text"))
+    this.injectStyle(data, "tsResizeText")
   },
 
-  chatResize(e) {
-    let show = $("#tsDragR").length
+  resizeTabs (e) {
     let conf = this.get("use.resize")
     this.bodyClass("ts-resize", conf)
     if (!conf) return this.hideDrag()
-    if (!show) this.showDrag()
-    let size = this.get("size.chat")
-    let send = chat_css(size)
-    this.injectStyle(send, "ts_chat_css")
-    this.debug(`Resized Chat Panel`, size)
-    let fire = () => window.dispatchEvent(new Event("resize"))
-    return e && e.room ? setTimeout(fire, 500) : fire()
+    else this.showDrag()
+    let tab1 = this.get("size.tab1")
+    let tab2 = this.get("size.tab2")
+    this.injectStyle(css_tab1(tab1), "tsResizeTab1")
+    this.injectStyle(css_tab2(tab2), "tsResizeTab2")
+    this.debug(`Resized Room Tabs`, { tab1, tab2 })
+    let fire = () => new Event("resize")
+    let done = () => window.dispatchEvent(fire())
+    let load = e && e.room // detect attach
+    return load ? setTimeout(done, 500) : done()
   },
 
-  showDrag() {
+  showDrag () {
     $("body").append($ts_drag)
-    $("#tsDragR").on("mousedown", this.initDrag.bind(this))
+    let init = this.initDrag.bind(this)
+    $("#tsDragL, #tsDragR").on("mousedown", init)
   },
 
-  hideDrag() {
-    $("#tsDragR").remove()
-    $("#ts_chat_css").remove()
+  hideDrag () {
+    $("#tsDragL, #tsDragR").remove()
+    $("#tsResizeTab1, #tsResizeTab2").remove()
     window.dispatchEvent(new Event("resize"))
   },
 
-  initDrag(e) {
+  initDrag (e) {
     e.preventDefault()
     this.resize_at = e.pageX
+    this.drag_left = e.target.id == "tsDragL"
+    this.stop_drag = this.stopDrag.bind(this)
+    this.save_drag = this.saveDrag.bind(this)
+    $("body").on("mousemove", this.save_drag)
+    $("body").on("mouseup", this.stop_drag)
     this.bodyClass("ts-resizing", true)
-    this.drag_end = this.stopDrag.bind(this) 
-    this.dragging = this.saveDrag.bind(this)
-    $("body").on("mousemove", this.dragging)
-    $("body").on("mouseup", this.drag_end)
   },
 
-  saveDrag(e) {
-    let val = this.resize_at - e.pageX
-    $("#tsDragR").css("margin-right", val)
+  saveDrag (e) {
+    let left = this.drag_left
+    let math = this.resize_at - e.pageX
+    if (left) $("#tsDragL").css("margin-left", -(math))
+    else $("#tsDragR").css("margin-right", math)
   },
 
-  stopDrag(e) {
+  stopDrag (e) {
     e.preventDefault()
-    $("#tsDragR").css("margin-right", 0)
+    let left = this.drag_left
+    let math = this.resize_at - e.pageX
+    let drag = left ? "size.tab1" : "size.tab2"
+    let data = px_add(this.get(drag), left ? -(math) : math)
+    $("body").off("mousemove", this.save_drag)
+    $("body").off("mouseup", this.stop_drag)
     this.bodyClass("ts-resizing", false)
-    $("body").off("mouseup", this.drag_end)
-    $("body").off("mousemove", this.dragging)
-    let opt = this.get("size.chat")
-    let val = this.resize_at - e.pageX
-    this.set("size.chat", px_add(opt, val))
-    this.resize_at = 0
-    this.chatResize()
+    $("#tsDragR").css("margin-right", 0)
+    $("#tsDragL").css("margin-left", 0)
+    this.set(drag, data)
+    this.resizeTabs()
   }
 }
 
 const events = {
-  data: function loadResize (config) {
-    this.textResize()
-    this.chatResize()
+  data: function resizeLoad (config) {
+    this.resizeText()
+    this.resizeTabs()
   },
 
-  save: function saveVisual (key, val) {
-    if (key == "size.text")   this.textResize()
-    if (key == "use.resize")  this.chatResize()
+  save: function resizeSave (key, val) {
+    if (key == "size.text")   this.resizeText()
+    if (key == "use.resize")  this.resizeTabs()
   },
 
-  attach: tools.chatResize
+  attach: tools.resizeTabs
 }
 
-const $ts_drag = `<div id="tsDragR"></div>`
+const $ts_drag = `<div id="tsDragL"></div><div id="tsDragR"></div>`
 
-const chat_css = size => `
+const css_tab2 = size => `
   body .chrome .header-bar, 
   .room-viewport, #tsDragR { right: ${ size }; }
   body .chrome .right-panel { width: ${ size }; }
   .chat-image-container .chat-image { width: auto; }
 `
-const text_css = size => `
+const css_tab1 = size => `
+  body .chrome .header-bar,
+  .room-viewport, #tsDragL { left: ${ size }; }
+  body .chrome .left-panel { width: ${ size }; }
+`
+const css_text = size => `
   .chat .messages .message,
   #songs .songs .song .title,
   .chat .messages .default-message {
