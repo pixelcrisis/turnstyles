@@ -1,9 +1,14 @@
 const tools = {
   takeJump (n) {
+    $(window).focus()
     // check if we made it on deck
     let user = this.user.id, room = this.room.metadata
     let curr = room.djs[user] || this.current_djs[user]
     if (curr) return this.print(`Jump: Landed On Deck.`)
+    // check if there's a spot open
+    let open = room.djcount < room.max_djs
+    let full = !$(".become-dj").length || !open
+    if (full) return this.print(`Jump: No Spot Open.`)
     this.print(`Jump: Attempting...`)
     this.jump()
     if (n) return this.redoJump(n - 1)
