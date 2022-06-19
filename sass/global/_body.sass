@@ -46,16 +46,33 @@
 	font-size: 11px
 	@extend .ts-faded
 
-.chat .message.patron .speaker
-	color: gold
+
+.chat .message.patron
+	.speaker
+		color: gold
+	.speaker:after
+		display: none
+		font-style: italic
+		font-weight: normal
+		content: " turnStyles VIP"
+	.avatar
+		height: 24px
+		background-size: 24px
+		transform: rotate(-20deg)
 .chat .message.patron:hover
 	@extend .ts-brighten
-.chat .message.patron .speaker:after
-	font-style: italic
-	font-weight: normal
-	content: " turnStyles VIP"
-.chat .message.patron:not(:hover) .speaker:after
-	display: none
+	.speaker:after
+		display: inline
+	.avatar
+		animation: swing
+		animation-duration: 2s
+		animation-iteration-count: infinite
+	
+@keyframes swing
+	50% 
+		transform: rotate(20deg)
+	100% 
+		transform: rotate(-20deg)
 
 // firefox emoji spacing fix
 @supports (-moz-appearance:none)

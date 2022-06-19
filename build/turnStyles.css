@@ -93,12 +93,38 @@ html[class*="single-panel"] #tsDragL {
   color: gold; }
 
 .chat .message.patron .speaker:after {
+  display: none;
   font-style: italic;
   font-weight: normal;
   content: " turnStyles VIP"; }
 
-.chat .message.patron:not(:hover) .speaker:after {
-  display: none; }
+.chat .message.patron .avatar {
+  height: 24px;
+  background-size: 24px;
+  transform: rotate(-20deg); }
+
+.chat .message.patron:hover .speaker:after {
+  display: inline; }
+
+.chat .message.patron:hover .avatar {
+  -webkit-animation: swing;
+          animation: swing;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite; }
+
+@-webkit-keyframes swing {
+  50% {
+    transform: rotate(20deg); }
+  100% {
+    transform: rotate(-20deg); } }
+
+@keyframes swing {
+  50% {
+    transform: rotate(20deg); }
+  100% {
+    transform: rotate(-20deg); } }
 
 @supports (-moz-appearance: none) {
   .chat .emoji-small {
