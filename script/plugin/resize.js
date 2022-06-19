@@ -23,6 +23,12 @@ export const tools = {
     return load ? setTimeout(done, 500) : done()
   },
 
+  reloadTabs () {
+    this.set("size.tab1", "256px")
+    this.set("size.tab2", "256px")
+    this.resizeTabs()
+  },
+
   showDrag () {
     $("body").append($ts_drag)
     let init = this.initDrag.bind(this)

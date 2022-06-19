@@ -12,8 +12,10 @@ export default function () { return `
 
     <article class="ts-help">
       <strong>Reload turnStyles</strong>
-      <p>Removes turnStyls from the room and re-injects it. Useful for updating a bookmarklet or debugging.</p>
+      <p>Removes turnStyles from the room and re-injects it. Useful for updating a bookmarklet or debugging.</p>
       ${ this.$btn("Reload turnStyles", 0, "reload") }
+      <p>Reset chat/queue tabs to default sizes.</p>
+      ${ this.$btn("Reset Tab Sizes", 0, "reloadTabs") }
     </article>
 
     <article class="ts-help">
