@@ -76,12 +76,12 @@ export const tools = {
 }
 
 const events = {
-  data: function resizeLoad (config) {
+  attach: function resizeLoad () {
     this.resizeText()
     this.resizeTabs()
   },
 
-  save: function resizeSave (key, val) {
+  save: function resizeSave (key) {
     if (key == "size.text")   this.resizeText()
     if (key == "use.resize")  this.resizeTabs()
   },

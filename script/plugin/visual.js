@@ -1,5 +1,5 @@
 const events = {
-  data: function loadVisual (config) {
+  attach: function loadVisual (config) {
     this.bodyClass("ts-recent", config["use.recent"])
     this.bodyClass("ts-resize", config["use.resize"])
     this.bodyClass("ts-logger", config["show.logger"])
