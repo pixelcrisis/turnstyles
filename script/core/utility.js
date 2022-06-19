@@ -2,6 +2,7 @@ const tools = {
 	onOff: bool => bool ? "On" : "Off",
 	capStr: str => str[0].toUpperCase() + str.substring(1),
 	strArr: (str, at = " ") => str.split(at).map(s => s.trim()),
+	wait: (ms) => new Promise(res => setTimeout(res, ms)),
 	
 	getTime () { // returns 00:00 fromatted timestamp
 		let time = new Date().toLocaleTimeString("en-US")

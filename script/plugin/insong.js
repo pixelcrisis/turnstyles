@@ -32,6 +32,24 @@ const tools = {
 
   scrollSongs (e) {
     if (!e.curr) $("#songs").scrollTop = 0
+  },
+
+  async shuffleSongs () {
+    let list = window.turntable.playlist
+    let name = `${ list.activePlaylist }`
+    let data = shuffle([ ...list.fileids ])
+    let copy = `${ name }-copy`
+    list.createPlaylist(copy)
+    await this.wait(100)
+    list.switchPlaylist(copy)
+    await this.wait(100)
+    for (let i = 0; i < data.length; i++) {
+      list.addSong({ fileId: data[i] }, copy, i)
+      await this.wait(100)
+    }
+    // list.deletePlaylist(name)
+    // list.renamePlaylist(copy, name)
+    window.location.reload()
   }
 }
 
@@ -44,7 +62,16 @@ const events = {
 
   song: tools.scanRecent,
   list: [ tools.scanRecent, tools.countSongs, tools.scrollSongs ],
-  attach: [ tools.scanRecent, tools.countSongs ]
+  attach: [  tools.scanRecent, tools.countSongs ]
+}
+
+// durstenfeld shuffle
+const shuffle = function (arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [ arr[i], arr[j] ] = [ arr[j], arr[i] ];
+  }
+  return arr
 }
 
 export default { tools, events }
