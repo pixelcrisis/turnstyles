@@ -1,11 +1,14 @@
 const events = {
-  attach: function loadVisual (config) {
-    this.bodyClass("ts-recent", config["use.recent"])
-    this.bodyClass("ts-resize", config["use.resize"])
-    this.bodyClass("ts-logger", config["show.logger"])
-    this.bodyClass("ts-no-bub", config["hide.bubble"])
-    this.bodyClass("ts-no-vid", config["hide.player"])
-    this.bodyClass("ts-no-ppl", config["hide.people"])
+  attach: function loadVisual () {
+    this.bodyClass("ts-recent", this.get("use.recent"))
+    this.bodyClass("ts-resize", this.get("use.resize"))
+    this.bodyClass("ts-logger", this.get("show.logger"))
+    this.bodyClass("ts-no-bub", this.get("hide.bubble"))
+    this.bodyClass("ts-no-vid", this.get("hide.player"))
+    this.bodyClass("ts-no-ppl", this.get("hide.people"))
+  },
+
+  data: function loadDebug (config) {
     this.debugging = config.debug
   },
 
