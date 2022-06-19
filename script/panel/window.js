@@ -2,13 +2,13 @@ const tools = {
   loadWindow () {
     $("#tsWindow").remove()
     $("body").append(this.makeWindow())
-    $(".ts-tab").on("click", this.moveTabs)
-    $("#tsClose").on("click", this.hidePanel)
-    $(ts_panels).on("click", this.toggleHelp)
-    $("#tsWindow").on("click", this.hideWindow.bind(this))
+    $(".ts-tab").on("mouseup", this.moveTabs)
+    $("#tsClose").on("mouseup", this.hidePanel)
+    $(ts_panels).on("mouseup", this.toggleHelp)
+    $("#tsWindow").on("mouseup", this.hideWindow.bind(this))
     $(ts_backup).on("change", this.uploadData.bind(this))
     $(ts_option).on("change", this.savePanel.bind(this))
-    $(ts_button).on("click", this.savePanel.bind(this))
+    $(ts_button).on("mouseup", this.savePanel.bind(this))
   },
 
   hideWindow (e) {

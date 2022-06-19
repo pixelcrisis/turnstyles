@@ -10,7 +10,7 @@ const tools = {
     let flag = `class="ts-button"`
     if (name) flag += ` id="${ name }"`
     if (item) flag += ` data-for="${ item }"`
-    if (func) flag += ` onclick="$ts.${ func }()"`
+    if (func) flag += ` onmouseup="$ts.${ func }()"`
     return `<button ${ flag }>${ text }</button>`
   },
 
