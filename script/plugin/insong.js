@@ -56,9 +56,11 @@ const tools = {
     this.debug(`Starting Shuffle...`)
     let list = window.turntable.playlist
     let data = shuffle([ ...list.fileids ])
-    for (let i = 0; i < data.length; i++) {
-      await list.queue.reorderBySongid(data[i], i)
-      await this.wait(100)
+    for (let id in data) {
+      const song = data[id]
+      await list.reorder(song.old, song.new)
+      await list.queue.reorderBySongid(id, song.new)
+      await this.wait(50)
     }
     this.debug(`Shuffled`)
   }
@@ -78,11 +80,14 @@ const events = {
 
 // durstenfeld shuffle
 const shuffle = function (arr) {
+  let data = {}
   for (let i = arr.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [ arr[i], arr[j] ] = [ arr[j], arr[i] ];
+    let n = Math.floor(Math.random() * (i + 1))
+    let curr = arr[i], find = arr[n]
+    data[curr] = { old: i, new: n }
+    data[find] = { old: n, new: i }
   }
-  return arr
+  return data
 }
 
 export default { tools, events }
