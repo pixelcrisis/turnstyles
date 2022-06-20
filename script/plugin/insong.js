@@ -42,6 +42,7 @@ const tools = {
       const song = data[id]
       list.reorder(song.old, song.new)
       list.queue.reorderBySongid(id, song.new)
+      if (list.fileids.length > 150) await this.wait(250)
     }
     list.loadList()
     this.debug(`Shuffled`)
