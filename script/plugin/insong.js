@@ -50,6 +50,17 @@ const tools = {
     // list.deletePlaylist(name)
     // list.renamePlaylist(copy, name)
     window.location.reload()
+  },
+
+  async shuffleNew () {
+    this.debug(`Starting Shuffle...`)
+    let list = window.turntable.playlist
+    let data = shuffle([ ...list.fileids ])
+    for (let i = 0; i < data.length; i++) {
+      await list.queue.reorderBySongid(data[i], i)
+      await this.wait(100)
+    }
+    this.debug(`Shuffled`)
   }
 }
 
