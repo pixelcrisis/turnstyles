@@ -35,33 +35,15 @@ const tools = {
   },
 
   async shuffleSongs () {
-    let list = window.turntable.playlist
-    let name = `${ list.activePlaylist }`
-    let data = shuffle([ ...list.fileids ])
-    let copy = `${ name }-copy`
-    list.createPlaylist(copy)
-    await this.wait(100)
-    list.switchPlaylist(copy)
-    await this.wait(100)
-    for (let i = 0; i < data.length; i++) {
-      list.addSong({ fileId: data[i] }, copy, i)
-      await this.wait(100)
-    }
-    // list.deletePlaylist(name)
-    // list.renamePlaylist(copy, name)
-    window.location.reload()
-  },
-
-  async shuffleNew () {
     this.debug(`Starting Shuffle...`)
     let list = window.turntable.playlist
     let data = shuffle([ ...list.fileids ])
     for (let id in data) {
       const song = data[id]
-      await list.reorder(song.old, song.new)
-      await list.queue.reorderBySongid(id, song.new)
-      await this.wait(50)
+      list.reorder(song.old, song.new)
+      list.queue.reorderBySongid(id, song.new)
     }
+    list.loadList()
     this.debug(`Shuffled`)
   }
 }
