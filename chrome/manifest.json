@@ -1,7 +1,7 @@
 {
-  "name": "turnStyles for deepcut.fm",
+  "name": "turnStyles for deep-cut.fm",
   "version": "11.0.2",
-  "description": "Apply tweaks to deepcut.fm - autobop, autodj, themes, styles, and more!",
+  "description": "Apply tweaks to deep-cut.fm - autobop, autodj, themes, styles, and more!",
   "manifest_version": 2,
   "icons": {
     "48": "images/icon48.png",
@@ -25,7 +25,13 @@
         "*://deepcut.fm/privacy",
         "*://deepcut.fm/copyright",
         "*://deepcut.fm/terms",
-        "*://deepcut.fm/static/*"
+        "*://deepcut.fm/static/*",
+        "*://deep-cut.fm/about",
+        "*://deep-cut.fm/jobs",
+        "*://deep-cut.fm/privacy",
+        "*://deep-cut.fm/copyright",
+        "*://deep-cut.fm/terms",
+        "*://deep-cut.fm/static/*"
       ],
       "js": [
         "inject.js"
@@ -33,7 +39,8 @@
       "run_at": "document_end",
       "matches": [
         "*://turntable.fm/*",
-        "*://deepcut.fm/*"
+        "*://deepcut.fm/*",
+        "*://deep-cut.fm/*"
       ]
     }
   ],
