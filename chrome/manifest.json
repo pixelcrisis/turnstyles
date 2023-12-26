@@ -20,12 +20,18 @@
         "*://turntable.fm/copyright",
         "*://turntable.fm/terms",
         "*://turntable.fm/static/*",
-        "*://deepcut.fm/about",
-        "*://deepcut.fm/jobs",
-        "*://deepcut.fm/privacy",
-        "*://deepcut.fm/copyright",
-        "*://deepcut.fm/terms",
-        "*://deepcut.fm/static/*"
+        "*://deepcuts.fm/about",
+        "*://deepcuts.fm/jobs",
+        "*://deepcuts.fm/privacy",
+        "*://deepcuts.fm/copyright",
+        "*://deepcuts.fm/terms",
+        "*://deep-cuts.fm/static/*",
+        "*://deep-cuts.fm/about",
+        "*://deep-cuts.fm/jobs",
+        "*://deep-cuts.fm/privacy",
+        "*://deep-cuts.fm/copyright",
+        "*://deep-cuts.fm/terms",
+        "*://deep-cuts.fm/static/*"
       ],
       "js": [
         "inject.js"
@@ -33,7 +39,8 @@
       "run_at": "document_end",
       "matches": [
         "*://turntable.fm/*",
-        "*://deepcut.fm/*"
+        "*://deepcuts.fm/*",
+        "*://deep-cuts.fm/*"
       ]
     }
   ],
