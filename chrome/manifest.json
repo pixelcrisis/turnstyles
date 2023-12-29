@@ -47,7 +47,8 @@
       "matches": [
         "*://turntable.fm/*",
         "*://deepcuts.fm/*",
-        "*://deep-cuts.fm/*"
+        "*://deep-cut.fm/*",
+        "*://deepcut.fm/*"
       ]
     }
   ],
