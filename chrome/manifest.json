@@ -25,13 +25,20 @@
         "*://deepcuts.fm/privacy",
         "*://deepcuts.fm/copyright",
         "*://deepcuts.fm/terms",
-        "*://deep-cuts.fm/static/*",
-        "*://deep-cuts.fm/about",
-        "*://deep-cuts.fm/jobs",
-        "*://deep-cuts.fm/privacy",
-        "*://deep-cuts.fm/copyright",
-        "*://deep-cuts.fm/terms",
-        "*://deep-cuts.fm/static/*"
+        "*://deep-cut.fm/static/*",
+        "*://deep-cut.fm/static/*",
+        "*://deep-cut.fm/about",
+        "*://deep-cut.fm/jobs",
+        "*://deep-cut.fm/privacy",
+        "*://deep-cut.fm/copyright",
+        "*://deep-cut.fm/terms",
+        "*://deep-cut.fm/static/*",
+        "*://deepcut.fm/about",
+        "*://deepcut.fm/jobs",
+        "*://deepcut.fm/privacy",
+        "*://deepcut.fm/copyright",
+        "*://deepcut.fm/terms",
+        "*://deepcut.fm/static/*"
       ],
       "js": [
         "inject.js"
@@ -40,7 +47,8 @@
       "matches": [
         "*://turntable.fm/*",
         "*://deepcuts.fm/*",
-        "*://deep-cuts.fm/*"
+        "*://deep-cut.fm/*",
+        "*://deepcut.fm/*"
       ]
     }
   ],
